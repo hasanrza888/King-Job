@@ -1,0 +1,40 @@
+:root{
+    --primary-color: #fff;
+    --secondary-color: #40cb00;
+    --tertiary-color: #2a8301;
+    --quaternary-color: #45A6FF;
+}
+.not_found_page_container{
+    width: 80%;
+    margin: 0px auto;
+    padding: 40px 0px;
+}
+.not_found_page_head{
+    font-size: 30px;
+    text-align: center;
+    color: var(--quaternary-color);
+    font-weight: 500;
+}
+.not_found_page_image{
+    width: 80%;
+    max-width: 500px;
+    display: block;
+    margin: 0px auto;  
+    user-select: none;  
+}
+.not_found_page_back_btn{
+    width: 50px;
+    text-align: center;
+    margin: 0px auto;
+    font-size: 25px;
+    color: var(--secondary-color);
+    cursor: pointer;
+}
+.not_found_page_back_btn:hover{
+    text-decoration: underline;
+}
+@media (width <= 500px){
+    .not_found_page_head{
+        font-size: 20px;
+    }
+}

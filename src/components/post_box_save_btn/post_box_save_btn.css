@@ -1,0 +1,20 @@
+:root{
+    --primary-color: #fff;
+    --secondary-color: #40cb00;
+    --tertiary-color: #2a8301;
+    --quaternary-color: #45A6FF;
+}
+/* post save button */
+.post_box_save_button{
+    cursor: pointer;
+}
+.post_box_save_button svg{
+    /* width: 20px; */
+    font-size: 30px;
+    color: var(--quaternary-color);
+}
+@media (width <= 650px){
+    .post_box_save_button svg{
+        font-size: 25px;
+    } 
+}

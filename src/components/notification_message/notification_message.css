@@ -1,0 +1,70 @@
+:root{
+    --primary-color: #fff;
+    --secondary-color: #40cb00;
+    --tertiary-color: #2a8301;
+    --quaternary-color: #45A6FF;
+}
+/* notification message window */
+.notification_message_container{
+    width: 15%;
+    min-width: 200px;
+    box-shadow: 1px 1px 5px 0px rgba(14,173,0,1);
+    position: fixed;
+    z-index: 998;
+    top: 100px;
+    right: 1%;
+}
+.notification_message_none{
+    display: none;
+}
+/* message window close button */
+.notification_message_header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--secondary-color);
+    padding: 5px 10px;
+}
+.notification_message_info_icon{
+    color: var(--primary-color);
+    font-size: 20px;
+}
+.notification_message_close{
+    font-size: 25px;
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: 0.2s all;
+    position: absolute;
+    z-index: 1000;
+}
+.notification_message_close:hover{
+    transform: scale(1.15) rotate(90deg);
+}
+/* message text */
+.notification_message_body{
+    padding: 10px;
+    text-align: justify;
+    /* border: 1px solid var(--secondary-color); */
+    font-size: 14px;
+    background-color: var(--primary-color);
+}
+@property --progress-value{
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+@keyframes notification_progress{
+ to { --progress-value: 100; }
+}
+.notification_progress_bar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, var(--secondary-color) 79%, transparent 80% 100%), conic-gradient(var(--primary-color) calc(var(--progress-value) * 1%), var(--secondary-color) 0);
+    animation: notification_progress 5s 1 forwards;
+    position: relative;
+}

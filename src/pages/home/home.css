@@ -1,0 +1,55 @@
+:root{
+    --primary-color: #fff;
+    --secondary-color: #40cb00;
+    --tertiary-color: #2a8301;
+    --quaternary-color: #45A6FF;
+    --posts-container-heading-color: var(--secondary-color);
+}
+.home_page_container{
+    width: 100%;
+}
+.latest_jobs_container{
+    width: 60%;
+    margin: 100px auto;
+}
+.latest_jobs_heading{
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    font-size: 40px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    background-color: var(--posts-container-heading-color);
+    color: var(--primary-color);
+    user-select: none;
+}
+/* responsive */
+@media (width <= 1024px){
+    .latest_jobs_container{
+        width: 70%;
+    }
+}
+@media (width <= 850px){
+    .latest_jobs_container{
+        width: 90%;
+        margin-top: 50px;
+    }
+    .latest_jobs_heading{
+        font-size: 30px;
+    }
+}
+@media (width <= 650px){
+    .latest_jobs_container{
+        width: 60%;
+        min-width: 330px;
+    }
+}
+@media (width <= 400px){
+    .latest_jobs_container{
+        width: 90%;
+        min-width: unset;
+    }
+    .latest_jobs_heading{
+        font-size: 20px;
+    }
+}
