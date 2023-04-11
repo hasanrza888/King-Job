@@ -96,7 +96,7 @@ function Header(){
                         </div>
                         {
                             logged ?                     
-                                <NavLink to="/profile" className={({isActive})=> isActive ? 'link_none' : 'account_link_btn header_profile_btn'}>
+                                <NavLink to="/profile" onClick={open_drop_menu} className={({isActive})=> isActive ? 'link_none' : 'account_link_btn header_profile_btn'}>
                                     <div className="header_profil_picture">
                                         <img src={profile_picture} alt="profile"/>
                                     </div>
@@ -109,31 +109,31 @@ function Header(){
                     {/* _________ header links ___________ */}
                     <ul className="mobile_header_links">
                         <li>                            
-                            <NavLink to="/" className={({isActive, isPending})=>isPending ? 'pending_link' : isActive ? 'header_active_link': ''}>
+                            <NavLink to="/" onClick={open_drop_menu} className={({isActive, isPending})=>isPending ? 'pending_link' : isActive ? 'header_active_link': ''}>
                                 <FontAwesomeIcon icon={faHouse} className="mobile_menu_link_icon" />
                                 Əsas Səhifə
                             </NavLink>                            
                         </li>
                         <li>                              
-                            <NavLink to="/vacancies" className={({isActive, isPending})=>isPending ? 'pending_link' : isActive ? 'header_active_link': ''}>
+                            <NavLink to="/vacancies" onClick={open_drop_menu} className={({isActive, isPending})=>isPending ? 'pending_link' : isActive ? 'header_active_link': ''}>
                                 <FontAwesomeIcon icon={faBriefcase} className="mobile_menu_link_icon" /> 
                                 Vakansiyalar
                             </NavLink>                                                     
                         </li>
                         <li>                            
-                            <NavLink to="/companies" className={({isActive, isPending})=>isPending ? 'pending_link' : isActive ? 'header_active_link': ''}>
+                            <NavLink to="/companies" onClick={open_drop_menu} className={({isActive, isPending})=>isPending ? 'pending_link' : isActive ? 'header_active_link': ''}>
                                 <FontAwesomeIcon icon={faBuilding} className="mobile_menu_link_icon" />
                                 Şirkətlər
                             </NavLink>                            
                         </li>
                         <li>                            
-                            <NavLink to="/about" className={({isActive, isPending})=>isPending ? 'pending_link' : isActive ? 'header_active_link': ''}>
+                            <NavLink to="/about" onClick={open_drop_menu} className={({isActive, isPending})=>isPending ? 'pending_link' : isActive ? 'header_active_link': ''}>
                                 <FontAwesomeIcon icon={faCircleInfo} className="mobile_menu_link_icon" />
                                 Haqqımızda
                             </NavLink>                            
                         </li>
                         <li>                            
-                            <NavLink to="/contact" className={({isActive, isPending})=>isPending ? 'pending_link' : isActive ? 'header_active_link': ''}>
+                            <NavLink to="/contact" onClick={open_drop_menu} className={({isActive, isPending})=>isPending ? 'pending_link' : isActive ? 'header_active_link': ''}>
                                 <FontAwesomeIcon icon={faAddressBook} className="mobile_menu_link_icon" />
                                 Əlaqə
                             </NavLink>                            
@@ -144,8 +144,8 @@ function Header(){
                                 ''                  
                             :
                             <>                        
-                                <NavLink to="/signup" className={({isActive})=> isActive ? 'link_none' : 'account_link_btn'}>Qeydiyyat</NavLink>                                                                       
-                                <NavLink to="/login" className={({isActive})=> isActive ? 'link_none' : 'account_link_btn'}>Daxil ol</NavLink>                        
+                                <NavLink to="/signup" onClick={open_drop_menu} className={({isActive})=> isActive ? 'link_none' : 'account_link_btn'}>Qeydiyyat</NavLink>                                                                       
+                                <NavLink to="/login" onClick={open_drop_menu} className={({isActive})=> isActive ? 'link_none' : 'account_link_btn'}>Daxil ol</NavLink>                        
                             </>
                         }  
                         </div>  
