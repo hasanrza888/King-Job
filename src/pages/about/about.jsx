@@ -1,9 +1,11 @@
+import PageHeadText from '../../components/page_head_text/page_head_text';
 import './about.css';
 function About() {
     return ( 
         <div className="about_page_container">
             {/* page head */}
-            <div className="about_page_head">Haqqımızda</div>
+            <PageHeadText content={"Haqqımızda"} />
+            <div className="about_page_head"></div>
             {/* information row */}
             <div className="about_page_information">
                 <div className="about_page_information_head"><strong>Şirkət haqqında:</strong></div>
