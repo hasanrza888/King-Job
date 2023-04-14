@@ -3,6 +3,7 @@ import svg from '../../images/island_logo.svg';
 import {Link, NavLink} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faFacebook, faFacebookSquare, faInstagram, faLinkedin, faTwitter, faTwitterSquare} from '@fortawesome/free-brands-svg-icons';
+import SubscribeForm from "../subscribe_form/subscribe_form";
 // import {icon, brands, } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 function Footer() {
@@ -12,12 +13,19 @@ function Footer() {
             <div className="desktop_footer">         
                 {/* footer seperator */}
                 <div className="desktop_footer_seperator"></div>
-                {/* header logo */}
-                <div className="footer_logo">
-                    <Link to="/">
-                        <img src= {svg} alt="logo" />    
-                    </Link>                
-                </div>
+                {/* logo and subscribe form */}
+                <div className="footer_logo_and_subscribe">
+                    {/* header logo */}
+                    <div className="footer_logo">
+                        <Link to="/">
+                            <img src= {svg} alt="logo" />    
+                        </Link>                
+                    </div>
+                    {/* subscribe form */}
+                    <div className="footer_subscribe_form">
+                        <SubscribeForm />
+                    </div>                    
+                </div>                
                 {/* footer columns */}
                 <div className="desktop_footer_columns">
                     <div className="footer_column">                        

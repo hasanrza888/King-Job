@@ -4,16 +4,17 @@ import PostBox from '../../components/post_box/post_box';
 import NotificationMessage from '../../components/notification_message/notification_message';
 import { latest_jobs } from '../../fakeData/latestJobs';
 import { useState } from 'react';
+import PageHeadText from '../../components/page_head_text/page_head_text';
 function Home() {
     const [successMsg, setSuccessMsg] = useState(false);
+    const [savedJob, setSavedJob] = useState('');
+    const notification_message_content = <div>"{savedJob}" adlı vakansiya şəxsi hesabınızda <strong><u>sevimlilər</u></strong> bölməsinə əlavə olundu.</div>;
     return ( 
         <div className="home_page_container">
             <SliderHome />
             {/* __________ premium jobs ____________________ */}
             <div className="latest_jobs_container">
-                <div className="latest_jobs_heading">
-                    Premium Elanlar
-                </div>
+                <PageHeadText content={'Premium Elanlar'}/>                
                 <div className="latest_jobs_boxes_container">
                     {
                         latest_jobs['latest'].map((item, index)=>{
@@ -32,6 +33,7 @@ function Home() {
                                     job_time_type={item.job_time_type}
                                     key={item.job_id}
                                     setSuccessMsg = {setSuccessMsg}
+                                    setSavedJob = {setSavedJob}
                                 />
                             )
                         })
@@ -40,9 +42,7 @@ function Home() {
             </div> 
             {/* __________ latest jobs container ___________ */}
             <div className="latest_jobs_container">
-                <div className="latest_jobs_heading">
-                    Ən Son Elanlar
-                </div>
+            <PageHeadText content={'Ən Son Elanlar'}/>   
                 <div className="latest_jobs_boxes_container">
                     {
                         latest_jobs['latest'].map((item, index)=>{
@@ -61,13 +61,14 @@ function Home() {
                                     job_time_type={item.job_time_type}
                                     key={item.job_id}
                                     setSuccessMsg = {setSuccessMsg}
+                                    setSavedJob = {setSavedJob}
                                 />
                             )
                         })
                     }
                 </div>
             </div>         
-            {successMsg ? <NotificationMessage setSuccessMsg = {setSuccessMsg} /> : null}
+            {successMsg ? <NotificationMessage setSuccessMsg = {setSuccessMsg} notification_message_content = {notification_message_content} /> : null}
         </div>
      );
 }

@@ -1,0 +1,49 @@
+:root{
+    --primary-color: #fff;
+    --secondary-color: #40cb00;
+    --tertiary-color: #2a8301;
+    --quaternary-color: #45A6FF;
+    --subscribe-btn-hover: #3dbf00;
+}
+.subscribe_form_container{
+    width: 100%;
+}
+.subscribe_form{
+    width: 100%;
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+}
+.subscribe_form_input{
+    width: 65%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+}
+.subscribe_form_submit_btn{
+    width: 35%;
+    min-width: 105px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    font-weight: 500;
+    font-size: 18px;
+    cursor: pointer;
+}
+.subscribe_form_submit_btn:hover{
+    background-color: var(--subscribe-btn-hover);
+}
+@media (width <= 600px){
+    .subscribe_form_input{
+        width: 60%;
+    }
+    .subscribe_form_submit_btn{
+        width: 40%;
+        font-size: 14px;
+    }
+}
