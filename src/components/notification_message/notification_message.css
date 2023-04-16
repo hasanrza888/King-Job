@@ -4,6 +4,10 @@
     --tertiary-color: #2a8301;
     --quaternary-color: #45A6FF;
 }
+@keyframes message_to_right{
+    from{right: 100px;}
+    to{right: 0px;}
+}
 /* notification message window */
 .notification_message_container{
     width: 15%;
@@ -13,6 +17,7 @@
     z-index: 998;
     top: 100px;
     right: 1%;
+    animation: 0.5s message_to_right;
 }
 .notification_message_none{
     display: none;

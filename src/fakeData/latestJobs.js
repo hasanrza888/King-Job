@@ -15,7 +15,7 @@ export const latest_jobs = {
         {   job_id: 2,
             image_url : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACB0lEQVR4AcXUA4wkURSF4Y65tl1oozQK17Zt70Zr27Zt2wjWts0xYt3hGbW7MJ386fh8hVem/fVFmlfOSUsqOGh1JQdtrOKk7VWdtK+6iw7XcNHx2k46V8dNl+q56UZWtxu46G4jgR4yAj1mPfSC89BrXqD3vIc+WUT6bBHou1WkHzaB/tgl+msX6J9DpHiHRIlZ/0lOCVFat16C6VQtGx3jFMMBySPG2U3Zv2xAdgfrC4YB0jt0UXLGAUDnrNG6A9IWrmiI7SIAdKyBoBvgf9u20dj1CUCn+WjNARkTp5uxGRiAGFkzQFK3bgr2QgKgM4ysGpDab7AbW2EB0FlWjhiQ0GeggJ2IAOgcI4UN+NUaR00lAF2wxoYMSBozGS+cRgAgGCko4HeLjjhqGgOAsMT4BSQsX854L2gIQJc52QvwCVeuOwAIswIAfRs6HkfNGAC6xiv0sUtfvO3GA7Y2iqWlfItpJQLY20ChKaXtOa10tl1kKGBHXRHjiJZwTaYYAtjHxXmNo7VK13W6ArbXwZX7bxHXbIougH2NooOOo2Wudgs0BeysI4U8jpbwzadpAthdTw57HC23tpyhCrC7fuTjaIWj9ZyIADtx1DRoEdt0WlgAvHBatkrotCIkwA4cNR1azDWdFBBwgI1VORLBnVB/5SreCQB2N4wybNzrdOzEOTc4fCcyASRu7AlXUGPrAAAAAElFTkSuQmCC', 
             salary : 3000, 
-            job_title : 'Backend developer', 
+            job_title : 'Frontend developer', 
             company_name : 'Kapital bank', 
             post_views : 1000,
             post_applies: 1000, 

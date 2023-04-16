@@ -1,10 +1,14 @@
 import { faCircleCheck, faCircleExclamation, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './notification_message.css';
-function NotificationMessage({job_id, setSuccessMsg}) {
-    setTimeout(()=>{
-        setSuccessMsg(false);
-    }, 4600);
+import { useEffect } from "react";
+function NotificationMessage({setSuccessMsg, notification_message_content}) {
+    // automatically closing of message block
+    useEffect(()=>{
+        setTimeout(()=>{
+            setSuccessMsg(false);
+        }, 4600);
+    },[setSuccessMsg])
     return (         
         <div className= "notification_message_container">
             {/* message window close button */}
@@ -18,7 +22,7 @@ function NotificationMessage({job_id, setSuccessMsg}) {
             </div>
             {/* message body text */}
             <div className="notification_message_body">
-                "Backend developer" adlı vakansiya şəxsi hesabınızda <strong><u>sevimlilər</u></strong> bölməsinə əlavə olundu
+                {notification_message_content}
             </div>
         </div>
      );

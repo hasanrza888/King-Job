@@ -3,7 +3,7 @@ import PostBoxSaveBtn from "../post_box_save_btn/post_box_save_btn";
 import { faBriefcase, faHourglassEnd, faHourglassStart, faLocationPin } from "@fortawesome/free-solid-svg-icons";
 import { faEye, faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import "./post_box.css"
-function PostBox({setSuccessMsg, job_id, image_url, salary, job_title, company_name, post_views, post_applies, post_start_date, post_end_date, location, job_time_type}){
+function PostBox({setSavedJob, setSuccessMsg, job_id, image_url, salary, job_title, company_name, post_views, post_applies, post_start_date, post_end_date, location, job_time_type}){
     
     return(
         <div className="post_box_container">
@@ -21,7 +21,7 @@ function PostBox({setSuccessMsg, job_id, image_url, salary, job_title, company_n
                     </div>
                 </div>
                 {/* post save button */}
-                <PostBoxSaveBtn job_id = {job_id} setSuccessMsg = {setSuccessMsg}/>
+                <PostBoxSaveBtn job_id = {job_id} setSuccessMsg = {setSuccessMsg} setSavedJob={setSavedJob} job_title={job_title}/>
             </div>
             {/* job title and salary */}
             <div className="post_box_job_title_and_salary">

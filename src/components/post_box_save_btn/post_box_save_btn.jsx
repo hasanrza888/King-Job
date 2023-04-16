@@ -3,13 +3,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark as solid_bookmark} from "@fortawesome/free-solid-svg-icons";
 import './post_box_save_btn.css';
 import { useState } from "react";
-function PostBoxSaveBtn({job_id, setSuccessMsg}) {
+function PostBoxSaveBtn({job_id, setSuccessMsg, setSavedJob, job_title}) {
     const [save_post, set_save_post] = useState(false);
     // function for adding jobs to saved 
     const add_saved_posts = (job_id)=>{
         set_save_post(!save_post);  
         if(save_post === false){
             setSuccessMsg(true);    
+            setSavedJob(job_title);
         }         
     }
     return (         
