@@ -45,10 +45,11 @@
     align-items: center;
     justify-content: center;
     margin-right: 10px;
+    transition: 0.3s all;
 }
 .contact_page_box_icon svg{
     font-size: 25px;
-    color: var(--secondary-color);
+    color: var(--secondary-color);    
 }
 .contact_page_box:hover .contact_page_box_icon{
     transform: scale(1.1);

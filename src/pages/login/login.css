@@ -1,0 +1,18 @@
+.login_page_container{
+    width: 90%;
+    max-width: 790px;
+    margin: 0px auto;
+    padding: 50px 0px 100px;
+    overflow: hidden;
+}
+.login_page_form_container{
+    width: 80%;
+    max-width: 320px;
+    margin: 50px auto 0px;
+}
+@media (width <= 500px){
+    .login_page_form_container{
+        width: 90%;
+        max-width: unset;
+    }
+}

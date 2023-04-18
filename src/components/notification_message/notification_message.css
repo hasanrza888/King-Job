@@ -5,8 +5,8 @@
     --quaternary-color: #45A6FF;
 }
 @keyframes message_to_right{
-    from{right: 100px;}
-    to{right: 0px;}
+    from{right: 20%;}
+    to{right: 5%;}
 }
 /* notification message window */
 .notification_message_container{
@@ -16,7 +16,7 @@
     position: fixed;
     z-index: 998;
     top: 100px;
-    right: 1%;
+    right: 5%;
     animation: 0.5s message_to_right;
 }
 .notification_message_none{
