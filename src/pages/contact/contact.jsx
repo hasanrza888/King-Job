@@ -4,6 +4,7 @@ import './contact.css'
 import { faEnvelope, faLocationDot, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faFacebookSquare, faInstagram, faLinkedin, faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
 import SubscribeForm from '../../components/subscribe_form/subscribe_form';
+import { Link } from 'react-router-dom';
 function Contact() {
     return ( 
         <div className="contact_page_container">
@@ -17,7 +18,7 @@ function Contact() {
                         <FontAwesomeIcon icon={faEnvelope} />
                     </div>                    
                     <div className="contact_page_box_text">
-                        <a href="mailto:info@island.az">info@island.az</a>
+                        <Link to="mailto:info@island.az">info@island.az</Link>
                     </div>
                 </div>
                 <div className="contact_page_box">
@@ -25,7 +26,7 @@ function Contact() {
                         <FontAwesomeIcon icon={faPhone} />
                     </div>                    
                     <div className="contact_page_box_text">
-                        <a href="tel:+9940775773133">+994-77-577-31-33</a>
+                        <Link to="tel:+9940775773133">+994-77-577-31-33</Link>
                     </div>
                 </div>
                 <div className="contact_page_box">
@@ -41,18 +42,18 @@ function Contact() {
             <div className="contact_page_slogan">Bizi Sosial Şəbəkələrdə İzləyin !</div>
             {/* social icons */}
             <div className="contact_page_social_icons">
-                <a href="#" target="_blank">
+                <Link to="#" target="_blank">
                     <FontAwesomeIcon icon={faInstagram} className="contact_page_instagram"/>    
-                </a>
-                <a href="#" target="_blank">
+                </Link>
+                <Link to="#" target="_blank">
                     <FontAwesomeIcon icon={faFacebookSquare} className="contact_page_facebook" />    
-                </a>                            
-                <a href="#" target="_blank">
+                </Link>                            
+                <Link to="#" target="_blank">
                     <FontAwesomeIcon icon={faLinkedin} className="contact_page_linkedin" />
-                </a>                            
-                <a href="#" target="_blank">
+                </Link>                            
+                <Link to="#" target="_blank">
                     <FontAwesomeIcon icon={faTwitterSquare} className="contact_page_twitter" />
-                </a>                            
+                </Link>                            
             </div>  
             {/* contact page form  */}
             <div className="contact_page_form_container">

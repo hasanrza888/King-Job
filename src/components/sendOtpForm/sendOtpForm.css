@@ -29,9 +29,10 @@
     z-index: 11;
     top: 0px;
     background-color: var(--primary-color);
-    -webkit-box-shadow: 0px 2px 5px 0px var(--secondary-color);
+    /* -webkit-box-shadow: 0px 2px 5px 0px var(--secondary-color);
     -moz-box-shadow: 0px 2px 5px 0px var(--secondary-color);
-    box-shadow: 0px 2px 5px 0px var(--secondary-color);
+    box-shadow: 0px 2px 5px 0px var(--secondary-color); */
+    border: 3px solid var(--secondary-color);
     border-radius: 10px;
     padding: 20px;    
 }
@@ -40,6 +41,10 @@
 }
 .send_top_form_close_animation{
     animation: 0.5s from_left_to_right;
+}
+.send_top_form{
+    width: 100%;
+    margin-top: 50px;
 }
 .send_top_form label{
     width: 100%;
@@ -59,6 +64,11 @@
     margin-top: 3px;
     font-size: 16px;
 }
+.count_Down_Otp{
+    font-size: 15px;
+    text-align: center;
+    color: red;
+}
 .send_top_form_submit{
     width: 50%;
     min-width: 130px;
@@ -77,6 +87,7 @@
 }
 @media (width <= 500px){
     .send_top_form_submit{
+        width: 100%;
         font-size: 16px;
     }
 }

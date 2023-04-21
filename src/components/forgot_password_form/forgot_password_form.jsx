@@ -18,8 +18,9 @@ function ForgotPasswordForm({close, setOpenOtpWindow}) {
     return ( 
         <div className = {`forgot_password_form_container ${reverseAnimation ? 'forgot_password_form_close_animation' : 'forgot_password_form_open_animation'}`}>
             {/* window close button */}
-            <div className="forgot_password_form_window_close">
-                <FontAwesomeIcon icon={faAngleLeft} onClick={closeWindowBox}/>
+            <div className="forgot_password_form_window_close" onClick={closeWindowBox}>
+                <FontAwesomeIcon icon={faAngleLeft} ></FontAwesomeIcon>
+                Geri
             </div>
             {/* form info */}
             <div className="forgot_password_form_info">
