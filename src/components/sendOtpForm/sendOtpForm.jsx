@@ -2,11 +2,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './sendOtpForm.css'
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
-function SendOtpForm({setOpenOtpWindow, setNewPassword}) {
+import axios from 'axios';
+function SendOtpForm({setOpenOtpWindow, setNewPassword,email,setEmail,otp,setOtp}) {
+    const verifyOtpUrl = 'http://localhost:5000/api/verifyCompanyOtp'
     const [reverseAnimation, setReverseAnimation] = useState(false); 
     const sendOtpCodeHandle = (e)=>{
         e.preventDefault();
-        setNewPassword(true);
+        axios.post(verifyOtpUrl,{email:email,otp:otp},{withCredentials:true}).then(dt=>{
+            setNewPassword(dt.data.succes);
+            console.log(dt.data)
+        }).catch(err=>console.log(err))
     }
     const closeWindowBox = ()=>{  
         setReverseAnimation(true);
@@ -28,7 +33,7 @@ function SendOtpForm({setOpenOtpWindow, setNewPassword}) {
                 {/* otp code input */}
                 <label htmlFor="otpcodeipnut">
                     OTP Kod
-                    <input type="text" name='otpcodeinput' className="send_top_form_input" required/>
+                    <input value={otp} onChange={(e)=>{setOtp(e.target.value)}} type="text" name='otpcodeinput' className="send_top_form_input" required/>
                 </label>
                 {/* form confirm button */}
                 <input type="submit" value="Təsdiqlə" className="send_top_form_submit"/>

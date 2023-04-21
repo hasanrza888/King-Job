@@ -7,11 +7,20 @@ import { Link } from 'react-router-dom';
 import Signup from '../../pages/signup/signup';
 import SendOtpForm from '../sendOtpForm/sendOtpForm';
 import UpdatePasswordForm from '../update_password_form/update_password_form';
+import axios from 'axios';
 
 function LoginForm({setSuccessMsg, setloginMsg}) {
+    const [loginData,setLoginData] = useState({
+        email:"",
+        password:""
+    });
+    const postUrl = 'http://localhost:5000/api/loginCompany';
+    const [email,setEmail] = useState("");
+    const [otp,setOtp] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [forgotPassword, setForgotPassword] = useState(false);
     const [errorMessage, setErrorMessage] = useState(false);
+    const [error,setError] = useState("");
     const [openOtpWindow, setOpenOtpWindow] = useState(false);
     const [newPasswordForm, setNewPassword] = useState(false);
     const show_password_handle = ()=>{
@@ -20,20 +29,45 @@ function LoginForm({setSuccessMsg, setloginMsg}) {
     const forgot_password = ()=>{
         setForgotPassword(true);
     }      
+    const getOnchangeData=(e)=>{
+        const {name,value} = e.target;
+        setLoginData(prev=>{
+            return {
+                ...prev,
+                [name]:value
+            }
+        })  
+    }
+    const submitLoginData = async (e) => {
+        e.preventDefault();
+        axios.post(postUrl,loginData,{withCredentials:true}).then(dt=>{
+            console.log(dt.data)
+            if(dt.data.succes===false){
+                setErrorMessage(true);
+                setError(dt.data.message)
+            }
+            else{
+                setErrorMessage(false)
+            }
+        }).catch(err=>{
+            console.log(err)
+        })
+        console.log(loginData)
+    }
     return ( 
             <div className="login_Form">
-                <form action="#" className="login_page_form">
+                <form onSubmit={submitLoginData} className="login_page_form">
                     {/* login email */}
-                    <label htmlFor="login_email">
+                    <label htmlFor="email">
                         E-mail
-                        <input type="email" name="login_email" className="login_email_input" required />
+                        <input onChange={getOnchangeData} value={loginData.email} type="email" name="email" className="login_email_input" required />
                     </label>
                     {/* login password */}
-                    <label htmlFor="login_password">
+                    <label htmlFor="password">
                         Şifrə
                         <div className="login_password_container">
                             {/* password login */}
-                            <input type={showPassword ? 'text' : 'password'} className="login_password_input" name="login_password" required />
+                            <input onChange={getOnchangeData} value={loginData.password} type={showPassword ? 'text' : 'password'} className="login_password_input" name="password" required />
                             {/* password show and hide buttons */}
                             <div className="login_password_show_btn" onClick={show_password_handle}>
                                 {showPassword ? 
@@ -46,7 +80,7 @@ function LoginForm({setSuccessMsg, setloginMsg}) {
                     </label>
                     {/* error message */}
                     {
-                        errorMessage ? <div className="login_form_error_message">e-mail və ya şifrə səhvdir !</div> : null
+                        errorMessage ? <div className="login_form_error_message">{error}</div> : null
                     }
                     {/* forgotten password button */}
                     <button className='login_form_forgot_password_btn' type='reset' onClick={forgot_password}>Şifrəni Unutmuşam</button>                
@@ -58,11 +92,11 @@ function LoginForm({setSuccessMsg, setloginMsg}) {
                 </form> 
                 {/* forgot password form */}
                 {
-                    forgotPassword ? <ForgotPasswordForm close = {setForgotPassword} setOpenOtpWindow = {setOpenOtpWindow}/> : null
+                    forgotPassword ? <ForgotPasswordForm email={email} setEmail={setEmail} close = {setForgotPassword} setOpenOtpWindow = {setOpenOtpWindow}/> : null
                 }
                 {/* otp code form */}
                 {
-                    openOtpWindow ? <SendOtpForm setOpenOtpWindow = {setOpenOtpWindow} setNewPassword = {setNewPassword}/> : null 
+                    openOtpWindow ? <SendOtpForm email={email} setEmail={setEmail} otp={otp} setOtp={setOtp} setOpenOtpWindow = {setOpenOtpWindow} setNewPassword = {setNewPassword}/> : null 
                 }
                 {/* set new password form */}
                 {
