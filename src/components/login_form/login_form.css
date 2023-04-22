@@ -8,14 +8,20 @@
 /* login form container */
 .login_Form{
     width: 100%;
+    height: auto;
     position: relative;
+    /* -webkit-box-shadow: 0px 2px 5px 0px var(--secondary-color);
+    -moz-box-shadow: 0px 2px 5px 0px var(--secondary-color);
+    box-shadow: 0px 2px 5px 0px var(--secondary-color); */
+    border-radius: 10px;
 }
 .login_page_form{
     width: 100%;
     padding: 20px;
-    -webkit-box-shadow: 0px 2px 5px 0px var(--secondary-color);
+    /* -webkit-box-shadow: 0px 2px 5px 0px var(--secondary-color);
     -moz-box-shadow: 0px 2px 5px 0px var(--secondary-color);
-    box-shadow: 0px 2px 5px 0px var(--secondary-color);
+    box-shadow: 0px 2px 5px 0px var(--secondary-color); */
+    border: 3px solid var(--secondary-color);
     border-radius: 10px;
 }
 .login_page_form label{
@@ -104,6 +110,7 @@
 }
 @media (width <= 500px){
     .login_form_submit_btn{
+        width: 100%;
         font-size: 16px;
     }
 }
