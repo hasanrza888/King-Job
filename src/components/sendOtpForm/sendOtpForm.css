@@ -29,12 +29,14 @@
     z-index: 11;
     top: 0px;
     background-color: var(--primary-color);
-    /* -webkit-box-shadow: 0px 2px 5px 0px var(--secondary-color);
-    -moz-box-shadow: 0px 2px 5px 0px var(--secondary-color);
-    box-shadow: 0px 2px 5px 0px var(--secondary-color); */
     border: 3px solid var(--secondary-color);
     border-radius: 10px;
     padding: 20px;    
+}
+.send_top_form_container_signup{
+    height: unset;
+    position: relative;
+    /* position: unset; */
 }
 .send_top_form_open_animation{
     animation: 1s from_right_to_left;
@@ -50,10 +52,16 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-size: 16px;
     font-weight: 500;
     color: var(--quaternary-color);
+}
+/* error message */
+.send_otp_form_error_message{
+    font-size: 15px;
+    color: red;
+    margin-bottom: 15px;
 }
 /* otp form input */
 .send_top_form_input{
@@ -67,7 +75,8 @@
 .count_Down_Otp{
     font-size: 15px;
     text-align: center;
-    color: red;
+    color: var(--quaternary-color);
+    font-weight: 500;
 }
 .send_top_form_submit{
     width: 50%;
@@ -86,6 +95,9 @@
     cursor: pointer;
 }
 @media (width <= 500px){
+    .send_top_form_container{
+        padding: 10px;
+    }
     .send_top_form_submit{
         width: 100%;
         font-size: 16px;

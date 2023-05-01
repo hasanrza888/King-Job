@@ -8,7 +8,7 @@ function NotificationMessage({setSuccessMsg, notification_message_content}) {
         setTimeout(()=>{
             setSuccessMsg(false);
         }, 4600);
-    },[setSuccessMsg])
+    },[setSuccessMsg]);
     return (         
         <div className= "notification_message_container">
             {/* message window close button */}

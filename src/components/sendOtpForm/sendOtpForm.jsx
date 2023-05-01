@@ -4,7 +4,7 @@ import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NotificationMessage from '../notification_message/notification_message';
-function SendOtpForm({setOpenOtpWindow, setNewPassword, login, userSignUp}) {
+function SendOtpForm({setOpenOtpWindow, setNewPassword, login, userSignUp, company_SignUp}) {
     const [reverseAnimation, setReverseAnimation] = useState(false); 
     const [countDown, setCountDown] = useState(120);
     const [errorMessage, setErrorMessage] = useState({
@@ -42,7 +42,7 @@ function SendOtpForm({setOpenOtpWindow, setNewPassword, login, userSignUp}) {
     }, [countDown]);
 
     return ( 
-        <div className={`send_top_form_container ${ reverseAnimation ? "send_top_form_close_animation" : "send_top_form_open_animation"}`}>
+        <div className={`${(company_SignUp || userSignUp) ? "send_top_form_container send_top_form_container_signup" : "send_top_form_container"}  ${ reverseAnimation ? "send_top_form_close_animation" : "send_top_form_open_animation"}`}>
             {/* window close button */}
             <div className="forgot_password_form_window_close" onClick={closeWindowBox}>
                 <FontAwesomeIcon icon={faAngleLeft} ></FontAwesomeIcon>

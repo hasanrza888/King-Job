@@ -2,7 +2,7 @@ import './not_found.css';
 import svg from '../../images/404_not_found.svg';
 import { useNavigate } from 'react-router-dom';
 function Notfound() {
-    const go_back = useNavigate(-1);
+    const go_back = useNavigate();
     return ( 
         <div className="not_found_page_container">
             <div className="not_found_page_head">

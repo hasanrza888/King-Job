@@ -66,7 +66,7 @@ function Header(){
                             </NavLink>                    
                         :
                         <>                        
-                            <NavLink to="/signup" className={({isActive})=> isActive ? 'link_none' : 'account_link_btn'}>Qeydiyyat</NavLink>                                                                       
+                            <NavLink to="/signup/user_signup" className={({isActive})=> isActive || (window.location.pathname === '/signup/company_signup') ? 'link_none' : 'account_link_btn'}>Qeydiyyat</NavLink>                                                                       
                             <NavLink to="/login" className={({isActive})=> isActive ? 'link_none' : 'account_link_btn'}>Daxil ol</NavLink>                        
                         </>
                     }  
@@ -144,7 +144,7 @@ function Header(){
                                 ''                  
                             :
                             <>                        
-                                <NavLink to="/signup" onClick={open_drop_menu} className={({isActive})=> isActive ? 'link_none' : 'account_link_btn'}>Qeydiyyat</NavLink>                                                                       
+                                <NavLink to="/signup/user_signup" onClick={open_drop_menu} className={({isActive})=> isActive ? 'link_none' : 'account_link_btn'}>Qeydiyyat</NavLink>                                                                       
                                 <NavLink to="/login" onClick={open_drop_menu} className={({isActive})=> isActive ? 'link_none' : 'account_link_btn'}>Daxil ol</NavLink>                        
                             </>
                         }  
