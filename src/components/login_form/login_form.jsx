@@ -4,7 +4,6 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ForgotPasswordForm from '../forgot_password_form/forgot_password_form';
 import { Link } from 'react-router-dom';
-import Signup from '../../pages/signup/signup';
 import SendOtpForm from '../sendOtpForm/sendOtpForm';
 import UpdatePasswordForm from '../update_password_form/update_password_form';
 
@@ -53,7 +52,7 @@ function LoginForm({setSuccessMsg, setloginMsg}) {
                     {/* login form submit button */}
                     <button type="submit" className="login_form_submit_btn">Daxil OL</button>
                     <div className="login_form_link_to_signUp_container">
-                        Hesabınız yoxdur? <Link to='/signup' className='login_form_link_to_signUp'>Qeydiyyatdan Keçin</Link>
+                        Hesabınız yoxdur? <Link to='/signup/user_signup' className='login_form_link_to_signUp'>Qeydiyyatdan Keçin</Link>
                     </div>
                 </form> 
                 {/* forgot password form */}
@@ -62,7 +61,7 @@ function LoginForm({setSuccessMsg, setloginMsg}) {
                 }
                 {/* otp code form */}
                 {
-                    openOtpWindow ? <SendOtpForm setOpenOtpWindow = {setOpenOtpWindow} setNewPassword = {setNewPassword}/> : null 
+                    openOtpWindow ? <SendOtpForm setOpenOtpWindow = {setOpenOtpWindow} setNewPassword = {setNewPassword} login = { openOtpWindow ? true : false}/> : null 
                 }
                 {/* set new password form */}
                 {

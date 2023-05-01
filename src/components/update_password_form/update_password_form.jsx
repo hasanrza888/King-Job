@@ -7,6 +7,7 @@ import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import PasswordChecker from '../password_checker/password_checker';
 function UpdatePasswordForm({setNewPassword, setOpenOtpWindow, close, setSuccessMsg, setloginMsg}) {
     const [showPassword, setShowPassword] = useState(false);
+    // error message runner for otp 
     const [errorMessage, setErrorMessage] = useState({
         errorCheck: false,
         errorContent : ''
@@ -33,25 +34,13 @@ function UpdatePasswordForm({setNewPassword, setOpenOtpWindow, close, setSuccess
         checkLengthPassword(passwordValue);
     }
     const checkUpperCase = (passwordValue)=>{
-        if((/[A-Z]/.test(passwordValue)) === true){            
-            setUpperCase(true);
-        }else{            
-            setUpperCase(false);
-        }
+        setUpperCase(/[A-Z]/.test(passwordValue));
     }
     const checkLowerCase = (passwordValue)=>{
-        if((/[a-z]/.test(passwordValue)) === true){            
-            setLowerCase(true);
-        }else{            
-            setLowerCase(false);
-        }
+        setLowerCase(/[a-z]/.test(passwordValue));
     }
     const checkLengthPassword = (passwordValue)=>{
-        if(passwordValue.length >= 8){
-            setPasLength(true);
-        }else{
-            setPasLength(false);
-        }
+        setPasLength(passwordValue.length >= 8);
     }        
     const updatePasswordHandle = (e)=>{
         e.preventDefault();
@@ -126,6 +115,7 @@ function UpdatePasswordForm({setNewPassword, setOpenOtpWindow, close, setSuccess
                         </div>                                                                               
                     </div>                        
                 </label>  
+                {/* error message for OTP delivery */}
                 {
                     errorMessage ? <div className="forgot_password_form_error_message">{errorMessage.errorContent}</div> : null
                 } 
@@ -135,5 +125,4 @@ function UpdatePasswordForm({setNewPassword, setOpenOtpWindow, close, setSuccess
         </div>
      );
 }
-
 export default UpdatePasswordForm;

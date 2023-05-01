@@ -31,6 +31,7 @@ function App() {
             <Route path='/login' element={<Login/>} />
             <Route path='/signup' element={<Signup/>}>
               <Route index element={<UserSignup/>}/>
+              <Route path='/signup/user_signup' index element={<UserSignup/>}/>
               <Route path='/signup/company_signup' element={<CompanySignup/>}/>
             </Route>
             <Route path='/profile' element={<Profile/>}/>
