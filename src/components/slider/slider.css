@@ -1,10 +1,24 @@
+:root{
+    --primary-color: #fff;
+    --secondary-color: #40cb00;
+    --tertiary-color: #2a8301;
+    --quaternary-color: #45A6FF;
+    --post-box-border-color: var(--quaternary-color);
+    --location-pin-color: #eb0520;
+    --post-end-time-color: #e4273e; 
+    --post-box-detail-btn-hover: #3dbf00;
+}
 .home_slider_container{
     width: 100%;
     position: relative;
+    border-bottom: 5px solid var(--secondary-color);
 }
 .home_page_slider{
     width: 100%;
     overflow: hidden;
+}
+.home_slider_image{
+    max-height: 200px;
 }
 .home_slider_image img{
     width: 100%;
@@ -24,7 +38,7 @@
 }
 .home_slider_slogan_text{
     width: 50%;
-    font-size: 50px;
+    font-size: 40px;
     color: white;
 }
 @media (width <= 1100px){

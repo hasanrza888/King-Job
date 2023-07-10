@@ -17,7 +17,12 @@ function UserSignup() {
         errorCheck: false,
         errorContent : ''
     }); 
-    
+    const [importantInputField, setImportantInputField] = useState({
+        user_signup_name_surname: false,
+        user_signup_email: false,
+        user_signup_password: false,
+        user_signup_repeat_password: false,
+    })
     const show_password_handle = ()=>{
         setShowPassword(!showPassword);
     } 
@@ -42,6 +47,21 @@ function UserSignup() {
     const checkLengthPassword = (passwordValue)=>{
         setPasLength(passwordValue.length >= 8);
     }
+    const importantFieldFunc = (e)=>{
+        const {name, value} = e.target;
+        // copy of useState
+        const copyOfArray = {...importantInputField}
+        for(let i of Object.keys(copyOfArray)){
+            if(i === name){
+                if(value.length > 0){
+                    copyOfArray[i] = true;
+                }else{
+                    copyOfArray[i] = false;
+                }
+            }            
+        }
+        setImportantInputField({...copyOfArray});
+    }
     const user_signup_Handle = (e)=>{
         e.preventDefault();
         if((e.target.user_signup_password.value === e.target.user_signup_repeat_password.value) && (pasLength === true && upperCase === true && lowerCase === true)){            
@@ -59,24 +79,28 @@ function UserSignup() {
     }
     return ( 
         <div className="user_signup_container">
-            {/* user sign up form container */}
+            {/* otp window and user signup form */}
+            {openOtpWindow ? 
+            <SendOtpForm openOtpWindow = {openOtpWindow} setOpenOtpWindow = {setOpenOtpWindow} userSignUp = {true}/> 
+            : 
             <form action="#" className='user_signup_form_container' onSubmit={user_signup_Handle}>
+                {/* ______________ user sign up form ________________________________ */} 
                 {/* form name and surname */}
                 <label htmlFor="user_signup_name_surname">
                     Ad və Soyad
-                    <input type="text" name="user_signup_name_surname" className='user_signup_email_input' required/>
+                    <input type="text" name="user_signup_name_surname" className='user_signup_email_input' onChange={(e)=> importantFieldFunc(e)} required/>
                 </label>
                 {/* form email */}
                 <label htmlFor="user_signup_email">
                     E-mail
-                    <input type="email" name="user_signup_email" className='user_signup_email_input' required/>
+                    <input type="email" name="user_signup_email" className='user_signup_email_input' onChange={(e)=> importantFieldFunc(e)} required/>
                 </label>
                 {/* password input */}
                 <label htmlFor="user_signup_password">
                     Şifrə
                     <div className="user_signup_password_container">
                         {/* password login */}
-                        <input type={showPassword ? 'text' : 'password'} onChange={checkPasswordHandle} className="user_signup_password_input" name="user_signup_password" required />
+                        <input type={showPassword ? 'text' : 'password'} className="user_signup_password_input" name="user_signup_password" onChange={(e)=> {importantFieldFunc(e); checkPasswordHandle(e)}} required />
                         {/* password show and hide buttons */}
                         <div className="user_signup_password_show_btn" onClick={show_password_handle}>
                             {showPassword ? 
@@ -92,7 +116,7 @@ function UserSignup() {
                     Təkrar Şifrə
                     <div className="user_signup_password_container">
                         {/* repeat password login */}
-                        <input type={showPassword ? 'text' : 'password'} className="user_signup_password_input" name="user_signup_repeat_password" required />
+                        <input type={showPassword ? 'text' : 'password'} className="user_signup_password_input" name="user_signup_repeat_password" onChange={(e)=> importantFieldFunc(e)} required />
                         {/* password show and hide buttons */}
                         <div className="user_signup_password_show_btn" onClick={show_password_handle}>
                             {showPassword ? 
@@ -109,10 +133,10 @@ function UserSignup() {
                 }
                 <PasswordChecker pasLength={pasLength} upperCase={upperCase} lowerCase={lowerCase}/>
                 {/* form submit button */}
-                <input type="submit" className='user_signup_submit_btn' value="Qeydiyyat" />
+                <input type="submit" className={`user_signup_submit_btn ${ importantInputField.user_signup_email && importantInputField.user_signup_name_surname && importantInputField.user_signup_password && importantInputField.user_signup_repeat_password ? "user_signup_submit_btn_ready" : null}`} value="Qeydiyyat" />
                 <div className="user_signup_link_to_login_page">Hesabınız varsa <Link to='/login'>Daxil olun !</Link> </div>
             </form>
-            {openOtpWindow ? <SendOtpForm openOtpWindow = {openOtpWindow} setOpenOtpWindow = {setOpenOtpWindow} userSignUp = {true}/> : null }
+            }
             
         </div>
     );
