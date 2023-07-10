@@ -76,6 +76,10 @@
     text-align: center;
     user-select: none;
     cursor: pointer;
+    opacity: 0.5;
+}
+.user_signup_submit_btn_ready{
+    opacity: 1;
 }
 .user_signup_link_to_login_page{
     width: 100%;

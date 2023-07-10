@@ -11,7 +11,7 @@ function Home() {
     const notification_message_content = <div>"{savedJob}" adlı vakansiya şəxsi hesabınızda <strong><u>sevimlilər</u></strong> bölməsinə əlavə olundu.</div>;
     return ( 
         <div className="home_page_container">
-            <SliderHome />
+            <SliderHome fromHomePage = {true}/>
             {/* __________ premium jobs ____________________ */}
             <div className="latest_jobs_container">
                 <PageHeadText content={'Premium Elanlar'}/>                

@@ -173,7 +173,7 @@ function CompanySignup() {
                     </div>                                        
                 </div>
                 {/* button info */}
-                <div className="company_signup_form_btn_info">* Qeydiyyat düyməsinə basmaqla e-mail-inizə OTP kod gələcək</div>
+                <div className="company_signup_form_btn_info">* Qeydiyyat düyməsinə basmaqla e-mail-inizə OTP kod gələcək.</div>
                 {/* company form submit button */}                
                 <input type="submit" value="Qeydiyyat" className= {`company_signup_form_submit ${acceptCondition && importantInputField.company_signup_form_company_email && importantInputField.company_signup_form_name && importantInputField.company_signup_form_password && importantInputField.company_signup_form_repeat_password ? 'company_signup_form_submit_ready' : null}`} />
                 {/* link to login page */}

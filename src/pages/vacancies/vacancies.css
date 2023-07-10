@@ -1,0 +1,124 @@
+:root{
+    --primary-color: #fff;
+    --secondary-color: #40cb00;
+    --tertiary-color: #2a8301;
+    --quaternary-color: #45A6FF;
+    --post-box-border-color: var(--quaternary-color);
+    --location-pin-color: #eb0520;
+    --post-end-time-color: #e4273e; 
+    --post-box-detail-btn-hover: #3dbf00;
+}
+.vacancies_page_slider_and_search{
+    width: 100%;
+    position: relative;
+}
+/* slider core */
+.vacancies_page_slider_core{
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.vacancies_page_job_search_container{
+    width: 100%;
+    height: 50%;
+    background-color: var(--secondary-color);
+    opacity: 0.9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* job search form  */
+.vacancies_page_job_search_form{
+    width: 80%;
+    max-width: 600px;
+    /* margin: 0px auto; */
+    position: relative;
+}
+/* job search form input */
+.vacancies_page_job_search_form input{
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+}
+.vacancies_page_job_search_form_submit{
+    position: absolute;
+    z-index: 1;
+    right: 10px;
+    top: 12px;
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.vacancies_page_job_search_form_submit svg{
+    font-size: 18px;
+    color: var(--tertiary-color);
+}
+/* filter and vacancies boxes container */
+.vacancies_filters_and_boxes_container{
+    width: 95%;
+    margin: 50px auto 100px;
+    display: flex;
+    flex-direction: row;
+}
+/* vacancies filters container */
+.vacancies_page_filters_container{
+    width: 25%;
+    padding: 10px;
+}
+/* filters heading */
+.vacancies_page_filters_heading{
+    width: 100%;
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: var(--quaternary-color);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.vacancies_page_filters_boxes_container{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* vacancies boxes container */
+.vacancies_page_boxes_container{
+    width: 75%;
+    padding: 10px;
+}
+.vacancies_latest_jobs_boxes_container{
+    width: 100%;
+    margin-bottom: 100px;
+}
+@media (width <= 500px){
+    .vacancies_page_job_search_form{
+        width: 95%;
+    }
+    .vacancies_page_job_search_form input{
+        font-size: 15px;
+        padding: 7px;
+    }
+    .vacancies_page_job_search_form input::placeholder{
+        font-size: 12px;
+    }
+    .vacancies_page_job_search_form_submit{
+        top: 9px;
+    }
+    .vacancies_page_job_search_form_submit svg{
+        font-size: 16px;
+    }
+}
+@media (width <= 400px){
+    .vacancies_page_job_search_container{
+        height: 60%;
+    }
+}
