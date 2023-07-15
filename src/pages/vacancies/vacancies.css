@@ -73,6 +73,7 @@
 /* vacancies filters container */
 .vacancies_page_filters_container{
     width: 25%;
+    min-width: 230px;
     padding: 10px;
 }
 /* filters heading */
@@ -89,7 +90,46 @@
     display: flex;
     flex-direction: column;
 }
-
+.vacancies_page_filters_box{
+    margin-bottom: 10px;
+}
+/* filter box name */
+.vacancies_page_filters_box_name{
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+/* salary inputs */
+.vacancies_page_filters_salaries{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.vacancies_page_filters_salaries input{
+    width: 48%;
+    border: 1px solid var(--secondary-color);
+    border-radius: 10px;
+    padding: 5px 10px;
+    outline: none;
+    font-size: 18px;
+}
+/* text field input */
+.vacancies_page_filters_box_text_input{
+    width: 100%;
+    padding: 5px 10px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 10px;
+    outline: none;
+    font-size: 18px;
+}
+.vacancies_page_filters_box_text_input::placeholder{
+    font-size: 18px;
+    font-weight: 500 !important;
+    color: #383838;
+    user-select: none;
+}
 /* vacancies boxes container */
 .vacancies_page_boxes_container{
     width: 75%;
