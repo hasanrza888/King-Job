@@ -70,7 +70,7 @@
 }
 /* job title */
 .post_box_job_title{
-    font-size: 25px;
+    font-size: 20px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -84,7 +84,7 @@
 }
 /* job salary */
 .post_box_job_salary{
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 500;
     color: var(--quaternary-color);
 }
