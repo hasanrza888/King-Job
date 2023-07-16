@@ -74,61 +74,7 @@
 .vacancies_page_filters_container{
     width: 25%;
     min-width: 230px;
-    padding: 10px;
-}
-/* filters heading */
-.vacancies_page_filters_heading{
-    width: 100%;
-    font-size: 20px;
-    letter-spacing: 2px;
-    color: var(--quaternary-color);
-    font-weight: 600;
-    margin-bottom: 10px;
-}
-.vacancies_page_filters_boxes_container{
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-}
-.vacancies_page_filters_box{
-    margin-bottom: 10px;
-}
-/* filter box name */
-.vacancies_page_filters_box_name{
-    font-size: 18px;
-    font-weight: 500;
-    margin-bottom: 5px;
-}
-/* salary inputs */
-.vacancies_page_filters_salaries{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
-.vacancies_page_filters_salaries input{
-    width: 48%;
-    border: 1px solid var(--secondary-color);
-    border-radius: 10px;
-    padding: 5px 10px;
-    outline: none;
-    font-size: 18px;
-}
-/* text field input */
-.vacancies_page_filters_box_text_input{
-    width: 100%;
-    padding: 5px 10px;
-    border: 1px solid var(--secondary-color);
-    border-radius: 10px;
-    outline: none;
-    font-size: 18px;
-}
-.vacancies_page_filters_box_text_input::placeholder{
-    font-size: 18px;
-    font-weight: 500 !important;
-    color: #383838;
-    user-select: none;
+    padding: 10px 25px 10px 10px;
 }
 /* vacancies boxes container */
 .vacancies_page_boxes_container{
@@ -138,6 +84,80 @@
 .vacancies_latest_jobs_boxes_container{
     width: 100%;
     margin-bottom: 100px;
+}
+.vacancy_page_filters_button{
+    display: none;
+}
+.vacancies_page_filters_mobile_close{
+    display: none;
+}
+@media (width <= 770px){
+    .vacancies_filters_and_boxes_container{
+        flex-direction: column;
+    }
+    .vacancies_page_boxes_container{
+        width: 100%;
+        /* padding: 0px; */
+    }
+    .vacancies_page_filters_container{
+        display: none;
+    }    
+    .vacancy_page_filters_button{
+        display: flex;
+        width: 110px;
+        padding: 10px;
+        border: 1px solid var(--secondary-color);
+        border-radius: 10px;
+        flex-direction: row;
+        align-items: center;
+        font-weight: 500;
+        cursor: pointer;
+        user-select: none;
+        margin: 0px 0px 50px 10px;
+    }
+    .vacancy_page_filters_button svg{
+        margin-right: 10px;
+        font-size: 20px;
+        color: var(--secondary-color);
+    }
+    @keyframes from_right_to_left{
+        0%{
+            right: -60%;
+        }
+        100%{
+            right: 0%;
+        }
+    }
+    .vacancies_page_filters_mobile{
+        display: block;
+        width: 100%;
+        height: 100vh;
+        padding: 30px;
+        overflow-y: auto;
+        position: fixed;
+        background-color: var(--primary-color);
+        top: 0px;
+        left: 0px;
+        z-index: 999;
+        animation: left_to_right 0.5s;
+    }
+    .vacancies_page_filters_mobile_close{
+        width: 80px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-size: 22px;
+        cursor: pointer;
+        transition: 0.1s all;
+        margin-bottom: 10px;
+    }
+    .vacancies_page_filters_mobile_close svg{
+        margin-right: 5px;
+        font-size: 22px;
+    }
+    .vacancies_page_filters_mobile_close:hover{
+        transform: scale(1.05);
+    }
 }
 @media (width <= 500px){
     .vacancies_page_job_search_form{
@@ -155,10 +175,13 @@
     }
     .vacancies_page_job_search_form_submit svg{
         font-size: 16px;
-    }
+    }    
 }
 @media (width <= 400px){
     .vacancies_page_job_search_container{
         height: 60%;
+    }
+    .vacancies_page_filters_mobile{
+        padding: 30px 20px;
     }
 }

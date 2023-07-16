@@ -24,12 +24,12 @@
         margin-top: 50px;
     }
 }
-@media (width <= 650px){
+/* @media (width <= 650px){
     .latest_jobs_container{
         width: 60%;
         min-width: 330px;
     }
-}
+} */
 @media (width <= 400px){
     .latest_jobs_container{
         width: 90%;
