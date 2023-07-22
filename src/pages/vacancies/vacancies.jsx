@@ -35,7 +35,6 @@ function Vacancies() {
     }    
     return ( 
         <div className="vacancies_page_container">
-            {console.log(filter)}
             {/* image slider and job search container */}
             <div className="vacancies_page_slider_and_search">
                 {/* slider */}
