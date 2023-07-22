@@ -14,11 +14,28 @@ function Vacancies() {
     const [savedJob, setSavedJob] = useState('');
     const notification_message_content = <div>"{savedJob}" adlı vakansiya şəxsi hesabınızda <strong><u>sevimlilər</u></strong> bölməsinə əlavə olundu.</div>;
     const [openMobileFilter, setOpenMobileFilter] = useState(false);
+    const [filter, setFilter] = useState({
+        vacancy_name: "",
+        categories: "",
+        jobCity: "",
+        min_salary: null,
+        max_salary: null,                            
+        jobExperience: "",
+        educationLevel: "",
+        company: "",
+        jobType: "",
+        skills: "",
+        vacancyOrder: "" 
+    })
     const openMobileFilterHandle = ()=>{
         setOpenMobileFilter(!openMobileFilter);
     }
+    const vacancySearchChange = (e)=>{
+        setFilter({...filter, vacancy_name: e.target.value});
+    }    
     return ( 
         <div className="vacancies_page_container">
+            {console.log(filter)}
             {/* image slider and job search container */}
             <div className="vacancies_page_slider_and_search">
                 {/* slider */}
@@ -28,7 +45,8 @@ function Vacancies() {
                     {/* ___________ job search form ________________ */}
                     <div className="vacancies_page_job_search_container">
                         <form className="vacancies_page_job_search_form">
-                            <input type="text" placeholder='ARZULADIĞINIZ İŞİ BİZİMLƏ AXTARIN !'/>
+                            {/* vacancy search input */}
+                            <input type="text" value={filter.vacancy_name} onChange={vacancySearchChange} placeholder='ARZULADIĞINIZ İŞİ BİZİMLƏ AXTARIN !'/>
                             <button type="submit" className='vacancies_page_job_search_form_submit'>
                                 <FontAwesomeIcon icon={faMagnifyingGlass} />
                             </button>
@@ -38,17 +56,18 @@ function Vacancies() {
             </div>            
             {/* filters and vacancy boxes container */}
             <div className="vacancies_filters_and_boxes_container">
-                {/* vacancies filters container */}
+                {/* mobile filter open button */}
                 <div className="vacancy_page_filters_button" onClick={openMobileFilterHandle}>
                     <FontAwesomeIcon icon={faFilter} />
                     Filterlər
                 </div>
+                {/* vacancies filters container */}
                 <div className={`vacancies_page_filters_container ${openMobileFilter ? 'vacancies_page_filters_mobile' : ''}`}>
                     <div className="vacancies_page_filters_mobile_close" onClick={openMobileFilterHandle}>
                         <FontAwesomeIcon icon={faChevronLeft} />    
                         Geri
                     </div>                    
-                    <VacancyFilters />
+                    <VacancyFilters closeMobileFilter={openMobileFilterHandle} filter={filter} setFilter={setFilter}/>
                 </div>
                 {/* vacancies boxes */}
                 <div className="vacancies_page_boxes_container">

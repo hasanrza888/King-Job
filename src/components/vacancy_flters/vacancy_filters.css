@@ -7,6 +7,7 @@
     --location-pin-color: #eb0520;
     --post-end-time-color: #e4273e; 
     --post-box-detail-btn-hover: #3dbf00;
+    --light-green: #c2f7aa;
 }
 /* filters heading */
 .vacancies_page_filters_heading{
@@ -68,6 +69,10 @@
     color: #383838;
     user-select: none;
 }
+.vacancies_page_filters_active_input{
+    background-color: var(--light-green);
+    border: 1px solid var(--light-green);
+}
 .vacancies_filters_confirm_and_reset_btns{
     width: 100%;
     display: flex;
@@ -86,6 +91,7 @@
     cursor: pointer;
     transition: 0.3s ease all;
     text-align: center;
+    user-select: none;
 }
 .vacancies_filters_confirm_btn{
     width: 55%;
@@ -99,6 +105,7 @@
     color: var(--primary-color);
     font-weight: 500;
     transition: 0.3s ease all;
+    user-select: none;
 }
 .vacancies_filters_confirm_btn:hover, .vacancies_filters_reset_btn:hover{
     background-color: var(--post-box-detail-btn-hover);
