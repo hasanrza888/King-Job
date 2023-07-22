@@ -218,7 +218,6 @@ function VacancyFilters({closeMobileFilter, filter, setFilter}) {
     }
     return ( 
     <div className="vacancies_filters_container">
-            {/* {console.log(categories, jobCity)} */}
             {/* vacancies filter heading    */}
             <div className="vacancies_page_filters_heading">Filterlər</div>
             {/* filter boxes container */}

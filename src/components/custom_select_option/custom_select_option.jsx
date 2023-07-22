@@ -71,7 +71,6 @@ function CustomSelectOption({select_option_name, select_option_array, select_upd
     }
     return ( 
         <div className="custom_select_option_container">
-            {/* {console.log(choosedOption)} */}
             {/* select name */}
             <div className={`custom_select_name_container ${filter[select_option_id] ? 'custom_select_name_active' : ''}`} onClick={select_option_opener}>
                 <div className="custom_select_name">{filter[`${select_option_id}`] ? filter[`${select_option_id}`] : select_option_name}</div>
