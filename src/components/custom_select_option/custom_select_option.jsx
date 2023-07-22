@@ -3,17 +3,25 @@ import './custom_select_option.css';
 import { faSortDown } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 
-function CustomSelectOption({select_option_name, select_option_array, select_update}) {
+function CustomSelectOption({select_option_name, select_option_array, select_update, filter, setFilter, select_option_id}) {
     const [optionsShow, setOptionsShow] = useState(false);
     const [choosedOption, setChoosedOption] = useState('');
     const select_option_opener = ()=>{
         setOptionsShow(!optionsShow);
     }
     const mainOptionNameClk = (item, index)=> {
-        if(choosedOption !== `${item['optionName']}`){
-            setChoosedOption(`${item['optionName']}`);     
+        if(filter[`${select_option_id}`] !== `${item['optionName']}`){
+            setChoosedOption(`${item['optionName']}`); 
+            if(filter){
+                filter[`${select_option_id}`] = item['optionName'];
+                setFilter({...filter});
+            }
         }else{
             setChoosedOption('');
+            if(filter){
+                filter[`${select_option_id}`] = '';
+                setFilter({...filter});
+            }
         }
         // close options window 
         setOptionsShow(false); 
@@ -32,15 +40,23 @@ function CustomSelectOption({select_option_name, select_option_array, select_upd
         select_update([...select_option_array]);
     }
     const subOptionNameClick = (subItem, subIndex, item, index)=>{
-        if(choosedOption !== `${subItem["subOptionsName"]}`){
+        if(filter[`${select_option_id}`] !== `${subItem["subOptionsName"]}`){
             setChoosedOption(`${subItem["subOptionsName"]}`);
+            if(filter){
+                filter[`${select_option_id}`] = subItem["subOptionsName"];
+                setFilter({...filter});
+            }
         }else{
             setChoosedOption('');
+            if(filter){
+                filter[`${select_option_id}`] = '';
+                setFilter({...filter});
+            }
         }
         // close options window        
         setOptionsShow(false);
         // removes all selected main options
-        select_option_array.map(itemF => {
+        select_option_array.map((itemF) => {
             itemF["selected"] = false;
             if(itemF['subOptions']){
                 for(let i=0; i<itemF['subOptions'].length; i++){
@@ -55,9 +71,10 @@ function CustomSelectOption({select_option_name, select_option_array, select_upd
     }
     return ( 
         <div className="custom_select_option_container">
+            {/* {console.log(choosedOption)} */}
             {/* select name */}
-            <div className={`custom_select_name_container ${choosedOption ? 'custom_select_name_active' : ''}`} onClick={select_option_opener}>
-                <div className="custom_select_name">{choosedOption ? choosedOption : select_option_name}</div>
+            <div className={`custom_select_name_container ${filter[select_option_id] ? 'custom_select_name_active' : ''}`} onClick={select_option_opener}>
+                <div className="custom_select_name">{filter[`${select_option_id}`] ? filter[`${select_option_id}`] : select_option_name}</div>
                 <FontAwesomeIcon icon={faSortDown} />
             </div>
             {/* showing or hiding options */}
