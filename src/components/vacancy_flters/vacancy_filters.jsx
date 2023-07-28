@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CustomSelectOption from '../custom_select_option/custom_select_option';
 import './vacancy_filters.css'
 function VacancyFilters({closeMobileFilter, filter, setFilter}) {
@@ -216,8 +216,20 @@ function VacancyFilters({closeMobileFilter, filter, setFilter}) {
         })      
         setFunc([...objs]);      
     }
+    // fixing filters boxes 
+    const [fixScroll, setFixScroll] = useState(false);
+    const scrollFunc = ()=>{
+        const vacancyBoxes = document.querySelector('.vacancies_page_boxes_container').scrollTop;
+        setFixScroll(document.documentElement.scrollTop >= vacancyBoxes); 
+    }
+    useEffect(()=>{
+        window.addEventListener('scroll', scrollFunc)
+        return()=>{
+            window.removeEventListener('scroll', scrollFunc);
+        }
+    }, []);
     return ( 
-    <div className="vacancies_filters_container">
+    <div className={`vacancies_filters_container ${fixScroll ? "vacancies_page_filters_fix_position" : ''}`} >
             {/* vacancies filter heading    */}
             <div className="vacancies_page_filters_heading">Filterlər</div>
             {/* filter boxes container */}

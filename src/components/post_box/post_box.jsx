@@ -3,10 +3,11 @@ import PostBoxSaveBtn from "../post_box_save_btn/post_box_save_btn";
 import { faBriefcase, faHourglassEnd, faHourglassStart, faLocationPin } from "@fortawesome/free-solid-svg-icons";
 import { faEye, faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import "./post_box.css"
+import { Link } from "react-router-dom";
 function PostBox({setSavedJob, setSuccessMsg, job_id, image_url, salary, job_title, company_name, post_views, post_applies, post_start_date, post_end_date, location, job_time_type}){
     
     return(
-        <div className="post_box_container">
+        <Link to={`/vacancies/${job_id}`} className="post_box_container">
             {/* company and save button container */}
             <div className="post_box_company_and_save_post_btn">
                 {/* company logo and name comtainer*/}
@@ -81,7 +82,7 @@ function PostBox({setSavedJob, setSuccessMsg, job_id, image_url, salary, job_tit
                     Ətraflı
                 </div>
             </div>
-        </div>
+        </Link>
     )
 }
 export default PostBox
