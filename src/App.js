@@ -15,6 +15,8 @@ import Signup from './pages/signup/signup';
 import Vacancies from './pages/vacancies/vacancies';
 import PageTopBtn from './components/page_top_btn/page_top_btn';
 import NotificationMessage from './components/notification_message/notification_message';
+import Test from './components/Test';
+import PostDetail from './pages/post_Detail/post_detail';
 function App() {
   return (
     <div className='container'>
@@ -25,6 +27,7 @@ function App() {
         <Routes>
             <Route path='/' element={<Home/>} />
             <Route path='/vacancies' element={<Vacancies/>} />
+            <Route path='/vacancies/:id' element={<PostDetail />}/>
             <Route path='/companies' element={<Companies/>} />
             <Route path='/about' element={<About/>} />
             <Route path='/contact' element={<Contact/>} />

@@ -32,7 +32,8 @@ function Vacancies() {
     }
     const vacancySearchChange = (e)=>{
         setFilter({...filter, vacancy_name: e.target.value});
-    }    
+    }
+       
     return ( 
         <div className="vacancies_page_container">
             {/* image slider and job search container */}

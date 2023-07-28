@@ -69,6 +69,7 @@
     margin: 50px auto 100px;
     display: flex;
     flex-direction: row;
+    position: relative;
 }
 /* vacancies filters container */
 .vacancies_page_filters_container{

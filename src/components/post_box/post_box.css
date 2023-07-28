@@ -11,6 +11,7 @@
 /* post box container */
 .post_box_container{
     width: 100%;
+    display: block;
     border: 1px solid var(--post-box-border-color);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
