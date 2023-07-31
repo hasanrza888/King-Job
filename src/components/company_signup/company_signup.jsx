@@ -18,7 +18,6 @@ function CompanySignup() {
         errorContent : ''
     });     
     const [showCondition, setShowCondition] = useState(false);
-    const [logoName, setLogoName] = useState('');
     const [acceptCondition, setAcceptCondition] = useState(false);
     const [importantInputField, setImportantInputField] = useState({
         company_signup_form_name: false,
@@ -88,11 +87,7 @@ function CompanySignup() {
     const show_condition_func = ()=>{
         setShowCondition(!showCondition);
     }
-    const uploadLogo = (e)=>{
-        if(e.target.files){
-            setLogoName(e.target.files[0].name)    
-        }        
-    }
+    
     return ( 
         <div className="company_signup_container">                        
             {/* otp code form when submitting */}
@@ -110,19 +105,6 @@ function CompanySignup() {
                 <label htmlFor="company_signup_form_company_email">
                     E-mail
                     <input type="email" name="company_signup_form_company_email" onChange={(e)=> importantFieldFunc(e)} required/>
-                </label>
-                {/* company info */}
-                <label htmlFor="company_signup_form_company_info">
-                    Şirkət haqqında
-                    <textarea name="company_signup_form_company_info" cols="30" rows="5"></textarea>
-                </label>
-                {/* company logo */}
-                <label htmlFor="company_signup_form_company_logo" className='company_signup_form_logo'>
-                    Şirkət logosu
-                    <div className="company_signup_form_logo_and_name">
-                        <input type="file" name="company_signup_form_company_logo" onChange={uploadLogo} accept="image/*" title='Logo yüklə'/>
-                        <span className="company_signup_logo_name">{logoName}</span>
-                    </div>                    
                 </label>
                 {/* password input */}
                 <label htmlFor="company_signup_form_password">

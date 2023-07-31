@@ -288,6 +288,15 @@
 .detail_page_vacancy_buttons_mobile{
     display: none;
 }
+.detail_page_not_found{
+    width: 95%;
+    margin: 0px auto 100px;
+    text-align: center;
+    font-size: 30px;
+    padding: 100px 0px;
+    text-transform: uppercase;
+    color: var(--tertiary-color);
+}
 /* responsive */
 @media (width <= 1024px){
     .detail_page_relevant_vacancies{
@@ -350,6 +359,11 @@
     }
     .detail_page_salary{
         padding: 0px;
+    }
+    .detail_page_not_found{
+        font-size: 20px;
+        padding: 30px 0px;
+        margin-bottom: 20px;
     }
 }
 @media (width <= 400px){
