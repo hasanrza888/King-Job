@@ -34,7 +34,7 @@ function SliderHome({fromHomePage}){
                 fromHomePage ? 
                 <div className="home_slider_slogan">
                     <div className="home_slider_slogan_text">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, eius accusamus?
+                    Azərbaycanın ən mükəmməl və professional vakansiya saytı
                     </div>
                 </div>
                 :

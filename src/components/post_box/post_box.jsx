@@ -7,11 +7,11 @@ import { Link } from "react-router-dom";
 function PostBox({setSavedJob, setSuccessMsg, job_id, image_url, salary, job_title, company_name, post_views, post_applies, post_start_date, post_end_date, location, job_time_type}){
     
     return(
-        <Link to={`/vacancies/${job_id}`} className="post_box_container">
+        <div className="post_box_container">
             {/* company and save button container */}
             <div className="post_box_company_and_save_post_btn">
                 {/* company logo and name comtainer*/}
-                <div className="post_box_company_logo_name">
+                <Link to={`/${company_name}`} className="post_box_company_logo_name">
                     {/* company logo */}
                     <div className="post_box_company_logo">
                         <img src={image_url} alt={company_name} />
@@ -20,7 +20,7 @@ function PostBox({setSavedJob, setSuccessMsg, job_id, image_url, salary, job_tit
                     <div className="post_box_company_name">
                         {company_name}
                     </div>
-                </div>
+                </Link>
                 {/* post save button */}
                 <PostBoxSaveBtn job_id = {job_id} setSuccessMsg = {setSuccessMsg} setSavedJob={setSavedJob} job_title={job_title}/>
             </div>
@@ -82,7 +82,8 @@ function PostBox({setSavedJob, setSuccessMsg, job_id, image_url, salary, job_tit
                     Ətraflı
                 </div>
             </div>
-        </Link>
+            <Link to={`/vacancies/${job_id}`} className="post_box_link"></Link> 
+        </div>
     )
 }
 export default PostBox
