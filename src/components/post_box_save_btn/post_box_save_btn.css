@@ -7,6 +7,8 @@
 /* post save button */
 .post_box_save_button{
     cursor: pointer;
+    position: relative;
+    z-index: 10;
 }
 .post_box_save_button svg{
     /* width: 20px; */

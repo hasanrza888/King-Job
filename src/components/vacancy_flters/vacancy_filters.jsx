@@ -157,7 +157,15 @@ function VacancyFilters({closeMobileFilter, filter, setFilter}) {
         {
             optionName: 'Ən az baxış sayı',
             selected: false,
-        }        
+        },
+        {
+            optionName: 'Ən çox müraciət sayı',
+            selected: false,
+        },
+        {
+            optionName: 'Ən az müraciət sayı',
+            selected: false,
+        }       
     ])
     // salary changer function
     const salaryFiltChange = (e)=>{

@@ -15,6 +15,7 @@
     color: var(--primary-color);
     user-select: none;
     letter-spacing: 5px;
+    text-transform: uppercase;
 }
 @media (width <= 400px){
     .page_head_text_container{

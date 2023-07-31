@@ -1,0 +1,135 @@
+:root{
+    --primary-color: #fff;
+    --secondary-color: #40cb00;
+    --tertiary-color: #2a8301;
+    --quaternary-color: #45A6FF;
+    --post-box-border-color: var(--quaternary-color);
+    --location-pin-color: #eb0520;
+    --post-end-time-color: #e4273e; 
+    --post-box-detail-btn-hover: #3dbf00;
+}
+.companies_page_slider_and_search{
+    width: 100%;
+    position: relative;
+}
+/* slider core */
+.companies_page_slider_core{
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.companies_page_job_search_container{
+    width: 100%;
+    height: 50%;
+    background-color: var(--secondary-color);
+    opacity: 0.9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* job search form  */
+.companies_page_job_search_form{
+    width: 80%;
+    max-width: 600px;
+    /* margin: 0px auto; */
+    position: relative;
+}
+/* job search form input */
+.companies_page_job_search_form input{
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+}
+.companies_page_job_search_form_submit{
+    position: absolute;
+    z-index: 1;
+    right: 10px;
+    top: 12px;
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.companies_page_job_search_form_submit svg{
+    font-size: 18px;
+    color: var(--tertiary-color);
+}
+/* company filters and companies */
+.companies_page_filter_and_companies{
+    width: 95%;
+    margin: 50px auto 100px;
+    display: flex;
+    flex-direction: row;
+}
+/* company page filters */
+.companies_page_filter{
+    width: 25%;
+    padding: 10px 25px 10px 10px;
+}
+.companies_page_filter_name{
+    width: 100%;
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: var(--quaternary-color);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.companies_page_filters_container{
+    width: 100%;
+    padding-right: 10px;
+}
+/* company page post boxes */
+.companies_page_commpany_boxes{
+    width: 75%;
+    padding: 10px;
+}
+.companies_page_commpany_boxes_container{
+    width: 100%;
+    padding: 30px 0px;
+}
+@media (width <= 850px){
+    .companies_page_filter_and_companies{
+        flex-direction: column;
+    }
+    .companies_page_filter{
+        width: 50%;
+    }
+    .companies_page_commpany_boxes{
+        width: 100%;
+    }
+}
+@media (width <= 500px){
+    .companies_page_job_search_form{
+        width: 95%;
+    }
+    .companies_page_job_search_form input{
+        font-size: 15px;
+        padding: 7px;
+    }
+    .companies_page_job_search_form input::placeholder{
+        font-size: 12px;
+    }
+    .companies_page_job_search_form_submit{
+        top: 9px;
+    }
+    .companies_page_job_search_form_submit svg{
+        font-size: 16px;
+    }    
+    .companies_page_filter{
+        width: 80%;
+    }
+}
+@media (width <= 400px){
+    .companies_page_job_search_container{
+        height: 60%;
+    }
+}
