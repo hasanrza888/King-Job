@@ -9,6 +9,7 @@ import PageHeadText from "../../components/page_head_text/page_head_text";
 import PostBox from "../../components/post_box/post_box";
 import NotificationMessage from "../../components/notification_message/notification_message";
 import PostBoxSaveBtn from "../../components/post_box_save_btn/post_box_save_btn";
+import ApplyFormDetailP from "../../components/apply_form_detailPage/apply_form_detailP";
 function PostDetail() {
     const {id} = useParams();
     const [data, setData] = useState(null);
@@ -18,6 +19,7 @@ function PostDetail() {
     const [successMsg, setSuccessMsg] = useState(false);
     const [savedJob, setSavedJob] = useState('');
     const notification_message_content = <div>"{savedJob}" adlı vakansiya şəxsi hesabınızda <strong><u>sevimlilər</u></strong> bölməsinə əlavə olundu.</div>;
+    const [applyWindow, setApplyWindow] = useState(false);
     return ( 
         <div className="detail_page">
             {
@@ -91,7 +93,7 @@ function PostDetail() {
                                 {/* salary  */}
                                 <div className="detail_page_salary">{data['salary']} AZN</div>
                                 {/* apply button */}
-                                <button className="detail_page_apply_btn">Müraciət Et</button>
+                                <button onClick={()=>{setApplyWindow(!applyWindow)}} className="detail_page_apply_btn">Müraciət Et</button>
                             </div>
                         </div>
                     </div>
@@ -184,7 +186,9 @@ function PostDetail() {
                     </div>
                 </div>
                 :
-                <p>Mövcud Elan Yoxdur</p>
+                <div className="detail_page_not_found">
+                    Mövcud Elan Yoxdur !
+                </div>
             }
             {/* relevant vacancies */}
             <div className="detail_page_relevant_vacancies">
@@ -215,6 +219,7 @@ function PostDetail() {
                 </div>
             </div>
             {successMsg ? <NotificationMessage setSuccessMsg = {setSuccessMsg} notification_message_content = {notification_message_content} /> : null}
+            {applyWindow ? <ApplyFormDetailP /> : null}
         </div>
     );
 }
