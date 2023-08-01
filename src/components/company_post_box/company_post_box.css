@@ -99,7 +99,7 @@
     top: 0px;
     left: 0px;
 }
-@media (width <= 650px){
+@media (width <= 850px){
     .company_counts_container{
         flex-direction: column;
     }

@@ -1,12 +1,13 @@
 import './companies.css';
 import SliderHome from "../../components/slider/slider";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faFilter, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import CustomSelectOption from '../../components/custom_select_option/custom_select_option';
 import PageHeadText from '../../components/page_head_text/page_head_text';
 import { companies } from '../../fakeData/companies';
 import CompanyPostBox from '../../components/company_post_box/company_post_box';
+import { useEffect } from 'react';
 
 function Companies() {
     const [filter, setFilter] = useState({
@@ -16,6 +17,7 @@ function Companies() {
     const companyNameChange = (e)=>{
         setFilter({...filter, company_name: e.target.value})
     }
+    const [openMobileFilter, setOpenMobileFilter] = useState(false);
     // vacancy order
     const [company_order, setCompany_order] = useState([
         {
@@ -43,6 +45,42 @@ function Companies() {
             selected: false,
         }
     ])
+    // filter windows open function
+    const openMobileFilterHandle = ()=>{
+        setOpenMobileFilter(!openMobileFilter);
+    }
+    // filter reset function
+    const resetFiltersHandle = ()=>{
+        setFilter({
+            ...filter, 
+            company_name: '',
+            company_order: ''
+        });
+        resetSelectOpt(company_order, setCompany_order);
+    }
+    const resetSelectOpt = (objs, setFunc)=>{
+        objs.map((rItem1) =>{
+            rItem1['selected'] = false;
+            if(rItem1['subOptions']){
+                rItem1['subOptions'].map((rItem2)=>{
+                    rItem2['selected'] = false;
+                })
+            }
+        })      
+        setFunc([...objs]);      
+    }
+    // fixing filters boxes 
+    const [fixScroll, setFixScroll] = useState(false);
+    const scrollFunc = ()=>{
+        const companyBoxes = document.querySelector('.companies_page_commpany_boxes').scrollTop;
+        setFixScroll(document.documentElement.scrollTop >= companyBoxes); 
+    }
+    useEffect(()=>{
+        window.addEventListener('scroll', scrollFunc)
+        return()=>{
+            window.removeEventListener('scroll', scrollFunc);
+        }
+    }, []);
     return ( 
         <div className="companies_page_container">
             <div className="companies_page_slider_and_search">
@@ -63,15 +101,31 @@ function Companies() {
             </div>
             {/* company filters and companies */}
             <div className="companies_page_filter_and_companies">
+                {/* mobile filter open button */}
+                <div className="companies_page_filters_button" onClick={openMobileFilterHandle}>
+                    <FontAwesomeIcon icon={faFilter} />
+                    Filterlər
+                </div>
                 {/* company filters */}
-                <div className="companies_page_filter">
-                    <div className="companies_page_filter_name">Filterlər</div>
-                    <div className="companies_page_filters_container">
-                        <ul className="companies_page_filters_list">
-                            <li>
-                                <CustomSelectOption select_option_name={'Sıralama'} select_option_id="company_order" select_option_array={company_order} select_update={setCompany_order} filter={filter} setFilter={setFilter}/>
-                            </li>
-                        </ul>
+                <div className={`companies_page_filter ${openMobileFilter ? 'companies_page_filters_mobile' : ''}`}>
+                    <div className={`companies_page_filter_container ${fixScroll ? "companies_page_filters_fix_position" : ''}`}>
+                        <div className="companies_page_filters_mobile_close" onClick={openMobileFilterHandle}>
+                            <FontAwesomeIcon icon={faChevronLeft} />    
+                            Geri
+                        </div> 
+                        <div className="companies_page_filter_name">Filterlər</div>
+                        <div className="companies_page_filters_container">
+                            <ul className="companies_page_filters_list">
+                                <li>
+                                    <CustomSelectOption select_option_name={'Sıralama'} select_option_id="company_order" select_option_array={company_order} select_update={setCompany_order} filter={filter} setFilter={setFilter}/>
+                                </li>
+                            </ul>
+                        </div>
+                        {/* filter reset and find buttons */}
+                        <div className="companies_filters_confirm_and_reset_btns">
+                            <div className="companies_filters_reset_btn" onClick={()=>{openMobileFilterHandle(); resetFiltersHandle()}}>Sıfırla</div>
+                            <button className="companies_filters_confirm_btn" onClick={()=>{openMobileFilterHandle()}}>Axtar</button>    
+                        </div> 
                     </div>
                 </div>
                 {/* company post boxes */}

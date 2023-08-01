@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import './post_detail.css';
+import 'react-toastify/dist/ReactToastify.css';
 import { useParams, Link } from "react-router-dom";
 import { latest_jobs } from "../../fakeData/latestJobs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,6 +11,7 @@ import PostBox from "../../components/post_box/post_box";
 import NotificationMessage from "../../components/notification_message/notification_message";
 import PostBoxSaveBtn from "../../components/post_box_save_btn/post_box_save_btn";
 import ApplyFormDetailP from "../../components/apply_form_detailPage/apply_form_detailP";
+import { ToastContainer, toast } from "react-toastify";
 function PostDetail() {
     const {id} = useParams();
     const [data, setData] = useState(null);
@@ -20,6 +22,21 @@ function PostDetail() {
     const [savedJob, setSavedJob] = useState('');
     const notification_message_content = <div>"{savedJob}" adlı vakansiya şəxsi hesabınızda <strong><u>sevimlilər</u></strong> bölməsinə əlavə olundu.</div>;
     const [applyWindow, setApplyWindow] = useState(false);
+    const openApplyWindowF = ()=>{
+        setApplyWindow(!applyWindow);
+    }
+    const sendNotificationSuccess = ()=>{
+        toast.success(`${data['job_title']} adlı vakansiyaya müraciət göndərildi!`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        });
+    }
     return ( 
         <div className="detail_page">
             {
@@ -93,7 +110,7 @@ function PostDetail() {
                                 {/* salary  */}
                                 <div className="detail_page_salary">{data['salary']} AZN</div>
                                 {/* apply button */}
-                                <button onClick={()=>{setApplyWindow(!applyWindow)}} className="detail_page_apply_btn">Müraciət Et</button>
+                                <button onClick={openApplyWindowF} className="detail_page_apply_btn">Müraciət Et</button>
                             </div>
                         </div>
                     </div>
@@ -182,7 +199,7 @@ function PostDetail() {
                             </div>
                         </div>
                         {/* second apply button */}
-                        <button className="detail_page_vacancy_second_apply_btn">Müraciət Et</button>
+                        <button onClick={openApplyWindowF} className="detail_page_vacancy_second_apply_btn">Müraciət Et</button>
                     </div>
                 </div>
                 :
@@ -219,7 +236,19 @@ function PostDetail() {
                 </div>
             </div>
             {successMsg ? <NotificationMessage setSuccessMsg = {setSuccessMsg} notification_message_content = {notification_message_content} /> : null}
-            {applyWindow ? <ApplyFormDetailP /> : null}
+            {applyWindow ? <ApplyFormDetailP openApplyWindowF={openApplyWindowF} setSuccessMsg = {setSuccessMsg} successMsg={successMsg} sendNotificationSuccess = {sendNotificationSuccess}/> : null}
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
         </div>
     );
 }

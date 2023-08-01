@@ -73,7 +73,32 @@
 /* company page filters */
 .companies_page_filter{
     width: 25%;
+    min-width: 230px;
     padding: 10px 25px 10px 10px;
+}
+.companies_page_filter_container{
+    width: 100%;
+    padding: 0px 10px 10px 10px;
+}
+.companies_page_filters_fix_position{
+    position: sticky;
+    top: 100px;
+    overflow-y: auto;
+    max-height: 70vh;
+    padding-bottom: 20px;
+}
+.companies_page_filters_fix_position::-webkit-scrollbar{
+    width: 5px;
+}
+.companies_page_filters_fix_position::-webkit-scrollbar-track {
+    padding: 5px 0px;
+}
+.companies_page_filters_fix_position::-webkit-scrollbar-thumb{
+    border-radius: 5px;
+    background-color: var(--secondary-color);
+}
+.companies_page_filters_fix_position::-webkit-scrollbar-thumb:hover{
+    background-color: var(--post-box-detail-btn-hover);
 }
 .companies_page_filter_name{
     width: 100%;
@@ -85,7 +110,48 @@
 }
 .companies_page_filters_container{
     width: 100%;
-    padding-right: 10px;
+    /* padding-right: 10px; */
+    margin-bottom: 20px;
+}
+.companies_filters_confirm_and_reset_btns{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.companies_filters_reset_btn{
+    width: 40%;
+    border: 1px solid var(--secondary-color);
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--secondary-color);
+    cursor: pointer;
+    transition: 0.3s ease all;
+    text-align: center;
+    user-select: none;
+}
+.companies_filters_confirm_btn{
+    width: 55%;
+    background-color: var(--secondary-color);
+    outline: none;
+    cursor: pointer;
+    border: 1px solid var(--secondary-color);
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-size: 18px;
+    color: var(--primary-color);
+    font-weight: 500;
+    transition: 0.3s ease all;
+    user-select: none;
+}
+.companies_filters_confirm_btn:hover, .companies_filters_reset_btn:hover{
+    background-color: var(--post-box-detail-btn-hover);
+    transform: scale(1.05);
+    color: var(--primary-color);
+    /* border: 1px solid var(--post-box-detail-btn-hover); */
 }
 /* company page post boxes */
 .companies_page_commpany_boxes{
@@ -96,15 +162,88 @@
     width: 100%;
     padding: 30px 0px;
 }
-@media (width <= 850px){
+.companies_page_filters_mobile_close{
+    display: none;
+}
+.companies_page_filters_button{
+    display: none;
+}
+@media (width <= 800px){
     .companies_page_filter_and_companies{
         flex-direction: column;
     }
-    .companies_page_filter{
-        width: 50%;
+    .companies_page_filters_fix_position{
+        position: static;
+        top: unset;
+        overflow-y: unset;
+        max-height: unset;
+        padding-bottom: unset;
     }
     .companies_page_commpany_boxes{
         width: 100%;
+    }
+    .companies_page_filters_button{
+        display: flex;
+        width: 110px;
+        padding: 10px;
+        border: 1px solid var(--secondary-color);
+        border-radius: 10px;
+        flex-direction: row;
+        align-items: center;
+        font-weight: 500;
+        cursor: pointer;
+        user-select: none;
+        margin: 0px 0px 50px 10px;
+    }
+    .companies_page_filters_button svg{
+        margin-right: 10px;
+        font-size: 20px;
+        color: var(--secondary-color);
+    }
+    .companies_page_filters_mobile_close{
+        width: 80px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-size: 22px;
+        cursor: pointer;
+        transition: 0.1s all;
+        margin-bottom: 10px;
+    }
+    .companies_page_filters_mobile_close svg{
+        margin-right: 5px;
+        font-size: 22px;
+    }
+    .companies_page_filters_mobile_close:hover{
+        transform: scale(1.05);
+    }
+    .companies_page_filter_name{
+        text-align: center;
+    }
+    .companies_page_filter{
+        width: 100%;
+        display: none;
+    }
+    @keyframes from_right_to_left{
+        0%{
+            right: -60%;
+        }
+        100%{
+            right: 0%;
+        }
+    }
+    .companies_page_filters_mobile{
+        display: block;
+        width: 100%;
+        height: 100vh;
+        padding: 30px;
+        overflow-y: auto;
+        position: fixed;
+        background-color: var(--primary-color);
+        top: 0px;
+        left: 0px;
+        z-index: 999;
+        animation: left_to_right 0.5s;
     }
 }
 @media (width <= 500px){
@@ -124,12 +263,15 @@
     .companies_page_job_search_form_submit svg{
         font-size: 16px;
     }    
-    .companies_page_filter{
-        width: 80%;
-    }
 }
 @media (width <= 400px){
     .companies_page_job_search_container{
         height: 60%;
+    }
+    .companies_page_filter{
+        padding: 30px 20px;
+    }
+    .companies_page_filters_mobile_close{
+        font-size: 20px;
     }
 }

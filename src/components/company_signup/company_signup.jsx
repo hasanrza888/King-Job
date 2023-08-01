@@ -146,7 +146,7 @@ function CompanySignup() {
                 {/* accept condition checkbox */}
                 <div className='company_signup_form_condition_container'>
                     {/* check button */}
-                    <div className={acceptCondition ? "company_signup_form_condition_button company_signup_form_condition_button_accepted" : "company_signup_form_condition_button"} onClick={acceptConditionFunc}>
+                    <div className={`company_signup_form_condition_button ${acceptCondition ? "company_signup_form_condition_button_accepted" : ""}`} onClick={acceptConditionFunc}>
                         {acceptCondition ? <span className="company_signup_form_condition_button_checkmark"></span> : null}                        
                     </div>
                     {/* checkbox text  */}

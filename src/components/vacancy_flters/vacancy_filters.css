@@ -11,7 +11,7 @@
 }
 .vacancies_filters_container{
     width: 100%;
-    padding: 0px 10px 10px 0px;
+    padding: 0px 10px 10px 10px;
 }
 .vacancies_page_filters_fix_position{
     position: sticky;
@@ -137,7 +137,7 @@
     color: var(--primary-color);
     /* border: 1px solid var(--post-box-detail-btn-hover); */
 }
-@media (width <= 770px){
+@media (width <= 800px){
     .vacancies_page_filters_heading{
         text-align: center;
     }
