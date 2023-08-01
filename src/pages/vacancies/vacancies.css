@@ -182,6 +182,9 @@
     .vacancies_page_job_search_container{
         height: 60%;
     }
+    .vacancies_page_filters_mobile_close{
+        font-size: 20px;
+    }
     .vacancies_page_filters_mobile{
         padding: 30px 20px;
     }

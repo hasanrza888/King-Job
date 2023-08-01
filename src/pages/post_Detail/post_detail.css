@@ -6,6 +6,7 @@
     --posts-container-heading-color: var(--secondary-color);
     --detail-page-header: #F0FFF6;
     --post-box-detail-btn-hover: #3dbf00;
+    --submit-btn-color: #7CF281;
 }
 /* detail page */
 .detail_page{
@@ -151,7 +152,7 @@
 }
 .detail_page_apply_btn{
     padding: 5px 15px;
-    background-color: #7CF281;
+    background-color: var(--submit-btn-color);
     color: var(--primary-color);
     font-weight: 500;
     font-size: 16px;
@@ -263,7 +264,7 @@
 .detail_page_vacancy_second_apply_btn{
     width: 50%;
     margin: 30px auto 0px;
-    padding: 10px 30px;
+    padding: 5px 30px;
     font-size: 20px;
     font-weight: 700;
     font-family: inherit;
@@ -388,6 +389,9 @@
         margin-bottom: 10px;
         margin-right: 0px;
         font-size: 18px;
+    }
+    .detail_page_apply_btn{
+        width: 100%;
     }
     .detail_page_vacancy_description_body{
         font-size: 14px;
