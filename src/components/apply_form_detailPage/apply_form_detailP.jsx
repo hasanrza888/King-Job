@@ -6,9 +6,10 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 function ApplyFormDetailP({openApplyWindowF, setSuccessMsg, successMsg, sendNotificationSuccess}) {
     const [logoName, setLogoName] = useState('');
     const [agreeCurrentCv, setAgreeCurrentCv] = useState(false);
-    const uploadLogo = (e)=>{
+    const uploadNewCv = (e)=>{
         if(e.target.files.length > 0){
             setLogoName(e.target.files[0].name);  
+            setAgreeCurrentCv(false);
         }      
     }
     const closeWindowWhenOtherClick = (e)=>{
@@ -18,6 +19,7 @@ function ApplyFormDetailP({openApplyWindowF, setSuccessMsg, successMsg, sendNoti
     }
     const agreeCurrentCVHandle = ()=>{
         setAgreeCurrentCv(!agreeCurrentCv);
+        setLogoName('');
     }
     // send apply to vacancy >>>> submit button
     const sendApplyToVacancy = ()=>{
@@ -51,7 +53,7 @@ function ApplyFormDetailP({openApplyWindowF, setSuccessMsg, successMsg, sendNoti
                     <label htmlFor="choose_new_cv" className='apply_form_detailP_CV_choose'>
                         Yeni CV
                         <div className="apply_form_detailP_CV_choose_and_name">
-                            <input type="file" name="choose_new_cv" onChange={uploadLogo} accept="application/pdf" title='CV yüklə'/>
+                            <input type="file" name="choose_new_cv" onChange={uploadNewCv} accept="application/pdf" title='CV yüklə'/>
                             <span className="apply_form_detailP_CV_choose_name">{logoName}</span>
                         </div>                    
                     </label>
