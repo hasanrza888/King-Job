@@ -12,7 +12,7 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
     background-color: var(--detail-page-header);
     padding: 20px;
@@ -22,10 +22,10 @@
 }
 /* logo and name */
 .company_post_logo_and_name{
-    /* width: 50%; */
+    width: 60%;
     display: flex;
     flex-direction: row;
-    margin-right: 20px;
+    margin-right: 5%;
 }
 /* company logo */
 .company_post_logo{
@@ -68,7 +68,8 @@
 }
 /* company counts */
 .company_counts_container{
-    /* width: 50%; */
+    width: 35%;
+    min-width: 300px;
     display: flex;
     flex-direction: row;
     /* justify-content: space-between; */
@@ -102,19 +103,33 @@
 @media (width <= 850px){
     .company_counts_container{
         flex-direction: column;
+        min-width: unset;
+        align-items: flex-start;
     }
     .company_counts:first-child{
         margin: 0px 0px 15px 0px;
     }
 }
-@media (width <= 450px){
+@media (width <= 800px){
+    .company_post_logo_and_name{
+        width: 74%;
+    }
+    .company_counts_container{
+        width: 25%;
+        min-width: 175px;
+    }
+}
+@media (width <= 500px){
     .company_post_box_container{
         flex-direction: column;
         padding: 15px;
         align-items: flex-start;
     }
     .company_post_logo_and_name{
+        width: 100%;
         margin-bottom: 20px;
+        margin-right: unset;
+
     }
     .company_post_logo{
         width: 40px;
@@ -138,6 +153,10 @@
     }
     .company_counts:first-child{
         margin: 0px 15px 15px 0px;
+    }
+    .company_counts{
+        width: 40%;
+        min-width: 140px;
     }
     .company_counts_value{
         font-size: 14px;
