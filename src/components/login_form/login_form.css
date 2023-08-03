@@ -8,7 +8,7 @@
 /* login form container */
 .login_Form{
     width: 100%;
-    height: auto;
+    /* height: auto; */
     position: relative;
     /* -webkit-box-shadow: 0px 2px 5px 0px var(--secondary-color);
     -moz-box-shadow: 0px 2px 5px 0px var(--secondary-color);

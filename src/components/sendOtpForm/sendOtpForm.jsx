@@ -3,17 +3,15 @@ import './sendOtpForm.css'
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import NotificationMessage from '../notification_message/notification_message';
+import { toast } from 'react-toastify';
 function SendOtpForm({setOpenOtpWindow, setNewPassword, login, userSignUp, company_SignUp}) {
     const [reverseAnimation, setReverseAnimation] = useState(false); 
     const [countDown, setCountDown] = useState(120);
     const [errorMessage, setErrorMessage] = useState({
-        errorCheck: false,
-        errorContent : ''
+        errorCheck: true,
+        errorContent : '1111111'
     }); 
-    const [successMsg, setSuccessMsg] = useState(false);
     const navigate = useNavigate();
-    const [notification_message_content, setNotification_message_content] = useState('');
     const [otpInputValue, setOtpInputValue] = useState('');
     const [otpChecking, setOtpChecking] = useState(false);
     const sendOtpCodeHandle = (e)=>{
@@ -22,20 +20,34 @@ function SendOtpForm({setOpenOtpWindow, setNewPassword, login, userSignUp, compa
         if(otpInputValue.length === 6){
             setOtpChecking(true);
         }            
-        if(login === true){
-            setNewPassword(true);
-        }else if((userSignUp === true && !otpChecking) || (company_SignUp === true && !otpChecking)){
-            setSuccessMsg(true);
-            setNotification_message_content('Qeydiyyatınız uğurlu oldu !');
+        // naviagates when form completed
+        if((userSignUp === true && !otpChecking) || (company_SignUp === true && !otpChecking)){
+            toast.success('Qeydiyyatınız uğurlu oldu !', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
             setTimeout(()=>{
                 navigate('/login');    
             }, 5000);            
+        }else{
+            navigate('/login/new_password');
         }
     }
     const closeWindowBox = ()=>{  
         setReverseAnimation(true);        
         setTimeout(()=>{
-            setOpenOtpWindow(false);  
+            if(company_SignUp || userSignUp){
+                setOpenOtpWindow(false);     
+            }
+            else{
+                navigate('/login/forgot_password');    
+            }
         },300);            
     } 
     useEffect(()=>{
@@ -93,7 +105,6 @@ function SendOtpForm({setOpenOtpWindow, setNewPassword, login, userSignUp, compa
                     }                    
                 </div>                
             </form>
-            {successMsg ? <NotificationMessage setSuccessMsg = {setSuccessMsg} notification_message_content = {notification_message_content} /> : null}
         </div>
     );
 }

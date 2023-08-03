@@ -2,17 +2,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './forgot_password_form.css';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 function ForgotPasswordForm({close, setOpenOtpWindow}) {
     const [errorMessage, setErrorMessage] = useState(false);  
-    const [reverseAnimation, setReverseAnimation] = useState(false);     
+    const [reverseAnimation, setReverseAnimation] = useState(false);   
+    const navigateTo = useNavigate();  
     const forgotPasswordHandle = (e)=>{
         e.preventDefault();
-        setOpenOtpWindow(true);
+        // setOpenOtpWindow(true);
+        navigateTo('/login/otp');
     }    
     const closeWindowBox = ()=>{  
         setReverseAnimation(true);
         setTimeout(()=>{
-            close(false);  
+            // close(false);  
+            navigateTo('/login');
         },300)                
     }    
     return ( 

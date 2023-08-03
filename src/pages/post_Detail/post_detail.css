@@ -283,14 +283,15 @@
 }
 /* relevant vacancies */
 .detail_page_relevant_vacancies{
-    width: 60%;
-    margin: 0px auto 50px;
+    width: 65%;
+    margin: 80px auto 50px;
 }
 .detail_page_vacancy_buttons_mobile{
     display: none;
 }
 .detail_page_not_found{
     width: 95%;
+    height: 50vh;
     margin: 0px auto 100px;
     text-align: center;
     font-size: 30px;
@@ -362,6 +363,7 @@
         padding: 0px;
     }
     .detail_page_not_found{
+        height: 20vh;
         font-size: 20px;
         padding: 30px 0px;
         margin-bottom: 20px;
