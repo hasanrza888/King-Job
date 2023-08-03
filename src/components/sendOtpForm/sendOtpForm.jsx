@@ -8,8 +8,8 @@ function SendOtpForm({setOpenOtpWindow, setNewPassword, login, userSignUp, compa
     const [reverseAnimation, setReverseAnimation] = useState(false); 
     const [countDown, setCountDown] = useState(120);
     const [errorMessage, setErrorMessage] = useState({
-        errorCheck: true,
-        errorContent : '1111111'
+        errorCheck: false,
+        errorContent : ''
     }); 
     const navigate = useNavigate();
     const [otpInputValue, setOtpInputValue] = useState('');
