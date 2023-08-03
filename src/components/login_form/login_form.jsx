@@ -3,21 +3,23 @@ import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ForgotPasswordForm from '../forgot_password_form/forgot_password_form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SendOtpForm from '../sendOtpForm/sendOtpForm';
 import UpdatePasswordForm from '../update_password_form/update_password_form';
 
-function LoginForm({setSuccessMsg, setloginMsg}) {
+function LoginForm() {
     const [showPassword, setShowPassword] = useState(false);
     const [forgotPassword, setForgotPassword] = useState(false);
     const [errorMessage, setErrorMessage] = useState(false);
     const [openOtpWindow, setOpenOtpWindow] = useState(false);
     const [newPasswordForm, setNewPassword] = useState(false);
+    const navigateTo = useNavigate();
     const show_password_handle = ()=>{
         setShowPassword(!showPassword);
     }
     const forgot_password = ()=>{
-        setForgotPassword(true);
+        // setForgotPassword(true);
+        navigateTo('/login/forgot_password');
     }      
     return ( 
             <div className="login_Form">
@@ -56,24 +58,22 @@ function LoginForm({setSuccessMsg, setloginMsg}) {
                     </div>
                 </form> 
                 {/* forgot password form */}
-                {
+                {/* {
                     forgotPassword ? <ForgotPasswordForm close = {setForgotPassword} setOpenOtpWindow = {setOpenOtpWindow}/> : null
-                }
+                } */}
                 {/* otp code form */}
-                {
+                {/* {
                     openOtpWindow ? <SendOtpForm setOpenOtpWindow = {setOpenOtpWindow} setNewPassword = {setNewPassword} login = { openOtpWindow ? true : false}/> : null 
-                }
+                } */}
                 {/* set new password form */}
-                {
+                {/* {
                     newPasswordForm ? 
                     <UpdatePasswordForm 
-                    setNewPassword = {setNewPassword} 
-                    setOpenOtpWindow = {setOpenOtpWindow} 
-                    close = {setForgotPassword} 
-                    setSuccessMsg = {setSuccessMsg}
-                    setloginMsg = {setloginMsg}
+                        setNewPassword = {setNewPassword} 
+                        setOpenOtpWindow = {setOpenOtpWindow} 
+                        close = {setForgotPassword}
                     /> : null
-                }
+                } */}
             </div>                                                 
      );
 }

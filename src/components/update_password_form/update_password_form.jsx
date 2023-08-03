@@ -5,7 +5,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import PasswordChecker from '../password_checker/password_checker';
-function UpdatePasswordForm({setNewPassword, setOpenOtpWindow, close, setSuccessMsg, setloginMsg}) {
+import { toast } from 'react-toastify';
+function UpdatePasswordForm({setNewPassword, setOpenOtpWindow, close}) {
     const [showPassword, setShowPassword] = useState(false);
     // error message runner for otp 
     const [errorMessage, setErrorMessage] = useState({
@@ -45,16 +46,24 @@ function UpdatePasswordForm({setNewPassword, setOpenOtpWindow, close, setSuccess
     const updatePasswordHandle = (e)=>{
         e.preventDefault();
         if((e.target.new_password.value === e.target.repeate_password.value) && (pasLength === true && upperCase === true && lowerCase === true)){
-            setNewPassword(false);
+            // setNewPassword(false);
             Navigate("/login");
             setErrorMessage(false);
-            setOpenOtpWindow(false);
-            close(false);
+            // setOpenOtpWindow(false);
+            // close(false);
             // _____ if password restoration was success
             // opens message box
-            setSuccessMsg(true);
             // message content
-            setloginMsg('Şifrəniz uğurla yeniləndi !');
+            toast.success('Şifrəniz uğurla yeniləndi ! Hesabınıza daxil ola bilərsiniz.', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
         }else{
             if(e.target.new_password.value !== e.target.repeate_password.value){
                 setErrorMessage({...errorMessage, errorCheck: true, errorContent : 'Şifrələr eyni deyil !'});
@@ -68,7 +77,8 @@ function UpdatePasswordForm({setNewPassword, setOpenOtpWindow, close, setSuccess
     const closeWindowBox = ()=>{  
         setReverseAnimation(true);
         setTimeout(()=>{
-            setNewPassword(false);
+            // setNewPassword(false);
+            Navigate('/login/otp');
         },300)                
     } 
     return ( 

@@ -8,19 +8,15 @@ import { faEye, faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import { faHourglassEnd, faHourglassStart, faTag } from "@fortawesome/free-solid-svg-icons";
 import PageHeadText from "../../components/page_head_text/page_head_text";
 import PostBox from "../../components/post_box/post_box";
-import NotificationMessage from "../../components/notification_message/notification_message";
 import PostBoxSaveBtn from "../../components/post_box_save_btn/post_box_save_btn";
 import ApplyFormDetailP from "../../components/apply_form_detailPage/apply_form_detailP";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 function PostDetail() {
     const {id} = useParams();
     const [data, setData] = useState(null);
     useEffect(()=>{
         setData(latest_jobs['latest'].find((item)=> item['job_id'] === Number(id) ? item : null));
     },[id]);
-    const [successMsg, setSuccessMsg] = useState(false);
-    const [savedJob, setSavedJob] = useState('');
-    const notification_message_content = <div>"{savedJob}" adlı vakansiya şəxsi hesabınızda <strong><u>sevimlilər</u></strong> bölməsinə əlavə olundu.</div>;
     const [applyWindow, setApplyWindow] = useState(false);
     const openApplyWindowF = ()=>{
         setApplyWindow(!applyWindow);
@@ -34,7 +30,7 @@ function PostDetail() {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "colored",
+            theme: "light",
         });
     }
     return ( 
@@ -62,7 +58,7 @@ function PostDetail() {
                                 </div>
                                 {/* job save button */}
                                 <div className="detail_page_vacancy_save_button" title="Vakansiyanı yadda saxla">
-                                    <PostBoxSaveBtn job_id = {data['job_id']} setSuccessMsg = {setSuccessMsg} setSavedJob={setSavedJob} job_title={data['job_title']}/>                                 
+                                    <PostBoxSaveBtn job_id = {data['job_id']} job_title={data['job_title']}/>                                 
                                 </div>
                             </div>
                         </div>
@@ -201,54 +197,39 @@ function PostDetail() {
                         {/* second apply button */}
                         <button onClick={openApplyWindowF} className="detail_page_vacancy_second_apply_btn">Müraciət Et</button>
                     </div>
+                    {/* relevant vacancies */}
+                    <div className="detail_page_relevant_vacancies">
+                        <PageHeadText content={'Əlaqədar Elanlar'}/>                
+                        <div className="latest_jobs_boxes_container">
+                            {
+                                latest_jobs['latest'].map((item, index)=>{
+                                    return(
+                                        <PostBox 
+                                            job_id = {item.job_id}
+                                            image_url={item.image_url}
+                                            salary={item.salary}
+                                            job_title={item.job_title}
+                                            company_name={item.company_name}
+                                            post_views={item.post_views}
+                                            post_applies = {item.post_applies}
+                                            post_start_date={item.post_start_date}
+                                            post_end_date={item.post_end_date}
+                                            location={item.location}
+                                            job_time_type={item.job_time_type}
+                                            key={item.job_id}
+                                        />
+                                    )
+                                })
+                            }
+                        </div>
+                    </div>
                 </div>
                 :
                 <div className="detail_page_not_found">
                     Mövcud Elan Yoxdur !
                 </div>
             }
-            {/* relevant vacancies */}
-            <div className="detail_page_relevant_vacancies">
-                <PageHeadText content={'Əlaqədar Elanlar'}/>                
-                <div className="latest_jobs_boxes_container">
-                    {
-                        latest_jobs['latest'].map((item, index)=>{
-                            return(
-                                <PostBox 
-                                    job_id = {item.job_id}
-                                    image_url={item.image_url}
-                                    salary={item.salary}
-                                    job_title={item.job_title}
-                                    company_name={item.company_name}
-                                    post_views={item.post_views}
-                                    post_applies = {item.post_applies}
-                                    post_start_date={item.post_start_date}
-                                    post_end_date={item.post_end_date}
-                                    location={item.location}
-                                    job_time_type={item.job_time_type}
-                                    key={item.job_id}
-                                    setSuccessMsg = {setSuccessMsg}
-                                    setSavedJob = {setSavedJob}
-                                />
-                            )
-                        })
-                    }
-                </div>
-            </div>
-            {successMsg ? <NotificationMessage setSuccessMsg = {setSuccessMsg} notification_message_content = {notification_message_content} /> : null}
-            {applyWindow ? <ApplyFormDetailP openApplyWindowF={openApplyWindowF} setSuccessMsg = {setSuccessMsg} successMsg={successMsg} sendNotificationSuccess = {sendNotificationSuccess}/> : null}
-            <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="colored"
-            />
+            {applyWindow ? <ApplyFormDetailP openApplyWindowF={openApplyWindowF} sendNotificationSuccess = {sendNotificationSuccess}/> : null}            
         </div>
     );
 }

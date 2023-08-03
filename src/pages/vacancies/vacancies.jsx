@@ -6,13 +6,9 @@ import PageHeadText from '../../components/page_head_text/page_head_text';
 import PostBox from '../../components/post_box/post_box';
 import { latest_jobs } from '../../fakeData/latestJobs';
 import { useState } from 'react';
-import NotificationMessage from '../../components/notification_message/notification_message';
 import VacancyFilters from '../../components/vacancy_flters/vacancy_filters';
 
 function Vacancies() {
-    const [successMsg, setSuccessMsg] = useState(false);
-    const [savedJob, setSavedJob] = useState('');
-    const notification_message_content = <div>"{savedJob}" adlı vakansiya şəxsi hesabınızda <strong><u>sevimlilər</u></strong> bölməsinə əlavə olundu.</div>;
     const [openMobileFilter, setOpenMobileFilter] = useState(false);
     const [filter, setFilter] = useState({
         vacancy_name: "",
@@ -90,8 +86,6 @@ function Vacancies() {
                                         location={item.location}
                                         job_time_type={item.job_time_type}
                                         key={item.job_id}
-                                        setSuccessMsg = {setSuccessMsg}
-                                        setSavedJob = {setSavedJob}
                                     />
                                 )
                             })
@@ -116,8 +110,6 @@ function Vacancies() {
                                         location={item.location}
                                         job_time_type={item.job_time_type}
                                         key={item.job_id}
-                                        setSuccessMsg = {setSuccessMsg}
-                                        setSavedJob = {setSavedJob}
                                     />
                                 )
                             })
@@ -125,7 +117,6 @@ function Vacancies() {
                     </div>
                 </div>
             </div>
-            {successMsg ? <NotificationMessage setSuccessMsg = {setSuccessMsg} notification_message_content = {notification_message_content} /> : null}
         </div>
      );
 }

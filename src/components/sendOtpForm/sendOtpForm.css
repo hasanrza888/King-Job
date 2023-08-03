@@ -24,14 +24,15 @@
 /* otp form */
 .send_top_form_container{
     width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: 11;
-    top: 0px;
+    /* height: 100%; */
+    position: relative;
+    /* z-index: 11;
+    top: 0px; */
     background-color: var(--primary-color);
     border: 3px solid var(--secondary-color);
     border-radius: 10px;
-    padding: 20px;    
+    /* box-shadow: 0px 2px 2px 1px rgb(0,0,0, 0.3); */
+    padding: 40px 20px;    
 }
 .send_top_form_container_signup{
     height: unset;
@@ -46,7 +47,7 @@
 }
 .send_top_form{
     width: 100%;
-    margin-top: 50px;
+    /* margin-top: 50px; */
 }
 .send_top_form label{
     width: 100%;
@@ -80,7 +81,7 @@
 }
 .send_otp_again_btn{
     width: 40%;
-    min-width: 100px;
+    min-width: 160px;
     display: block;
     margin: 20px auto 0px;
     background-color: var(--quaternary-color);
@@ -96,7 +97,7 @@
 .send_otp_form_submit_btn_container{
     width: 50%;
     min-width: 130px;
-    margin: 40px auto 0px;
+    margin: 20px auto 0px;
     position: relative;
 }
 .send_otp_form_submit{
@@ -117,7 +118,6 @@
 .send_otp_form_submit_ready{
     opacity: 1;
 }
-
 /* loading animation on form submit button */
 .send_otp_form_submit_btn_loader{
     position: absolute;
@@ -139,7 +139,7 @@
 }
 @media (width <= 500px){
     .send_top_form_container{
-        padding: 10px;
+        padding: 20px;
     }
     .send_otp_form_submit{
         width: 100%;
