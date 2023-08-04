@@ -136,6 +136,9 @@
 .apply_form_detailP_CV_choose input[type=file]::-webkit-file-upload-button{
     visibility: hidden;
 }
+.apply_form_detailP_CV_choose input[type=file]::file-selector-button {
+    visibility: hidden;
+}
 .apply_form_detailP_CV_choose input[type=file]::before{
     content: 'CV yüklə';
     display: inline-block;

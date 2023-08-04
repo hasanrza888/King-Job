@@ -74,9 +74,9 @@ function SendOtpForm({setOpenOtpWindow, setNewPassword, login, userSignUp, compa
         }
     }
     return ( 
-        <div className='otp'>
+        <div className='otp_form_and_checking'>
             {
-                /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email) ?
+                /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email) || userSignUp || company_SignUp ?
                 <div className={`send_top_form_container ${(company_SignUp || userSignUp) ? "send_top_form_container_signup" : ""}  ${ reverseAnimation ? "send_top_form_close_animation" : "send_top_form_open_animation"}`}>
                     {/* window close button */}
                     <div className="forgot_password_form_window_close" onClick={closeWindowBox}>
@@ -112,7 +112,7 @@ function SendOtpForm({setOpenOtpWindow, setNewPassword, login, userSignUp, compa
                     </form>
                 </div>
                 :
-                <p>Xəta</p>
+                <p className='error_found_text'>Email doğru deyil !</p>
             }
         </div>
     );
