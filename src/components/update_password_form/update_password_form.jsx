@@ -138,7 +138,7 @@ function UpdatePasswordForm({setNewPassword, setOpenOtpWindow, close}) {
                         <input type="submit" value="Şifrəni yenilə" className='update_password_form_submit' />           
                     </form>            
                 </div>
-                : <p>Xəta</p>
+                : <p className='error_found_text'>Email və ya OTP kod doğru deyil !</p>
             }
         </div>
      );
