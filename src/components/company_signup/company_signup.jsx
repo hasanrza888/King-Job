@@ -5,6 +5,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SendOtpForm from '../sendOtpForm/sendOtpForm';
 import { Link } from 'react-router-dom';
+import { email_checker } from '../email_checker/email_checker';
 function CompanySignup() {
     const [showPassword, setShowPassword] = useState(false);
     // password checker object for update password form
@@ -17,6 +18,11 @@ function CompanySignup() {
         errorCheck: false,
         errorContent : ''
     });     
+    const [formInfo, setFormInfo] = useState({
+        company_name: '',
+        email: '',
+        password: ''
+    })
     const [showCondition, setShowCondition] = useState(false);
     const [acceptCondition, setAcceptCondition] = useState(false);
     const [importantInputField, setImportantInputField] = useState({
@@ -69,11 +75,13 @@ function CompanySignup() {
     }
     const company_signup_form_handle = (e)=>{
         e.preventDefault();
-        if((e.target.company_signup_form_password.value === e.target.company_signup_form_repeat_password.value) && (pasLength === true && upperCase === true && lowerCase === true) && acceptCondition === true){            
+        if((e.target.company_signup_form_password.value === e.target.company_signup_form_repeat_password.value) && (pasLength && upperCase && lowerCase) && acceptCondition && email_checker(formInfo.email)){            
             setErrorMessage(false);                        
             setOpenOtpWindow(true);
         }else{
-            if(e.target.company_signup_form_password.value !== e.target.company_signup_form_repeat_password.value){
+            if(!email_checker(formInfo.email)){
+                setErrorMessage({...errorMessage, errorCheck: true, errorContent : 'Email sintaksisi doğru deyil!'});
+            }else if(e.target.company_signup_form_password.value !== e.target.company_signup_form_repeat_password.value){
                 setErrorMessage({...errorMessage, errorCheck: true, errorContent : 'Şifrələr eyni deyil !'});
             }else if(pasLength === false || upperCase === false || lowerCase === false){
                 setErrorMessage({...errorMessage, errorCheck: true, errorContent : 'Şifrələnmə qaydası pozulmuşdur !'});
@@ -99,19 +107,19 @@ function CompanySignup() {
                 {/* company name */}
                 <label htmlFor="company_signup_form_name">
                     Şirkət adı
-                    <input type="text" name='company_signup_form_name' onChange={(e)=> importantFieldFunc(e)} required/>
+                    <input type="text" name='company_signup_form_name' onChange={(e)=> {importantFieldFunc(e); setFormInfo({...formInfo, company_name: e.target.value})}} required/>
                 </label>
                 {/* company email */}
                 <label htmlFor="company_signup_form_company_email">
                     E-mail
-                    <input type="email" name="company_signup_form_company_email" onChange={(e)=> importantFieldFunc(e)} required/>
+                    <input type="email" name="company_signup_form_company_email" onChange={(e)=> {importantFieldFunc(e); setFormInfo({...formInfo, email: e.target.value})}} required/>
                 </label>
                 {/* password input */}
                 <label htmlFor="company_signup_form_password">
                     Şifrə
                     <div className="company_signup_form_password_container">
                         {/* password login */}
-                        <input type={showPassword ? 'text' : 'password'} onChange={(e)=>{checkPasswordHandle(e); importantFieldFunc(e)}} className="company_signup_form_password_input" name="company_signup_form_password" required />
+                        <input type={showPassword ? 'text' : 'password'} onChange={(e)=>{checkPasswordHandle(e); importantFieldFunc(e); setFormInfo({...formInfo, password: e.target.value})}} className="company_signup_form_password_input" name="company_signup_form_password" required />
                         {/* password show and hide buttons */}
                         <div className="company_signup_form_password_show_btn" onClick={show_password_handle}>
                             {showPassword ? 
