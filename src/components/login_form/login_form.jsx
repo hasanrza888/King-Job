@@ -23,7 +23,7 @@ function LoginForm() {
     }      
     return ( 
             <div className="login_Form">
-                <form action="#" className="login_page_form">
+                <form action="#" method='post' className="login_page_form">
                     {/* login email */}
                     <label htmlFor="login_email">
                         E-mail

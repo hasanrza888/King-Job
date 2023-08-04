@@ -6,11 +6,15 @@ import { useNavigate } from 'react-router-dom';
 function ForgotPasswordForm({close, setOpenOtpWindow}) {
     const [errorMessage, setErrorMessage] = useState(false);  
     const [reverseAnimation, setReverseAnimation] = useState(false);   
+    const [email, setEmail] = useState('');
     const navigateTo = useNavigate();  
+    const emailChange = (e)=>{
+        setEmail(e.target.value);
+    }
     const forgotPasswordHandle = (e)=>{
         e.preventDefault();
         // setOpenOtpWindow(true);
-        navigateTo('/login/otp');
+        navigateTo(`/login/otp/${email}`);
     }    
     const closeWindowBox = ()=>{  
         setReverseAnimation(true);
@@ -31,11 +35,11 @@ function ForgotPasswordForm({close, setOpenOtpWindow}) {
                 Zəhmət olmasa <strong>e-mailinizi</strong> daxil edin və e-mailinizə gələn kodu daxil edərək yeni Şifrə yaradın !
             </div>
             {/* forgot password form */}
-            <form action="#" className='forgot_password_form' onSubmit={forgotPasswordHandle}>
+            <form action="#" method='post' className='forgot_password_form' onSubmit={forgotPasswordHandle}>
                 {/* forgot email */}
                 <label htmlFor="forgot_email">
                     E-mail
-                    <input type="email" name="forgot_email" required/>
+                    <input type="email" name="forgot_email" onChange={emailChange} required/>
                 </label>    
                 {
                     errorMessage ? <div className="forgot_password_form_error_message">E-mail ilə hesab tapılmadı</div> : null
