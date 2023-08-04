@@ -38,8 +38,8 @@ function App() {
             <Route path='/login' element={<Login/>}>
               <Route index element={<LoginForm />} />
               <Route path='/login/forgot_password' element={<ForgotPasswordForm />} />
-              <Route path='/login/otp' element={<SendOtpForm />}/>
-              <Route path='/login/new_password' element={<UpdatePasswordForm />}/>
+              <Route path='/login/otp/:email' element={<SendOtpForm />}/>
+              <Route path='/login/new_password/:email/:otp' element={<UpdatePasswordForm />}/>
             </Route>
             <Route path='/signup' element={<Signup/>}>
               <Route index element={<UserSignup/>}/>
