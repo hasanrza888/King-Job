@@ -5,11 +5,8 @@ import { useState } from 'react';
 function PageTopBtn() {
     const [top, setTop] = useState(false);
     window.addEventListener('scroll', ()=>{
-        if(document.documentElement.scrollTop > 0){
-            setTop(true);
-        }else{
-            setTop(false);
-        }
+        setTop(document.documentElement.scrollTop > 0)
+ 
     })
     const go_to_top = ()=>{
         window.scrollTo(0 , 0);

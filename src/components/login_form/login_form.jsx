@@ -3,37 +3,61 @@ import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ForgotPasswordForm from '../forgot_password_form/forgot_password_form';
-import { Link } from 'react-router-dom';
-import Signup from '../../pages/signup/signup';
+import { Link, useNavigate } from 'react-router-dom';
 import SendOtpForm from '../sendOtpForm/sendOtpForm';
 import UpdatePasswordForm from '../update_password_form/update_password_form';
+import { email_checker } from '../email_checker/email_checker';
 
-function LoginForm({setSuccessMsg, setloginMsg}) {
+function LoginForm() {
+    const [formInfo, setFormInfo] = useState({
+        email: '',
+        password: ''
+    })
     const [showPassword, setShowPassword] = useState(false);
-    const [forgotPassword, setForgotPassword] = useState(false);
-    const [errorMessage, setErrorMessage] = useState(false);
-    const [openOtpWindow, setOpenOtpWindow] = useState(false);
-    const [newPasswordForm, setNewPassword] = useState(false);
+    const [errorMessage, setErrorMessage] = useState({
+        errorCheck: false,
+        errorContent : ''
+    });
+    const navigateTo = useNavigate();
     const show_password_handle = ()=>{
         setShowPassword(!showPassword);
     }
+    // forgot password
     const forgot_password = ()=>{
-        setForgotPassword(true);
+        navigateTo('/login/forgot_password');
     }      
+    // email handle function
+    const email_change_Func = (e)=>{
+        setFormInfo({...formInfo, email: e.target.value});
+    }
+    // password handle function
+    const form_password_handle = (e)=>{
+        setFormInfo({...formInfo, password: e.target.value});
+    }
+    // form Submit function
+    const login_form_handle = (e)=>{
+        e.preventDefault();
+        // email checking process
+        if(!email_checker(formInfo.email)){
+            setErrorMessage({...errorMessage, errorCheck: true, errorContent: "Email sintaksisi doğru deyil!"});
+        }else{
+            setErrorMessage({...errorMessage, errorCheck: false, errorContent: ""});
+        }
+    }
     return ( 
             <div className="login_Form">
-                <form action="#" className="login_page_form">
+                <form action="#" method='post' onSubmit={login_form_handle} className="login_page_form">
                     {/* login email */}
                     <label htmlFor="login_email">
                         E-mail
-                        <input type="email" name="login_email" className="login_email_input" required />
+                        <input type="email" name="login_email" className="login_email_input" onChange={email_change_Func} required />
                     </label>
                     {/* login password */}
                     <label htmlFor="login_password">
                         Şifrə
                         <div className="login_password_container">
                             {/* password login */}
-                            <input type={showPassword ? 'text' : 'password'} className="login_password_input" name="login_password" required />
+                            <input type={showPassword ? 'text' : 'password'} onChange={form_password_handle} className="login_password_input" name="login_password" required />
                             {/* password show and hide buttons */}
                             <div className="login_password_show_btn" onClick={show_password_handle}>
                                 {showPassword ? 
@@ -46,35 +70,33 @@ function LoginForm({setSuccessMsg, setloginMsg}) {
                     </label>
                     {/* error message */}
                     {
-                        errorMessage ? <div className="login_form_error_message">e-mail və ya şifrə səhvdir !</div> : null
+                        errorMessage.errorCheck ? <div className="login_form_error_message">{errorMessage.errorContent}</div> : null
                     }
                     {/* forgotten password button */}
                     <button className='login_form_forgot_password_btn' type='reset' onClick={forgot_password}>Şifrəni Unutmuşam</button>                
                     {/* login form submit button */}
-                    <button type="submit" className="login_form_submit_btn">Daxil OL</button>
+                    <button type="submit" className={`login_form_submit_btn ${formInfo.email && formInfo.password ? 'login_form_submit_btn_ready' : ''}`}>Daxil OL</button>
                     <div className="login_form_link_to_signUp_container">
-                        Hesabınız yoxdur? <Link to='/signup' className='login_form_link_to_signUp'>Qeydiyyatdan Keçin</Link>
+                        Hesabınız yoxdur? <Link to='/signup/user_signup' className='login_form_link_to_signUp'>Qeydiyyatdan Keçin</Link>
                     </div>
                 </form> 
                 {/* forgot password form */}
-                {
+                {/* {
                     forgotPassword ? <ForgotPasswordForm close = {setForgotPassword} setOpenOtpWindow = {setOpenOtpWindow}/> : null
-                }
+                } */}
                 {/* otp code form */}
-                {
-                    openOtpWindow ? <SendOtpForm setOpenOtpWindow = {setOpenOtpWindow} setNewPassword = {setNewPassword}/> : null 
-                }
+                {/* {
+                    openOtpWindow ? <SendOtpForm setOpenOtpWindow = {setOpenOtpWindow} setNewPassword = {setNewPassword} login = { openOtpWindow ? true : false}/> : null 
+                } */}
                 {/* set new password form */}
-                {
+                {/* {
                     newPasswordForm ? 
                     <UpdatePasswordForm 
-                    setNewPassword = {setNewPassword} 
-                    setOpenOtpWindow = {setOpenOtpWindow} 
-                    close = {setForgotPassword} 
-                    setSuccessMsg = {setSuccessMsg}
-                    setloginMsg = {setloginMsg}
+                        setNewPassword = {setNewPassword} 
+                        setOpenOtpWindow = {setOpenOtpWindow} 
+                        close = {setForgotPassword}
                     /> : null
-                }
+                } */}
             </div>                                                 
      );
 }

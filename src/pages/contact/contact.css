@@ -126,6 +126,7 @@
 }
 .contact_page_form label textarea{
     max-width: 100%;
+    min-width: 100%;
 }
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -191,9 +192,9 @@ input[type=number] {
         width: 65%;
         justify-content: unset;
     }
-    .contact_page_form label input, .contact_page_form label textarea{
+    /* .contact_page_form label input, .contact_page_form label textarea{
         padding: 5px;
-    }
+    } */
     .contact_page_form label{
         width: 100%;
     }
@@ -218,13 +219,9 @@ input[type=number] {
         font-size: 30px;
     }
     .contact_page_form{
-        width: 90%;
+        width: 100%;
         padding: 20px;
-    }
-    .contact_page_form label{
-        margin-bottom: 10px;
-        font-size: 14px;
-    }    
+    }   
     .contact_page_subscribe_form{
         width: 100%;
     }

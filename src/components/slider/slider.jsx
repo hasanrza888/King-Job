@@ -6,7 +6,7 @@ import imgOne from '../../images/slider_img_one.jpg';
 import imgTwo from '../../images/slider_img_two.jpg';
 import imgThree from '../../images/slider_img_three.png';
 
-function SliderHome(){
+function SliderHome({fromHomePage}){
     const slider_settings = {
         autoplay: true,
         autoplaySpeed: 2500,
@@ -30,11 +30,16 @@ function SliderHome(){
                     <img src={imgThree} alt="slider"/>
                 </div>
             </Slider>
-            <div className="home_slider_slogan">
-                <div className="home_slider_slogan_text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, eius accusamus?
+            {
+                fromHomePage ? 
+                <div className="home_slider_slogan">
+                    <div className="home_slider_slogan_text">
+                    Azərbaycanın ən mükəmməl və professional vakansiya saytı
+                    </div>
                 </div>
-            </div>
+                :
+                null
+            }            
         </div>        
     )
 }

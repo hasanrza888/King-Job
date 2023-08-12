@@ -1,0 +1,72 @@
+:root{
+    --primary-color: #fff;
+    --secondary-color: #40cb00;
+    --tertiary-color: #2a8301;
+    --quaternary-color: #45A6FF;
+    --sign-up-btn-hover: #3dbf00;
+}
+.sign_up_page_container{
+    width: 90%;
+    max-width: 790px;
+    margin: 0px auto;
+    padding: 50px 0px 100px;
+}
+.sign_up_page_box_container{
+    width: 80%;
+    margin: 50px auto;
+    border: 1px solid var(--secondary-color);
+    /* border-radius: 10px; */
+    overflow: hidden;
+}
+.sign_up_page_box_header{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid var(--secondary-color);
+}
+.sign_up_page_box_header_link{
+    width: 50%;
+    text-align: center;
+    padding: 10px 30px;
+    font-size: 18px;
+    font-weight: 500;
+    transition: 0.3s all;
+}
+.sign_up_page_box_header_link svg{
+    font-size: 18px;
+    margin-right: 5px;
+}
+.sign_up_page_box_header_link:hover{
+    background-color: var(--sign-up-btn-hover);
+    color: var(--primary-color);
+}
+.sign_up_page_box_header_link:first-child{
+    border-right: 1px solid var(--secondary-color);
+}
+.sign_up_page_box_header_link_active{
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+.sign_up_page_box_body{
+    width: 100%;
+    padding: 40px 20px 20px;    
+}
+.sign_up_page_box_body_frame{
+    width: 80%;
+    margin: 0px auto;
+    /* position: relative; */
+}
+@media (width <= 600px){
+    .sign_up_page_box_container{
+        width: 100%;
+    }
+    .sign_up_page_box_header_link{
+        padding: 10px;
+    }
+    .sign_up_page_box_body{
+        padding: 20px;
+    }
+    .sign_up_page_box_body_frame{
+        width: 100%;
+    }
+}

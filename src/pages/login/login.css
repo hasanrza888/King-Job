@@ -7,12 +7,13 @@
 }
 .login_page_form_container{
     width: 80%;
-    max-width: 320px;
+    max-width: 400px;
     margin: 50px auto 0px;
+    position: relative;
 }
-@media (width <= 500px){
+@media (width <= 450px){
     .login_page_form_container{
-        width: 90%;
+        width: 100%;
         max-width: unset;
     }
 }

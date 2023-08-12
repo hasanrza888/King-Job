@@ -21,20 +21,33 @@
         right: -60%;
     }
 }
+.otp_form_and_checking{
+    width: 100%;
+}
+.error_found_text{
+    width: 100%;
+    height: 50vh;
+    text-align: center;
+    font-size: 20px;
+    padding: 100px 0px;
+}
 /* otp form */
 .send_top_form_container{
     width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: 11;
-    top: 0px;
+    /* height: 100%; */
+    position: relative;
+    /* z-index: 11;
+    top: 0px; */
     background-color: var(--primary-color);
-    /* -webkit-box-shadow: 0px 2px 5px 0px var(--secondary-color);
-    -moz-box-shadow: 0px 2px 5px 0px var(--secondary-color);
-    box-shadow: 0px 2px 5px 0px var(--secondary-color); */
     border: 3px solid var(--secondary-color);
     border-radius: 10px;
-    padding: 20px;    
+    /* box-shadow: 0px 2px 2px 1px rgb(0,0,0, 0.3); */
+    padding: 40px 20px;    
+}
+.send_top_form_container_signup{
+    height: unset;
+    position: relative;
+    /* position: unset; */
 }
 .send_top_form_open_animation{
     animation: 1s from_right_to_left;
@@ -44,16 +57,22 @@
 }
 .send_top_form{
     width: 100%;
-    margin-top: 50px;
+    /* margin-top: 50px; */
 }
 .send_top_form label{
     width: 100%;
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-size: 16px;
     font-weight: 500;
     color: var(--quaternary-color);
+}
+/* error message */
+.send_otp_form_error_message{
+    font-size: 15px;
+    color: red;
+    margin-bottom: 15px;
 }
 /* otp form input */
 .send_top_form_input{
@@ -68,12 +87,32 @@
     font-size: 15px;
     text-align: center;
     color: red;
+    font-weight: 500;
 }
-.send_top_form_submit{
+.send_otp_again_btn{
+    width: 40%;
+    min-width: 160px;
+    display: block;
+    margin: 20px auto 0px;
+    background-color: var(--quaternary-color);
+    color: var(--primary-color);
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    user-select: none;
+}
+.send_otp_form_submit_btn_container{
     width: 50%;
     min-width: 130px;
-    display: block;
-    margin: 40px auto 0px;
+    margin: 20px auto 0px;
+    position: relative;
+}
+.send_otp_form_submit{
+    width: 100%;
+    display: block;    
     font-size: 18px;
     outline: none;
     border: none;
@@ -84,9 +123,35 @@
     text-align: center;
     user-select: none;
     cursor: pointer;
+    opacity: 0.5;
+}
+.send_otp_form_submit_ready{
+    opacity: 1;
+}
+/* loading animation on form submit button */
+.send_otp_form_submit_btn_loader{
+    position: absolute;
+    top: 11px;
+    left: 30px;
+    width: 20px;
+    height: 20px;
+    z-index: 1;
+    border-top: 2px solid var(--primary-color);
+    border-right: 2px solid var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    border-left: 2px solid var(--secondary-color);
+    border-radius: 50%;
+    animation: form_submit_spinner 1s linear infinite;
+}
+@keyframes form_submit_spinner{
+    0%{transform: rotate(0deg);}
+    100%{transform: rotate(360deg);}
 }
 @media (width <= 500px){
-    .send_top_form_submit{
+    .send_top_form_container{
+        padding: 20px;
+    }
+    .send_otp_form_submit{
         width: 100%;
         font-size: 16px;
     }

@@ -1,0 +1,409 @@
+:root{
+    --primary-color: #fff;
+    --secondary-color: #40cb00;
+    --tertiary-color: #2a8301;
+    --quaternary-color: #45A6FF;
+    --posts-container-heading-color: var(--secondary-color);
+    --detail-page-header: #F0FFF6;
+    --post-box-detail-btn-hover: #3dbf00;
+    --submit-btn-color: #7CF281;
+}
+/* detail page */
+.detail_page{
+    width: 100%;
+    /* background-color: #fdfdfd; */
+}
+.detail_page_container{
+    width: 95%;
+    margin: 0px auto;
+    padding: 50px 0px;
+}
+/* vacancy header */
+.detail_page_job_header{
+    width: 90%;
+    margin: 0px auto 50px;
+    background-color: var(--detail-page-header);
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+}
+/* job title and vacancy button */
+.detail_page_job_title_and_btns{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+/* vacancy name */
+.detail_page_vacancy_name{
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-right: 10px;
+}
+/* vacancy view apply and save buttons */
+.detail_page_vacancy_buttons_container{
+    display: flex;
+    flex-direction: row;
+}
+.detail_page_vacancy_button{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 20px;
+    user-select: none;
+    font-weight: 500;
+}
+.detail_page_vacancy_button svg{
+    font-size: 20px;
+    margin-right: 5px;
+}
+.detail_page_vacancy_save_button svg{
+    font-size: 30px;
+}
+.detail_page_job_header_secondline{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+/* company */
+.detail_page_company{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+}
+/* company logo */
+.detail_page_company_logo{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color);
+    border: 1px solid var(--quaternary-color);
+    border-radius: 10px;
+    margin-right: 10px;
+    user-select: none;
+}
+.detail_page_company_logo img{
+    width: 32px;
+}
+/* company name */
+.detail_page_company_name{
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+/* dates, salary and apply button */
+.detail_page_dates_and_salary{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.detail_page_dates_container{
+    display: flex;
+    flex-direction: row;
+}
+/* vacancy dates container */
+.detail_page_mobile_btns_dates{
+    display: flex;
+    flex-direction: row;
+}
+.detail_page_date{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: 500;
+}
+.detail_page_date:first-child{
+    margin-right: 20px;
+}
+.detail_page_date svg{
+    font-size: 16px;
+    margin-right: 5px;
+}
+.detail_page_date:first-child svg{
+    color: var(--secondary-color);
+}
+.detail_page_date:nth-child(2) svg{
+    color: red;
+}
+/* salary and apply button container */
+.detail_page_salary_and_apply_btn{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.detail_page_salary{
+    padding: 5px 15px;
+    border: none;
+    border-radius: 10px;
+    letter-spacing: 3px;
+    font-weight: 600;
+    font-size: 20px;
+    margin-right: 20px;
+}
+.detail_page_apply_btn{
+    padding: 5px 15px;
+    background-color: var(--submit-btn-color);
+    color: var(--primary-color);
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    letter-spacing: 2px;
+    margin-right: 0px;
+    user-select: none;
+    transition: 0.1s all;
+    font-family: inherit;
+}
+.detail_page_apply_btn:hover{
+    background-color: var(--post-box-detail-btn-hover);
+    transform: scale(1.01);
+}
+/* vacancy descriptions container */
+.detail_page_vacancy_description_container{
+    width: 90%;
+    margin: 0px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+/* description box */
+.detail_page_vacancy_description{
+    width: 100%;
+    margin-bottom: 30px;
+    background-color: var(--primary-color);
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+}
+.detail_page_vacancy_description_half{
+    width: 48%;
+}
+.detail_page_vacancy_description_head{
+    background-color: var(--detail-page-header);
+    padding: 10px;
+    font-weight: 500;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+}
+/* description body */
+.detail_page_vacancy_description_body{
+    width: 100%;
+    padding: 20px;
+    letter-spacing: 2px;
+    line-height: 1.6;
+    /* text-align: justify; */
+}
+.vacancy_description_body_list_cont{
+    width: 100%;
+}
+.vacancy_description_body_list_item{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+.vacancy_description_list_par{
+    width: 49%;
+    letter-spacing: 1px;
+}
+.vacancy_description_body_list_item:nth-child(odd) {
+    background-color: #f8f8f8;
+}
+.vacancy_description_list_par:first-child{
+    font-weight: bold;
+}
+.detail_page_vacancy_special_req_list{
+    width: 100%;
+    padding-left: 20px;
+}
+.detail_page_vacancy_special_req_list li{
+    width: 100%;
+    list-style: disc;
+    padding: 10px 0px;
+}
+/* job skills tag links */
+.detail_page_vacancy_description_skills{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.detail_page_vacancy_description_skills li{
+    margin: 0px 20px 10px 0px;
+}
+.detail_page_vacancy_description_skills li:last-child{
+    margin-right: 0px;
+}
+.detail_page_vacancy_description_skills li a{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.detail_page_vacancy_description_skills li a svg{
+    font-size: 18px;
+    margin-right: 5px;
+    color: var(--secondary-color);
+    transition: 0.3s all;
+}
+.detail_page_vacancy_description_skills li a:hover svg{
+    transform: rotate(15deg) scale(1.2);
+}
+/* second apply button */
+.detail_page_vacancy_second_apply_btn{
+    width: 50%;
+    margin: 30px auto 0px;
+    padding: 5px 30px;
+    font-size: 20px;
+    font-weight: 700;
+    font-family: inherit;
+    border: 2px solid var(--secondary-color);
+    border-radius: 10px;
+    background-color: transparent;
+    color: var(--secondary-color);
+    letter-spacing: 5px;
+    cursor: pointer;
+    transition: 0.5s all;
+    text-align: center;
+}
+.detail_page_vacancy_second_apply_btn:hover{
+    background-color: var(--post-box-detail-btn-hover);
+    color: var(--primary-color);
+}
+/* relevant vacancies */
+.detail_page_relevant_vacancies{
+    width: 65%;
+    margin: 80px auto 50px;
+}
+.detail_page_vacancy_buttons_mobile{
+    display: none;
+}
+.detail_page_not_found{
+    width: 95%;
+    height: 50vh;
+    margin: 0px auto 100px;
+    text-align: center;
+    font-size: 30px;
+    padding: 100px 0px;
+    text-transform: uppercase;
+    color: var(--tertiary-color);
+}
+/* responsive */
+@media (width <= 1024px){
+    .detail_page_relevant_vacancies{
+        width: 70%;
+    }
+}
+@media (width <= 850px){
+    .detail_page_relevant_vacancies{
+        width: 90%;
+        margin-top: 50px;
+    }
+    .detail_page_job_header, .detail_page_vacancy_description_container{
+        width: 100%;
+    }
+    .detail_page_vacancy_description_body{
+        line-height: 1.4;
+    }
+    .detail_page_vacancy_description_half{
+        width: 100%;
+    }
+    .detail_page_vacancy_second_apply_btn{
+        width: 80%;
+    }
+}
+@media (width <= 630px){
+    .detail_page_vacancy_button_desktop{
+        display: none;
+    }
+    .detail_page_job_header_secondline{
+        align-items: center;
+    }
+    .detail_page_company_logo{
+        width: 35px;
+        height: 35px;
+    }
+    .detail_page_company_logo img{
+        width: 20px;
+    }
+    .detail_page_vacancy_buttons_container{
+        display: flex;
+    }
+    .detail_page_dates_container{
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+    .detail_page_dates_and_salary{
+        flex-direction: column;
+    }
+    .detail_page_mobile_btns_dates{
+        margin-bottom: 20px;
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+    .detail_page_salary_and_apply_btn{
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    .detail_page_salary{
+        padding: 0px;
+    }
+    .detail_page_not_found{
+        height: 20vh;
+        font-size: 20px;
+        padding: 30px 0px;
+        margin-bottom: 20px;
+    }
+}
+@media (width <= 400px){
+    .detail_page_vacancy_name{
+        font-size: 18px;
+    }
+    .detail_page_vacancy_button{
+        font-size: 13px;
+    }
+    .detail_page_vacancy_button svg{
+        font-size: 13px;
+    }
+    .detail_page_date{
+        font-size: 13px;
+    }
+    .detail_page_salary_and_apply_btn{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .detail_page_salary{
+        margin-bottom: 10px;
+        margin-right: 0px;
+        font-size: 18px;
+    }
+    .detail_page_apply_btn{
+        width: 100%;
+    }
+    .detail_page_vacancy_description_body{
+        font-size: 14px;
+    }
+    .detail_page_vacancy_second_apply_btn{
+        width: 100%;
+        font-size: 16px;
+    }
+    .detail_page_relevant_vacancies{
+        width: 90%;
+        min-width: unset;
+    }
+}

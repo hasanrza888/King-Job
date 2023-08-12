@@ -11,6 +11,7 @@
 /* post box container */
 .post_box_container{
     width: 100%;
+    display: block;
     border: 1px solid var(--post-box-border-color);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
@@ -18,6 +19,14 @@
     padding: 15px;
     transition: 0.5s all;
     user-select: none;
+    position: relative;
+}
+.post_box_link{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
 }
 .post_box_container:hover{
     transform: scale(1.01);
@@ -38,6 +47,8 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    position: relative;
+    z-index: 10;
 }
 /* company logo */
 .post_box_company_logo{
@@ -70,7 +81,7 @@
 }
 /* job title */
 .post_box_job_title{
-    font-size: 25px;
+    font-size: 20px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -84,7 +95,7 @@
 }
 /* job salary */
 .post_box_job_salary{
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 500;
     color: var(--quaternary-color);
 }
@@ -193,6 +204,16 @@
 }
 /* ______________ responsive _______________ */
 @media (width <= 650px){
+    .post_box_job_title, .post_box_job_salary{
+        font-size: 18px;
+    }
+}
+@media (width <= 550px){
+    .post_box_container{
+        width: 100%;
+        margin: 0px auto 15px;
+        padding: 10px
+    }
     .post_box_company_logo{
         width: 35px;
         height: 35px;
@@ -205,10 +226,10 @@
     .post_box_job_title{
         margin-right: unset;
         margin-bottom: 10px;
-        font-size: 20px;
+        font-size: 18px;
     }
     .post_box_job_salary{
-        font-size: 20px;
+        font-size: 18px;
     }
     .job_location_and_time_type{
         justify-content: center;
@@ -228,5 +249,10 @@
     .post_box_details_btn{
         width: 60%;
         text-align: center;
+    }
+}
+@media (width <= 400px){
+    .post_box_details_btn{
+        width: 100%;
     }
 }

@@ -1,0 +1,172 @@
+:root{
+    --primary-color: #fff;
+    --secondary-color: #40cb00;
+    --tertiary-color: #2a8301;
+    --quaternary-color: #45A6FF;
+    --contact-letter-form-btn-hover: #3dbf00;
+}
+.company_signup_container{
+    width: 100%;
+    position: relative;
+}
+.company_signup_form_container{
+    padding: 10px;
+}
+.company_signup_form_container label{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--quaternary-color);
+}
+.company_signup_form_container label input{
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+    margin-top: 3px;
+    font-size: 16px;
+}
+
+/* password */
+.company_signup_form_password_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 3px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+    padding: 9.5px 10px;
+}
+.company_signup_form_password_container .company_signup_form_password_input{
+    width: 90%;
+    font-size: 16px;
+    margin-right: 8px;
+    border: none !important;
+    outline: none;
+    padding: 0px;
+    margin-top: unset;
+}
+.company_signup_form_password_show_btn svg{
+    font-size: 16px;
+    cursor: pointer;
+    color: var(--black-color);
+}
+.company_signup_form_error_message{
+    font-size: 15px;
+    color: red;
+    font-weight: 500;
+    margin-top: 20px;
+}
+/* condition button container */
+.company_signup_form_condition_container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    user-select: none;
+}
+.company_signup_form_condition_button{
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    border: 2px solid red;
+    border-radius: 3px;
+    position: relative;
+    cursor: pointer;
+}
+.company_signup_form_condition_button_accepted{
+    border: 2px solid var(--secondary-color);
+    background-color: var(--secondary-color);
+}
+.company_signup_form_condition_button_checkmark::after{
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 6px;
+    width: 6px;
+    height: 13px;
+    border-bottom: 3px solid var(--primary-color);
+    border-right: 3px solid var(--primary-color);
+    transform: rotate(45deg);
+}
+.company_signup_form_checkbox_text{
+    font-size: 15px;
+    color: #383838;
+}
+/* show condition button */
+.company_signup_form_checkbox_condition{
+    color: var(--quaternary-color);
+    text-decoration: underline;
+    font-weight: 600;
+    cursor: pointer;
+}
+.company_signup_form_btn_info{
+    font-size: 15px;
+    text-align: center;
+    margin-top: 30px;
+    color: var(--tertiary-color);
+}
+.company_signup_form_submit{
+    width: 50%;
+    min-width: 130px;
+    display: block;
+    margin: 20px auto 0px;
+    font-size: 18px;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    padding: 10px 30px;
+    text-align: center;
+    user-select: none;
+    cursor: pointer;
+    opacity: 0.5;
+}
+.company_signup_form_submit_ready{
+    opacity: 1;
+}
+.user_signup_link_to_login_page{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.user_signup_link_to_login_page a{
+    display: block;
+    margin-left: 10px;
+}
+.company_signup_form_condition_content_head{
+    width: 100%;
+    font-size: 30px;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.company_signup_form_condition_content{
+    width: 100%;
+    text-align: justify;
+    font-size: 14px;
+    margin-top: 50px;
+}
+.company_signup_form_condition_close{
+    font-size: 16px;
+    color: var(--quaternary-color);
+    margin-top: 10px;
+    font-weight: 500;
+    cursor: pointer;
+}
+@media (width <= 500px){
+    .company_signup_form_submit{
+        width: 100%;
+        font-size: 16px;
+    }
+}

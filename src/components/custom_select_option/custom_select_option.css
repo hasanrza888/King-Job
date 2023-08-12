@@ -1,0 +1,106 @@
+:root{
+    --primary-color: #fff;
+    --secondary-color: #40cb00;
+    --tertiary-color: #2a8301;
+    --quaternary-color: #45A6FF;
+    --post-box-border-color: var(--quaternary-color);
+    --location-pin-color: #eb0520;
+    --post-end-time-color: #e4273e; 
+    --post-box-detail-btn-hover: #3dbf00;
+    --light-green: #c2f7aa;
+}
+/* select option container */
+.custom_select_option_container{
+    width: 100%;
+    position: relative;
+}
+.custom_select_name_container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    border: 1px solid var(--secondary-color);
+    border-radius: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+    user-select: none;
+}
+.custom_select_name_active{
+    background-color: var(--light-green);
+    border: 1px solid var(--light-green);
+}
+/* select name */
+.custom_select_name{
+    font-size: 18px;
+    font-weight: 500;
+}
+/* select option arrow */
+.custom_select_name_container svg{
+    font-size: 20px;
+    color: var(--secondary-color);
+}
+/* options lists */
+.custom_options_container{
+    width: 100%;
+    max-height: 0px;
+    overflow-y: auto;    
+    transition: max-height 0.5s;
+    margin-top: 5px;
+    box-shadow: 1px 1px 2px var(--secondary-color);
+}
+.custom_options_container::-webkit-scrollbar{
+    width: 5px;
+}
+.custom_options_container::-webkit-scrollbar-track {
+    padding: 5px 0px;
+}
+.custom_options_container::-webkit-scrollbar-thumb{
+    border-radius: 5px;
+    background-color: var(--secondary-color);
+}
+.custom_options_container::-webkit-scrollbar-thumb:hover{
+    background-color: var(--post-box-detail-btn-hover);
+}
+/* showing options of custom select */
+.custom_options_show{
+    max-height: 300px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+}
+/* hiding options of custom select */
+.custom_options_hide{    
+    max-height: 0px;    
+}
+.custom_options_lists{
+    width: 100%;
+    padding: 10px;
+}
+/* list item */
+.custom_options_list_item, .custom_options_sub_list_item{
+    width: 100%;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: 0.5s ease all;
+    border-bottom: 1px solid var(--secondary-color);
+    user-select: none;
+}
+.custom_options_list_item:hover, .custom_options_sub_list_item:hover{
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+/* sub list */
+.custom_options_sub_list_item{
+    padding-left: 30px;
+    position: relative;
+    z-index: 1;
+    background-color: #fff;
+    color: #383838;
+}
+.custom_options_list_selected{
+    background-color: var(--light-green);
+    /* color: var(--primary-color); */
+}
+.custom_options_list:last-child .custom_options_list_item{
+    border-bottom: none;
+}

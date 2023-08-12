@@ -2,17 +2,33 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './forgot_password_form.css';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { email_checker } from '../email_checker/email_checker';
 function ForgotPasswordForm({close, setOpenOtpWindow}) {
-    const [errorMessage, setErrorMessage] = useState(false);  
-    const [reverseAnimation, setReverseAnimation] = useState(false);     
+    const [reverseAnimation, setReverseAnimation] = useState(false);   
+    const [email, setEmail] = useState('');
+    const [errorMessage, setErrorMessage] = useState({
+        errorCheck: false,
+        errorContent : ''
+    });
+    const navigateTo = useNavigate();  
+    const emailChange = (e)=>{
+        setEmail(e.target.value);
+    }
     const forgotPasswordHandle = (e)=>{
         e.preventDefault();
-        setOpenOtpWindow(true);
+        if(email_checker(email)){
+            navigateTo(`/login/otp/${email}`);    
+            setErrorMessage({...errorMessage, errorCheck : false, errorContent: ''});
+        }else{
+            setErrorMessage({...errorMessage, errorCheck : true, errorContent: 'Email sintaksisi doğru deyil!'});
+        }
     }    
     const closeWindowBox = ()=>{  
         setReverseAnimation(true);
         setTimeout(()=>{
-            close(false);  
+            // close(false);  
+            navigateTo('/login');
         },300)                
     }    
     return ( 
@@ -27,14 +43,15 @@ function ForgotPasswordForm({close, setOpenOtpWindow}) {
                 Zəhmət olmasa <strong>e-mailinizi</strong> daxil edin və e-mailinizə gələn kodu daxil edərək yeni Şifrə yaradın !
             </div>
             {/* forgot password form */}
-            <form action="#" className='forgot_password_form' onSubmit={forgotPasswordHandle}>
+            <form action="#" method='post' className='forgot_password_form' onSubmit={forgotPasswordHandle}>
                 {/* forgot email */}
                 <label htmlFor="forgot_email">
                     E-mail
-                    <input type="email" name="forgot_email" required/>
+                    <input type="email" name="forgot_email" onChange={emailChange} required/>
                 </label>    
+                {/* error message */}
                 {
-                    errorMessage ? <div className="forgot_password_form_error_message">E-mail ilə hesab tapılmadı</div> : null
+                    errorMessage.errorCheck ? <div className="forgot_password_form_error_message">{errorMessage.errorContent}</div> : null
                 }            
                 {/* send otp button */}
                 <input type="submit" value="Göndər" className='forgot_password_form_submit' />
