@@ -1,57 +1,54 @@
-:root{
-    --primary-color: #fff;
-    --secondary-color: #40cb00;
-    --tertiary-color: #2a8301;
-    --quaternary-color: #45A6FF;
-    --black-color: #000;
-}
+@import '../../color.css';
 /* login form container */
 .login_Form{
     width: 100%;
-    /* height: auto; */
     position: relative;
-    /* -webkit-box-shadow: 0px 2px 5px 0px var(--secondary-color);
-    -moz-box-shadow: 0px 2px 5px 0px var(--secondary-color);
-    box-shadow: 0px 2px 5px 0px var(--secondary-color); */
     border-radius: 10px;
 }
 .login_page_form{
     width: 100%;
     padding: 20px;
-    /* -webkit-box-shadow: 0px 2px 5px 0px var(--secondary-color);
-    -moz-box-shadow: 0px 2px 5px 0px var(--secondary-color);
-    box-shadow: 0px 2px 5px 0px var(--secondary-color); */
-    border: 3px solid var(--secondary-color);
-    border-radius: 10px;
 }
-.login_page_form label{
+.login_Form_label_input{
     width: 100%;
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
     margin-bottom: 20px;
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--quaternary-color);
 }
-.login_page_form label:nth-child(2){
+.login_Form_label_input label{
+    font-size: 16px;
+    position: relative;
+}
+.login_Form_label_input label::after{
+    position: absolute;
+    content: '*';
+    right: -10px;
+    top: 3px;
+    color: var(--clock-end-color);
+}
+.login_Form_label_input:nth-child(2){
     margin-bottom: 5px;
 }
 .login_email_input{
+    width: 100%;
     padding: 10px;
     outline: none;
-    border: 1px solid var(--secondary-color);
+    border: 1px solid var(--form-inputs-border-color);
     border-radius: 5px;
     margin-top: 3px;
     font-size: 16px;
+    background-color: var(--primary-color);
+    color: var(--secondary-text-color);
 }
 /* password input and show hide button container */
 .login_password_container{
     display: flex;
     flex-direction: row;
     margin-top: 3px;
-    border: 1px solid var(--secondary-color);
+    border: 1px solid var(--form-inputs-border-color);
     border-radius: 5px;
-    padding: 9.5px 10px;
+    padding: 10px;
+    background-color: var(--primary-color);
 }
 .login_password_input{
     width: 90%;
@@ -59,12 +56,13 @@
     margin-right: 8px;
     border: none;
     outline: none;
+    color: var(--secondary-text-color);
 }
 /* passsword show hide button */
 .login_password_show_btn svg{
     font-size: 16px;
     cursor: pointer;
-    color: var(--black-color);
+    color: var(--light-text-color);
 }
 /* form error message */
 .login_form_error_message{
@@ -78,21 +76,20 @@
     margin-top: 10px;
     background: transparent;
     border: none;
-    color: var(--quaternary-color);
+    color: var(--accent-color);
     cursor: pointer;
     user-select: none;
 }
 /* form submit button */
 .login_form_submit_btn{
-    width: 50%;
-    min-width: 130px;
+    width: 100%;
     display: block;
-    margin: 40px auto 0px;
-    font-size: 18px;
+    margin: 40px 0px 0px;
+    font-size: 16px;
     outline: none;
     border: none;
     border-radius: 10px;
-    background-color: var(--secondary-color);
+    background-color: var(--accent-color);
     color: var(--primary-color);
     padding: 10px 30px;
     text-align: center;
@@ -104,18 +101,29 @@
     opacity: 1;
 }
 .login_form_link_to_signUp_container{
-    margin: 50px auto 0px;
+    margin-top: 50px;
     font-size: 15px;
     text-align: center;
     font-weight: 500;
+    display: flex;
+    flex-direction: column;
 }
 .login_form_link_to_signUp{
-    color: var(--quaternary-color);
-    margin-left: 5px;
+    width: 100%;
+    /* display: block; */
+    margin-top: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 10px 30px;
+    text-align: center;
+    user-select: none;
+    cursor: pointer;
+    transition: 0.3s all;
 }
-@media (width <= 500px){
-    .login_form_submit_btn{
-        width: 100%;
-        font-size: 16px;
-    }
+.login_form_link_to_signUp:hover{
+    background-color: var(--accent-color);
+    color: var(--primary-color);
 }

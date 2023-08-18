@@ -1,16 +1,9 @@
-:root{
-    --primary-color: #fff;
-    --secondary-color: #40cb00;
-    --tertiary-color: #2a8301;
-    --quaternary-color: #45A6FF;
-    --posts-container-heading-color: var(--secondary-color);
-}
 .home_page_container{
     width: 100%;
 }
 .latest_jobs_container{
     width: 60%;
-    margin: 100px auto;
+    margin: 100px auto 0px;
 }
 /* responsive */
 @media (width <= 1024px){

@@ -1,9 +1,4 @@
-:root{
-    --primary-color: #fff;
-    --secondary-color: #40cb00;
-    --tertiary-color: #2a8301;
-    --quaternary-color: #45A6FF;
-}
+@import '../../color.css';
 /* post save button */
 .post_box_save_button{
     cursor: pointer;
@@ -11,12 +6,11 @@
     z-index: 10;
 }
 .post_box_save_button svg{
-    /* width: 20px; */
-    font-size: 30px;
-    color: var(--quaternary-color);
+    font-size: 22px;
+    color: var(--secondary-text-color);
 }
 @media (width <= 650px){
     .post_box_save_button svg{
-        font-size: 25px;
+        font-size: 20px;
     } 
 }

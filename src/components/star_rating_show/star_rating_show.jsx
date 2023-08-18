@@ -1,4 +1,3 @@
-import './star_rating_show.css';
 import { Rating } from '@mui/material';
 
 function StarRating({rating_count}) {

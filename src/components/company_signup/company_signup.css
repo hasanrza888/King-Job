@@ -1,10 +1,4 @@
-:root{
-    --primary-color: #fff;
-    --secondary-color: #40cb00;
-    --tertiary-color: #2a8301;
-    --quaternary-color: #45A6FF;
-    --contact-letter-form-btn-hover: #3dbf00;
-}
+@import '../../color.css';
 .company_signup_container{
     width: 100%;
     position: relative;
@@ -12,34 +6,39 @@
 .company_signup_form_container{
     padding: 10px;
 }
-.company_signup_form_container label{
+.company_signup_form_label_input{
     width: 100%;
-    display: flex;
-    flex-direction: column;
     margin-bottom: 20px;
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--quaternary-color);
 }
-.company_signup_form_container label input{
+.company_signup_form_label_input label{
+    position: relative;
+}
+.company_signup_form_label_input label::after{
+    position: absolute;
+    content: '*';
+    right: -10px;
+    top: 3px;
+    color: var(--clock-end-color);
+}
+.company_signup_form_label_input input{
     width: 100%;
     padding: 10px;
     outline: none;
-    border: 1px solid var(--secondary-color);
+    border: 1px solid var(--form-inputs-border-color);
     border-radius: 5px;
     margin-top: 3px;
     font-size: 16px;
 }
-
 /* password */
 .company_signup_form_password_container{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-top: 3px;
-    border: 1px solid var(--secondary-color);
+    border: 1px solid var(--form-inputs-border-color);
     border-radius: 5px;
     padding: 9.5px 10px;
+    background-color: var(--primary-color);
 }
 .company_signup_form_password_container .company_signup_form_password_input{
     width: 90%;
@@ -49,11 +48,12 @@
     outline: none;
     padding: 0px;
     margin-top: unset;
+    background-color: var(--primary-color);
 }
 .company_signup_form_password_show_btn svg{
     font-size: 16px;
     cursor: pointer;
-    color: var(--black-color);
+    color: var(--light-text-color);
 }
 .company_signup_form_error_message{
     font-size: 15px;
@@ -81,8 +81,8 @@
     cursor: pointer;
 }
 .company_signup_form_condition_button_accepted{
-    border: 2px solid var(--secondary-color);
-    background-color: var(--secondary-color);
+    border: 2px solid var(--checkbox-accept-color);
+    background-color: var(--checkbox-accept-color);
 }
 .company_signup_form_condition_button_checkmark::after{
     content: '';
@@ -97,11 +97,11 @@
 }
 .company_signup_form_checkbox_text{
     font-size: 15px;
-    color: #383838;
+    color: var(--secondary-text-color);
 }
 /* show condition button */
 .company_signup_form_checkbox_condition{
-    color: var(--quaternary-color);
+    color: var(--main-text-color);
     text-decoration: underline;
     font-weight: 600;
     cursor: pointer;
@@ -110,18 +110,17 @@
     font-size: 15px;
     text-align: center;
     margin-top: 30px;
-    color: var(--tertiary-color);
+    color: var(--light-text-color);
 }
 .company_signup_form_submit{
-    width: 50%;
-    min-width: 130px;
+    width: 100%;
     display: block;
-    margin: 20px auto 0px;
-    font-size: 18px;
+    margin-top: 20px;
+    font-size: 16px;
     outline: none;
     border: none;
     border-radius: 10px;
-    background-color: var(--secondary-color);
+    background-color: var(--accent-color);
     color: var(--primary-color);
     padding: 10px 30px;
     text-align: center;
@@ -132,23 +131,36 @@
 .company_signup_form_submit_ready{
     opacity: 1;
 }
-.user_signup_link_to_login_page{
+.company_signup_link_to_login_page{
     width: 100%;
+    text-align: center;
+    margin-top: 50px;
+    font-size: 15px;    
+    /* font-weight: 500; */
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
+    flex-direction: column;
 }
-.user_signup_link_to_login_page a{
+.company_signup_link_to_login_page a{
+    width: 100%;
     display: block;
-    margin-left: 10px;
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    text-align: center;
+    font-size: 16px;
+    padding: 10px 30px;
+    border-radius: 10px;
+    margin-top: 10px;
+    transition: 0.3s all;
+}
+.company_signup_link_to_login_page a:hover{
+    background-color: var(--accent-color);
+    color: var(--primary-color);
 }
 .company_signup_form_condition_content_head{
     width: 100%;
-    font-size: 30px;
+    font-size: 18px;
     text-align: center;
-    font-weight: 700;
+    font-weight: 500;
     margin-bottom: 10px;
 }
 .company_signup_form_condition_content{
@@ -156,10 +168,11 @@
     text-align: justify;
     font-size: 14px;
     margin-top: 50px;
+    color: var(--secondary-text-color);
 }
 .company_signup_form_condition_close{
     font-size: 16px;
-    color: var(--quaternary-color);
+    /* color: var(--quaternary-color); */
     margin-top: 10px;
     font-weight: 500;
     cursor: pointer;

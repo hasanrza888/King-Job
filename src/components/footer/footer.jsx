@@ -11,8 +11,6 @@ function Footer() {
         <div className="footer_container">
             {/* desktop footer */}
             <div className="desktop_footer">         
-                {/* footer seperator */}
-                <div className="desktop_footer_seperator"></div>
                 {/* logo and subscribe form */}
                 <div className="footer_logo_and_subscribe">
                     {/* header logo */}

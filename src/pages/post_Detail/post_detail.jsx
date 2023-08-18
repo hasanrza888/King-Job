@@ -152,15 +152,8 @@ function PostDetail() {
                                 </ul>
                             </div>
                         </div>
-                        {/* vacancy details =>>> vakansiya təsviri */}
-                        <div className="detail_page_vacancy_description detail_page_vacancy_description_half">
-                            {/* description heading */}
-                            <div className="detail_page_vacancy_description_head">Vakansiya Təsviri</div>
-                            {/* description body */}
-                            <div className="detail_page_vacancy_description_body">{data['job_description']}</div>
-                        </div>
                         {/* vacancy details =>>> xüsusi tələblər */}
-                        <div className="detail_page_vacancy_description">
+                        <div className="detail_page_vacancy_description detail_page_vacancy_description_half">
                             {/* description heading */}
                             <div className="detail_page_vacancy_description_head">Xüsusi Tələblər</div>
                             {/* description body */}
@@ -173,6 +166,13 @@ function PostDetail() {
                                     }
                                 </ul>
                             </div>
+                        </div>
+                        {/* vacancy details =>>> vakansiya təsviri */}
+                        <div className="detail_page_vacancy_description">
+                            {/* description heading */}
+                            <div className="detail_page_vacancy_description_head">Vakansiya Təsviri</div>
+                            {/* description body */}
+                            <div className="detail_page_vacancy_description_body">{data['job_description']}</div>
                         </div>
                         {/* vacancy details =>>> vakansiya skills tags */}
                         <div className="detail_page_vacancy_description">

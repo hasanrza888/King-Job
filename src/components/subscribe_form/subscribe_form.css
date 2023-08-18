@@ -1,16 +1,10 @@
-:root{
-    --primary-color: #fff;
-    --secondary-color: #40cb00;
-    --tertiary-color: #2a8301;
-    --quaternary-color: #45A6FF;
-    --subscribe-btn-hover: #3dbf00;
-}
+@import '../../color.css';
 .subscribe_form_container{
     width: 100%;
 }
 .subscribe_form{
     width: 100%;
-    border: 1px solid var(--secondary-color);
+    border: 1px solid var(--accent-color);
     border-radius: 5px;
     overflow: hidden;
     display: flex;
@@ -22,6 +16,7 @@
     font-size: 16px;
     border: none;
     outline: none;
+    background-color: var(--primary-color);
 }
 .subscribe_form_submit_btn{
     width: 35%;
@@ -29,14 +24,14 @@
     padding: 10px;
     border: none;
     outline: none;
-    background-color: var(--secondary-color);
+    background-color: var(--accent-color);
     color: var(--primary-color);
     font-weight: 500;
     font-size: 18px;
     cursor: pointer;
 }
 .subscribe_form_submit_btn:hover{
-    background-color: var(--subscribe-btn-hover);
+    background-color: var(--accent-hover);
 }
 @media (width <= 600px){
     .subscribe_form_input{

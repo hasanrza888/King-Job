@@ -84,19 +84,17 @@ function Companies() {
     return ( 
         <div className="companies_page_container">
             <div className="companies_page_slider_and_search">
-                <SliderHome />    
-                {/* ___________ slider core ________________ */}
-                <div className="companies_page_slider_core">
-                    {/* ___________ company search form ________________ */}
-                    <div className="companies_page_job_search_container">
-                        <form className="companies_page_job_search_form">
-                            {/* company search input */}
-                            <input type="text" value={filter.company_name} onChange={companyNameChange} placeholder='İSTƏDİYİNİZ ŞİRKƏTİ AXTARIN !'/>
-                            <button type="submit" className='companies_page_job_search_form_submit'>
-                                <FontAwesomeIcon icon={faMagnifyingGlass} />
-                            </button>
-                        </form>
-                    </div>
+                {/* slogan */}
+                <div className="companies_page_slogan">İstədİyİnİz <span>Şİrkətİ</span> axtarın !</div>
+                {/* ___________ company search form ________________ */}
+                <div className="companies_page_job_search_container">
+                    <form className="companies_page_job_search_form">
+                        {/* company search input */}
+                        <input type="text" value={filter.company_name} onChange={companyNameChange} placeholder='Şirkət'/>
+                        <button type="submit" className='companies_page_job_search_form_submit'>
+                            <FontAwesomeIcon icon={faMagnifyingGlass} />
+                        </button>
+                    </form>
                 </div>
             </div>
             {/* company filters and companies */}

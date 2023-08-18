@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PostBoxSaveBtn from "../post_box_save_btn/post_box_save_btn";
-import { faBriefcase, faHourglassEnd, faHourglassStart, faLocationPin } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRightLong, faBriefcase, faHourglassEnd, faHourglassStart, faLocationPin } from "@fortawesome/free-solid-svg-icons";
 import { faEye, faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import "./post_box.css"
 import { Link } from "react-router-dom";
@@ -28,19 +28,19 @@ function PostBox({setSavedJob, setSuccessMsg, job_id, image_url, salary, job_tit
             <div className="post_box_job_title_and_salary">
                 {/* job title */}
                 <div className="post_box_job_title">
-                    <FontAwesomeIcon icon={faBriefcase} /> 
+                    {/* <FontAwesomeIcon icon={faBriefcase} />  */}
                     {job_title}
                 </div>
                 {/* job salary */}
                 <div className="post_box_job_salary">
-                    Maaş : {salary} AZN
+                    {salary} AZN
                 </div>                
             </div>
             {/* job location and time type */}
             <div className="job_location_and_time_type">
                 {/* job location */}
                 <div className="post_box_job_location">
-                    <FontAwesomeIcon icon={faLocationPin} />
+                    {/* <FontAwesomeIcon icon={faLocationPin} /> */}
                     {location}
                 </div>
                 {/* job time type */}
@@ -78,9 +78,10 @@ function PostBox({setSavedJob, setSuccessMsg, job_id, image_url, salary, job_tit
                     </div>
                 </div>  
                 {/* post box detail button               */}
-                <div className="post_box_details_btn">
+                <Link to={`/vacancies/${job_id}`} className="post_box_details_btn">
                     Ətraflı
-                </div>
+                    <FontAwesomeIcon icon={faArrowRightLong} />
+                </Link>
             </div>
             <Link to={`/vacancies/${job_id}`} className="post_box_link"></Link> 
         </div>

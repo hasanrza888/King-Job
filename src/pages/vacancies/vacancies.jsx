@@ -13,6 +13,7 @@ function Vacancies() {
     const [filter, setFilter] = useState({
         vacancy_name: "",
         categories: "",
+        sub_categories: "",
         jobCity: "",
         min_salary: null,
         max_salary: null,                            
@@ -29,26 +30,23 @@ function Vacancies() {
     const vacancySearchChange = (e)=>{
         setFilter({...filter, vacancy_name: e.target.value});
     }
-       
     return ( 
         <div className="vacancies_page_container">
+            {console.log(filter)}
             {/* image slider and job search container */}
             <div className="vacancies_page_slider_and_search">
-                {/* slider */}
-                <SliderHome />
-                {/* ___________ slider core ________________ */}
-                <div className="vacancies_page_slider_core">
-                    {/* ___________ job search form ________________ */}
-                    <div className="vacancies_page_job_search_container">
-                        <form className="vacancies_page_job_search_form">
-                            {/* vacancy search input */}
-                            <input type="text" value={filter.vacancy_name} onChange={vacancySearchChange} placeholder='ARZULADIĞINIZ İŞİ BİZİMLƏ AXTARIN !'/>
-                            <button type="submit" className='vacancies_page_job_search_form_submit'>
-                                <FontAwesomeIcon icon={faMagnifyingGlass} />
-                            </button>
-                        </form>
-                    </div>
-                </div> 
+                {/* slogan */}
+                <div className="vacancies_page_slogan">ARZULADIĞINIZ <span>İŞİ</span> BİZİMLƏ AXTARIN !</div>
+                {/* ___________ job search form ________________ */}
+                <div className="vacancies_page_job_search_container">
+                    <form className="vacancies_page_job_search_form">
+                        {/* vacancy search input */}
+                        <input type="text" value={filter.vacancy_name} onChange={vacancySearchChange} placeholder='Peşə, Vəzifə'/>
+                        <button type="submit" className='vacancies_page_job_search_form_submit'>
+                            <FontAwesomeIcon icon={faMagnifyingGlass} />
+                        </button>
+                    </form>
+                </div>
             </div>            
             {/* filters and vacancy boxes container */}
             <div className="vacancies_filters_and_boxes_container">

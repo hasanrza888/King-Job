@@ -45,16 +45,18 @@ function ForgotPasswordForm({close, setOpenOtpWindow}) {
             {/* forgot password form */}
             <form action="#" method='post' className='forgot_password_form' onSubmit={forgotPasswordHandle}>
                 {/* forgot email */}
-                <label htmlFor="forgot_email">
-                    E-mail
-                    <input type="email" name="forgot_email" onChange={emailChange} required/>
-                </label>    
+                <div className="forgot_password_form_label_input">
+                    <label htmlFor="forgot_email">
+                        E-mail
+                    </label>   
+                    <input type="email" name="forgot_email" onChange={emailChange} required/>  
+                </div>
                 {/* error message */}
                 {
                     errorMessage.errorCheck ? <div className="forgot_password_form_error_message">{errorMessage.errorContent}</div> : null
                 }            
                 {/* send otp button */}
-                <input type="submit" value="Göndər" className='forgot_password_form_submit' />
+                <input type="submit" value="Göndər" className= {`forgot_password_form_submit ${email_checker(email) ? 'forgot_password_form_submit_ready' : ''}`} />
             </form>                     
         </div>
      );

@@ -1,14 +1,4 @@
-:root{
-    --primary-color: #fff;
-    --secondary-color: #40cb00;
-    --tertiary-color: #2a8301;
-    --quaternary-color: #45A6FF;
-    --post-box-border-color: var(--quaternary-color);
-    --location-pin-color: #eb0520;
-    --post-end-time-color: #e4273e; 
-    --post-box-detail-btn-hover: #3dbf00;
-    --light-green: #c2f7aa;
-}
+@import '../../color.css';
 .vacancies_filters_container{
     width: 100%;
     padding: 0px 10px 10px 10px;
@@ -28,18 +18,18 @@
 }
 .vacancies_page_filters_fix_position::-webkit-scrollbar-thumb{
     border-radius: 5px;
-    background-color: var(--secondary-color);
+    background-color: var(--page-text-slogan-color);
 }
 .vacancies_page_filters_fix_position::-webkit-scrollbar-thumb:hover{
-    background-color: var(--post-box-detail-btn-hover);
+    background-color: var(--light-text-color);
 }
 /* filters heading */
 .vacancies_page_filters_heading{
     width: 100%;
-    font-size: 20px;
+    font-size: 18px;
     letter-spacing: 2px;
-    color: var(--quaternary-color);
-    font-weight: 600;
+    color: var(--main-text-color);
+    font-weight: 500;
     margin-bottom: 10px;
 }
 .vacancies_page_filters_boxes_container{
@@ -53,9 +43,10 @@
 }
 /* filter box name */
 .vacancies_page_filters_box_name{
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 16px;
+    /* font-weight: 500; */
     margin-bottom: 5px;
+    color: var(--secondary-text-color);
 }
 /* salary inputs */
 .vacancies_page_filters_salaries{
@@ -67,35 +58,41 @@
 }
 .vacancies_page_filters_salary_input{
     width: 48%;
-    border: 1px solid var(--secondary-color);
+    border: 1px solid var(--main-border-color);
+    box-shadow: var(--boxes-shadow-light);
     border-radius: 10px;
     padding: 5px 10px;
     outline: none;
-    font-size: 18px;
+    font-size: 16px;
+    color: var(--main-text-color);
 }
 .vacancies_page_filters_salary_input::placeholder{
-    font-weight: 500 !important;
-    color: #383838;
-    font-size: 15px;
+    /* font-weight: 500 !important; */
+    color: var(--light-text-color);
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
 }
 /* text field input */
 .vacancies_page_filters_box_text_input{
     width: 100%;
     padding: 5px 10px;
-    border: 1px solid var(--secondary-color);
+    border: 1px solid var(--main-border-color);
     border-radius: 10px;
     outline: none;
-    font-size: 18px;
+    font-size: 16px;
+    box-shadow: var(--boxes-shadow-light);
+    color: var(--main-text-color);
 }
 .vacancies_page_filters_box_text_input::placeholder{
-    font-size: 18px;
-    font-weight: 500 !important;
-    color: #383838;
+    font-size: 16px;
+    /* font-weight: 500 !important; */
+    color: var(--light-text-color);
     user-select: none;
+    font-family: 'Roboto', sans-serif;
 }
 .vacancies_page_filters_active_input{
-    background-color: var(--light-green);
-    border: 1px solid var(--light-green);
+    background-color: var(--option-active-bg-color);
+    border: 1px solid var(--option-active-bg-color);
 }
 .vacancies_filters_confirm_and_reset_btns{
     width: 100%;
@@ -106,12 +103,12 @@
 }
 .vacancies_filters_reset_btn{
     width: 40%;
-    border: 1px solid var(--secondary-color);
+    border: 1px solid var(--main-text-color);
     border-radius: 10px;
     padding: 5px 10px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
-    color: var(--secondary-color);
+    color: var(--main-text-color);
     cursor: pointer;
     transition: 0.3s ease all;
     text-align: center;
@@ -119,24 +116,26 @@
 }
 .vacancies_filters_confirm_btn{
     width: 55%;
-    background-color: var(--secondary-color);
+    background-color: var(--accent-color);
     outline: none;
     cursor: pointer;
-    border: 1px solid var(--secondary-color);
+    border: 1px solid var(--accent-color);
     border-radius: 10px;
     padding: 5px 10px;
-    font-size: 18px;
+    font-size: 16px;
     color: var(--primary-color);
     font-weight: 500;
     transition: 0.3s ease all;
     user-select: none;
 }
-.vacancies_filters_confirm_btn:hover, .vacancies_filters_reset_btn:hover{
-    background-color: var(--post-box-detail-btn-hover);
-    transform: scale(1.05);
-    color: var(--primary-color);
-    /* border: 1px solid var(--post-box-detail-btn-hover); */
+.vacancies_filters_reset_btn:hover{
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
 }
+.vacancies_filters_confirm_btn:hover{
+    background-color: var(--accent-hover);
+}
+
 @media (width <= 800px){
     .vacancies_page_filters_heading{
         text-align: center;

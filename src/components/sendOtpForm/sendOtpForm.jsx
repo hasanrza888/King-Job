@@ -4,6 +4,7 @@ import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { email_checker } from '../email_checker/email_checker';
 function SendOtpForm({setOpenOtpWindow, setNewPassword, login, userSignUp, company_SignUp}) {
     const [reverseAnimation, setReverseAnimation] = useState(false); 
     const [countDown, setCountDown] = useState(120);
@@ -76,7 +77,7 @@ function SendOtpForm({setOpenOtpWindow, setNewPassword, login, userSignUp, compa
     return ( 
         <div className='otp_form_and_checking'>
             {
-                /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email) || userSignUp || company_SignUp ?
+                email_checker(email) || userSignUp || company_SignUp ?
                 <div className={`send_top_form_container ${(company_SignUp || userSignUp) ? "send_top_form_container_signup" : ""}  ${ reverseAnimation ? "send_top_form_close_animation" : "send_top_form_open_animation"}`}>
                     {/* window close button */}
                     <div className="forgot_password_form_window_close" onClick={closeWindowBox}>
@@ -89,10 +90,12 @@ function SendOtpForm({setOpenOtpWindow, setNewPassword, login, userSignUp, compa
                     </div>
                     <form action="#" method='post' className="send_top_form" onSubmit={sendOtpCodeHandle}>
                         {/* otp code input */}
-                        <label htmlFor="otpcodeinput">
-                            OTP Kod
+                        <div className="send_top_form_label_input">
+                            <label htmlFor="otpcodeinput">
+                                OTP Kod
+                            </label>    
                             <input type="text" name='otpcodeinput' onChange={otpInputHandle} value={otpInputValue} className="send_top_form_input" required/>
-                        </label>
+                        </div>
                         {
                             errorMessage ? <div className="send_otp_form_error_message">{errorMessage.errorContent}</div> : null
                         } 
