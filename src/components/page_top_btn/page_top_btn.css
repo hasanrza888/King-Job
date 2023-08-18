@@ -1,17 +1,11 @@
-:root{
-    --primary-color: #fff;
-    --secondary-color: #40cb00;
-    --top-btn-hover: #3dbf00;
-    --tertiary-color: #2a8301;
-    --quaternary-color: #45A6FF;
-}
+@import "../../color.css";
 .page_top_button{
     transition: 0.5s all;
     position: fixed;
     z-index: 998;
     bottom: 40px;
     right: 30px;
-    background-color: var(--secondary-color);
+    background-color: var(--accent-color);
     width: 40px;
     height: 40px;
     border-radius: 40px;
@@ -26,7 +20,7 @@
 }
 .page_top_button:hover{
     transform: scale(1.15);
-    background-color: var(--top-btn-hover);
+    background-color: var(--accent-hover);
 }
 .page_top_button_none{
     display: none;

@@ -1,23 +1,14 @@
-:root{
-    --primary-color: #fff;
-    --secondary-color: #40cb00;
-    --tertiary-color: #2a8301;
-    --quaternary-color: #45A6FF;
-    --posts-container-heading-color: var(--secondary-color);
-    --detail-page-header: #F0FFF6;
-    --post-box-detail-btn-hover: #3dbf00;
-}
+@import "../../color.css";
 /* company postbox container */
 .company_post_box_container{
     width: 100%;
     display: flex;
     flex-direction: row;
-    /* justify-content: space-between; */
     align-items: center;
-    background-color: var(--detail-page-header);
+    background-color: var(--primary-color);
     padding: 20px;
     margin-bottom: 30px;
-    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: var(--boxes-shadow-dark);
     position: relative;
 }
 /* logo and name */
@@ -34,9 +25,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--primary-color);
     margin-right: 10px;
-    border: 1px solid var(--quaternary-color);
     border-radius: 10px;
 }
 .company_post_logo img{
@@ -49,9 +38,10 @@
 }
 /* company name */
 .company_post_name{
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 17px;
     margin-bottom: 10px;
+    font-family: 'Roboto Slab', serif;
+    color: var(--secondary-text-color);
 }
 /* company rating */
 .company_post_rating{
@@ -61,9 +51,9 @@
 }
 /* rating value */
 .company_post_rating_value{
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 500;
-    color: #979797;
+    color: var(--rating-color);
     margin-right: 5px;
 }
 /* company counts */
@@ -72,26 +62,24 @@
     min-width: 300px;
     display: flex;
     flex-direction: row;
-    /* justify-content: space-between; */
     align-items: center;
 }
 .company_counts{
-    /* width: 50%; */
     display: flex;
     flex-direction: row;
     align-items: center;
-    /* color: var(--quaternary-color); */
-    
 }
 .company_counts:first-child{
     margin-right: 20px;
 }
 .company_counts svg{
-    font-size: 18px;
+    font-size: 15px;
     margin-right: 10px;
+    color: var(--light-text-color);
 }
 .company_counts_value{
-    color: var(--quaternary-color);
+    font-size: 13px;
+    color: var(--light-text-color);
 }
 .company_post_box_link{
     position: absolute;

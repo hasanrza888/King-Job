@@ -48,13 +48,17 @@ function LoginForm() {
             <div className="login_Form">
                 <form action="#" method='post' onSubmit={login_form_handle} className="login_page_form">
                     {/* login email */}
-                    <label htmlFor="login_email">
-                        E-mail
+                    <div className="login_Form_label_input">
+                        <label htmlFor="login_email">
+                            E-mail
+                        </label>
                         <input type="email" name="login_email" className="login_email_input" onChange={email_change_Func} required />
-                    </label>
+                    </div>
                     {/* login password */}
-                    <label htmlFor="login_password">
-                        Şifrə
+                    <div className="login_Form_label_input">
+                        <label htmlFor="login_password">
+                            Şifrə                       
+                        </label>  
                         <div className="login_password_container">
                             {/* password login */}
                             <input type={showPassword ? 'text' : 'password'} onChange={form_password_handle} className="login_password_input" name="login_password" required />
@@ -66,8 +70,8 @@ function LoginForm() {
                                 <FontAwesomeIcon icon={faEye} />
                                 } 
                             </div>                                                                               
-                        </div>                        
-                    </label>
+                        </div>  
+                    </div>
                     {/* error message */}
                     {
                         errorMessage.errorCheck ? <div className="login_form_error_message">{errorMessage.errorContent}</div> : null

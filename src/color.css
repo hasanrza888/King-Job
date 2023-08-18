@@ -1,0 +1,29 @@
+:root{
+    /* 60 30 10 % colors ______________________ */
+    --primary-color: #FFF;
+    --secondary-color: #CCFFD1;
+    --accent-color: #4356FF;
+    --body-bg-color: #FDFDFD;
+    --accent-hover: #001AFF;
+    /* text colors ____________________________ */
+    --main-text-color: #2C2C2C;
+    --secondary-text-color: #383838;
+    --light-text-color: #797979;
+    --rating-color: #979797;
+    --page-text-slogan-color: #888888;
+    --page-text-act-slogan: #40B24B;
+    /* boxes elements colors __________________ */
+    --main-border-color: #f1f1f1;
+    --boxes-shadow-light: 0px 4px 4px 0px rgba(0, 0, 0, 0.12);
+    --boxes-shadow-dark: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    --clock-start-color: #7CFF89;
+    --clock-end-color: #FF8997;
+    --bg-shadow-color: linear-gradient(180deg, #F3F3F3 0%, rgba(253, 253, 253, 0.00) 100%);
+    --form-inputs-border-color: #B2B2B2;
+    --form-psw-ch-color: #40CB00;
+    --checkbox-accept-color: #40CB00;
+    --light-green-bg-color: #F0FFF6;
+    --list-active-bg-color: #F8F8F8;
+    --copyright-box-bg-color: #E7FFE9;
+    --option-active-bg-color: #F2F4FF;
+}

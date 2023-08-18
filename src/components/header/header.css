@@ -1,17 +1,4 @@
-:root{
-    --primary-color: #fff;
-    --secondary-color: #40cb00;
-    --tertiary-color: #2a8301;
-    --quaternary-color: #45A6FF;
-    --header-active-link: var(--quaternary-color);
-    --header-link-color: var(--secondary-color);
-    --white-text-color: #fff;
-    --login-btn-bg-color: var(--quaternary-color);
-    --login-btn-hover-color: #2193ff;
-    --header-bg-color: var(--primary-color);
-    --mobile-menu-scrollbar-bg-color: #d2d2d2;
-    --menu-bar-icon-color: var(--secondary-color);
-}
+@import "../../color.css";
 /* header container */
 .header_container{
     width: 100%;
@@ -25,7 +12,6 @@
     user-select: none;
 }
 .header_scroll_border{
-    border-bottom: 2px solid var(--quaternary-color);
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
     transition: 0.5s all;
 }
@@ -37,7 +23,7 @@
     align-items: center;
     padding: 10px 20px;
     justify-content: space-between;
-    background-color: var(--header-bg-color);
+    background-color: var(--primary-color);
 }
 /* logo */
 .header_logo{
@@ -63,39 +49,31 @@
     position: relative;
 }
 .header_link_underline{
-    width: 100%;
+    width: 0%;
     height: 2px;
     position: absolute;
     left: 0px;
     bottom: -2px;
-    background-color: var(--header-active-link);
-    display: none;
+    background-color: var(--accent-color);
+    /* display: none; */
+    transition: 0.5s ease all;
 }
 .header_links li a{
     text-transform: uppercase;
     transition: 0.2s ease all;
     font-weight: 500;
     font-size: 14px;
-    color: var(--header-link-color);
+    color: var(--main-text-color);
 }
 .header_links li:hover a{
-    color: var(--header-active-link);
-}
-@keyframes progress{
-    0%{
-        width: 0%;
-    }
-    100%{
-        width: 100%;
-    }
+    color: var(--accent-color);
 }
 .header_links li:hover .header_link_underline{
-    display: block;
-    animation: 0.5s progress;
+    width: 100%;
 }
 /* pages active link */
 .header_active_link{
-    color: var(--header-active-link) !important;
+    color: var(--accent-color) !important;
 }
 /* account links such as signup login profile buttons */
 .account_links_container{
@@ -108,9 +86,8 @@
     margin-left: 30px;
 }
 .account_link_btn{
-    color: var(--white-text-color);
-    background-color: var(--login-btn-bg-color);
-    border: 1px solid var(--login-btn-bg-color);
+    color: var(--primary-color);
+    background-color: var(--accent-color);
     padding: 10px 20px;
     border-radius: 5px;
     transition: 0.3s ease all;
@@ -121,12 +98,29 @@
     align-items: center;
     font-size: 14px;
 }
+.account_link_btn:hover{
+    background-color: var(--accent-hover);
+}
+.header_login_btn{
+    color: var(--accent-color);
+    background-color: var(--primary-color);
+    border: 1px solid var(--accent-color);
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: 0.3s ease all;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 14px;
+}
+.header_login_btn:hover{
+    color: var(--primary-color);
+    background-color: var(--accent-hover);
+}
 .header_profile_btn{
     padding: 5px 20px;
-}
-.account_link_btn:hover{
-    background-color: var(--login-btn-hover-color);
-    border: 1px solid var(--login-btn-hover-color);
 }
 .link_none{
     display: none;
@@ -136,7 +130,7 @@
     width: 32px;
     height: 32px;
     margin-right: 10px;
-    border: 2px solid var(--white-text-color);
+    border: 2px solid var(--primary-color);
     border-radius: 32px;
     overflow: hidden;
 }
@@ -160,7 +154,7 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        background-color: var(--header-bg-color);
+        background-color: var(--primary-color);
         padding: 10px;
     }
     .mobile_header_none{
@@ -168,7 +162,7 @@
     }
     /* mobile menu bar */
     .mobile_menu_bar{
-        color: var(--menu-bar-icon-color);
+        color: var(--main-text-color);
         font-size: 25px;
         cursor: pointer;
         transition: 0.15s all;
@@ -179,7 +173,7 @@
     /* mobile header logo */
     .mobile_header_logo{
         width: 10%;
-        min-width: 60px;
+        min-width: 70px;
         margin: 0px auto;
         user-select: none;
     }
@@ -191,12 +185,12 @@
         width: 27px;
         height: 27px;
     }
-    .account_link_btn{
+    .account_link_btn, .header_login_btn{
         padding: 5px 10px;
     }
     .mobile_menu_close{
         font-size: 30px;
-        color: var(--menu-bar-icon-color);
+        color: var(--main-text-color);
         cursor: pointer;
         transition: 0.2s all;
     }
@@ -210,12 +204,12 @@
     /* mobile header drop menu */
     .header_mobile_drop_menu{
         width: 100%;
-        background-color: var(--header-bg-color);
+        background-color: var(--primary-color);
         animation: 0.2s left_to_right;
         position: relative;
     }
     .header_mobile_drop_menu .header_mobile{
-        border-bottom: 1px solid var(--login-btn-bg-color);
+        border-bottom: 1px solid var(--main-border-color);
     }
     /* mobile header drop menu links */
     .mobile_header_links{
@@ -239,19 +233,25 @@
     }
     .mobile_header_links li a{
         width: 100%;
-        color: var(--header-link-color);
+        color: var(--main-text-color);
         transition: 0.2s all;
         display: flex;
         flex-direction: row;
         align-items: center;
     }
-    .mobile_header_links li a:hover{
-        color: var(--login-btn-bg-color);
+    .mobile_header_links li a:hover, .mobile_header_links li a:hover svg{
+        color: var(--accent-color);
+    }
+    .mobile_header_links li a svg{
+        color: var(--light-text-color);
+    }
+    .header_active_link svg{
+        color: var(--accent-color) !important;
     }
     /* __________ scroll of mobile header drop menu links ________________ */
     .mobile_header_links::-webkit-scrollbar{
         width: 4px;
-        background-color: var(--mobile-menu-scrollbar-bg-color);
+        background-color: var(--primary-color);
         border-radius: 5px;
     }
     .mobile_header_links::-webkit-scrollbar-track{
@@ -259,10 +259,10 @@
     }
     .mobile_header_links::-webkit-scrollbar-thumb{
         border-radius: 5px;
-        background-color: var(--login-btn-bg-color);
+        background-color: var(--page-text-slogan-color);
     }
     .mobile_header_links::-webkit-scrollbar-thumb:hover {
-        background: var(--header-active-link); 
+        background: var(--light-text-color); 
     }
     /* menu icon */
     .mobile_menu_link_icon{

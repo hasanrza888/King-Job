@@ -1,10 +1,4 @@
-:root{
-    --primary-color: #fff;
-    --secondary-color: #40cb00;
-    --tertiary-color: #2a8301;
-    --quaternary-color: #45A6FF;
-    --sign-up-btn-hover: #3dbf00;
-}
+@import '../../color.css';
 .sign_up_page_container{
     width: 90%;
     max-width: 790px;
@@ -14,7 +8,7 @@
 .sign_up_page_box_container{
     width: 80%;
     margin: 50px auto;
-    border: 1px solid var(--secondary-color);
+    /* border: 1px solid var(--main-border-color); */
     /* border-radius: 10px; */
     overflow: hidden;
 }
@@ -22,7 +16,7 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    border-bottom: 1px solid var(--secondary-color);
+    /* border-bottom: 1px solid var(--accent-color); */
 }
 .sign_up_page_box_header_link{
     width: 50%;
@@ -31,20 +25,27 @@
     font-size: 18px;
     font-weight: 500;
     transition: 0.3s all;
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
 }
 .sign_up_page_box_header_link svg{
     font-size: 18px;
     margin-right: 5px;
+    color: var(--accent-color);
+    transition: 0.3s all;
 }
 .sign_up_page_box_header_link:hover{
-    background-color: var(--sign-up-btn-hover);
+    background-color: var(--accent-hover);
     color: var(--primary-color);
 }
-.sign_up_page_box_header_link:first-child{
-    border-right: 1px solid var(--secondary-color);
+.sign_up_page_box_header_link:hover svg{
+    color: var(--primary-color);
 }
 .sign_up_page_box_header_link_active{
-    background-color: var(--secondary-color);
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+}
+.sign_up_page_box_header_link_active svg{
     color: var(--primary-color);
 }
 .sign_up_page_box_body{
@@ -54,7 +55,6 @@
 .sign_up_page_box_body_frame{
     width: 80%;
     margin: 0px auto;
-    /* position: relative; */
 }
 @media (width <= 600px){
     .sign_up_page_box_container{

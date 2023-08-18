@@ -76,7 +76,7 @@ function CompanySignup() {
     const company_signup_form_handle = (e)=>{
         e.preventDefault();
         if((e.target.company_signup_form_password.value === e.target.company_signup_form_repeat_password.value) && (pasLength && upperCase && lowerCase) && acceptCondition && email_checker(formInfo.email)){            
-            setErrorMessage(false);                        
+            setErrorMessage({...errorMessage, errorCheck: false, errorContent : ''});                       
             setOpenOtpWindow(true);
         }else{
             if(!email_checker(formInfo.email)){
@@ -105,18 +105,24 @@ function CompanySignup() {
             <form action="#" className="company_signup_form_container" onSubmit={company_signup_form_handle}>               
                 {/* ________________ company signup form ________________  */}
                 {/* company name */}
-                <label htmlFor="company_signup_form_name">
-                    Şirkət adı
+                <div className="company_signup_form_label_input">
+                    <label htmlFor="company_signup_form_name">
+                        Şirkət adı
+                    </label>    
                     <input type="text" name='company_signup_form_name' onChange={(e)=> {importantFieldFunc(e); setFormInfo({...formInfo, company_name: e.target.value})}} required/>
-                </label>
+                </div>
                 {/* company email */}
-                <label htmlFor="company_signup_form_company_email">
-                    E-mail
-                    <input type="email" name="company_signup_form_company_email" onChange={(e)=> {importantFieldFunc(e); setFormInfo({...formInfo, email: e.target.value})}} required/>
-                </label>
+                <div className="company_signup_form_label_input">
+                    <label htmlFor="company_signup_form_company_email">
+                        E-mail
+                    </label>   
+                    <input type="email" name="company_signup_form_company_email" onChange={(e)=> {importantFieldFunc(e); setFormInfo({...formInfo, email: e.target.value})}} required/> 
+                </div>
                 {/* password input */}
-                <label htmlFor="company_signup_form_password">
-                    Şifrə
+                <div className="company_signup_form_label_input">
+                    <label htmlFor="company_signup_form_password">
+                        Şifrə                      
+                    </label>
                     <div className="company_signup_form_password_container">
                         {/* password login */}
                         <input type={showPassword ? 'text' : 'password'} onChange={(e)=>{checkPasswordHandle(e); importantFieldFunc(e); setFormInfo({...formInfo, password: e.target.value})}} className="company_signup_form_password_input" name="company_signup_form_password" required />
@@ -128,11 +134,13 @@ function CompanySignup() {
                             <FontAwesomeIcon icon={faEye} />
                             } 
                         </div>                                                                               
-                    </div>                        
-                </label>
+                    </div>  
+                </div>
                 {/* repeat password input */}
-                <label htmlFor="company_signup_form_repeat_password">
-                    Təkrar Şifrə
+                <div className="company_signup_form_label_input">
+                    <label htmlFor="company_signup_form_repeat_password">
+                        Təkrar Şifrə                      
+                    </label>
                     <div className="company_signup_form_password_container">
                         {/* repeat password login */}
                         <input type={showPassword ? 'text' : 'password'} onChange={(e)=> importantFieldFunc(e)} className="company_signup_form_password_input" name="company_signup_form_repeat_password" required />
@@ -144,8 +152,8 @@ function CompanySignup() {
                             <FontAwesomeIcon icon={faEye} />
                             } 
                         </div>                                                                               
-                    </div>                        
-                </label>                                
+                    </div>  
+                </div>                            
                 <PasswordChecker pasLength={pasLength} upperCase={upperCase} lowerCase={lowerCase}/>
                 {/* error message for password generation */}
                 {
@@ -167,7 +175,7 @@ function CompanySignup() {
                 {/* company form submit button */}                
                 <input type="submit" value="Qeydiyyat" className= {`company_signup_form_submit ${acceptCondition && importantInputField.company_signup_form_company_email && importantInputField.company_signup_form_name && importantInputField.company_signup_form_password && importantInputField.company_signup_form_repeat_password ? 'company_signup_form_submit_ready' : null}`} />
                 {/* link to login page */}
-                <div className="user_signup_link_to_login_page">Hesabınız varsa <Link to='/login'>Daxil olun !</Link> </div>
+                <div className="company_signup_link_to_login_page">Hesabınız varsa <Link to='/login'>Daxil olun !</Link> </div>
                 {
                     showCondition ?
                     <div className="company_signup_form_condition_content">

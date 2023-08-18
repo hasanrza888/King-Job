@@ -94,18 +94,24 @@ function UserSignup() {
             <form action="#" className='user_signup_form_container' onSubmit={user_signup_Handle}>
                 {/* ______________ user sign up form ________________________________ */} 
                 {/* form name and surname */}
-                <label htmlFor="user_signup_name_surname">
-                    Ad və Soyad
+                <div className="user_signup_form_label_input">
+                    <label htmlFor="user_signup_name_surname">
+                        Ad və Soyad
+                    </label>   
                     <input type="text" name="user_signup_name_surname" className='user_signup_email_input' onChange={(e)=> {importantFieldFunc(e); setFormInfo({...formInfo, user_name: e.target.value})}} required/>
-                </label>
+                </div>
                 {/* form email */}
-                <label htmlFor="user_signup_email">
-                    E-mail
+                <div className="user_signup_form_label_input">
+                    <label htmlFor="user_signup_email">
+                        E-mail
+                    </label>    
                     <input type="email" name="user_signup_email" className='user_signup_email_input' onChange={(e)=> {importantFieldFunc(e); setFormInfo({...formInfo, email: e.target.value})}} required/>
-                </label>
+                </div>
                 {/* password input */}
-                <label htmlFor="user_signup_password">
-                    Şifrə
+                <div className="user_signup_form_label_input">
+                    <label htmlFor="user_signup_password">
+                        Şifrə                
+                    </label> 
                     <div className="user_signup_password_container">
                         {/* password login */}
                         <input type={showPassword ? 'text' : 'password'} className="user_signup_password_input" name="user_signup_password" onChange={(e)=> {importantFieldFunc(e); checkPasswordHandle(e); setFormInfo({...formInfo, password: e.target.value})}} required />
@@ -117,11 +123,13 @@ function UserSignup() {
                             <FontAwesomeIcon icon={faEye} />
                             } 
                         </div>                                                                               
-                    </div>                        
-                </label>
+                    </div>     
+                </div>
                 {/* repeat password input */}
-                <label htmlFor="user_signup_repeat_password">
-                    Təkrar Şifrə
+                <div className="user_signup_form_label_input">
+                    <label htmlFor="user_signup_repeat_password">
+                        Təkrar Şifrə                        
+                    </label>  
                     <div className="user_signup_password_container">
                         {/* repeat password login */}
                         <input type={showPassword ? 'text' : 'password'} className="user_signup_password_input" name="user_signup_repeat_password" onChange={(e)=> importantFieldFunc(e)} required />
@@ -133,8 +141,8 @@ function UserSignup() {
                             <FontAwesomeIcon icon={faEye} />
                             } 
                         </div>                                                                               
-                    </div>                        
-                </label>
+                    </div>  
+                </div>
                 {/* error message for password generation */}
                 {
                     errorMessage ? <div className="user_signup_form_error_message">{errorMessage.errorContent}</div> : null
@@ -147,7 +155,6 @@ function UserSignup() {
                 <div className="user_signup_link_to_login_page">Hesabınız varsa <Link to='/login'>Daxil olun !</Link> </div>
             </form>
             }
-            
         </div>
     );
 }

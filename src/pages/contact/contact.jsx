@@ -13,30 +13,33 @@ function Contact() {
             <div className="contact_page_slogan">Bizimlə Əlaqə Saxlayın !</div>
             {/* contact means boxes */}
             <div className="contact_page_boxes_container">
-                <div className="contact_page_box">
+                <Link to="mailto:info@island.az" className="contact_page_box">
                     <div className="contact_page_box_icon">
                         <FontAwesomeIcon icon={faEnvelope} />
                     </div>                    
                     <div className="contact_page_box_text">
-                        <Link to="mailto:info@island.az">info@island.az</Link>
+                        info@island.az
                     </div>
-                </div>
-                <div className="contact_page_box">
+                </Link>
+                <Link to="tel:+9940775773133" className="contact_page_box">
                     <div className="contact_page_box_icon">
                         <FontAwesomeIcon icon={faPhone} />
                     </div>                    
                     <div className="contact_page_box_text">
-                        <Link to="tel:+9940775773133">+994-77-577-31-33</Link>
+                        +994-77-577-31-33
                     </div>
-                </div>
-                <div className="contact_page_box">
+                </Link>
+                <Link to={'https://goo.gl/maps/pmDx6AS7wzTgqhA48'} className="contact_page_box">
                     <div className="contact_page_box_icon">
                         <FontAwesomeIcon icon={faLocationDot} />
                     </div>                    
                     <div className="contact_page_box_text">
                         Suraxanı rayonu, Bağça küçəsi, ev 10.
                     </div>
-                </div>
+                </Link>
+            </div>
+            <div className="contact_page_map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d512.6125278886502!2d50.08737083718522!3d40.38494957811747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x403066630c235b35%3A0xb86f0de275ed2af!2sSurakhani%2C%20Hovsan!5e1!3m2!1sen!2saz!4v1692276461516!5m2!1sen!2saz" width="600" height="450" style={{border:0}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             {/* social networks */}
             <div className="contact_page_slogan">Bizi Sosial Şəbəkələrdə İzləyin !</div>
@@ -64,30 +67,40 @@ function Contact() {
                 {/* form */}
                 <form action="#" className='contact_page_form'>
                     {/* name and surname */}
-                    <label htmlFor="nameSurname">
-                        Ad və Soyad
+                    <div className="contact_page_form_label_input">
+                        <label htmlFor="nameSurname">
+                            Ad və Soyad
+                        </label>
                         <input type="text" name='nameSurname'  required/>
-                    </label>
+                    </div>
                     {/* email */}
-                    <label htmlFor="email">
-                        E-mail
+                    <div className="contact_page_form_label_input">
+                        <label htmlFor="email">
+                            E-mail
+                        </label>
                         <input type="email" name='email'  required/>
-                    </label>
+                    </div>
                     {/* phone number */}
-                    <label htmlFor="phone">
-                        Telefon
+                    <div className="contact_page_form_label_input">
+                        <label htmlFor="phone">
+                            Telefon
+                        </label>    
                         <input type="number" name='phone'  required/>
-                    </label>
+                    </div>
                     {/* letter subject */}
-                    <label htmlFor="subject">
-                        Mövzu
+                    <div className="contact_page_form_label_input">
+                        <label htmlFor="subject">
+                            Mövzu
+                        </label>
                         <input type="text" name='subject'  required/>
-                    </label>
+                    </div>
                     {/* letter description */}
-                    <label htmlFor="description">
-                        Məzmun
+                    <div className="contact_page_form_label_input">
+                        <label htmlFor="description">
+                            Məzmun
+                        </label>
                         <textarea name="description" cols="30" rows="5" required></textarea>
-                    </label>
+                    </div>
                     {/* submit button */}
                     <input type="submit" value="Göndər" className='contact_page_form_submit' />
                 </form>

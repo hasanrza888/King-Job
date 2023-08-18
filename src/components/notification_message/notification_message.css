@@ -1,9 +1,3 @@
-:root{
-    --primary-color: #fff;
-    --secondary-color: #40cb00;
-    --tertiary-color: #2a8301;
-    --quaternary-color: #45A6FF;
-}
 @keyframes message_to_right{
     from{right: 20%;}
     to{right: 5%;}

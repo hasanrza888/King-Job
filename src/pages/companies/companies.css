@@ -1,44 +1,37 @@
-:root{
-    --primary-color: #fff;
-    --secondary-color: #40cb00;
-    --tertiary-color: #2a8301;
-    --quaternary-color: #45A6FF;
-    --post-box-border-color: var(--quaternary-color);
-    --location-pin-color: #eb0520;
-    --post-end-time-color: #e4273e; 
-    --post-box-detail-btn-hover: #3dbf00;
-}
+@import '../../color.css';
 .companies_page_slider_and_search{
     width: 100%;
     position: relative;
 }
-/* slider core */
-.companies_page_slider_core{
-    position: absolute;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    top: 0px;
-    left: 0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.companies_page_slogan{
+    width: 95%;
+    margin: 0px auto 50px;
+    padding-top: 20px;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    color: var(--page-text-slogan-color);
+    text-transform: uppercase;
+    user-select: none;
+}
+.companies_page_slogan span{
+    font-size: 25px;
+    color: var(--page-text-act-slogan);
 }
 .companies_page_job_search_container{
-    width: 100%;
-    height: 50%;
-    background-color: var(--secondary-color);
-    opacity: 0.9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 90%;
+    max-width: 450px;
+    margin: 0px auto;
 }
 /* job search form  */
 .companies_page_job_search_form{
-    width: 80%;
-    max-width: 600px;
-    /* margin: 0px auto; */
+    width: 100%;
     position: relative;
+    border: 1px solid var(--accent-color);
+    border-radius: 10px;
+    box-shadow: var(--boxes-shadow-dark);
+    overflow: hidden;
 }
 /* job search form input */
 .companies_page_job_search_form input{
@@ -48,20 +41,24 @@
     border: none;
     border-radius: 10px;
     font-size: 18px;
+    background-color: var(--primary-color);
 }
 .companies_page_job_search_form_submit{
+    width: 37px;
+    height: 30px;
+    background-color: var(--accent-color);
     position: absolute;
     z-index: 1;
     right: 10px;
-    top: 12px;
-    background: transparent;
+    top: 13%;
     border: none;
+    border-radius: 10px;
     outline: none;
     cursor: pointer;
 }
 .companies_page_job_search_form_submit svg{
     font-size: 18px;
-    color: var(--tertiary-color);
+    color: var(--primary-color);
 }
 /* company filters and companies */
 .companies_page_filter_and_companies{
@@ -95,22 +92,21 @@
 }
 .companies_page_filters_fix_position::-webkit-scrollbar-thumb{
     border-radius: 5px;
-    background-color: var(--secondary-color);
+    background-color: var(--page-text-slogan-color);
 }
 .companies_page_filters_fix_position::-webkit-scrollbar-thumb:hover{
-    background-color: var(--post-box-detail-btn-hover);
+    background-color: var(--light-text-color);
 }
 .companies_page_filter_name{
     width: 100%;
-    font-size: 20px;
+    font-size: 18px;
     letter-spacing: 2px;
-    color: var(--quaternary-color);
-    font-weight: 600;
+    color: var(--main-text-color);
+    font-weight: 500;
     margin-bottom: 10px;
 }
 .companies_page_filters_container{
     width: 100%;
-    /* padding-right: 10px; */
     margin-bottom: 20px;
 }
 .companies_filters_confirm_and_reset_btns{
@@ -122,12 +118,12 @@
 }
 .companies_filters_reset_btn{
     width: 40%;
-    border: 1px solid var(--secondary-color);
+    border: 1px solid var(--main-text-color);
     border-radius: 10px;
     padding: 5px 10px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
-    color: var(--secondary-color);
+    color: var(--main-text-color);
     cursor: pointer;
     transition: 0.3s ease all;
     text-align: center;
@@ -135,23 +131,24 @@
 }
 .companies_filters_confirm_btn{
     width: 55%;
-    background-color: var(--secondary-color);
+    background-color: var(--accent-color);
     outline: none;
     cursor: pointer;
-    border: 1px solid var(--secondary-color);
+    border: 1px solid var(--accent-color);
     border-radius: 10px;
     padding: 5px 10px;
-    font-size: 18px;
+    font-size: 16px;
     color: var(--primary-color);
     font-weight: 500;
     transition: 0.3s ease all;
     user-select: none;
 }
-.companies_filters_confirm_btn:hover, .companies_filters_reset_btn:hover{
-    background-color: var(--post-box-detail-btn-hover);
-    transform: scale(1.05);
-    color: var(--primary-color);
-    /* border: 1px solid var(--post-box-detail-btn-hover); */
+.companies_filters_reset_btn:hover{
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+}
+.companies_filters_confirm_btn:hover{
+    background-color: var(--accent-hover);
 }
 /* company page post boxes */
 .companies_page_commpany_boxes{
@@ -186,11 +183,11 @@
         display: flex;
         width: 110px;
         padding: 10px;
-        border: 1px solid var(--secondary-color);
+        border: 1px solid var(--accent-color);
+        background-color: var(--primary-color);
         border-radius: 10px;
         flex-direction: row;
         align-items: center;
-        font-weight: 500;
         cursor: pointer;
         user-select: none;
         margin: 0px 0px 50px 10px;
@@ -198,21 +195,21 @@
     .companies_page_filters_button svg{
         margin-right: 10px;
         font-size: 20px;
-        color: var(--secondary-color);
+        color: var(--accent-color);
     }
     .companies_page_filters_mobile_close{
         width: 80px;
         display: flex;
         flex-direction: row;
         align-items: center;
-        font-size: 22px;
+        font-size: 18px;
         cursor: pointer;
         transition: 0.1s all;
         margin-bottom: 10px;
     }
     .companies_page_filters_mobile_close svg{
         margin-right: 5px;
-        font-size: 22px;
+        font-size: 20px;
     }
     .companies_page_filters_mobile_close:hover{
         transform: scale(1.05);
@@ -258,13 +255,22 @@
         font-size: 12px;
     }
     .companies_page_job_search_form_submit{
-        top: 9px;
+        width: 28px;
+        height: 22px;
+        /* top:5%; */
     }
     .companies_page_job_search_form_submit svg{
-        font-size: 16px;
+        font-size: 13px;
     }    
 }
 @media (width <= 400px){
+    .companies_page_slogan{
+        font-size: 17px;
+        margin-bottom: 30px;
+    }
+    .companies_page_slogan span{
+        font-size: 19px;
+    }
     .companies_page_job_search_container{
         height: 60%;
     }

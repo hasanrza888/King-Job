@@ -5,24 +5,23 @@ function About() {
         <div className="about_page_container">
             {/* page head */}
             <PageHeadText content={"Haqqımızda"} />
-            <div className="about_page_head"></div>
             {/* information row */}
             <div className="about_page_information">
-                <div className="about_page_information_head"><strong>Şirkət haqqında:</strong></div>
+                <div className="about_page_information_head">Şirkət haqqında:</div>
                 <div className="about_page_information_body">
                     <div className="about_page_information_list">
-                        <li><strong>İŞland.az</strong> iş və ya işçi axtaranların onlayn platformasıdır.</li>
-                        <li>İŞland.az 2023-cü ildə fəaliyyətə başlayaraq əmək bazarında ölkənin ən yaxşı iş axtarma platformasına çevrilmişdir.</li>
+                        <li><strong>Kingjob.az</strong> iş və ya işçi axtaranların onlayn platformasıdır.</li>
+                        <li>Kingjob.az 2023-cü ildə fəaliyyətə başlayaraq əmək bazarında ölkənin ən yaxşı iş axtarma platformasına çevrilmişdir.</li>
                     </div>                  
                 </div>
             </div>
             {/* information row */}
             <div className="about_page_information">
-                <div className="about_page_information_head"><strong>Üstünlüklərimiz:</strong></div>
+                <div className="about_page_information_head">Üstünlüklərimiz:</div>
                 <div className="about_page_information_body">
                     <div className="about_page_information_list">
                         <li>
-                            <strong>İŞland.az</strong> onlayn platformasında iş elanlarına müraciət etdiyiniz zaman mütləq geri dönüş cavabı alacaqsınız.
+                            <strong>Kingjob.az</strong> onlayn platformasında iş elanlarına müraciət etdiyiniz zaman mütləq geri dönüş cavabı alacaqsınız.
                         </li>
                         <li>
                             Saxta elanların olmaması.
@@ -35,7 +34,7 @@ function About() {
             </div>
             {/* information row */}
             <div className="about_page_information">
-                <div className="about_page_information_head"><strong>Məqsədimiz:</strong></div>
+                <div className="about_page_information_head">Məqsədimiz:</div>
                 <div className="about_page_information_body">
                     <div className="about_page_information_list">
                         <li>

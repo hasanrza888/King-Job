@@ -6,7 +6,7 @@ function Notfound() {
     return ( 
         <div className="not_found_page_container">
             <div className="not_found_page_head">
-                Uyğun səhifə tapılmadı
+                Uyğun səhifə tapılmadı !
             </div>
             <img src={svg} alt="404" className='not_found_page_image'/>
             <div className="not_found_page_back_btn" onClick={()=> go_back(-1)}>

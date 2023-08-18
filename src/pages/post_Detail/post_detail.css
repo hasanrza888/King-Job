@@ -1,17 +1,7 @@
-:root{
-    --primary-color: #fff;
-    --secondary-color: #40cb00;
-    --tertiary-color: #2a8301;
-    --quaternary-color: #45A6FF;
-    --posts-container-heading-color: var(--secondary-color);
-    --detail-page-header: #F0FFF6;
-    --post-box-detail-btn-hover: #3dbf00;
-    --submit-btn-color: #7CF281;
-}
+@import '../../color.css';
 /* detail page */
 .detail_page{
     width: 100%;
-    /* background-color: #fdfdfd; */
 }
 .detail_page_container{
     width: 95%;
@@ -22,8 +12,8 @@
 .detail_page_job_header{
     width: 90%;
     margin: 0px auto 50px;
-    background-color: var(--detail-page-header);
-    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+    background-color: var(--light-green-bg-color);
+    box-shadow: var(--boxes-shadow-dark);
     padding: 20px;
 }
 /* job title and vacancy button */
@@ -36,10 +26,11 @@
 }
 /* vacancy name */
 .detail_page_vacancy_name{
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 17px;
+    font-weight: 500;
     letter-spacing: 2px;
     margin-right: 10px;
+    font-family: 'Roboto Serif', serif;
 }
 /* vacancy view apply and save buttons */
 .detail_page_vacancy_buttons_container{
@@ -52,14 +43,13 @@
     align-items: center;
     margin-right: 20px;
     user-select: none;
-    font-weight: 500;
+    /* font-weight: 500; */
+    color: var(--light-text-color);
 }
 .detail_page_vacancy_button svg{
     font-size: 20px;
     margin-right: 5px;
-}
-.detail_page_vacancy_save_button svg{
-    font-size: 30px;
+    color: var(--light-text-color);
 }
 .detail_page_job_header_secondline{
     width: 100%;
@@ -85,7 +75,6 @@
     align-items: center;
     justify-content: center;
     background-color: var(--primary-color);
-    border: 1px solid var(--quaternary-color);
     border-radius: 10px;
     margin-right: 10px;
     user-select: none;
@@ -95,9 +84,11 @@
 }
 /* company name */
 .detail_page_company_name{
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 17px;
+    /* font-weight: 500; */
     letter-spacing: 1px;
+    color: var(--secondary-text-color);
+    font-family: 'Roboto Slab', serif;
 }
 /* dates, salary and apply button */
 .detail_page_dates_and_salary{
@@ -121,19 +112,21 @@
     flex-direction: row;
     align-items: center;
     font-weight: 500;
+    color: var(--light-text-color);
+    font-size: 14px;
 }
 .detail_page_date:first-child{
     margin-right: 20px;
 }
 .detail_page_date svg{
-    font-size: 16px;
+    font-size: 14px;
     margin-right: 5px;
 }
 .detail_page_date:first-child svg{
-    color: var(--secondary-color);
+    color: var(--clock-start-color);
 }
 .detail_page_date:nth-child(2) svg{
-    color: red;
+    color: var(--clock-end-color);
 }
 /* salary and apply button container */
 .detail_page_salary_and_apply_btn{
@@ -146,13 +139,13 @@
     border: none;
     border-radius: 10px;
     letter-spacing: 3px;
-    font-weight: 600;
-    font-size: 20px;
+    font-weight: 500;
+    font-size: 18px;
     margin-right: 20px;
 }
 .detail_page_apply_btn{
     padding: 5px 15px;
-    background-color: var(--submit-btn-color);
+    background-color: var(--accent-color);
     color: var(--primary-color);
     font-weight: 500;
     font-size: 16px;
@@ -163,12 +156,11 @@
     letter-spacing: 2px;
     margin-right: 0px;
     user-select: none;
-    transition: 0.1s all;
+    transition: 0.3s all;
     font-family: inherit;
 }
 .detail_page_apply_btn:hover{
-    background-color: var(--post-box-detail-btn-hover);
-    transform: scale(1.01);
+    background-color: var(--accent-hover);
 }
 /* vacancy descriptions container */
 .detail_page_vacancy_description_container{
@@ -184,24 +176,23 @@
     width: 100%;
     margin-bottom: 30px;
     background-color: var(--primary-color);
-    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: var(--boxes-shadow-dark);
 }
 .detail_page_vacancy_description_half{
     width: 48%;
 }
 .detail_page_vacancy_description_head{
-    background-color: var(--detail-page-header);
+    background-color: var(--secondary-color);
     padding: 10px;
     font-weight: 500;
-    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: var(--boxes-shadow-dark);
 }
 /* description body */
 .detail_page_vacancy_description_body{
     width: 100%;
     padding: 20px;
     letter-spacing: 2px;
-    line-height: 1.6;
-    /* text-align: justify; */
+    line-height: 1.4;
 }
 .vacancy_description_body_list_cont{
     width: 100%;
@@ -219,7 +210,7 @@
     letter-spacing: 1px;
 }
 .vacancy_description_body_list_item:nth-child(odd) {
-    background-color: #f8f8f8;
+    background-color: var(--list-active-bg-color);
 }
 .vacancy_description_list_par:first-child{
     font-weight: bold;
@@ -231,7 +222,7 @@
 .detail_page_vacancy_special_req_list li{
     width: 100%;
     list-style: disc;
-    padding: 10px 0px;
+    padding: 5px 0px;
 }
 /* job skills tag links */
 .detail_page_vacancy_description_skills{
@@ -254,7 +245,7 @@
 .detail_page_vacancy_description_skills li a svg{
     font-size: 18px;
     margin-right: 5px;
-    color: var(--secondary-color);
+    color: var(--accent-color);
     transition: 0.3s all;
 }
 .detail_page_vacancy_description_skills li a:hover svg{
@@ -268,18 +259,19 @@
     font-size: 20px;
     font-weight: 700;
     font-family: inherit;
-    border: 2px solid var(--secondary-color);
+    border: 2px solid var(--accent-color);
     border-radius: 10px;
     background-color: transparent;
-    color: var(--secondary-color);
+    color: var(--accent-color);
     letter-spacing: 5px;
     cursor: pointer;
     transition: 0.5s all;
     text-align: center;
 }
 .detail_page_vacancy_second_apply_btn:hover{
-    background-color: var(--post-box-detail-btn-hover);
+    background-color: var(--accent-hover);
     color: var(--primary-color);
+    border: 2px solid var(--accent-hover);
 }
 /* relevant vacancies */
 .detail_page_relevant_vacancies{
@@ -298,6 +290,7 @@
     padding: 100px 0px;
     text-transform: uppercase;
     color: var(--tertiary-color);
+    letter-spacing: 2px;
 }
 /* responsive */
 @media (width <= 1024px){

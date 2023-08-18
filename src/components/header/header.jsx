@@ -66,8 +66,8 @@ function Header(){
                             </NavLink>                    
                         :
                         <>                        
-                            <NavLink to="/signup/user_signup" className={({isActive})=> isActive || (window.location.pathname === '/signup/company_signup') ? 'link_none' : 'account_link_btn'}>Qeydiyyat</NavLink>                                                                       
-                            <NavLink to="/login" className={({isActive})=> isActive ? 'link_none' : 'account_link_btn'}>Daxil ol</NavLink>                        
+                            <NavLink to="/login" className={({isActive})=> isActive ? 'link_none' : 'header_login_btn'}>Daxil ol</NavLink>                        
+                            <NavLink to="/signup/user_signup" className={({isActive})=> isActive || (window.location.pathname === '/signup/company_signup') ? 'link_none' : 'account_link_btn'}>Qeydiyyat</NavLink>    
                         </>
                     }  
                 </div>                                         
@@ -144,8 +144,8 @@ function Header(){
                                 ''                  
                             :
                             <>                        
-                                <NavLink to="/signup/user_signup" onClick={open_drop_menu} className={({isActive})=> isActive ? 'link_none' : 'account_link_btn'}>Qeydiyyat</NavLink>                                                                       
-                                <NavLink to="/login" onClick={open_drop_menu} className={({isActive})=> isActive ? 'link_none' : 'account_link_btn'}>Daxil ol</NavLink>                        
+                                <NavLink to="/login" onClick={open_drop_menu} className={({isActive})=> isActive ? 'link_none' : 'header_login_btn'}>Daxil ol</NavLink>                        
+                                <NavLink to="/signup/user_signup" onClick={open_drop_menu} className={({isActive})=> isActive ? 'link_none' : 'account_link_btn'}>Qeydiyyat</NavLink>   
                             </>
                         }  
                         </div>  

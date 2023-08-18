@@ -1,9 +1,4 @@
-:root{
-    --primary-color: #fff;
-    --secondary-color: #40cb00;
-    --tertiary-color: #2a8301;
-    --quaternary-color: #45A6FF;
-}
+@import '../../color.css';
 .not_found_page_container{
     width: 80%;
     margin: 0px auto;
@@ -12,7 +7,7 @@
 .not_found_page_head{
     font-size: 30px;
     text-align: center;
-    color: var(--quaternary-color);
+    color: var(--light-text-color);
     font-weight: 500;
 }
 .not_found_page_image{
@@ -27,11 +22,12 @@
     text-align: center;
     margin: 0px auto;
     font-size: 25px;
-    color: var(--secondary-color);
+    color: var(--accent-color);
     cursor: pointer;
+    text-decoration: underline;
 }
 .not_found_page_back_btn:hover{
-    text-decoration: underline;
+    color: var(--accent-hover);
 }
 @media (width <= 500px){
     .not_found_page_head{

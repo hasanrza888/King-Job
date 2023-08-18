@@ -1,25 +1,18 @@
-:root{
-    --primary-color: #fff;
-    --secondary-color: #40cb00;
-    --tertiary-color: #2a8301;
-    --quaternary-color: #45A6FF;
-    --post-box-border-color: var(--quaternary-color);
-    --location-pin-color: #eb0520;
-    --post-end-time-color: #e4273e; 
-    --post-box-detail-btn-hover: #3dbf00;
-}
+@import '../../color.css';
 /* post box container */
 .post_box_container{
     width: 100%;
     display: block;
-    border: 1px solid var(--post-box-border-color);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--main-border-color);
+    box-shadow: var(--boxes-shadow-dark);
     border-radius: 10px;
     margin-bottom: 20px;
     padding: 15px;
-    transition: 0.5s all;
+    transition: 0.3s all;
     user-select: none;
     position: relative;
+    cursor: pointer;
+    background-color: var(--primary-color);
 }
 .post_box_link{
     position: absolute;
@@ -28,13 +21,9 @@
     width: 100%;
     height: 100%;
 }
-.post_box_container:hover{
+/* .post_box_container:hover{
     transform: scale(1.01);
-    border: 1px solid var(--secondary-color);
-    cursor: pointer;
-    box-shadow: 0px 2px 2px var(--secondary-color);
-    /* box-shadow: 0px 2px 2px var(--secondary-color); */
-}
+} */
 /* company name logo and save button */
 .post_box_company_and_save_post_btn{
     width: 100%;
@@ -42,6 +31,7 @@
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 10px;
+    align-items: center;
 }
 .post_box_company_logo_name{
     display: flex;
@@ -54,20 +44,21 @@
 .post_box_company_logo{
     width: 40px;
     height: 40px;
-    border: 1px solid var(--quaternary-color);
+    /* border: 1px solid var(--quaternary-color); */
     border-radius: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .post_box_company_logo img{
-    width: 55%;
+    width: 60%;
 }
 /* company name */
 .post_box_company_name{
     margin-left: 10px;
-    font-weight: 500;
     font-size: 17px;
+    color: var(--secondary-text-color);
+    font-family: 'Roboto Slab', serif;
 }
 /* job title and salary */
 .post_box_job_title_and_salary{
@@ -81,23 +72,21 @@
 }
 /* job title */
 .post_box_job_title{
-    font-size: 20px;
+    font-size: 17px;
     display: flex;
     flex-direction: row;
     align-items: center;
     font-weight: 500;
-    color: var(--quaternary-color);
+    color: var(--secondary-text-color);
     margin-right: 20px;
-}
-.post_box_job_title svg{
-    font-size: 20px;
-    margin-right: 10px;
+    font-family: 'Roboto Serif', serif;
 }
 /* job salary */
 .post_box_job_salary{
-    font-size: 20px;
+    font-size: 17px;
     font-weight: 500;
-    color: var(--quaternary-color);
+    color: var(--secondary-text-color);
+    font-family: 'Roboto Serif', serif;
 }
 /* job location and time */
 .job_location_and_time_type{
@@ -114,22 +103,15 @@
     flex-direction: row;
     align-items: center;    
     margin-right: 20px;
-    font-weight: 500;
+    /* font-weight: 500; */
     font-size: 13px;
-}
-.post_box_job_location svg{
-    font-size: 16px;
-    color: var(--location-pin-color);
-    margin-right: 5px;
+    color: var(--light-text-color);
 }
 /* job time type */
 .post_box_job_time_type{
-    /* padding: 2px 10px; */
-    /* color: var(--quaternary-color); */
-    /* border: 2px solid var(--quaternary-color); */
     border-radius: 5px;
     font-size: 13px;
-    font-weight: 500;
+    color: var(--light-text-color);
 }
 /* dates and statistics numbers and details button */
 .post_dates_and_details_btn_container{
@@ -158,17 +140,17 @@
     align-items: center;
     margin-right: 10px;
     font-size: 13px;
-    font-weight: 500;
+    color: var(--light-text-color);
 }
 .post_box_date svg{
     font-size: 15px;
     margin-right: 5px;
 }
 .post_box_start_date svg{
-    color: var(--secondary-color);
+    color: var(--clock-start-color);
 }
 .post_box_end_date svg{
-    color: var(--post-end-time-color);
+    color: var(--clock-end-color);
 }
 /* post statistics numbers */
 .post_box_statistics_numbers_container{
@@ -182,7 +164,7 @@
     align-items: center;
     font-size: 13px;
     margin-right: 10px;
-    font-weight: 500;
+    color: var(--light-text-color);
 }
 .post_box_statistics_number svg{
     font-size: 15px;
@@ -190,22 +172,46 @@
 }
 /* post box detail button */
 .post_box_details_btn{
-    padding: 5px 30px;
-    color: var(--primary-color);
-    background-color: var(--secondary-color);
-    border-radius: 5px;
+    max-width: 95px;
+    padding: 10px 25px;
+    color: var(--accent-color);
+    /* border-radius: 5px; */
     cursor: pointer;
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 500;
     transition: 0.3s all;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+    text-decoration: underline;
 }
-.post_box_details_btn:hover{
-    background-color: var(--post-box-detail-btn-hover);
+.post_box_details_btn svg{
+    /* margin-left: 10px; */
+    font-size: 16px;
+    transition: 0.5s all;
+    position: absolute;
+    right: 0px;
+}
+.post_box_container:hover .post_box_details_btn svg{
+    animation: btn_left_right 0.8s infinite;
+}
+.post_box_container:hover .post_box_details_btn{
+    color: var(--accent-hover);
+}
+@keyframes btn_left_right{
+    from{
+        right: 0px;
+    }
+    to{
+        right: -5px;
+    }
 }
 /* ______________ responsive _______________ */
 @media (width <= 650px){
     .post_box_job_title, .post_box_job_salary{
-        font-size: 18px;
+        font-size: 16px;
     }
 }
 @media (width <= 550px){
@@ -222,14 +228,11 @@
     .post_box_job_title_and_salary{
         flex-direction: column;
         padding: 0px;
+        /* align-items: flex-start; */
     }
     .post_box_job_title{
         margin-right: unset;
         margin-bottom: 10px;
-        font-size: 18px;
-    }
-    .post_box_job_salary{
-        font-size: 18px;
     }
     .job_location_and_time_type{
         justify-content: center;

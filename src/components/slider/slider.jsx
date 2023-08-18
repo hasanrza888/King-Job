@@ -5,6 +5,7 @@ import './slider.css';
 import imgOne from '../../images/slider_img_one.jpg';
 import imgTwo from '../../images/slider_img_two.jpg';
 import imgThree from '../../images/slider_img_three.png';
+import TextTypingAnimation from "../text-typing/text-typing";
 
 function SliderHome({fromHomePage}){
     const slider_settings = {
@@ -34,7 +35,7 @@ function SliderHome({fromHomePage}){
                 fromHomePage ? 
                 <div className="home_slider_slogan">
                     <div className="home_slider_slogan_text">
-                    Azərbaycanın ən mükəmməl və professional vakansiya saytı
+                        <TextTypingAnimation text={'Azərbaycanın ən mükəmməl və professional vakansiya saytı'} />
                     </div>
                 </div>
                 :
