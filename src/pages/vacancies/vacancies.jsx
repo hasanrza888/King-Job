@@ -1,15 +1,19 @@
 import './vacancies.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import SliderHome from "../../components/slider/slider";
 import { faChevronLeft, faFilter, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import PageHeadText from '../../components/page_head_text/page_head_text';
 import PostBox from '../../components/post_box/post_box';
 import { latest_jobs } from '../../fakeData/latestJobs';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import VacancyFilters from '../../components/vacancy_flters/vacancy_filters';
+import oneFlex from '../../images/one_grip.svg';
+import oneFlexActive from '../../images/one_grip_active.svg';
+import twoFlex from '../../images/two_grip.svg';
+import twoFlexActive from '../../images/two_grip_active.svg';
 
 function Vacancies() {
     const [openMobileFilter, setOpenMobileFilter] = useState(false);
+    const [flex, setFlex] = useState(localStorage.getItem('vacancies_flex') || 'one_row')
     const [filter, setFilter] = useState({
         vacancy_name: "",
         categories: "",
@@ -30,9 +34,25 @@ function Vacancies() {
     const vacancySearchChange = (e)=>{
         setFilter({...filter, vacancy_name: e.target.value});
     }
+    const change_flex_handle = (flexType)=>{
+        localStorage.setItem('vacancies_flex', `${flexType}`);
+        setFlex(flexType);
+    }
+    const resize_window_funcFlex= ()=>{
+        if(window.innerWidth < 1130){
+            localStorage.setItem('vacancies_flex', 'one_row');
+            setFlex('one_row');
+        }
+    } 
+    useEffect(()=>{
+        window.addEventListener('resize', resize_window_funcFlex);
+        return ()=>{
+            window.removeEventListener('resize', resize_window_funcFlex);
+        }
+    },[])   
     return ( 
         <div className="vacancies_page_container">
-            {console.log(filter)}
+            {console.log(window.innerWidth)}
             {/* image slider and job search container */}
             <div className="vacancies_page_slider_and_search">
                 {/* slogan */}
@@ -65,6 +85,27 @@ function Vacancies() {
                 </div>
                 {/* vacancies boxes */}
                 <div className="vacancies_page_boxes_container">
+                    {/* flex grips container */}
+                    <div className="vacancies_page_flex_grip_cont">
+                        {/* flex grip image */}
+                        <div className="vacancies_page_flex_grip" onClick={()=>{change_flex_handle('one_row')}}>
+                            {
+                                flex === 'one_row' ?
+                                <img src={oneFlexActive} alt="One flex active" />
+                                :
+                                <img src={oneFlex} alt="One flex" />
+                            }
+                        </div>
+                        {/* flex grip image */}
+                        <div className="vacancies_page_flex_grip" onClick={()=>{change_flex_handle('half_row')}}>
+                            {
+                                flex === 'half_row' ?
+                                <img src={twoFlexActive} alt="Two flex active" />
+                                :
+                                <img src={twoFlex} alt="Two flex" />
+                            }
+                        </div>
+                    </div>
                     {/* premium vacancies */}
                     <PageHeadText content={'Premium Elanlar'}/>
                     <div className="vacancies_latest_jobs_boxes_container">
@@ -84,6 +125,7 @@ function Vacancies() {
                                         location={item.location}
                                         job_time_type={item.job_time_type}
                                         key={item.job_id}
+                                        flexType={flex}
                                     />
                                 )
                             })
@@ -108,6 +150,7 @@ function Vacancies() {
                                         location={item.location}
                                         job_time_type={item.job_time_type}
                                         key={item.job_id}
+                                        flexType={flex}
                                     />
                                 )
                             })

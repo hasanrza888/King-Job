@@ -213,19 +213,23 @@ function VacancyFilters({closeMobileFilter, filter, setFilter}) {
     // salary changer function
     const salaryFiltChange = (e)=>{
         if(e.target.name === 'min_salary'){
-            if(e.target.value){
-                filter.min_salary = e.target.value;    
+            if(e.target.value && Number(e.target.value) > 0){
+                if(filter.max_salary !== null){
+                    if(Number(e.target.value) < Number(filter.max_salary)){ 
+                        setFilter({...filter, min_salary : e.target.value});    
+                    }
+                }else{
+                    setFilter({...filter, min_salary : e.target.value});  
+                }
             }else{
-                filter.min_salary = null;  
+                setFilter({...filter, min_salary : null});  
             }
-            setFilter({...filter});
         }else if(e.target.name === 'max_salary'){
-            if(e.target.value){
-                filter.max_salary = e.target.value;    
+            if(e.target.value && Number(e.target.value) > 0){
+                setFilter({...filter, max_salary : e.target.value});   
             }else{
-                filter.max_salary = null;  
+                setFilter({...filter, max_salary : null});   
             }
-            setFilter({...filter});
         }
     }
     // special skills values changer function
