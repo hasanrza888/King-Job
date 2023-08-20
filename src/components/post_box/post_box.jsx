@@ -4,10 +4,10 @@ import { faArrowRightLong, faBriefcase, faHourglassEnd, faHourglassStart, faLoca
 import { faEye, faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import "./post_box.css"
 import { Link } from "react-router-dom";
-function PostBox({setSavedJob, setSuccessMsg, job_id, image_url, salary, job_title, company_name, post_views, post_applies, post_start_date, post_end_date, location, job_time_type}){
+function PostBox({setSavedJob, setSuccessMsg, job_id, image_url, salary, job_title, company_name, post_views, post_applies, post_start_date, post_end_date, location, job_time_type, flexType}){
     
     return(
-        <div className="post_box_container">
+        <div className={`post_box_container ${flexType === 'half_row' && window.innerWidth >= 850 ? 'post_box_container_half' : ''}`}>
             {/* company and save button container */}
             <div className="post_box_company_and_save_post_btn">
                 {/* company logo and name comtainer*/}
@@ -27,7 +27,7 @@ function PostBox({setSavedJob, setSuccessMsg, job_id, image_url, salary, job_tit
             {/* job title and salary */}
             <div className="post_box_job_title_and_salary">
                 {/* job title */}
-                <div className="post_box_job_title">
+                <div className="post_box_job_title" title={job_title}>
                     {/* <FontAwesomeIcon icon={faBriefcase} />  */}
                     {job_title}
                 </div>

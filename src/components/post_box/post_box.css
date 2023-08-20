@@ -14,6 +14,11 @@
     cursor: pointer;
     background-color: var(--primary-color);
 }
+/* when changing grid system */
+.post_box_container_half{
+    width: 48%;
+    margin-right: 10px;
+}
 .post_box_link{
     position: absolute;
     top: 0px;
@@ -70,16 +75,29 @@
     padding: 0px 20px;
     margin-bottom: 15px;
 }
+.post_box_container_half .post_box_job_title_and_salary{
+    flex-wrap: wrap;
+}
 /* job title */
 .post_box_job_title{
     font-size: 17px;
-    display: flex;
+    /* display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: center; */
+    /* max-width: 160px; */
+    position: relative;
+    z-index: 10;
     font-weight: 500;
     color: var(--secondary-text-color);
     margin-right: 20px;
     font-family: 'Roboto Serif', serif;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.post_box_container_half .post_box_job_title{
+    max-width: 180px;
+    min-width: 150px;
 }
 /* job salary */
 .post_box_job_salary{
@@ -94,7 +112,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-bottom: 3px;
+    margin-bottom: 10px;
     padding: 0px 20px;
 }
 /* job location */
@@ -119,14 +137,19 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: last baseline;
     padding: 0px 20px;
+    flex-wrap: wrap;
 }
 /* post dates and statistics numbers */
 .post_dates_and_statistics_numbers{
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+.post_box_container_half .post_dates_and_statistics_numbers{
+    flex-wrap: wrap;
+    align-items: last baseline;
 }
 /* post dates */
 .post_box_dates_container{
@@ -158,6 +181,9 @@
     flex-direction: row;
     align-items: center;
 }
+.post_box_container_half .post_box_statistics_numbers_container{
+    margin-top: 10px;
+}
 .post_box_statistics_number{
     display: flex;
     flex-direction: row;
@@ -173,7 +199,7 @@
 /* post box detail button */
 .post_box_details_btn{
     max-width: 95px;
-    padding: 10px 25px;
+    padding-right: 25px;
     color: var(--accent-color);
     /* border-radius: 5px; */
     cursor: pointer;
@@ -186,6 +212,9 @@
     position: relative;
     z-index: 10;
     text-decoration: underline;
+}
+.post_box_container_half .post_box_details_btn{
+    margin-top: 10px;
 }
 .post_box_details_btn svg{
     /* margin-left: 10px; */
@@ -209,6 +238,15 @@
     }
 }
 /* ______________ responsive _______________ */
+@media (width <= 1100px){
+    .post_box_container_half .post_box_job_title_and_salary{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .post_box_container_half .post_box_job_title{
+        margin-bottom: 10px;
+    }
+}
 @media (width <= 650px){
     .post_box_job_title, .post_box_job_salary{
         font-size: 16px;
@@ -248,14 +286,5 @@
     }
     .post_box_dates_container{
         margin-bottom: 10px;
-    }
-    .post_box_details_btn{
-        width: 60%;
-        text-align: center;
-    }
-}
-@media (width <= 400px){
-    .post_box_details_btn{
-        width: 100%;
     }
 }

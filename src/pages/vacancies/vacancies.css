@@ -79,15 +79,45 @@
     width: 75%;
     padding: 10px;
 }
+/* flex grip container */
+.vacancies_page_flex_grip_cont{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+.vacancies_page_flex_grip{
+    width: 35px;
+    cursor: pointer;
+}
+.vacancies_page_flex_grip:first-child{
+    margin-right: 10px;
+    fill: var(--accent-color);
+}
+.vacancies_page_flex_grip img{
+    width: 100%;
+    filter: var(--accent-color);
+}
 .vacancies_latest_jobs_boxes_container{
     width: 100%;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 .vacancy_page_filters_button{
     display: none;
 }
 .vacancies_page_filters_mobile_close{
     display: none;
+}
+@media (width <= 1130px){
+    .vacancies_page_flex_grip_cont{
+        display: none;
+    }
 }
 @media (width <= 800px){
     .vacancies_filters_and_boxes_container{
