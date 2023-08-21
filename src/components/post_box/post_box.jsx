@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PostBoxSaveBtn from "../post_box_save_btn/post_box_save_btn";
-import { faArrowRightLong, faBriefcase, faHourglassEnd, faHourglassStart, faLocationPin } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRightLong, faHourglassEnd, faHourglassStart } from "@fortawesome/free-solid-svg-icons";
 import { faEye, faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import "./post_box.css"
 import { Link } from "react-router-dom";
@@ -28,7 +28,6 @@ function PostBox({setSavedJob, setSuccessMsg, job_id, image_url, salary, job_tit
             <div className="post_box_job_title_and_salary">
                 {/* job title */}
                 <div className="post_box_job_title" title={job_title}>
-                    {/* <FontAwesomeIcon icon={faBriefcase} />  */}
                     {job_title}
                 </div>
                 {/* job salary */}
@@ -40,7 +39,6 @@ function PostBox({setSavedJob, setSuccessMsg, job_id, image_url, salary, job_tit
             <div className="job_location_and_time_type">
                 {/* job location */}
                 <div className="post_box_job_location">
-                    {/* <FontAwesomeIcon icon={faLocationPin} /> */}
                     {location}
                 </div>
                 {/* job time type */}

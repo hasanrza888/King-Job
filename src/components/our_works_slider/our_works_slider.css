@@ -1,0 +1,11 @@
+@import '../../color.css';
+.our_works_slider_image{
+    width: 100%;
+    outline: none;
+}
+.our_works_slider_image img{
+    width: 100%;
+}
+.our_works_slider_container .slick-dots .slick-active button:before{
+    color: var(--accent-hover);
+}

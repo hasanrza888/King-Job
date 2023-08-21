@@ -327,7 +327,8 @@ function VacancyFilters({closeMobileFilter, filter, setFilter}) {
                 </li> 
                 {/* special knowledges */}
                 <li className="vacancies_page_filters_box">
-                    <input type="text" onChange={specialSkillsChange} value={filter.skills} className={`vacancies_page_filters_box_text_input ${filter.skills ? "vacancies_page_filters_active_input" : ''}`} placeholder='Xüsusi biliklər'/>
+                    <div className="vacancies_page_filters_box_name">Xüsusi bacarıqlar</div>
+                    <input type="text" onChange={specialSkillsChange} value={filter.skills} className={`vacancies_page_filters_box_text_input ${filter.skills ? "vacancies_page_filters_active_input" : ''}`} placeholder='Ms word, Python, AutoCAD'/>
                 </li>
                 {/* vacancy boxes order  */}
                 <li className="vacancies_page_filters_box">

@@ -76,6 +76,9 @@
 .contact_page_social_icons a{
     margin-right: 50px;
 }
+.contact_page_social_icons a:last-child{
+    margin-right: 0px;
+}
 .contact_page_social_icons a svg{
     font-size: 40px;
     transition: 0.3s all;
