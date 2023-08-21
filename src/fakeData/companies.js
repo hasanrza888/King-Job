@@ -26,7 +26,7 @@ export const companies = [
     {
         company_id : 4,
         company_name: 'King Job',
-        company_logo: 'https://isaxtar.vercel.app/favicon.ico',
+        company_logo: `favicon.ico`,
         rating: 5,
         vacancy_count: 400,
         apply_count: 500

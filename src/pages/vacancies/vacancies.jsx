@@ -13,9 +13,9 @@ import twoFlexActive from '../../images/two_grip_active.svg';
 
 function Vacancies() {
     const [openMobileFilter, setOpenMobileFilter] = useState(false);
-    const [flex, setFlex] = useState(localStorage.getItem('vacancies_flex') || 'one_row')
+    const [flex, setFlex] = useState(localStorage.getItem('vacancies_flex') || 'half_row');
+    const [vacancy_name, setVacancy_name] = useState('');
     const [filter, setFilter] = useState({
-        vacancy_name: "",
         categories: "",
         sub_categories: "",
         jobCity: "",
@@ -32,7 +32,7 @@ function Vacancies() {
         setOpenMobileFilter(!openMobileFilter);
     }
     const vacancySearchChange = (e)=>{
-        setFilter({...filter, vacancy_name: e.target.value});
+        setVacancy_name(e.target.value);
     }
     const change_flex_handle = (flexType)=>{
         localStorage.setItem('vacancies_flex', `${flexType}`);
@@ -52,7 +52,6 @@ function Vacancies() {
     },[])   
     return ( 
         <div className="vacancies_page_container">
-            {console.log(window.innerWidth)}
             {/* image slider and job search container */}
             <div className="vacancies_page_slider_and_search">
                 {/* slogan */}
@@ -61,7 +60,7 @@ function Vacancies() {
                 <div className="vacancies_page_job_search_container">
                     <form className="vacancies_page_job_search_form">
                         {/* vacancy search input */}
-                        <input type="text" value={filter.vacancy_name} onChange={vacancySearchChange} placeholder='Peşə, Vəzifə'/>
+                        <input type="text" value={vacancy_name} onChange={vacancySearchChange} placeholder='Peşə, Vəzifə'/>
                         <button type="submit" className='vacancies_page_job_search_form_submit'>
                             <FontAwesomeIcon icon={faMagnifyingGlass} />
                         </button>
