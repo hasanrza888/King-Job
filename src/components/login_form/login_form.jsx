@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import SendOtpForm from '../sendOtpForm/sendOtpForm';
 import UpdatePasswordForm from '../update_password_form/update_password_form';
 import { email_checker } from '../email_checker/email_checker';
+import { toast } from 'react-toastify';
 
 function LoginForm() {
     const [formInfo, setFormInfo] = useState({
@@ -18,6 +19,7 @@ function LoginForm() {
         errorCheck: false,
         errorContent : ''
     });
+    const [sendingData, setSendingData] = useState(false);
     const navigateTo = useNavigate();
     const show_password_handle = ()=>{
         setShowPassword(!showPassword);
@@ -42,6 +44,18 @@ function LoginForm() {
             setErrorMessage({...errorMessage, errorCheck: true, errorContent: "Email sintaksisi doğru deyil!"});
         }else{
             setErrorMessage({...errorMessage, errorCheck: false, errorContent: ""});
+            setSendingData(true);
+            toast.success('Uğurla daxil oldunuz !', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            // go to profil
         }
     }
     return ( 
@@ -79,28 +93,16 @@ function LoginForm() {
                     {/* forgotten password button */}
                     <button className='login_form_forgot_password_btn' type='reset' onClick={forgot_password}>Şifrəni Unutmuşam</button>                
                     {/* login form submit button */}
-                    <button type="submit" className={`login_form_submit_btn ${formInfo.email && formInfo.password ? 'login_form_submit_btn_ready' : ''}`}>Daxil OL</button>
+                    <div className="login_form_submit_btn_container">
+                        <button type="submit" className={`login_form_submit_btn ${formInfo.email && formInfo.password ? 'login_form_submit_btn_ready' : ''}`}>Daxil OL</button>
+                        {
+                            sendingData ? <div className="send_data_submit_btn_loader"></div> : ''
+                        }  
+                    </div>
                     <div className="login_form_link_to_signUp_container">
                         Hesabınız yoxdur? <Link to='/signup/user_signup' className='login_form_link_to_signUp'>Qeydiyyatdan Keçin</Link>
                     </div>
                 </form> 
-                {/* forgot password form */}
-                {/* {
-                    forgotPassword ? <ForgotPasswordForm close = {setForgotPassword} setOpenOtpWindow = {setOpenOtpWindow}/> : null
-                } */}
-                {/* otp code form */}
-                {/* {
-                    openOtpWindow ? <SendOtpForm setOpenOtpWindow = {setOpenOtpWindow} setNewPassword = {setNewPassword} login = { openOtpWindow ? true : false}/> : null 
-                } */}
-                {/* set new password form */}
-                {/* {
-                    newPasswordForm ? 
-                    <UpdatePasswordForm 
-                        setNewPassword = {setNewPassword} 
-                        setOpenOtpWindow = {setOpenOtpWindow} 
-                        close = {setForgotPassword}
-                    /> : null
-                } */}
             </div>                                                 
      );
 }

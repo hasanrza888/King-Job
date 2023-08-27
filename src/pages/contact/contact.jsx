@@ -5,7 +5,45 @@ import { faEnvelope, faLocationDot, faPhone } from '@fortawesome/free-solid-svg-
 import { faFacebookSquare, faInstagram, faLinkedin, faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
 import SubscribeForm from '../../components/subscribe_form/subscribe_form';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { email_checker } from '../../components/email_checker/email_checker';
+import { toast } from 'react-toastify';
 function Contact() {
+    const [sendingdata, setSendingData] = useState(false);
+    const [errorMessage, setErrorMessage] = useState({
+        errorCheck: false,
+        errorContent : ''
+    });
+    const [formInfo, setFormInfo] = useState({
+        nameSurname: '',
+        email: '',
+        phone: null,
+        subject: '',
+        description: ''
+    })
+    const formDataChangeFunc = (e)=>{
+        formInfo[e.target.name] = e.target.value;
+        setFormInfo({...formInfo})
+    }
+    const contact_form_handle = (e)=>{
+        e.preventDefault()
+        if(formInfo.nameSurname && formInfo.email && formInfo.phone && formInfo.subject && formInfo.description && email_checker(formInfo.email)){
+            setSendingData(true);
+            setErrorMessage({...errorMessage, errorCheck: false, errorContent: ''});
+            toast.success('Məktubunuz uğurla göndərildi ! Tezliklə cavablandıracayıq.', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        }else if(!email_checker(formInfo.email)){
+            setErrorMessage({...errorMessage, errorCheck: true, errorContent: 'Email sintaksisi səhvdir!'});
+        }
+    }
     return ( 
         <div className="contact_page_container">
             {/* page name */}
@@ -39,7 +77,7 @@ function Contact() {
                 </Link>
             </div>
             <div className="contact_page_map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d512.6125278886502!2d50.08737083718522!3d40.38494957811747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x403066630c235b35%3A0xb86f0de275ed2af!2sSurakhani%2C%20Hovsan!5e1!3m2!1sen!2saz!4v1692276461516!5m2!1sen!2saz" width="600" height="450" style={{border:0}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d512.6125278886502!2d50.08737083718522!3d40.38494957811747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x403066630c235b35%3A0xb86f0de275ed2af!2sSurakhani%2C%20Hovsan!5e1!3m2!1sen!2saz!4v1692276461516!5m2!1sen!2saz" width="600" height="450" style={{border:0}} loading="lazy"></iframe>
             </div>
             {/* social networks */}
             <div className="contact_page_slogan">Bizi Sosial Şəbəkələrdə İzləyin !</div>
@@ -65,44 +103,52 @@ function Contact() {
                     Bizə Məktub Yazın !
                 </div>
                 {/* form */}
-                <form action="#" className='contact_page_form'>
+                <form action="#" className='contact_page_form' onSubmit={contact_form_handle}>
                     {/* name and surname */}
                     <div className="contact_page_form_label_input">
                         <label htmlFor="nameSurname">
                             Ad və Soyad
                         </label>
-                        <input type="text" name='nameSurname'  required/>
+                        <input type="text" name='nameSurname' onChange={(e)=> formDataChangeFunc(e)} required/>
                     </div>
                     {/* email */}
                     <div className="contact_page_form_label_input">
                         <label htmlFor="email">
                             E-mail
                         </label>
-                        <input type="email" name='email'  required/>
+                        <input type="email" name='email' onChange={(e)=> formDataChangeFunc(e)} required/>
                     </div>
                     {/* phone number */}
                     <div className="contact_page_form_label_input">
                         <label htmlFor="phone">
                             Telefon
                         </label>    
-                        <input type="number" name='phone'  required/>
+                        <input type="number" name='phone' onChange={(e)=> formDataChangeFunc(e)} required/>
                     </div>
                     {/* letter subject */}
                     <div className="contact_page_form_label_input">
                         <label htmlFor="subject">
                             Mövzu
                         </label>
-                        <input type="text" name='subject'  required/>
+                        <input type="text" name='subject' onChange={(e)=> formDataChangeFunc(e)} required/>
                     </div>
                     {/* letter description */}
                     <div className="contact_page_form_label_input">
                         <label htmlFor="description">
                             Məzmun
                         </label>
-                        <textarea name="description" cols="30" rows="5" required></textarea>
+                        <textarea name="description" cols="30" rows="5" onChange={(e)=> formDataChangeFunc(e)} required></textarea>
                     </div>
+                    {
+                        errorMessage.errorCheck ? <div className="contact_form_error_message">{errorMessage.errorContent}</div> : ''
+                    }
                     {/* submit button */}
-                    <input type="submit" value="Göndər" className='contact_page_form_submit' />
+                    <div className="contact_page_form_submit_container">
+                        <input type="submit" value="Göndər" className='contact_page_form_submit' />
+                        {
+                            sendingdata ? <div className="send_data_submit_btn_loader"></div> : ''
+                        }
+                    </div>
                 </form>
             </div>
             <div className="contact_page_slogan">Yeniliklərdən Xəbərdar Olmaq Üçün Abunə Olun !</div>

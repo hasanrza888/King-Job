@@ -62,8 +62,6 @@ function UpdatePasswordForm({setNewPassword, setOpenOtpWindow, close}) {
             // setNewPassword(false);
             Navigate("/login");
             setErrorMessage(false);
-            // setOpenOtpWindow(false);
-            // close(false);
             // _____ if password restoration was success
             // opens message box
             // message content
