@@ -1,4 +1,5 @@
 import './vacancies.css';
+import { useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faFilter, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import PageHeadText from '../../components/page_head_text/page_head_text';
@@ -10,24 +11,26 @@ import oneFlex from '../../images/one_grip.svg';
 import oneFlexActive from '../../images/one_grip_active.svg';
 import twoFlex from '../../images/two_grip.svg';
 import twoFlexActive from '../../images/two_grip_active.svg';
-
 function Vacancies() {
+    const location = useLocation(); 
+    const searchParams = new URLSearchParams(location.search); 
     const [openMobileFilter, setOpenMobileFilter] = useState(false);
     const [flex, setFlex] = useState(localStorage.getItem('vacancies_flex') || 'half_row');
     const [vacancy_name, setVacancy_name] = useState('');
     const [filter, setFilter] = useState({
-        categories: "",
-        sub_categories: "",
-        jobCity: "",
-        min_salary: null,
-        max_salary: null,                            
-        jobExperience: "",
-        educationLevel: "",
-        company: "",
-        jobType: "",
-        skills: "",
-        vacancyOrder: "" 
+        categories: searchParams.get('category') || "",
+        sub_categories: searchParams.get('sub_category') || "",
+        jobCity: searchParams.get('city') || "",
+        min_salary: searchParams.get('min_salary') || "",
+        max_salary: searchParams.get('max_salary') ||  "",                            
+        jobExperience: searchParams.get('experience') || "",
+        educationLevel: searchParams.get('education') || "",
+        company: searchParams.get('companyName') || "",
+        jobType: searchParams.get('type') || "",
+        skills: searchParams.get('skills') || "",
+        vacancyOrder: searchParams.get('order') || "" 
     })
+    useEffect(()=> { setFilter({...filter}) },[searchParams.size])
     const openMobileFilterHandle = ()=>{
         setOpenMobileFilter(!openMobileFilter);
     }
@@ -54,14 +57,27 @@ function Vacancies() {
             window.removeEventListener('resize', resize_window_funcFlex);
         }
     },[])   
+    // fixing search box 
+    const [fixSearch, setFixSearch] = useState(false);
+    const scrollFunc = ()=>{
+        const search_boxes = document.querySelector('.vacancies_page_boxes_container').scrollHeight;
+        setFixSearch(document.documentElement.scrollTop > 90 && document.documentElement.scrollTop < search_boxes); 
+    }
+    useEffect(()=>{
+        window.addEventListener('scroll', scrollFunc)
+        return()=>{
+            window.removeEventListener('scroll', scrollFunc);
+        }
+    }, []);
     return ( 
         <div className="vacancies_page_container">
+            {console.log(searchParams.size)}
             {/* image slider and job search container */}
             <div className="vacancies_page_slider_and_search">
                 {/* slogan */}
                 <div className="vacancies_page_slogan">ARZULADIĞINIZ <span>İŞİ</span> BİZİMLƏ AXTARIN !</div>
                 {/* ___________ job search form ________________ */}
-                <div className="vacancies_page_job_search_container">
+                <div className={`vacancies_page_job_search_container ${fixSearch ? 'vacancies_page_job_search_fixed' : ''}`}>
                     <form className="vacancies_page_job_search_form">
                         {/* vacancy search input */}
                         <input type="text" value={vacancy_name} onChange={vacancySearchChange} placeholder='Peşə, Vəzifə'/>
@@ -74,7 +90,7 @@ function Vacancies() {
             {/* filters and vacancy boxes container */}
             <div className="vacancies_filters_and_boxes_container">
                 {/* mobile filter open button */}
-                <div className="vacancy_page_filters_button" onClick={openMobileFilterHandle}>
+                <div className={`vacancy_page_filters_button ${fixSearch ? 'vacancy_page_filters_button_fixed' : ''}`} onClick={openMobileFilterHandle}>
                     <FontAwesomeIcon icon={faFilter} />
                     Filterlər
                 </div>
@@ -111,9 +127,10 @@ function Vacancies() {
                     </div>
                     {/* premium vacancies */}
                     {/* <PageHeadText content={'Premium Elanlar'}/> */}
+                    <div className="vacancies_page_boxes_head">Premium Elanlar</div>
                     <div className="vacancies_latest_jobs_boxes_container">
                         {
-                            latest_jobs['latest'].map((item, index)=>{
+                            latest_jobs['latest'].filter(filtered => filtered['premium'] === true).map((item, index)=>{
                                 return(
                                     <PostBox 
                                         job_id = {item.job_id}
@@ -137,9 +154,10 @@ function Vacancies() {
                     </div>
                     {/* latest vacancies */}
                     {/* <PageHeadText content={'Ən Son Elanlar'}/> */}
-                    {/* <div className="vacancies_latest_jobs_boxes_container">
+                    <div className="vacancies_page_boxes_head">Elanlar</div>
+                    <div className="vacancies_latest_jobs_boxes_container">
                         {
-                            latest_jobs['latest'].map((item, index)=>{
+                            latest_jobs['latest'].filter(filtered => filtered['premium'] === false).map((item, index)=>{
                                 return(
                                     <PostBox 
                                         job_id = {item.job_id}
@@ -160,7 +178,7 @@ function Vacancies() {
                                 )
                             })
                         }
-                    </div> */}
+                    </div>
                 </div>
             </div>
         </div>

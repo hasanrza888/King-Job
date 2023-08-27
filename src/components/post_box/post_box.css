@@ -8,6 +8,7 @@
     border-radius: 10px;
     margin-bottom: 20px;
     padding: 15px;
+    padding-top: 20px;
     transition: 0.3s all;
     user-select: none;
     position: relative;
@@ -16,10 +17,8 @@
 }
 @keyframes rotate_p{
     from{
-        /* transform: rotate3d(0, 0, 0, 45deg); */
         width: 0px;
     }to{
-        /* transform: rotate3d(1, 1, 1, 45deg); */
         width: 79px;
     }
 }
@@ -47,8 +46,8 @@
 }
 /* when changing grid system */
 .post_box_container_half{
-    width: 48%;
-    margin-right: 10px;
+    width: 49%;
+    /* margin-right: 10px; */
 }
 .post_box_link{
     position: absolute;
@@ -287,7 +286,8 @@
     .post_box_container{
         width: 100%;
         margin: 0px auto 15px;
-        padding: 10px
+        padding: 10px;
+        padding-top: 20px;
     }
     .post_box_company_logo{
         width: 35px;
