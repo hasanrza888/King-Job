@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import CustomSelectOption from '../custom_select_option/custom_select_option';
 import './vacancy_filters.css'
+import { useNavigate } from 'react-router-dom';
 function VacancyFilters({closeMobileFilter, filter, setFilter}) {
+    // navigator
+    const navigate_to = useNavigate();
     // categories
     const [categories, setCategories] = useState([
         {
@@ -214,7 +217,7 @@ function VacancyFilters({closeMobileFilter, filter, setFilter}) {
     const salaryFiltChange = (e)=>{
         if(e.target.name === 'min_salary'){
             if(e.target.value && Number(e.target.value) > 0){
-                if(filter.max_salary !== null){
+                if(filter.max_salary !== ''){
                     if(Number(e.target.value) < Number(filter.max_salary)){ 
                         setFilter({...filter, min_salary : e.target.value});    
                     }
@@ -222,13 +225,13 @@ function VacancyFilters({closeMobileFilter, filter, setFilter}) {
                     setFilter({...filter, min_salary : e.target.value});  
                 }
             }else{
-                setFilter({...filter, min_salary : null});  
+                setFilter({...filter, min_salary : ''});  
             }
         }else if(e.target.name === 'max_salary'){
             if(e.target.value && Number(e.target.value) > 0){
                 setFilter({...filter, max_salary : e.target.value});   
             }else{
-                setFilter({...filter, max_salary : null});   
+                setFilter({...filter, max_salary : ''});   
             }
         }
     }
@@ -239,13 +242,14 @@ function VacancyFilters({closeMobileFilter, filter, setFilter}) {
     }
     // filter reset function
     const resetFiltersHandle = ()=>{
+        navigate_to('/vacancies');
         setFilter({
             ...filter, 
             categories: "",
             sub_categories: "",
             jobCity: "",
-            min_salary: null,
-            max_salary: null,                            
+            min_salary: "",
+            max_salary: "",                            
             jobExperience: "",
             educationLevel: "",
             company: "",
@@ -284,8 +288,29 @@ function VacancyFilters({closeMobileFilter, filter, setFilter}) {
             window.removeEventListener('scroll', scrollFunc);
         }
     }, []);
+    // splitter of queries
+    const filterEmptyQueryParams = (queryString)=> {
+        const queryParams = queryString.split('&');
+        const filteredParams = queryParams.filter(param => {
+          const [key, value] = param.split('=');
+          return value !== '';
+        });
+        const filteredQuery = filteredParams.join('&');
+        return filteredQuery;
+    }
+    // filters search button
+    const search =  (e) => {
+        e.preventDefault();
+        const {categories, sub_categories, jobCity, min_salary, max_salary, jobExperience, educationLevel, company, jobType, skills, vacancyOrder} = filter;
+        const query = `companyName=${company}&category=${categories}&sub_category=${sub_categories}&city=${jobCity}&type=${jobType}&experience=${jobExperience}&education=${educationLevel}&skills=${skills}&min_salary=${min_salary}&max_salary=${max_salary}&order=${vacancyOrder}`;
+        const filteredQuery = filterEmptyQueryParams(query);
+        navigate_to(`/vacancies/?${filteredQuery}`);
+        closeMobileFilter();  
+    }
+
     return ( 
     <div className={`vacancies_filters_container ${fixScroll ? "vacancies_page_filters_fix_position" : ''}`} >
+            {/* {console.log(categories)} */}
             {/* vacancies filter heading    */}
             <div className="vacancies_page_filters_heading">Filterlər</div>
             {/* filter boxes container */}
@@ -337,7 +362,7 @@ function VacancyFilters({closeMobileFilter, filter, setFilter}) {
             </ul>
             <div className="vacancies_filters_confirm_and_reset_btns">
                 <div className="vacancies_filters_reset_btn" onClick={()=>{closeMobileFilter(); resetFiltersHandle()}}>Sıfırla</div>
-                <button className="vacancies_filters_confirm_btn" onClick={()=>{closeMobileFilter()}}>Axtar</button>    
+                <button className="vacancies_filters_confirm_btn" onClick={(e)=>{search(e)}}>Axtar</button>    
             </div>             
     </div> );
 }

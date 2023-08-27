@@ -20,13 +20,30 @@
     color: var(--page-text-act-slogan);
 }
 .vacancies_page_job_search_container{
-    width: 90%;
-    max-width: 450px;
-    margin: 0px auto;
+    width: 100%;
+    /* position: fixed;
+    z-index: 998;
+    right: 0px;
+    top: 74.89px;
+    background-color: var(--body-bg-color);
+    padding: 20px 0px; */
+    transition: 0.3s all;
+}
+.vacancies_page_job_search_fixed{
+    width: 75%;
+    position: fixed;
+    z-index: 998;
+    right: 0px;
+    top: 74.89px;
+    background-color: var(--body-bg-color);
+    padding: 20px 0px;
 }
 /* job search form  */
 .vacancies_page_job_search_form{
-    width: 100%;
+    /* width: 100%; */
+    width: 90%;
+    max-width: 450px;
+    margin: 0px auto;
     position: relative;
     border: 1px solid var(--accent-color);
     border-radius: 10px;
@@ -99,13 +116,23 @@
     width: 100%;
     filter: var(--accent-color);
 }
+.vacancies_page_boxes_head{
+    width: 100%;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    font-size: 18px;
+    color: var(--page-text-slogan-color);
+    font-weight: 500;
+    user-select: none;
+    letter-spacing: 3px;
+}
 .vacancies_latest_jobs_boxes_container{
     width: 100%;
-    margin-bottom: 50px;
+    margin: 0px auto 50px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     flex-wrap: wrap;
 }
 .vacancy_page_filters_button{
@@ -119,7 +146,15 @@
         display: none;
     }
 }
+@media (width <= 850px){
+    .vacancies_page_job_search_fixed{
+        top: 64px;
+    }
+}
 @media (width <= 800px){
+    .vacancies_page_job_search_fixed{
+        width: 100%;
+    }
     .vacancies_filters_and_boxes_container{
         flex-direction: column;
     }
@@ -142,11 +177,19 @@
         cursor: pointer;
         user-select: none;
         margin: 0px 0px 50px 10px;
+        transition: 0.3s all;
     }
     .vacancy_page_filters_button svg{
         margin-right: 10px;
         font-size: 20px;
         color: var(--accent-color);
+    }
+    .vacancy_page_filters_button_fixed{
+        position: fixed;
+        z-index: 999;
+        top: 84px;
+        /* padding: 20px 0px; */
+        margin: 0px;
     }
     @keyframes from_right_to_left{
         0%{
@@ -219,9 +262,9 @@
     .vacancies_page_slogan span{
         font-size: 19px;
     }
-    .vacancies_page_job_search_container{
+    /* .vacancies_page_job_search_container{
         height: 60%;
-    }
+    } */
     .vacancies_page_filters_mobile_close{
         font-size: 20px;
     }

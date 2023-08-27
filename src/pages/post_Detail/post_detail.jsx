@@ -185,7 +185,7 @@ function PostDetail() {
                                     {
                                         data['skills'].map((item, index)=>{
                                             return <li key={index}>
-                                                        <Link to={`/${item}`}>
+                                                        <Link to={`/vacancies?skills=${item}`}>
                                                             <FontAwesomeIcon icon={faTag} />{item}
                                                         </Link>
                                                     </li>

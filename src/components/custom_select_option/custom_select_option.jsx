@@ -10,30 +10,40 @@ function CustomSelectOption({select_option_name, select_option_array, select_upd
         setOptionsShow(!optionsShow);
     }
     const mainOptionNameClk = (item, index, mainId)=> {
-        if(choosedOption !== `${item['optionName']}`){
-            setChoosedOption(`${item['optionName']}`); 
-            if(filter){
-                filter[`${select_option_id}`] = item['optionName'];
-                filter[`${subOptionId}`] = '';
-                setFilter({...filter});
-            }
-        }else{
-            setChoosedOption('');
-            if(filter){
-                filter[`${select_option_id}`] = '';
-                setFilter({...filter});
-            }
-        }
-        // close options window 
-        setOptionsShow(false); 
+        // if(choosedOption !== `${item['optionName']}`){
+        //     setChoosedOption(`${item['optionName']}`); 
+        //     if(filter){
+        //         filter[`${select_option_id}`] = item['optionName'];
+        //         filter[`${subOptionId}`] = '';
+        //         setFilter({...filter});
+        //     }
+        // }else{
+        //     setChoosedOption('');
+        //     if(filter){
+        //         filter[`${select_option_id}`] = '';
+        //         setFilter({...filter});
+        //     }
+        // }
+
         // removes all selected main options and subOptions
         select_option_array.map((itemF, indexF) => {
             // removes all selected main options
             if(itemF['id'] !== mainId){
                 itemF["selected"] = false;
-                console.log(itemF['id']);
+            }else{
+                // selects selected main option
+                itemF["selected"] = !itemF["selected"];
+                // managing main filter
+                if(filter[`${select_option_id}`] === itemF['optionName']){
+                    filter[`${select_option_id}`] = '';
+                    setFilter({...filter});
+                }else{
+                    filter[`${select_option_id}`] = itemF['optionName'];
+                    filter[`${subOptionId}`] = '';
+                    setFilter({...filter});
+                }
             }            
-            // removes all suboptions
+            // removes all sub_options
             if(itemF['subOptions']){
                 for(let i=0; i<itemF['subOptions'].length; i++){
                     itemF['subOptions'][i].selected = false;
@@ -41,28 +51,30 @@ function CustomSelectOption({select_option_name, select_option_array, select_upd
             }            
         }); 
         // selects selected main option 
-        select_option_array[index].selected = !select_option_array[index].selected;
+        // select_option_array[index].selected = !select_option_array[index].selected;
         // updates options state
         select_update([...select_option_array]);
+        // close options window 
+        setOptionsShow(false); 
     }
     const subOptionNameClick = (subItem, subIndex, item, index, subId)=>{
-        if(choosedOption !== `${item['optionName']} / ${subItem["subOptionsName"]}`){
-            setChoosedOption(`${item['optionName']} / ${subItem["subOptionsName"]}`);
-            if(filter){
-                filter[`${select_option_id}`] = item['optionName'];
-                filter[`${subOptionId}`] = subItem["subOptionsName"];
-                setFilter({...filter});
-            }
-        }else{
-            setChoosedOption('');
-            if(filter){
-                filter[`${select_option_id}`] = '';
-                filter[`${subOptionId}`] = '';
-                setFilter({...filter});
-            }
-        }
-        // close options window        
-        setOptionsShow(false);
+        // if(choosedOption !== `${item['optionName']} / ${subItem["subOptionsName"]}`){
+        //     setChoosedOption(`${item['optionName']} / ${subItem["subOptionsName"]}`);
+        //     if(filter){
+        //         // filter[`${select_option_id}`] = item['optionName'];
+        //         filter[`${select_option_id}`] = "";
+        //         filter[`${subOptionId}`] = subItem["subOptionsName"];
+        //         setFilter({...filter});
+        //     }
+        // }else{
+        //     setChoosedOption('');
+        //     if(filter){
+        //         filter[`${select_option_id}`] = '';
+        //         filter[`${subOptionId}`] = '';
+        //         setFilter({...filter});
+        //     }
+        // }
+        
         // removes all selected main options and subOptions
         select_option_array.map((itemF) => {
             // removes all selected main options
@@ -72,20 +84,36 @@ function CustomSelectOption({select_option_name, select_option_array, select_upd
                 for(let i=0; i<itemF['subOptions'].length; i++){
                     if(itemF['subOptions'][i]['id']!== subId){
                         itemF['subOptions'][i].selected = false;  
+                    }else{
+                        // selects selected subOption
+                        itemF['subOptions'][i].selected = !itemF['subOptions'][i].selected;
+                        // managing main filter
+                        if(filter[`${subOptionId}`] === itemF['subOptions'][i].subOptionsName){
+                            filter[`${subOptionId}`] = ''; 
+                            setFilter({...filter});
+                        }else{
+                            filter[`${select_option_id}`] = '';
+                            filter[`${subOptionId}`] = itemF['subOptions'][i].subOptionsName;
+                            setFilter({...filter});
+                        }
                     }                    
                 }    
             }            
         }); 
         // selects selected subOption
-        select_option_array[index]['subOptions'][subIndex].selected = !select_option_array[index]['subOptions'][subIndex].selected;
+        // select_option_array[index]['subOptions'][subIndex].selected = !select_option_array[index]['subOptions'][subIndex].selected;
         // updates options state
         select_update([...select_option_array]);
+        // close options window        
+        setOptionsShow(false);
     }
     return ( 
         <div className="custom_select_option_container">
+            {/* {console.log(filter)} */}
+            {/* {console.log(choosedOption)} */}
             {/* select name */}
             <div className={`custom_select_name_container ${filter[select_option_id] || filter[`${subOptionId}`] ? 'custom_select_name_active' : ''}`} onClick={select_option_opener}>
-                <div className="custom_select_name">{choosedOption && filter[select_option_id] ? choosedOption : select_option_name}</div>
+                <div className="custom_select_name">{filter[select_option_id] ? filter[select_option_id] : filter[subOptionId] ?  filter[subOptionId] : select_option_name}</div>
                 <FontAwesomeIcon icon={faSortDown} />
             </div>
             {/* showing or hiding options */}
