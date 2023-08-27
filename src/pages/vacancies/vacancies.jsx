@@ -42,9 +42,13 @@ function Vacancies() {
         if(window.innerWidth < 1130){
             localStorage.setItem('vacancies_flex', 'one_row');
             setFlex('one_row');
+        }else{
+            localStorage.setItem('vacancies_flex', 'half_row');
+            setFlex('half_row');
         }
     } 
     useEffect(()=>{
+        // resize_window_funcFlex();
         window.addEventListener('resize', resize_window_funcFlex);
         return ()=>{
             window.removeEventListener('resize', resize_window_funcFlex);
@@ -106,13 +110,14 @@ function Vacancies() {
                         </div>
                     </div>
                     {/* premium vacancies */}
-                    <PageHeadText content={'Premium Elanlar'}/>
+                    {/* <PageHeadText content={'Premium Elanlar'}/> */}
                     <div className="vacancies_latest_jobs_boxes_container">
                         {
                             latest_jobs['latest'].map((item, index)=>{
                                 return(
                                     <PostBox 
                                         job_id = {item.job_id}
+                                        premium = {item.premium}
                                         image_url={item.image_url}
                                         salary={item.salary}
                                         job_title={item.job_title}
@@ -131,13 +136,14 @@ function Vacancies() {
                         }
                     </div>
                     {/* latest vacancies */}
-                    <PageHeadText content={'Ən Son Elanlar'}/>
-                    <div className="vacancies_latest_jobs_boxes_container">
+                    {/* <PageHeadText content={'Ən Son Elanlar'}/> */}
+                    {/* <div className="vacancies_latest_jobs_boxes_container">
                         {
                             latest_jobs['latest'].map((item, index)=>{
                                 return(
                                     <PostBox 
                                         job_id = {item.job_id}
+                                        premium = {item.premium}
                                         image_url={item.image_url}
                                         salary={item.salary}
                                         job_title={item.job_title}
@@ -154,7 +160,7 @@ function Vacancies() {
                                 )
                             })
                         }
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

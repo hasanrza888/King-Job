@@ -2,6 +2,16 @@
 .subscribe_form_container{
     width: 100%;
 }
+.subscribe_form_categories{
+    width: 100%;
+    max-width: 300px;
+    margin: 0px auto 20px;
+}
+.subscribe_form_categories_number{
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: var(--secondary-text-color);
+}
 .subscribe_form{
     width: 100%;
     border: 1px solid var(--accent-color);
@@ -11,34 +21,59 @@
     flex-direction: row;
 }
 .subscribe_form_input{
-    width: 65%;
+    width: 60%;
     padding: 10px;
     font-size: 16px;
     border: none;
     outline: none;
     background-color: var(--primary-color);
 }
+.subscribe_form_submit_btn_container{
+    width: 40%;
+    min-width: 120px;
+    position: relative;
+}
 .subscribe_form_submit_btn{
-    width: 35%;
-    min-width: 105px;
+    width: 100%;
     padding: 10px;
     border: none;
     outline: none;
     background-color: var(--accent-color);
     color: var(--primary-color);
     font-weight: 500;
-    font-size: 18px;
+    font-size: 16px;
     cursor: pointer;
+    transition: 0.3s ease all;
 }
 .subscribe_form_submit_btn:hover{
     background-color: var(--accent-hover);
 }
+.send_data_submit_btn_loader{
+    position: absolute;
+    top: 9px;
+    left: 3%;
+    width: 20px;
+    height: 20px;
+    z-index: 1;
+    border-top: 2px solid var(--primary-color);
+    border-right: 2px solid var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    border-left: 2px solid var(--accent-color);
+    border-radius: 50%;
+    animation: form_submit_spinner 1s linear infinite;
+    transition: 0.3s ease all;
+}
+.subscribe_form_submit_btn_container:hover .send_data_submit_btn_loader{
+    border-left: 2px solid var(--accent-hover) !important;
+}
+/* form error message */
+.subscribe_form_error_message{
+    font-size: 13px;
+    color: red;
+    margin-top: 3px;
+}
 @media (width <= 600px){
     .subscribe_form_input{
         width: 60%;
-    }
-    .subscribe_form_submit_btn{
-        width: 40%;
-        font-size: 14px;
     }
 }

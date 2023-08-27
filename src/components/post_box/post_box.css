@@ -14,6 +14,37 @@
     cursor: pointer;
     background-color: var(--primary-color);
 }
+@keyframes rotate_p{
+    from{
+        /* transform: rotate3d(0, 0, 0, 45deg); */
+        width: 0px;
+    }to{
+        /* transform: rotate3d(1, 1, 1, 45deg); */
+        width: 79px;
+    }
+}
+.post_box_premium_vacancy{
+    position: absolute;
+    transform: rotate(-35deg);
+    width: 79px;
+    top: 4px;
+    left: -15px;
+    display: inline;
+    padding: 4px 10px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: 500;
+    background-color: var(--premium-vacancy-color);
+    color: var(--primary-color);
+    border-top-left-radius: 200px;
+    border-top-right-radius: 200px;
+    /* animation: rotate_p 1s infinite linear; */
+}
+.post_box_premium_vacancy_text{
+    width: 79px;
+    animation: rotate_p 1s infinite linear;
+    overflow: hidden;
+}
 /* when changing grid system */
 .post_box_container_half{
     width: 48%;

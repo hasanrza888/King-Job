@@ -27,6 +27,7 @@
     transition: 0.3s all;
     color: var(--accent-color);
     border: 1px solid var(--accent-color);
+    background-color: var(--primary-color);
 }
 .sign_up_page_box_header_link svg{
     font-size: 18px;

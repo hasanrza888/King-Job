@@ -197,15 +197,15 @@
     }
     .vacancies_page_job_search_form input{
         font-size: 15px;
-        padding: 7px;
+        /* padding: 7px; */
     }
     .vacancies_page_job_search_form input::placeholder{
         font-size: 12px;
     }
     .vacancies_page_job_search_form_submit{
         width: 28px;
-        height: 22px;
-        /* top: 11%; */
+        height: 25px;
+        top: 18%;
     }
     .vacancies_page_job_search_form_submit svg{
         font-size: 13px;
