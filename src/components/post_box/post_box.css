@@ -111,16 +111,13 @@
 /* job title */
 .post_box_job_title{
     font-size: 17px;
-    /* display: flex;
-    flex-direction: row;
-    align-items: center; */
-    /* max-width: 160px; */
-    position: relative;
-    z-index: 10;
+    /* position: relative;
+    z-index: 10; */
     font-weight: 500;
     color: var(--secondary-text-color);
     margin-right: 20px;
     font-family: 'Roboto Serif', serif;
+    /* max-width: 50%; */
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -302,6 +299,7 @@
     .post_box_job_title{
         margin-right: unset;
         margin-bottom: 10px;
+        max-width: 225px;
     }
     .job_location_and_time_type{
         justify-content: center;

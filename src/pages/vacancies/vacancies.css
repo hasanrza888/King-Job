@@ -27,7 +27,7 @@
     top: 74.89px;
     background-color: var(--body-bg-color);
     padding: 20px 0px; */
-    transition: 0.3s all;
+    /* transition: 0.3s all; */
 }
 .vacancies_page_job_search_fixed{
     width: 75%;
@@ -36,7 +36,7 @@
     right: 0px;
     top: 74.89px;
     background-color: var(--body-bg-color);
-    padding: 20px 0px;
+    padding: 20px 0px 5px;
 }
 /* job search form  */
 .vacancies_page_job_search_form{
@@ -165,10 +165,15 @@
     .vacancies_page_filters_container{
         display: none;
     }    
+    .vacancy_page_filters_button_container{
+        width: 90%;
+        max-width: 450px;
+        margin: 20px auto 0px;
+    }
     .vacancy_page_filters_button{
         display: flex;
         width: 110px;
-        padding: 10px;
+        padding: 7px 10px;
         border: 1px solid var(--accent-color);
         border-radius: 10px;
         flex-direction: row;
@@ -176,20 +181,23 @@
         /* font-weight: 500; */
         cursor: pointer;
         user-select: none;
-        margin: 0px 0px 50px 10px;
-        transition: 0.3s all;
+        /* margin: 0px 0px 50px 10px; */
+        /* transition: 0.3s all; */
+        background-color: var(--primary-color);
     }
     .vacancy_page_filters_button svg{
         margin-right: 10px;
-        font-size: 20px;
+        font-size: 18px;
         color: var(--accent-color);
     }
     .vacancy_page_filters_button_fixed{
         position: fixed;
         z-index: 999;
-        top: 84px;
+        /* top: 84px; */
+        /* top: 140px; */
+        /* left: 22px; */
         /* padding: 20px 0px; */
-        margin: 0px;
+        /* margin: 0px; */
     }
     @keyframes from_right_to_left{
         0%{
@@ -242,9 +250,6 @@
         font-size: 15px;
         /* padding: 7px; */
     }
-    .vacancies_page_job_search_form input::placeholder{
-        font-size: 12px;
-    }
     .vacancies_page_job_search_form_submit{
         width: 28px;
         height: 25px;
@@ -253,6 +258,9 @@
     .vacancies_page_job_search_form_submit svg{
         font-size: 13px;
     }    
+    .vacancy_page_filters_button_fixed{
+        top: 130px;
+    }
 }
 @media (width <= 400px){
     .vacancies_page_slogan{
