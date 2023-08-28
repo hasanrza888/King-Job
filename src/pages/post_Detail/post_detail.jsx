@@ -11,6 +11,10 @@ import PostBox from "../../components/post_box/post_box";
 import PostBoxSaveBtn from "../../components/post_box_save_btn/post_box_save_btn";
 import ApplyFormDetailP from "../../components/apply_form_detailPage/apply_form_detailP";
 import { toast } from "react-toastify";
+import oneFlex from '../../images/one_grip.svg';
+import oneFlexActive from '../../images/one_grip_active.svg';
+import twoFlex from '../../images/two_grip.svg';
+import twoFlexActive from '../../images/two_grip_active.svg';
 function PostDetail() {
     const {id} = useParams();
     const [data, setData] = useState(null);
@@ -18,6 +22,7 @@ function PostDetail() {
         setData(latest_jobs['latest'].find((item)=> item['job_id'] === Number(id) ? item : null));
     },[id]);
     const [applyWindow, setApplyWindow] = useState(false);
+    const [flex, setFlex] = useState(localStorage.getItem('vacancies_flex') || 'half_row');
     const openApplyWindowF = ()=>{
         setApplyWindow(!applyWindow);
     }
@@ -33,6 +38,27 @@ function PostDetail() {
             theme: "light",
         });
     }
+    const change_flex_handle = (flexType)=>{
+        localStorage.setItem('vacancies_flex', `${flexType}`);
+        setFlex(flexType);
+    }
+    // removes local variable for grid system when window resizing
+    const resize_window_funcFlex= ()=>{
+        if(window.innerWidth <= 1130){
+            localStorage.setItem('vacancies_flex', 'one_row');
+            setFlex('one_row');
+        }else{
+            localStorage.setItem('vacancies_flex', 'half_row');
+            setFlex('half_row');
+        }
+    } 
+    useEffect(()=>{
+        // resize_window_funcFlex();
+        window.addEventListener('resize', resize_window_funcFlex);
+        return ()=>{
+            window.removeEventListener('resize', resize_window_funcFlex);
+        }
+    },[]) 
     return ( 
         <div className="detail_page">
             {
@@ -199,13 +225,39 @@ function PostDetail() {
                     </div>
                     {/* relevant vacancies */}
                     <div className="detail_page_relevant_vacancies">
-                        <PageHeadText content={'Əlaqədar Elanlar'}/>                
-                        <div className="latest_jobs_boxes_container">
+                        <PageHeadText content={'Əlaqədar Elanlar'}/>
+                        {/* flex grips container */}
+                        <div className="vacancies_page_flex_grip_cont">
+                            {/* flex grip image */}
+                            <div className="vacancies_page_flex_grip" onClick={()=>{change_flex_handle('one_row')}}>
+                                {
+                                    flex === 'one_row' ?
+                                    <img src={oneFlexActive} alt="One flex active" />
+                                    :
+                                    <img src={oneFlex} alt="One flex" />
+                                }
+                            </div>
+                            {/* flex grip image */}
+                            <div className="vacancies_page_flex_grip" onClick={()=>{change_flex_handle('half_row')}}>
+                                {
+                                    flex === 'half_row' ?
+                                    <img src={twoFlexActive} alt="Two flex active" />
+                                    :
+                                    <img src={twoFlex} alt="Two flex" />
+                                }
+                            </div>
+                        </div>  
+                        {/* __________________ premium vacancies  __________________ */}
+                        { latest_jobs['latest'].filter(filtered => filtered['premium'] === true && filtered['category'] === data['category']).length > 0 ? 
+                        <div className="vacancies_page_boxes_head">Premium Elanlar</div> : '' 
+                        }            
+                        <div className="detail_latest_jobs_boxes_container">
                             {
-                                latest_jobs['latest'].map((item, index)=>{
+                                latest_jobs['latest'].filter(filtered => filtered['premium'] === true && filtered['category'] === data['category']).map((item, index)=>{
                                     return(
                                         <PostBox 
                                             job_id = {item.job_id}
+                                            premium = {item.premium}
                                             image_url={item.image_url}
                                             salary={item.salary}
                                             job_title={item.job_title}
@@ -217,6 +269,36 @@ function PostDetail() {
                                             location={item.location}
                                             job_time_type={item.job_time_type}
                                             key={item.job_id}
+                                            flexType={flex}
+                                        />
+                                    )
+                                })
+                            }
+                        </div>
+                        {/* _________________________ normal vacancies ________________________ */}
+                        {
+                            latest_jobs['latest'].filter(filtered => filtered['premium'] === false && filtered['category'] === data['category']).length > 0  ?
+                            <div className="vacancies_page_boxes_head">Elanlar</div> : ''
+                        }
+                        <div className="detail_latest_jobs_boxes_container">
+                            {
+                                latest_jobs['latest'].filter(filtered => filtered['premium'] === false && filtered['category'] === data['category']).map((item, index)=>{
+                                    return(
+                                        <PostBox 
+                                            job_id = {item.job_id}
+                                            premium = {item.premium}
+                                            image_url={item.image_url}
+                                            salary={item.salary}
+                                            job_title={item.job_title}
+                                            company_name={item.company_name}
+                                            post_views={item.post_views}
+                                            post_applies = {item.post_applies}
+                                            post_start_date={item.post_start_date}
+                                            post_end_date={item.post_end_date}
+                                            location={item.location}
+                                            job_time_type={item.job_time_type}
+                                            key={item.job_id}
+                                            flexType={flex}
                                         />
                                     )
                                 })

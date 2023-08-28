@@ -41,8 +41,9 @@ function Vacancies() {
         localStorage.setItem('vacancies_flex', `${flexType}`);
         setFlex(flexType);
     }
+    // removes local variable for grid system when window resizing
     const resize_window_funcFlex= ()=>{
-        if(window.innerWidth < 1130){
+        if(window.innerWidth <= 1130){
             localStorage.setItem('vacancies_flex', 'one_row');
             setFlex('one_row');
         }else{
@@ -85,15 +86,18 @@ function Vacancies() {
                             <FontAwesomeIcon icon={faMagnifyingGlass} />
                         </button>
                     </form>
+                    <div className="vacancy_page_filters_button_container">
+                        {/* mobile filter open button */}
+                        <div className={`vacancy_page_filters_button`} onClick={openMobileFilterHandle}>
+                            <FontAwesomeIcon icon={faFilter} />
+                            Filterlər
+                        </div>    
+                    </div>
                 </div>
             </div>            
             {/* filters and vacancy boxes container */}
             <div className="vacancies_filters_and_boxes_container">
-                {/* mobile filter open button */}
-                <div className={`vacancy_page_filters_button ${fixSearch ? 'vacancy_page_filters_button_fixed' : ''}`} onClick={openMobileFilterHandle}>
-                    <FontAwesomeIcon icon={faFilter} />
-                    Filterlər
-                </div>
+                
                 {/* vacancies filters container */}
                 <div className={`vacancies_page_filters_container ${openMobileFilter ? 'vacancies_page_filters_mobile' : ''}`}>
                     <div className="vacancies_page_filters_mobile_close" onClick={openMobileFilterHandle}>
