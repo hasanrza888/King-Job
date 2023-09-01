@@ -119,12 +119,12 @@ function PostDetail() {
                                     {/* job applies number */}
                                     <div className="detail_page_vacancy_button">
                                         <FontAwesomeIcon icon={faPaperPlane} />
-                                        {data['post_applies']}
+                                        {formatNumber(data['post_applies'])}
                                     </div>
                                     {/* job views number */}
                                     <div className="detail_page_vacancy_button">
                                         <FontAwesomeIcon icon={faEye} />
-                                        {data['post_views']}
+                                        {formatNumber(data['post_views'])}
                                     </div>                                
                                 </div>
                             </div>
