@@ -1,4 +1,4 @@
-import {Routes, Route } from 'react-router-dom';
+import {Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
 import CompanySignup from './components/company_signup/company_signup';
 import Footer from './components/footer/footer';
@@ -10,7 +10,7 @@ import Contact from './pages/contact/contact';
 import Home from './pages/home/home';
 import Login from './pages/login/login';
 import Notfound from './pages/not_found_page/not_found';
-import Profile from './pages/profile/profile';
+import UserProfile from './pages/user_profile/user_profile';
 import Signup from './pages/signup/signup';
 import Vacancies from './pages/vacancies/vacancies';
 import PageTopBtn from './components/page_top_btn/page_top_btn';
@@ -21,33 +21,41 @@ import SendOtpForm from './components/sendOtpForm/sendOtpForm';
 import LoginForm from './components/login_form/login_form';
 import ForgotPasswordForm from './components/forgot_password_form/forgot_password_form';
 import UpdatePasswordForm from './components/update_password_form/update_password_form';
+import CompanyProfile from './pages/company_profile/company_profile';
+import { useState } from 'react';
 function App() {
+  const location = useLocation();
   return (
     <div className='container'>
       {/* _______________ header _______________*/}
       <Header/>
       {/* ___________ routers ________________  */}
-      <div className='main_pages_container'>
+      <div className={`main_pages_container ${location.pathname.includes('/company_profile') ? 'main_pages_top' : ''}`}>
         <Routes>
-            <Route path='/' element={<Home/>} />
-            <Route path='/vacancies' element={<Vacancies/>} />
-            <Route path='/vacancies/:id' element={<PostDetail />} />
-            <Route path='/companies' element={<Companies/>} />
-            <Route path='/about' element={<About/>} />
-            <Route path='/contact' element={<Contact/>} />
-            <Route path='/login' element={<Login/>}>
-              <Route index element={<LoginForm />} />
-              <Route path='/login/forgot_password' element={<ForgotPasswordForm />} />
-              <Route path='/login/otp/:email' element={<SendOtpForm />}/>
-              <Route path='/login/new_password/:email/:otp' element={<UpdatePasswordForm />}/>
-            </Route>
-            <Route path='/signup' element={<Signup/>}>
-              <Route index element={<UserSignup/>}/>
-              <Route path='/signup/user_signup' index element={<UserSignup/>}/>
-              <Route path='/signup/company_signup' element={<CompanySignup/>}/>
-            </Route>
-            <Route path='/profile' element={<Profile/>}/>
-            <Route path='*' element={<Notfound/>} />
+          <Route path='/' element={<Home/>} />
+          <Route path='/vacancies' element={<Vacancies/>} />
+          <Route path='/vacancies/:id' element={<PostDetail />} />
+          <Route path='/companies' element={<Companies/>} />
+          <Route path='/about' element={<About/>} />
+          <Route path='/contact' element={<Contact/>} />
+          <Route path='/login' element={<Login/>}>
+            <Route index element={<LoginForm />} />
+            <Route path='/login/forgot_password' element={<ForgotPasswordForm />} />
+            <Route path='/login/otp/:email' element={<SendOtpForm />}/>
+            <Route path='/login/new_password/:email/:otp' element={<UpdatePasswordForm />}/>
+          </Route>
+          <Route path='/signup' element={<Signup/>}>
+            <Route index element={<UserSignup/>}/>
+            <Route path='/signup/user_signup' index element={<UserSignup/>}/>
+            <Route path='/signup/company_signup' element={<CompanySignup/>}/>
+          </Route>
+          <Route path='/user_profile' element={<UserProfile/>}/>
+          {/* _________________  company profile routers __________________ */}
+          <Route path='/company_profile' element={<CompanyProfile />}>
+            {/* <Route index element={''} /> */}
+
+          </Route>
+          <Route path='*' element={<Notfound/>} />            
         </Routes>
       </div>            
       {/* notification message in react toastify */}

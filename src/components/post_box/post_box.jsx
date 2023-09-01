@@ -4,6 +4,7 @@ import { faArrowRightLong, faHourglassEnd, faHourglassStart } from "@fortawesome
 import { faEye, faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import "./post_box.css"
 import { Link } from "react-router-dom";
+import { formatNumber } from "../format_number/format_number";
 function PostBox({setSavedJob, setSuccessMsg, job_id, premium, image_url, salary, job_title, company_name, post_views, post_applies, post_start_date, post_end_date, location, job_time_type, flexType}){
     
     return(
@@ -70,12 +71,12 @@ function PostBox({setSavedJob, setSuccessMsg, job_id, premium, image_url, salary
                         {/* number of applies to the job vacancy */}
                         <div className="post_box_statistics_number">
                             <FontAwesomeIcon icon={faPaperPlane} />
-                            {post_applies}
+                            {formatNumber(post_applies)}
                         </div>
                         {/* number of post views */}
                         <div className="post_box_statistics_number">
                             <FontAwesomeIcon icon={faEye} />
-                            {post_views}
+                            {formatNumber(post_views)}
                         </div>
                     </div>
                 </div>  

@@ -328,6 +328,12 @@
     .detail_page_vacancy_button_desktop{
         display: none;
     }
+    .detail_page_vacancy_button{
+        font-size: 13px;
+    }
+    .detail_page_vacancy_button svg{
+        font-size: 13px;
+    }
     .detail_page_job_header_secondline{
         align-items: center;
     }
@@ -372,13 +378,10 @@
 }
 @media (width <= 400px){
     .detail_page_vacancy_name{
-        font-size: 18px;
+        font-size: 16px;
     }
-    .detail_page_vacancy_button{
-        font-size: 13px;
-    }
-    .detail_page_vacancy_button svg{
-        font-size: 13px;
+    .detail_page_company_name{
+        font-size: 16px;
     }
     .detail_page_date{
         font-size: 13px;

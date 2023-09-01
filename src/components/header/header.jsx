@@ -1,5 +1,5 @@
-import { useState } from "react";
-import {NavLink, Link} from "react-router-dom";
+import { useEffect, useState } from "react";
+import {NavLink, Link, useLocation} from "react-router-dom";
 import svg from '../../images/island_logo.svg';
 import profile_picture from "../../images/my_picture.jpg"
 import './header.css';
@@ -7,24 +7,30 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faAddressBook, faBars, faBriefcase, faBuilding, faCircleInfo, faClose, faHouse} from '@fortawesome/free-solid-svg-icons';
 
 function Header(){
-    const [logged, useLogged] = useState(false);  
+    const [logged, setLogged] = useState(false);  
+    const [p_t, set_p_t] = useState(localStorage.getItem('p_t_v'));
     const [menubar, setMenuBar] = useState(false);
     const [border_bottom, set_border] = useState(false);
+    const location = useLocation();
     // mobile menu bar open and close
     const open_drop_menu = ()=>{
         setMenuBar(!menubar);
     }
     // add border-bottom to header when page scrolling
-    window.addEventListener('scroll', ()=>{
-        if(document.documentElement.scrollTop > 0){
-            set_border(true);
-        }else{
-            set_border(false);
+    const header_border_bottom = ()=>{
+        set_border(document.documentElement.scrollTop > 0)
+    }
+    useEffect(()=>{
+        window.addEventListener('scroll', header_border_bottom);
+        return ()=>{
+            window.removeEventListener('scroll', header_border_bottom);
         }
-    })
+    },[])
+    // localStorage.setItem('p_t_v', 'u')
     return(
-        <header className={border_bottom ? 'header_container header_scroll_border' : 'header_container'}>            
+        <header className={`header_container ${border_bottom ? 'header_container header_scroll_border' : ''} ${location.pathname.includes('/company_profile') ? 'header_container_none' : ''}`}>            
             {/* desktop header container */}
+            {/* {console.log(location)} */}
            <div className="header_desktop">
                 {/* header logo */}
                 <div className="header_logo">
@@ -57,13 +63,23 @@ function Header(){
                 </ul>
                 <div className="account_links_container">
                     {
-                        logged ?                     
-                            <NavLink to="/profile" className={({isActive})=> isActive ? 'link_none' : 'account_link_btn header_profile_btn'}>
+                        // user profile
+                        logged && p_t === 'u'?                     
+                            <NavLink to="/user_profile" className={({isActive})=> isActive ? 'link_none' : 'account_link_btn header_profile_btn'}>
                                 <div className="header_profil_picture">
                                     <img src={profile_picture} alt="profile"/>
                                 </div>
                                 Profil
-                            </NavLink>                    
+                            </NavLink> 
+                        :
+                        // company profile
+                        logged && p_t === 'c'?                     
+                            <NavLink to="/company_profile" className={({isActive})=> isActive ? 'link_none' : 'account_link_btn header_profile_btn'}>
+                                <div className="header_profil_picture">
+                                    <img src='favicon.ico' alt="profile"/>
+                                </div>
+                                Profil
+                            </NavLink>               
                         :
                         <>                        
                             <NavLink to="/login" className={({isActive})=> isActive ? 'link_none' : 'header_login_btn'}>Daxil ol</NavLink>                        

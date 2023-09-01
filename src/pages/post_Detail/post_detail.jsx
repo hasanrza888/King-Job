@@ -15,6 +15,7 @@ import oneFlex from '../../images/one_grip.svg';
 import oneFlexActive from '../../images/one_grip_active.svg';
 import twoFlex from '../../images/two_grip.svg';
 import twoFlexActive from '../../images/two_grip_active.svg';
+import { formatNumber } from "../../components/format_number/format_number";
 function PostDetail() {
     const {id} = useParams();
     const [data, setData] = useState(null);
@@ -75,12 +76,12 @@ function PostDetail() {
                                 {/* job applies number */}
                                 <div className="detail_page_vacancy_button detail_page_vacancy_button_desktop">
                                     <FontAwesomeIcon icon={faPaperPlane} />
-                                    {data['post_applies']}
+                                    {formatNumber(data['post_applies'])}
                                 </div>
                                 {/* job views number */}
                                 <div className="detail_page_vacancy_button detail_page_vacancy_button_desktop">
                                     <FontAwesomeIcon icon={faEye} />
-                                    {data['post_views']}
+                                    {formatNumber(data['post_views'])}
                                 </div>
                                 {/* job save button */}
                                 <div className="detail_page_vacancy_save_button" title="Vakansiyanı yadda saxla">

@@ -1,0 +1,10 @@
+.company_profile_menu_container{
+    width: 20%;
+    height: 100vh;
+    position: sticky;
+    top: 0px;
+    z-index: 999;
+    background-color: var(--company-menu_bg-color);
+    overflow-y: auto;
+    padding: 20px 0px;
+}

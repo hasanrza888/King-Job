@@ -4,6 +4,9 @@
     max-width: 1440px;
     margin: 0px auto;
 }
+.footer_container_none{
+    display: none;
+}
 /* footer columns */
 .desktop_footer_columns{
     width: 100%;
