@@ -349,7 +349,10 @@
     }
     .detail_page_dates_container{
         margin-right: 20px;
-        margin-bottom: 20px;
+        /* margin-bottom: 20px; */
+    }
+    .detail_page_vacancy_buttons_mobile{
+        margin-top: 20px;
     }
     .detail_page_dates_and_salary{
         flex-direction: column;
@@ -359,7 +362,7 @@
         width: 100%;
         justify-content: space-between;
         flex-wrap: wrap;
-        align-items: flex-start;
+        align-items: last baseline;
     }
     .detail_page_salary_and_apply_btn{
         width: 100%;
