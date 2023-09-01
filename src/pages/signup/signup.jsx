@@ -6,7 +6,8 @@ import { faBuilding, faUser } from "@fortawesome/free-solid-svg-icons";
 function Signup() {
     return ( 
         <div className="sign_up_page_container">
-            <PageHeadText content = "Qeydiyyatdan Keçin !"/>
+            {/* <PageHeadText content = "Qeydiyyatdan Keçin !"/> */}
+            <div className="new_page_head">Qeydiyyatdan Keçin !</div>
             <div className="sign_up_page_box_container">
                 {/* user and company register links */}
                 <div className="sign_up_page_box_header">

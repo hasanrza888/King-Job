@@ -1,8 +1,8 @@
-function Profile() {
+function UserProfile() {
     return ( 
         <div className="profile_page_container">
             profile page
         </div>
     );
 }
-export default Profile;
+export default UserProfile;

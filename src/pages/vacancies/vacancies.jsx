@@ -2,7 +2,7 @@ import './vacancies.css';
 import { useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faFilter, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import PageHeadText from '../../components/page_head_text/page_head_text';
+// import PageHeadText from '../../components/page_head_text/page_head_text';
 import PostBox from '../../components/post_box/post_box';
 import { latest_jobs } from '../../fakeData/latestJobs';
 import { useEffect, useState } from 'react';
@@ -30,7 +30,7 @@ function Vacancies() {
         skills: searchParams.get('skills') || "",
         vacancyOrder: searchParams.get('order') || "" 
     })
-    useEffect(()=> { setFilter({...filter}) },[searchParams.size])
+    // useEffect(()=> { setFilter({...filter}) },[searchParams.size])
     const openMobileFilterHandle = ()=>{
         setOpenMobileFilter(!openMobileFilter);
     }
@@ -72,7 +72,6 @@ function Vacancies() {
     }, []);
     return ( 
         <div className="vacancies_page_container">
-            {console.log(searchParams.size)}
             {/* image slider and job search container */}
             <div className="vacancies_page_slider_and_search">
                 {/* slogan */}

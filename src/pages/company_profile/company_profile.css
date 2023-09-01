@@ -1,0 +1,9 @@
+@import '../../color.css';
+.company_profile_container{
+    width: 100%;
+}
+.company_profile_menu_and_main_windows{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
