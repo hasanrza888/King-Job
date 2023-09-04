@@ -81,7 +81,7 @@
 /* account links such as signup login profile buttons */
 .account_links_container{
     width: 15%;
-    min-width: 200px;
+    min-width: 205px;
     display: flex;
     flex-direction: row;
     align-items: center;

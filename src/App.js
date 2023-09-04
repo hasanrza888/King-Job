@@ -23,6 +23,11 @@ import ForgotPasswordForm from './components/forgot_password_form/forgot_passwor
 import UpdatePasswordForm from './components/update_password_form/update_password_form';
 import CompanyProfile from './pages/company_profile/company_profile';
 import { useState } from 'react';
+import CompanyProfileDashboard from './components/company_profile_components/company_profile_dashboard/company_profile_dashboard';
+import CompanyProfileVacancies from './components/company_profile_components/company_profile_vacancies/company_profile_vacancies';
+import CompanyProfileMyVacancies from './components/company_profile_components/company_profile_my_vacancies/company_profile_my_vacancies';
+import ComProCreateVacancy from './components/company_profile_components/com_pro_create_vacancy/com_pro_create_vacancy';
+import ComProPremiumVacancies from './components/company_profile_components/com_pro_premium_vacancies/com_pro_premium_vacancies';
 function App() {
   const location = useLocation();
   return (
@@ -52,8 +57,13 @@ function App() {
           <Route path='/user_profile' element={<UserProfile/>}/>
           {/* _________________  company profile routers __________________ */}
           <Route path='/company_profile' element={<CompanyProfile />}>
-            {/* <Route index element={''} /> */}
-
+            <Route index path='/company_profile/dashboard' element={<CompanyProfileDashboard />} />
+            <Route path='/company_profile/vacancies' element={<CompanyProfileMyVacancies />}>
+              <Route index element={<CompanyProfileMyVacancies />} />
+              <Route path='/company_profile/vacancies/my_vacancies' element={<CompanyProfileMyVacancies />} />
+              <Route path='/company_profile/vacancies/create_vacancy' element={<ComProCreateVacancy />}/>
+              <Route path='/company_profile/vacancies/premium' element={<ComProPremiumVacancies />}/>
+            </Route>
           </Route>
           <Route path='*' element={<Notfound/>} />            
         </Routes>

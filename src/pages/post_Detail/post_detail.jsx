@@ -5,7 +5,7 @@ import { useParams, Link } from "react-router-dom";
 import { latest_jobs } from "../../fakeData/latestJobs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faPaperPlane } from "@fortawesome/free-regular-svg-icons";
-import { faHourglassEnd, faHourglassStart, faTag } from "@fortawesome/free-solid-svg-icons";
+import { faCircleCheck, faHourglassEnd, faHourglassStart, faTag } from "@fortawesome/free-solid-svg-icons";
 import PageHeadText from "../../components/page_head_text/page_head_text";
 import PostBox from "../../components/post_box/post_box";
 import PostBoxSaveBtn from "../../components/post_box_save_btn/post_box_save_btn";
@@ -16,7 +16,9 @@ import oneFlexActive from '../../images/one_grip_active.svg';
 import twoFlex from '../../images/two_grip.svg';
 import twoFlexActive from '../../images/two_grip_active.svg';
 import { formatNumber } from "../../components/format_number/format_number";
+import CVCheckerModal from "../../components/CV_checker_modal/CV_checker_modal";
 function PostDetail() {
+    const [checkCv, setCheckCv] = useState(false);
     const {id} = useParams();
     const [data, setData] = useState(null);
     useEffect(()=>{
@@ -60,6 +62,10 @@ function PostDetail() {
             window.removeEventListener('resize', resize_window_funcFlex);
         }
     },[]) 
+    // check cv button action
+    const open_cv_checker = ()=>{
+        setCheckCv(!checkCv);
+    }
     return ( 
         <div className="detail_page">
             {
@@ -133,9 +139,30 @@ function PostDetail() {
                                 {/* salary  */}
                                 <div className="detail_page_salary">{data['salary']} AZN</div>
                                 {/* apply button */}
-                                <button onClick={openApplyWindowF} className="detail_page_apply_btn">Müraciət Et</button>
+                                <div className="detail_page_apply_btn_container">
+                                    <button onClick={openApplyWindowF} className="detail_page_apply_btn">Müraciət Et</button>
+                                    {/* check your CV info container */}
+                                    <div className="check_your_cv_info_container">
+                                        <div className="check_your_cv_info">
+                                            <div className="check_your_cv_info_text">
+                                                Vakansiyaya müraciət etməmişdən öncə <span>süni intellekt</span> bot-u vasitəsilə CV-in bu işə uyğun olub olmadığını yoxlayaraq məsləhətlər ala bilərsiniz.
+                                            </div>
+                                            <button className="check_your_cv_info_btn" onClick={open_cv_checker}>CV yoxla</button>    
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                    {/* check your cv box */}
+                    <div className="detail_page_check_your_cv_container">
+                        <div className="detail_page_check_your_cv_desc_and_icon">
+                            <FontAwesomeIcon className="detail_page_check_your_cv_icon" icon={faCircleCheck} />
+                            <div className="detail_page_check_your_cv_desc">
+                                Vakansiyaya müraciət etməmişdən öncə <span>süni intellekt</span> bot-u vasitəsilə CV-in bu işə uyğun olub olmadığını yoxlayaraq məsləhətlər ala bilərsiniz
+                            </div>    
+                        </div>
+                        <button className="detail_page_check_your_cv_btn" onClick={open_cv_checker}>CV yoxla</button>
                     </div>
                     {/* vacancy descriptions */}
                     <div className="detail_page_vacancy_description_container">
@@ -222,7 +249,18 @@ function PostDetail() {
                             </div>
                         </div>
                         {/* second apply button */}
-                        <button onClick={openApplyWindowF} className="detail_page_vacancy_second_apply_btn">Müraciət Et</button>
+                        <div className="detail_page_vacancy_second_apply_btn_container">
+                            <button onClick={openApplyWindowF} className="detail_page_vacancy_second_apply_btn">Müraciət Et</button>
+                            {/* check your CV info container */}
+                            <div className="check_your_cv_info_container">
+                                <div className="check_your_cv_info">
+                                    <div className="check_your_cv_info_text">
+                                        Vakansiyaya müraciət etməmişdən öncə <span>süni intellekt</span> bot-u vasitəsilə CV-in bu işə uyğun olub olmadığını yoxlayaraq məsləhətlər ala bilərsiniz.
+                                    </div>
+                                    <button className="check_your_cv_info_btn" onClick={open_cv_checker}>CV yoxla</button>    
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     {/* relevant vacancies */}
                     <div className="detail_page_relevant_vacancies">
@@ -312,6 +350,7 @@ function PostDetail() {
                     Mövcud Elan Yoxdur !
                 </div>
             }
+            {checkCv ? <CVCheckerModal open_cv_checker={open_cv_checker} /> : ''}
             {applyWindow ? <ApplyFormDetailP openApplyWindowF={openApplyWindowF} sendNotificationSuccess = {sendNotificationSuccess}/> : null}            
         </div>
     );

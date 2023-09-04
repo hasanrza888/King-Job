@@ -245,10 +245,7 @@
     }
     .vacancies_page_job_search_form_submit svg{
         font-size: 13px;
-    }    
-    .vacancy_page_filters_button_fixed{
-        top: 130px;
-    }
+    } 
 }
 @media (width <= 400px){
     .vacancies_page_slogan{
@@ -258,9 +255,6 @@
     .vacancies_page_slogan span{
         font-size: 19px;
     }
-    /* .vacancies_page_job_search_container{
-        height: 60%;
-    } */
     .vacancies_page_filters_mobile_close{
         font-size: 20px;
     }

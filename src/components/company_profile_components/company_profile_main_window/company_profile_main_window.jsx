@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './company_profile_main_window.css'
 import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 function CompanyProfileMainWindow() {
     return ( 
     <div className="company_profile_main_window_container">
@@ -12,7 +12,7 @@ function CompanyProfileMainWindow() {
                 Əsas səhifə
             </Link>
         </div>
-        main windows container
+        <Outlet />
     </div> );
 }
 

@@ -1,0 +1,167 @@
+@import '../../color.css';
+@keyframes window_bottom_To_top{
+    from{
+        top: 100%;
+        opacity: 0.5;
+    }
+    to{
+        top:0%;
+        opacity: 1;
+    }
+}
+.CV_checker_modal_container{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 1000;
+    background-color: var(--modal-bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: window_bottom_To_top 0.5s;
+}
+.CV_checker_modal{
+    width: 90%;
+    max-width: 500px;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.CV_checker_modal_info{
+    width: 100%;
+    background-color: var(--secondary-color);
+    text-align: center;
+    padding: 10px;
+    color: var(--secondary-text-color);
+}
+.CV_checker_modal_loading{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.CV_checker_modal_loading_rotate{
+    font-size: 30px;
+    color: var(--checkbox-accept-color);
+    margin-top: 10px;
+    animation: loading_rotate 0.7s infinite linear;
+}
+@keyframes loading_rotate{
+    from{
+        transform: rotate(0deg);
+    }to{
+        transform: rotate(360deg);
+    }
+}
+.CV_checker_modal_body{
+    width: 100%;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 10px 20px 30px;
+    background-color: var(--primary-color);
+    position: relative;
+}
+.CV_checker_modal_body::-webkit-scrollbar{
+    width: 5px;
+}
+.CV_checker_modal_body::-webkit-scrollbar-track {
+    padding: 5px 0px;
+}
+.CV_checker_modal_body::-webkit-scrollbar-thumb{
+    border-radius: 5px;
+    background-color: var(--page-text-slogan-color);
+}
+.CV_checker_modal_body::-webkit-scrollbar-thumb:hover{
+    background-color: var(--light-text-color);
+}
+/* message box  */
+.CV_checker_modal_message_box{
+    width: 95%;
+    background-color: var(--Ai-bot-message-box);
+    padding: 10px;
+    position: relative;
+    box-shadow: var(--boxes-shadow-light);
+    margin-bottom: 20px;
+}
+.CV_checker_modal_message_box:last-child{
+    margin-bottom: 0px;
+}
+.CV_checker_modal_message_box:before{
+    position: absolute;
+    content: '';
+    clip-path: polygon(10px 0, 0 0, 10px 15px);
+    background-color: var(--Ai-bot-message-box);
+    width: 20px;
+    height: 20px;
+    top: 0px;
+    left: -10px;
+}
+.CV_checker_modal_message_box_link{
+    display: inline-block;
+    font-size: 15px;
+    color: var(--accent-color);
+    margin-bottom: 5px;
+}
+/* message text */
+.CV_checker_modal_message_box_text{
+    color: var(--secondary-text-color);
+    letter-spacing: 1px;
+    line-height: 1.5;
+    font-family: 'Roboto Slab', serif;
+}
+/* modal footer */
+.CV_checker_modal_footer{
+    width: 100%;
+    background-color: var(--option-active-bg-color);
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    align-items: center;
+    box-shadow: var(--boxes-shadow-dark);
+}
+/* modal info */
+.CV_checker_modal_footer_info{
+    font-size: 14px;
+    color: var(--secondary-text-color);
+    margin-right: 10px;
+}
+.CV_checker_modal_footer_info a{
+    text-decoration: underline;
+    font-weight: 500;
+}
+/* modal close button */
+.CV_checker_modal_footer_close_btn{
+    display: inline-block;
+    padding: 5px 30px;
+    background-color: var(--primary-color);
+    border: 1px solid var(--accent-color);
+    border-radius: 10px;
+    color: var(--accent-color);
+    cursor: pointer;
+    transition: 0.3s all;
+}
+.CV_checker_modal_footer_close_btn:hover{
+    background-color: var(--accent-hover);
+    border: 1px solid var(--accent-hover);
+    color: var(--primary-color);
+}
+@media (width <= 500px){
+    .CV_checker_modal_message_box{
+        width: 100%;
+    }
+    .CV_checker_modal_footer{
+        flex-direction: column;
+    }
+    .CV_checker_modal_footer_info{
+        margin-bottom: 10px;
+    }
+    .CV_checker_modal_footer_close_btn{
+        width: 50%;
+        min-width: 140px;
+        text-align: center;
+    }
+}

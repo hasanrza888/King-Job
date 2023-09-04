@@ -1,16 +1,12 @@
 @import '../../color.css';
-@keyframes window_Top_To_Bottom{
+@keyframes window_bottom_To_top{
     from{
-        top: -100%;
+        top: 100%;
         opacity: 0.5;
-        left: -100%;
-        border-radius: 100%;
     }
     to{
         top:0%;
         opacity: 1;
-        left: 0%;
-        border-radius: 0%;
     }
 }
 .apply_form_detail_page{
@@ -20,11 +16,11 @@
     z-index: 999;
     width: 100%;
     height: 100vh;
-    background-color: rgb(0,0,0, 0.4);
+    background-color: var(--modal-bg-color);
     display: flex;
     align-items: center;
     justify-content: center;
-    animation: window_Top_To_Bottom 0.9s;
+    animation: window_bottom_To_top 0.5s;
 }
 .apply_form_detail_page_container{
     width: 95%;
