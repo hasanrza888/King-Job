@@ -1,8 +1,13 @@
 @import '../../color.css';
 .not_found_page_container{
     width: 80%;
+    height: 100vh;
     margin: 0px auto;
-    padding: 40px 0px;
+    /* padding: 40px 0px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .not_found_page_head{
     font-size: 30px;

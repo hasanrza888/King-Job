@@ -13,6 +13,7 @@
     --page-text-slogan-color: #888888;
     --page-text-act-slogan: #40B24B;
     /* boxes elements colors __________________ */
+    --modal-bg-color: rgb(0,0,0, 0.4);
     --main-border-color: #f1f1f1;
     --boxes-shadow-light: 0px 4px 4px 0px rgba(0, 0, 0, 0.12);
     --boxes-shadow-dark: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -28,6 +29,9 @@
     --option-active-bg-color: #F2F4FF;
     --page-head-text: #f6fef6;
     --premium-vacancy-color: #ffd500;
+    --Ai-bot-message-box: #f0f1f7;
     /* _______________ company profile colors _____________________ */
     --company-menu_bg-color: #F7F9FF;
+    --company-menu-active: #EBEDFF;
+    --company-menu-active-border: #DCDCDC;
 }

@@ -8,9 +8,6 @@ import { formatNumber } from "../format_number/format_number";
 function CompanyPostBox({company_name, company_logo, company_rating, vacancy_count, apply_count }) {
     return ( 
         <div className="company_post_box_container">
-            {
-                console.log(formatNumber(1100))
-            }
             {/* logo and name */}
             <div className="company_post_logo_and_name">
                 {/* logo */}

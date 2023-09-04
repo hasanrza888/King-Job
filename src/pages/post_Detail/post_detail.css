@@ -143,8 +143,11 @@
     font-size: 18px;
     margin-right: 20px;
 }
+.detail_page_apply_btn_container{
+    position: relative;
+}
 .detail_page_apply_btn{
-    padding: 5px 15px;
+    padding: 10px 30px;
     background-color: var(--accent-color);
     color: var(--primary-color);
     font-weight: 500;
@@ -161,6 +164,111 @@
 }
 .detail_page_apply_btn:hover{
     background-color: var(--accent-hover);
+}
+/* check your cv container when hover on apply button */
+.check_your_cv_info_container{
+    height: 0px;
+    min-height: 0px;
+    overflow: hidden;
+    border-radius: 10px;
+    position: absolute;
+    width: 300px;
+    right: 0px;
+    padding-top: 10px;
+    transition: 0.3s all;
+}
+.check_your_cv_info{
+    width: 100%;
+    background-color: var(--list-active-bg-color);
+    border-radius: 10px;
+    box-shadow: var(--boxes-shadow-light);
+    padding: 10px;
+}
+/* check cv info text */
+.check_your_cv_info_text{
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: var(--secondary-text-color);
+}
+.check_your_cv_info_text span{
+    color: var(--page-text-act-slogan);
+    font-weight: 600;
+}
+/* cv check info button */
+.check_your_cv_info_btn{
+    width: 130px;
+    display: block;
+    margin: 0px auto;
+    padding: 5px 30px;
+    font-size: 16px;
+    background-color: transparent;
+    border-radius: 10px;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    margin-top: 10px;
+    transition: 0.3s all;
+    cursor: pointer;
+}
+.check_your_cv_info_btn:hover{
+    background-color: var(--accent-hover);
+    color: var(--primary-color);
+    border: 1px solid var(--accent-hover);
+}
+.detail_page_apply_btn_container:hover .check_your_cv_info_container{
+    height: 100%;
+    min-height: 140px;
+}
+/* check your cv container */
+.detail_page_check_your_cv_container{
+    width: 90%;
+    margin: 0px auto 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: var(--boxes-shadow-light);
+}
+/* check your cv description and icon */
+.detail_page_check_your_cv_desc_and_icon{
+    display: flex;
+    flex-direction: row;
+    margin-right: 50px;
+    align-items: center;
+}
+/* check your cv icon */
+.detail_page_check_your_cv_icon{
+    margin-right: 20px;
+    font-size: 30px;
+    color: var(--checkbox-accept-color);
+}
+/* check your cv description  */
+.detail_page_check_your_cv_desc{
+    color: var(--secondary-text-color);
+    letter-spacing: 1px;
+}
+.detail_page_check_your_cv_desc span{
+    color: var(--page-text-act-slogan);
+    font-weight: 600;
+}
+/* check your cv submit button */
+.detail_page_check_your_cv_btn{
+    min-width: 170px;
+    padding: 10px 50px;
+    font-size: 16px;
+    outline: none;
+    background-color: transparent;
+    border: 1px solid var(--accent-color);
+    border-radius: 10px;
+    color: var(--accent-color);
+    transition: 0.3s all;
+    cursor: pointer;
+}
+.detail_page_check_your_cv_btn:hover{
+    background-color: var(--accent-hover);
+    border: 1px solid var(--accent-hover);
+    color: var(--primary-color);
 }
 /* vacancy descriptions container */
 .detail_page_vacancy_description_container{
@@ -251,10 +359,18 @@
 .detail_page_vacancy_description_skills li a:hover svg{
     transform: rotate(15deg) scale(1.2);
 }
+.detail_page_vacancy_second_apply_btn_container{
+    position: relative;
+    /* width: 100%; */
+    width: 50%;
+    display: block;
+    margin: 30px auto 0px;
+}
 /* second apply button */
 .detail_page_vacancy_second_apply_btn{
-    width: 50%;
-    margin: 30px auto 0px;
+    width: 100%;
+    /* display: block;
+    margin: 30px auto 0px; */
     padding: 5px 30px;
     font-size: 20px;
     font-weight: 700;
@@ -272,6 +388,10 @@
     background-color: var(--accent-hover);
     color: var(--primary-color);
     border: 2px solid var(--accent-hover);
+}
+.detail_page_vacancy_second_apply_btn_container:hover .check_your_cv_info_container{
+    height: 100%;
+    min-height: 140px;
 }
 /* relevant vacancies */
 .detail_page_relevant_vacancies{
@@ -311,7 +431,7 @@
         width: 90%;
         margin-top: 50px;
     }
-    .detail_page_job_header, .detail_page_vacancy_description_container{
+    .detail_page_job_header, .detail_page_vacancy_description_container, .detail_page_check_your_cv_container{
         width: 100%;
     }
     .detail_page_vacancy_description_body{
@@ -320,7 +440,7 @@
     .detail_page_vacancy_description_half{
         width: 100%;
     }
-    .detail_page_vacancy_second_apply_btn{
+    .detail_page_vacancy_second_apply_btn_container{
         width: 80%;
     }
 }
@@ -372,11 +492,33 @@
     .detail_page_salary{
         padding: 0px;
     }
+    .detail_page_check_your_cv_container{
+        flex-direction: column;
+    }
+    .detail_page_check_your_cv_desc_and_icon{
+        margin: 0px 0px 20px 0px;
+    }
+    .detail_page_check_your_cv_btn{
+        width: 50%;
+        margin: 0px auto;
+    }
     .detail_page_not_found{
         height: 20vh;
         font-size: 20px;
         padding: 30px 0px;
         margin-bottom: 20px;
+    }
+}
+@media (width <= 450px){
+    .detail_page_check_your_cv_icon{
+        font-size: 20px;
+        margin-right: 10px;
+    }
+    .detail_page_check_your_cv_desc{
+        font-size: 14px;
+    }
+    .detail_page_check_your_cv_btn{
+        width: 100%;
     }
 }
 @media (width <= 400px){
@@ -399,13 +541,23 @@
         margin-right: 0px;
         font-size: 18px;
     }
+    .detail_page_apply_btn_container{
+        width: 100%;
+    }
     .detail_page_apply_btn{
         width: 100%;
+    }
+    .check_your_cv_info_container{
+        width: 100%;
+    }
+    .detail_page_apply_btn_container:hover .check_your_cv_info_container{
+        height: 100%;
+        min-height: 170px;
     }
     .detail_page_vacancy_description_body{
         font-size: 14px;
     }
-    .detail_page_vacancy_second_apply_btn{
+    .detail_page_vacancy_second_apply_btn_container{
         width: 100%;
         font-size: 16px;
     }

@@ -26,7 +26,7 @@ function Header(){
             window.removeEventListener('scroll', header_border_bottom);
         }
     },[])
-    // localStorage.setItem('p_t_v', 'u')
+    // localStorage.setItem('p_t_v', 'c')
     return(
         <header className={`header_container ${border_bottom ? 'header_container header_scroll_border' : ''} ${location.pathname.includes('/company_profile') ? 'header_container_none' : ''}`}>            
             {/* desktop header container */}
@@ -74,7 +74,7 @@ function Header(){
                         :
                         // company profile
                         logged && p_t === 'c'?                     
-                            <NavLink to="/company_profile" className={({isActive})=> isActive ? 'link_none' : 'account_link_btn header_profile_btn'}>
+                            <NavLink to='/company_profile/dashboard' className={({isActive})=> isActive ? 'link_none' : 'account_link_btn header_profile_btn'}>
                                 <div className="header_profil_picture">
                                     <img src='favicon.ico' alt="profile"/>
                                 </div>

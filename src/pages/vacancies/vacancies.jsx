@@ -96,7 +96,6 @@ function Vacancies() {
             </div>            
             {/* filters and vacancy boxes container */}
             <div className="vacancies_filters_and_boxes_container">
-                
                 {/* vacancies filters container */}
                 <div className={`vacancies_page_filters_container ${openMobileFilter ? 'vacancies_page_filters_mobile' : ''}`}>
                     <div className="vacancies_page_filters_mobile_close" onClick={openMobileFilterHandle}>

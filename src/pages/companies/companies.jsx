@@ -81,13 +81,25 @@ function Companies() {
             window.removeEventListener('scroll', scrollFunc);
         }
     }, []);
+    // fixing search box 
+    const [fixSearch, setFixSearch] = useState(false);
+    const scrollForSearchForm = ()=>{
+        const search_boxes = document.querySelector('.companies_page_commpany_boxes').scrollHeight;
+        setFixSearch(document.documentElement.scrollTop > 90 && document.documentElement.scrollTop < search_boxes); 
+    }
+    useEffect(()=>{
+        window.addEventListener('scroll', scrollForSearchForm)
+        return()=>{
+            window.removeEventListener('scroll', scrollForSearchForm);
+        }
+    }, []);
     return ( 
         <div className="companies_page_container">
             <div className="companies_page_slider_and_search">
                 {/* slogan */}
                 <div className="companies_page_slogan">İstədİyİnİz <span>Şİrkətİ</span> axtarın !</div>
                 {/* ___________ company search form ________________ */}
-                <div className="companies_page_job_search_container">
+                <div className={`companies_page_job_search_container ${fixSearch ? 'companies_page_job_search_fixed' : ''}`}>
                     <form className="companies_page_job_search_form">
                         {/* company search input */}
                         <input type="text" value={filter.company_name} onChange={companyNameChange} placeholder='Şirkət'/>
@@ -95,15 +107,17 @@ function Companies() {
                             <FontAwesomeIcon icon={faMagnifyingGlass} />
                         </button>
                     </form>
+                    {/* mobile filter open button */}
+                    <div className="companies_page_filters_button_container">
+                        <div className="companies_page_filters_button" onClick={openMobileFilterHandle}>
+                            <FontAwesomeIcon icon={faFilter} />
+                            Filterlər
+                        </div>    
+                    </div>
                 </div>
             </div>
             {/* company filters and companies */}
             <div className="companies_page_filter_and_companies">
-                {/* mobile filter open button */}
-                <div className="companies_page_filters_button" onClick={openMobileFilterHandle}>
-                    <FontAwesomeIcon icon={faFilter} />
-                    Filterlər
-                </div>
                 {/* company filters */}
                 <div className={`companies_page_filter ${openMobileFilter ? 'companies_page_filters_mobile' : ''}`}>
                     <div className={`companies_page_filter_container ${fixScroll ? "companies_page_filters_fix_position" : ''}`}>
@@ -128,7 +142,8 @@ function Companies() {
                 </div>
                 {/* company post boxes */}
                 <div className="companies_page_commpany_boxes">
-                    <PageHeadText content={'Şirkətlər'}/>
+                    {/* <PageHeadText content={'Şirkətlər'}/> */}
+                    <div className="companies_page_boxes_head">Şirkətlər</div>
                     <div className="companies_page_commpany_boxes_container">
                         {
                             companies.map((item, index)=>{
