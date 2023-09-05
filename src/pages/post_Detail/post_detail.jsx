@@ -142,14 +142,14 @@ function PostDetail() {
                                 <div className="detail_page_apply_btn_container">
                                     <button onClick={openApplyWindowF} className="detail_page_apply_btn">Müraciət Et</button>
                                     {/* check your CV info container */}
-                                    <div className="check_your_cv_info_container">
+                                    {/* <div className="check_your_cv_info_container">
                                         <div className="check_your_cv_info">
                                             <div className="check_your_cv_info_text">
                                                 Vakansiyaya müraciət etməmişdən öncə <span>süni intellekt</span> bot-u vasitəsilə CV-in bu işə uyğun olub olmadığını yoxlayaraq məsləhətlər ala bilərsiniz.
                                             </div>
                                             <button className="check_your_cv_info_btn" onClick={open_cv_checker}>CV yoxla</button>    
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>
@@ -252,14 +252,14 @@ function PostDetail() {
                         <div className="detail_page_vacancy_second_apply_btn_container">
                             <button onClick={openApplyWindowF} className="detail_page_vacancy_second_apply_btn">Müraciət Et</button>
                             {/* check your CV info container */}
-                            <div className="check_your_cv_info_container">
+                            {/* <div className="check_your_cv_info_container">
                                 <div className="check_your_cv_info">
                                     <div className="check_your_cv_info_text">
                                         Vakansiyaya müraciət etməmişdən öncə <span>süni intellekt</span> bot-u vasitəsilə CV-in bu işə uyğun olub olmadığını yoxlayaraq məsləhətlər ala bilərsiniz.
                                     </div>
                                     <button className="check_your_cv_info_btn" onClick={open_cv_checker}>CV yoxla</button>    
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     {/* relevant vacancies */}
