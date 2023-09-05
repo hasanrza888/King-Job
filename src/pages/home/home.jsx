@@ -11,6 +11,7 @@ import user_tasks from "../../images/user_tasks.jpg";
 import online_interview from "../../images/online_interview.jpg";
 import ofline_interview from "../../images/ofline_interview.jpg";
 import OurWorksPromotions from '../../components/our_works_promotions/our_works_promotions';
+import king_job_video from '../../videos/king_job_video.mp4';
 function Home() {
     return ( 
         <div className="home_page_container">
@@ -25,6 +26,16 @@ function Home() {
                     action_button_text = 'Müraciət Et'
                     action_link='/vacancies'
                     slider_images = {[first_apply_first, first_apply_second, first_apply_third, first_apply_fourth]}
+                />
+                {/* ai cv checker */}
+                <OurWorksPromotions 
+                    key="cv_checker"
+                    box_head="Süni İntellekt bot-u ilə CV yoxlanması" 
+                    box_desc= <div>İş axtaranların ən böyük problemlərindən biri CV-lərini doğru şəkildə tərtib etməkdir.Süni intellekt bot-u burada köməkçinizdir. CV-nizi yoxladıqdan sonra sizə köməkçi məsləhətlər verir, doğru formada məlumatlarınızı düzəltməyinizə kömək edir və vakansiya tələblərinə uyğunluğunu qiymətləndirir. Bot sizi iş axtarışında müvəffəqiyyətləri artırmaq üçün ən yaxşı təlimatları təqdim edir. <b>Həmin təlimatları izləyərək CV-nizi təkmilləşdirin və vakansiya təkliflərinə daha yaxın olun.</b></div>
+                    action_button_text = 'Müraciət Et'
+                    action_link='/vacancies'
+                    slider_images = {[]}
+                    video = {king_job_video}
                 />
                 {/* confirm notification box container */}
                 <OurWorksPromotions 

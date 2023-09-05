@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import OurWorksSlider from '../our_works_slider/our_works_slider';
 import './our_works_promotions.css';
-function OurWorksPromotions({box_head, box_desc, action_button_text, action_link, slider_images, one_image}) {
+function OurWorksPromotions({box_head, box_desc, action_button_text, action_link, slider_images, one_image, video}) {
     return ( 
         <div className="our_works_promotions_container">
             <div className="home_page_what_do_box_head">{box_head}</div>
@@ -16,9 +16,16 @@ function OurWorksPromotions({box_head, box_desc, action_button_text, action_link
                 {/* slider */}
                 <div className="home_page_what_do_box_slider_container">
                     {
-                        slider_images.length > 0 ? <OurWorksSlider images={slider_images} /> : <img src={one_image} alt="Our Works image"/>
+                        slider_images.length > 0 ? 
+                        <OurWorksSlider images={slider_images} /> 
+                        :
+                        video ? 
+                        <video width="100%" loop autoPlay muted>
+                            <source src={video} type="video/mp4" />
+                        </video>
+                        :
+                        <img src={one_image} alt="Our Works image"/>
                     }
-                    
                 </div>
             </div>
         </div>

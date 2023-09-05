@@ -45,6 +45,8 @@
 .home_page_what_do_box_text{
     width: 100%;
     color: var(--secondary-text-color);
+    line-height: 1.3;
+    letter-spacing: 1px;
 }
 .home_page_what_do_box_action_btn{
     width: 100%;
