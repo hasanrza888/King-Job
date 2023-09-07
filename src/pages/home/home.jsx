@@ -21,7 +21,7 @@ function Home() {
                 {/* first apply box container */}
                 <OurWorksPromotions 
                     key="first_apply"
-                    box_head="İlkin müraciət" 
+                    box_head="İlkin müraciət!" 
                     box_desc="Arzuladığınız işi vakansiyalar səhifəsində axtararaq, asanlıqla müraciət edə bilərsiniz."
                     action_button_text = 'Müraciət Et'
                     action_link='/vacancies'
@@ -30,7 +30,7 @@ function Home() {
                 {/* ai cv checker */}
                 <OurWorksPromotions 
                     key="cv_checker"
-                    box_head="Süni İntellekt bot-u ilə CV yoxlanması" 
+                    box_head="Süni İntellekt bot-u ilə CV yoxlanması!" 
                     box_desc= <div>İş axtaranların ən böyük problemlərindən biri CV-lərini doğru şəkildə tərtib etməkdir.Süni intellekt bot-u burada köməkçinizdir. CV-nizi yoxladıqdan sonra sizə köməkçi məsləhətlər verir, doğru formada məlumatlarınızı düzəltməyinizə kömək edir və vakansiya tələblərinə uyğunluğunu qiymətləndirir. Bot sizi iş axtarışında müvəffəqiyyətləri artırmaq üçün ən yaxşı təlimatları təqdim edir. <b>Həmin təlimatları izləyərək CV-nizi təkmilləşdirin və vakansiya təkliflərinə daha yaxın olun.</b></div>
                     action_button_text = 'Müraciət Et'
                     action_link='/vacancies'
@@ -40,7 +40,7 @@ function Home() {
                 {/* confirm notification box container */}
                 <OurWorksPromotions 
                     key="confirm_notification"
-                    box_head="Qəbul bildirişi" 
+                    box_head="Qəbul bildirişi!" 
                     box_desc="Müraciət etdiyiniz vakansiyalardan cavab gələrsə profilinizdə bildiriş əldə edirsiniz."
                     action_button_text = 'Müraciət Et'
                     action_link='/vacancies'
@@ -50,7 +50,7 @@ function Home() {
                 {/* company task box container */}
                 <OurWorksPromotions 
                     key="online_tasks"
-                    box_head="Onlayn tapşırıqlar" 
+                    box_head="Onlayn tapşırıqlar!" 
                     box_desc="İlkin təsdiq bildirişi aldıqdan sonra şirkətin seçiminə əsasən onlayn tapşırıqlar həll edə bilərsiniz."
                     action_button_text = 'Müraciət Et'
                     action_link='/vacancies'
@@ -60,7 +60,7 @@ function Home() {
                 {/* online or ofline interview box container */}
                 <OurWorksPromotions 
                     key="interview"
-                    box_head="Müsahibə mərhələsi" 
+                    box_head="Müsahibə mərhələsi!" 
                     box_desc="İlkin təsdiq bildirişi aldıqdan sonra şirkətin seçiminə əsasən oflayn və ya platformamız üzərindən onlayn müsahibəyə dəvət alırsınız."
                     action_button_text = 'Müraciət Et'
                     action_link='/vacancies'
