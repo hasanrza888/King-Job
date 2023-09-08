@@ -5,7 +5,8 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { email_checker } from '../email_checker/email_checker';
-function SendOtpForm({setOpenOtpWindow, setNewPassword, login, userSignUp, company_SignUp}) {
+import { registerUser,verifyOtp } from '../../apiservices';
+function SendOtpForm({setOpenOtpWindow, setNewPassword, login,tema,data:formInfo}) {
     const [reverseAnimation, setReverseAnimation] = useState(false); 
     const [countDown, setCountDown] = useState(120);
     const [errorMessage, setErrorMessage] = useState({
@@ -16,36 +17,66 @@ function SendOtpForm({setOpenOtpWindow, setNewPassword, login, userSignUp, compa
     const [otpInputValue, setOtpInputValue] = useState('');
     const [otpChecking, setOtpChecking] = useState(false);
     const {email} = useParams();
-    const sendOtpCodeHandle = (e)=>{
+    const rgstrU = async () => {
+        console.log()
+        try {
+            const {data} =await registerUser({name:formInfo.user_name,email:formInfo.email,password:formInfo.password,passwordRepeat:formInfo.passwordRepeat,otp:otpInputValue})
+            return data
+        } catch (error) {
+            if(error && error.response && error.response.data){
+                return error.response.data
+            }
+            
+        }
+    }
+    const sendOtpCodeHandle = async (e)=>{
         e.preventDefault();    
         // showing loader animation when otp code checking
-        if(otpInputValue.length === 6){
-            setOtpChecking(true);
-        }            
-        // naviagates when form completed
-        if((userSignUp === true && !otpChecking) || (company_SignUp === true && !otpChecking)){
-            toast.success('Qeydiyyatınız uğurlu oldu !', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
-            setTimeout(()=>{
-                navigate('/login');    
-            }, 5000);            
-        }else{
-            navigate(`/login/new_password/${email}/${otpInputValue}`);
+        
+        try {
+            if(otpInputValue.length === 5){
+                setOtpChecking(true);
+            }            
+            // naviagates when form completed
+            if(tema === 'user_register'){
+                setOtpChecking(true);
+                console.log(formInfo)
+                const data  = await rgstrU();
+                console.log(data)
+                if(!data.succes){
+                    setOtpChecking(false);
+                    setErrorMessage({errorCheck:true,errorContent:data.message})
+                }
+                else{
+                    setOtpChecking(false)
+                    toast.success(data.message, {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                    setTimeout(()=>{
+                        navigate('/login');    
+                    }, 5000);  
+
+                }             
+            }else{
+                navigate(`/login/new_password/${email}/${otpInputValue}`);
+            }
+            
+        } catch (error) {
+            
         }
     }
     // back button
     const closeWindowBox = ()=>{  
         setReverseAnimation(true);        
         setTimeout(()=>{
-            if(company_SignUp || userSignUp){
+            if(tema){
                 setOpenOtpWindow(false);     
             }
             else{
@@ -70,15 +101,15 @@ function SendOtpForm({setOpenOtpWindow, setNewPassword, login, userSignUp, compa
         setOtpChecking(false);
     }
     const otpInputHandle = (e)=>{
-        if(e.target.value.length <= 6){
+        if(e.target.value.length <= 5){
             setOtpInputValue(e.target.value);   
         }
     }
     return ( 
         <div className='otp_form_and_checking'>
             {
-                email_checker(email) || userSignUp || company_SignUp ?
-                <div className={`send_top_form_container ${(company_SignUp || userSignUp) ? "send_top_form_container_signup" : ""}  ${ reverseAnimation ? "send_top_form_close_animation" : "send_top_form_open_animation"}`}>
+                email_checker(email) || tema ?
+                <div className={`send_top_form_container ${(tema) ? "send_top_form_container_signup" : ""}  ${ reverseAnimation ? "send_top_form_close_animation" : "send_top_form_open_animation"}`}>
                     {/* window close button */}
                     <div className="forgot_password_form_window_close" onClick={closeWindowBox}>
                         <FontAwesomeIcon icon={faAngleLeft} ></FontAwesomeIcon>
@@ -107,7 +138,7 @@ function SendOtpForm({setOpenOtpWindow, setNewPassword, login, userSignUp, compa
                         <button type='button' onClick={sendOtpAgain} className='send_otp_again_btn'>Yenidən göndər !</button>                
                         {/* form confirm button */}
                         <div className="send_otp_form_submit_btn_container">
-                            <input type="submit" value="Təsdiqlə" className= {`send_otp_form_submit ${otpInputValue.length === 6 ? 'send_otp_form_submit_ready' : '' }`}/>
+                            <input type="submit" value="Təsdiqlə" className= {`send_otp_form_submit ${otpInputValue.length === 5 ? 'send_otp_form_submit_ready' : '' }`}/>
                             {
                                 otpChecking ? <div className="send_otp_form_submit_btn_loader"></div> : null
                             }                    
