@@ -23,7 +23,7 @@ function Home() {
                     key="first_apply"
                     box_head="İlkin müraciət" 
                     box_desc="Arzuladığınız işi vakansiyalar səhifəsində axtararaq, asanlıqla müraciət edə bilərsiniz."
-                    action_button_text = 'Müraciət Et'
+                    action_button_text = 'Müraciət Et !'
                     action_link='/vacancies'
                     slider_images = {[first_apply_first, first_apply_second, first_apply_third, first_apply_fourth]}
                 />
