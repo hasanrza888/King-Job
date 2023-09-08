@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { email_checker } from '../email_checker/email_checker';
-import { registerUser,verifyOtp } from '../../apiservices';
+import { registerUser,verifyOtp,verifyEmailAndSendOtp } from '../../apiservices';
 function SendOtpForm({setOpenOtpWindow, setNewPassword, login,tema,data:formInfo}) {
     const [reverseAnimation, setReverseAnimation] = useState(false); 
     const [countDown, setCountDown] = useState(120);
@@ -95,10 +95,38 @@ function SendOtpForm({setOpenOtpWindow, setNewPassword, login,tema,data:formInfo
         }
     }, [countDown]);
     // function for send otp again button
-    const sendOtpAgain = ()=>{
-        setCountDown(120);
-        setOtpInputValue('');
-        setOtpChecking(false);
+    const sendOtpAgain = async ()=>{
+        try {
+            const {data} = await verifyEmailAndSendOtp({email:formInfo.email,type:'u_register',name:formInfo.user_name});
+            if(data.succes){
+                setErrorMessage({errorCheck:false,errorContent:''});
+                setCountDown(120);
+                setOtpInputValue('');
+                setOtpChecking(false);
+                toast.success(data.message+"AGAIN", {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            }
+            else{
+                setErrorMessage({errorCheck:true,errorContent:data.message})
+            }
+        } catch (error) {
+            if(error && error.response && error.response.data){
+                setErrorMessage({errorCheck:true,errorContent:error.response.data.message})
+            }
+            else{
+                setErrorMessage({errorCheck:true,errorContent:'ERROR!'})
+            }
+        }
+
+
     }
     const otpInputHandle = (e)=>{
         if(e.target.value.length <= 5){
