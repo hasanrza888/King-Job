@@ -13,3 +13,9 @@ export const verifyOtp = (data) => {
 export const registerUser = (userData) => {
     return axiosInstance.post('/registerUser',userData);
 }
+export const updateUserForgottenPassword = (userData) => {
+    return axiosInstance.post('/updatePassword',userData);
+}
+export const emailIsUserOrCompany = (data) => {
+    return axiosInstance.post('/emailiusrorcmp',data);
+}
