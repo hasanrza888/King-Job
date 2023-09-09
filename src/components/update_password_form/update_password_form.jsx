@@ -7,7 +7,7 @@ import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import PasswordChecker from '../password_checker/password_checker';
 import { toast } from 'react-toastify';
 import { email_checker } from '../email_checker/email_checker';
-import { updateUserForgottenPassword,emailIsUserOrCompany } from '../../apiservices';
+import { updateUserForgottenPassword,emailIsUserOrCompany,updateCompanyForgottenPassword } from '../../apiservices';
 function UpdatePasswordForm({setNewPassword, setOpenOtpWindow, close}) {
     const [showPassword, setShowPassword] = useState(false);
     // error message runner for otp 
@@ -62,7 +62,7 @@ function UpdatePasswordForm({setNewPassword, setOpenOtpWindow, close}) {
         try {
             if((e.target.new_password.value === e.target.repeate_password.value) && (pasLength === true && upperCase === true && lowerCase === true)){
                 setErrorMessage({errorCheck:false,errorContent:''})
-                const {data:dataEmail} = await emailIsUserOrCompany({email,permission_id:'0f12_j_1'})
+                const {data:dataEmail} = await emailIsUserOrCompany({email})
                 // setNewPassword(false);
                 if(dataEmail.succes){
                     if(dataEmail.u_t_p === 'u_s_r'){
@@ -82,11 +82,31 @@ function UpdatePasswordForm({setNewPassword, setOpenOtpWindow, close}) {
                             Navigate('/login');
                         }
                         else{
+
                             setErrorMessage({errorCheck:true,errorContent:data.message});
                         }
                     }
                     else{
-                        alert('It is not working now!')
+                        const {data} = await updateCompanyForgottenPassword({email,otp,newpassword:pasValues.newPass,newpasswordRepeat:pasValues.repeatPass});
+                        if(data.succes){
+                            setErrorMessage({errorCheck:false,errorContent:''});
+                            toast.success(data.message, {
+                                position: "top-right",
+                                autoClose: 5000,
+                                hideProgressBar: false,
+                                closeOnClick: false,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "light",
+                            });
+                            Navigate('/login');
+                        }
+                        else{
+                            
+                            setErrorMessage({errorCheck:true,errorContent:data.message});
+                        }
+                        // alert('It is not working now!')
                     }
                 }
                 else{

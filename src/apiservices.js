@@ -19,6 +19,9 @@ export const registerCompany = (companyData) => {
 export const updateUserForgottenPassword = (userData) => {
     return axiosInstance.post('/updatePassword',userData);
 }
+export const updateCompanyForgottenPassword = (userData) => {
+    return axiosInstance.post('/changeCompanyForgottenPassword',userData)
+}
 export const emailIsUserOrCompany = (data) => {
     return axiosInstance.post('/emailiusrorcmp',data);
 }
