@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faAddressBook, faBars, faBriefcase, faBuilding, faCircleInfo, faClose, faHouse} from '@fortawesome/free-solid-svg-icons';
 
 function Header(){
-    const [logged, setLogged] = useState(false);  
+    const [logged, setLogged] = useState(true);  
     const [p_t, set_p_t] = useState(localStorage.getItem('p_t_v'));
     const [menubar, setMenuBar] = useState(false);
     const [border_bottom, set_border] = useState(false);

@@ -31,8 +31,16 @@
 /* submenu container */
 .company_profile_submenus{
     width: 100%;
+    /* height: auto; */
+    max-height: 200px;
     padding-left: 40px;
     margin-top: 10px;
+    transition: 0.5s ease all;
+    overflow: hidden;
+}
+.company_profile_submenus_hide{
+    /* height: 0px; */
+    max-height: 0px;
 }
 .company_profile_submenus_link{
     display: block;

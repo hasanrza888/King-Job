@@ -112,7 +112,7 @@ function CompanyProfileMenu() {
             <ul className="company_profile_menu_items_container">
                 {
                     menu_names_submenus.map((item, index)=>{
-                        return <li><CompanyProfileSubmenus key={index} menu={item}/></li> 
+                        return <li key={index}><CompanyProfileSubmenus key={index} menu={item}/></li> 
                     })
                 }
             </ul>
