@@ -1,6 +1,6 @@
 import './login_form.css';
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ForgotPasswordForm from '../forgot_password_form/forgot_password_form';
 import { Link, useNavigate } from 'react-router-dom';
@@ -8,8 +8,11 @@ import SendOtpForm from '../sendOtpForm/sendOtpForm';
 import UpdatePasswordForm from '../update_password_form/update_password_form';
 import { email_checker } from '../email_checker/email_checker';
 import { toast } from 'react-toastify';
-
+import { loginCompany,loginUser,emailIsUserOrCompany } from '../../apiservices';
+import { useDispatch,useSelector } from 'react-redux';
+import { setUser,clearUser } from '../../redux/reducers/userauthReducers';
 function LoginForm() {
+    const dispatch = useDispatch();
     const [formInfo, setFormInfo] = useState({
         email: '',
         password: ''
@@ -36,25 +39,106 @@ function LoginForm() {
     const form_password_handle = (e)=>{
         setFormInfo({...formInfo, password: e.target.value});
     }
+    const emiscmp = async () => {
+        setSendingData(true)
+        try {
+            const {data} = await emailIsUserOrCompany({email:formInfo.email});
+            setSendingData(false)
+            return data
+        } catch (error) {
+            setSendingData(false);
+            if(error.response && error.response.data){
+                return error.response.data
+            }
+        }
+    }
+    const lgnU = async () => {
+        setSendingData(true)
+        try {
+            const {data} = await loginUser(formInfo);
+            setSendingData(false)
+            return data
+        } catch (error) {
+            setSendingData(false)
+            if(error.response && error.response.data){
+                return error.response.data
+            }
+        }
+    }
+    const lgnC = async () => {
+        setSendingData(true)
+        try {
+            const {data} = await loginCompany(formInfo);
+            setSendingData(false)
+            return data
+        } catch (error) {
+            setSendingData(false)
+            if(error.response && error.response.data){
+                return error.response.data
+            }     
+        }
+    }
     // form Submit function
-    const login_form_handle = (e)=>{
+    const login_form_handle = async (e)=>{
         e.preventDefault();
+        setErrorMessage({errorCheck:false,errorContent:''})
         // email checking process
         if(!email_checker(formInfo.email)){
             setErrorMessage({...errorMessage, errorCheck: true, errorContent: "Email sintaksisi doğru deyil!"});
         }else{
-            setErrorMessage({...errorMessage, errorCheck: false, errorContent: ""});
-            setSendingData(true);
-            toast.success('Uğurla daxil oldunuz !', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+            const data = await emiscmp();
+            if(data.succes){
+                const {u_t_p} = await data;
+                console.log(u_t_p)
+                if(u_t_p === 'c_m_p'){
+                    const dataC = await lgnC();
+                    console.log(dataC)
+                    if(dataC.succes){
+                        const {user} = await dataC;
+                        dispatch(setUser(user));
+                        toast.success('Succesfully loggedin', {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: false,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
+                        navigateTo('/')
+                    }
+                    else{
+                        setErrorMessage({errorCheck:true,errorContent:dataC.message})
+                    }
+                }
+                else{
+                    const dataU = await lgnU();
+                    if(dataU.succes){
+                        const {user} = await dataU;
+                        dispatch(setUser(user));
+                        toast.success('Succesfully loggedin', {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: false,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
+                        navigateTo('/')
+                    }
+                    else{
+                        setErrorMessage({errorCheck:true,errorContent:dataU.message})
+                    }
+                }
+            }
+            else{
+                setErrorMessage({...errorMessage, errorCheck: true, errorContent: data.message});
+            }
+            // setSendingData(true);
+            
             // go to profil
         }
     }

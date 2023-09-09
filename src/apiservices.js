@@ -25,3 +25,12 @@ export const updateCompanyForgottenPassword = (userData) => {
 export const emailIsUserOrCompany = (data) => {
     return axiosInstance.post('/emailiusrorcmp',data);
 }
+export const loginUser = (data) => {
+    return axiosInstance.post('/loginUser',data);
+}
+export const loginCompany = (data) => {
+    return axiosInstance.post('/loginCompany',data);
+}
+export const logout = () => {
+    return axiosInstance.get('/logout');
+}
