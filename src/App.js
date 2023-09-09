@@ -28,6 +28,7 @@ import CompanyProfileVacancies from './components/company_profile_components/com
 import CompanyProfileMyVacancies from './components/company_profile_components/company_profile_my_vacancies/company_profile_my_vacancies';
 import ComProCreateVacancy from './components/company_profile_components/com_pro_create_vacancy/com_pro_create_vacancy';
 import ComProPremiumVacancies from './components/company_profile_components/com_pro_premium_vacancies/com_pro_premium_vacancies';
+import { useDispatch,useSelector } from 'react-redux';
 function App() {
   const location = useLocation();
   return (

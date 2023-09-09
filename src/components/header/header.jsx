@@ -1,14 +1,21 @@
 import { useEffect, useState } from "react";
-import {NavLink, Link, useLocation} from "react-router-dom";
+import {NavLink, Link, useLocation,useNavigate} from "react-router-dom";
 import svg from '../../images/island_logo.svg';
 import profile_picture from "../../images/my_picture.jpg"
 import './header.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faAddressBook, faBars, faBriefcase, faBuilding, faCircleInfo, faClose, faHouse} from '@fortawesome/free-solid-svg-icons';
-
+import { logout } from "../../apiservices";
+import { clearUser } from "../../redux/reducers/userauthReducers";
+import { useSelector,useDispatch } from "react-redux";
+import {toast} from 'react-toastify'
 function Header(){
+    const navigate = useNavigate();
+    const {user,isLoggedIn} = useSelector(state=>state.user);
+    const p_t = user?.u_t_p
+    const dispatch = useDispatch();
     const [logged, setLogged] = useState(false);  
-    const [p_t, set_p_t] = useState(localStorage.getItem('p_t_v'));
+    // const [p_t, set_p_t] = useState(localStorage.getItem('p_t_v'));
     const [menubar, setMenuBar] = useState(false);
     const [border_bottom, set_border] = useState(false);
     const location = useLocation();
@@ -26,6 +33,25 @@ function Header(){
             window.removeEventListener('scroll', header_border_bottom);
         }
     },[])
+    const logOut = async () => {
+        const {data} = await logout();
+        console.log(data)
+        if(data.success){
+            dispatch(clearUser());
+            toast.success('Succesfully loggedin', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            navigate('/')
+        }
+    }
+
     // localStorage.setItem('p_t_v', 'c')
     return(
         <header className={`header_container ${border_bottom ? 'header_container header_scroll_border' : ''} ${location.pathname.includes('/company_profile') ? 'header_container_none' : ''}`}>            
@@ -64,22 +90,25 @@ function Header(){
                 <div className="account_links_container">
                     {
                         // user profile
-                        logged && p_t === 'u'?                     
+                        isLoggedIn && p_t === 'u_s_r'?  <>                   
                             <NavLink to="/user_profile" className={({isActive})=> isActive ? 'link_none' : 'account_link_btn header_profile_btn'}>
                                 <div className="header_profil_picture">
                                     <img src={profile_picture} alt="profile"/>
                                 </div>
                                 Profil
                             </NavLink> 
+                            <button className="account_link_btn" onClick={logOut}>Logout</button>
+                            </>
                         :
                         // company profile
-                        logged && p_t === 'c'?                     
+                        isLoggedIn && p_t === 'c_m_p'?  <>                   
                             <NavLink to='/company_profile/dashboard' className={({isActive})=> isActive ? 'link_none' : 'account_link_btn header_profile_btn'}>
                                 <div className="header_profil_picture">
                                     <img src='favicon.ico' alt="profile"/>
                                 </div>
                                 Profil
-                            </NavLink>               
+                            </NavLink>   
+                            <button className="account_link_btn" onClick={logOut}>Logout</button></>            
                         :
                         <>                        
                             <NavLink to="/login" className={({isActive})=> isActive ? 'link_none' : 'header_login_btn'}>Daxil ol</NavLink>                        
@@ -111,13 +140,24 @@ function Header(){
                             </Link>                
                         </div>
                         {
-                            logged ?                     
-                                <NavLink to="/profile" onClick={open_drop_menu} className={({isActive})=> isActive ? 'link_none' : 'account_link_btn header_profile_btn'}>
+                            isLoggedIn && p_t==='u_s_r'?  <>                 
+                                <NavLink to="/user_profile" onClick={open_drop_menu} className={({isActive})=> isActive ? 'link_none' : 'account_link_btn header_profile_btn'}>
                                     <div className="header_profil_picture">
                                         <img src={profile_picture} alt="profile"/>
                                     </div>
                                     Profil
-                                </NavLink>                    
+                                </NavLink>  
+                                <button className="account_link_btn"  onClick={logOut}>Logout</button>   </>               
+                            :
+                            isLoggedIn && p_t==='c_m_p' ?<>
+                            <NavLink to='/company_profile/dashboard' className={({isActive})=> isActive ? 'link_none' : 'account_link_btn header_profile_btn'}>
+                                <div className="header_profil_picture">
+                                    <img src='favicon.ico' alt="profile"/>
+                                </div>
+                                Profil
+                            </NavLink> 
+                            <button className="account_link_btn"  onClick={logOut}>Logout</button>
+                            </>
                             :
                             ''
                         }
@@ -156,7 +196,7 @@ function Header(){
                         </li>
                         <div className="mobile_account_links_container">
                         {
-                            logged ?                     
+                            isLoggedIn ?                     
                                 ''                  
                             :
                             <>                        
