@@ -59,9 +59,9 @@ function App() {
           {/* _________________  company profile routers __________________ */}
           <Route path='/company_profile' element={<CompanyProfile />}>
             <Route index path='/company_profile/dashboard' element={<CompanyProfileDashboard />} />
-            <Route path='/company_profile/vacancies' element={<CompanyProfileMyVacancies />}>
+            <Route path='/company_profile/vacancies' element={<CompanyProfileVacancies />}>
               <Route index element={<CompanyProfileMyVacancies />} />
-              <Route path='/company_profile/vacancies/my_vacancies' element={<CompanyProfileMyVacancies />} />
+              {/* <Route path='/company_profile/vacancies/my_vacancies' element={<CompanyProfileMyVacancies />} /> */}
               <Route path='/company_profile/vacancies/create_vacancy' element={<ComProCreateVacancy />}/>
               <Route path='/company_profile/vacancies/premium' element={<ComProPremiumVacancies />}/>
             </Route>
