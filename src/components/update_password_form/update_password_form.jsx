@@ -7,6 +7,7 @@ import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import PasswordChecker from '../password_checker/password_checker';
 import { toast } from 'react-toastify';
 import { email_checker } from '../email_checker/email_checker';
+import { updateUserForgottenPassword,emailIsUserOrCompany,updateCompanyForgottenPassword } from '../../apiservices';
 function UpdatePasswordForm({setNewPassword, setOpenOtpWindow, close}) {
     const [showPassword, setShowPassword] = useState(false);
     // error message runner for otp 
@@ -56,33 +57,85 @@ function UpdatePasswordForm({setNewPassword, setOpenOtpWindow, close}) {
             setPasValues({...pasValues, repeatPass: e.target.value}); 
         }
     }
-    const updatePasswordHandle = (e)=>{
+    const updatePasswordHandle = async(e)=>{
         e.preventDefault();
-        if((e.target.new_password.value === e.target.repeate_password.value) && (pasLength === true && upperCase === true && lowerCase === true)){
-            // setNewPassword(false);
-            Navigate("/login");
-            setErrorMessage(false);
-            // _____ if password restoration was success
-            // opens message box
-            // message content
-            toast.success('Şifrəniz uğurla yeniləndi ! Hesabınıza daxil ola bilərsiniz.', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
-        }else{
-            if(e.target.new_password.value !== e.target.repeate_password.value){
-                setErrorMessage({...errorMessage, errorCheck: true, errorContent : 'Şifrələr eyni deyil !'});
-            }else if(pasLength === false || upperCase === false || lowerCase === false){
-                setErrorMessage({...errorMessage, errorCheck: true, errorContent : 'Şifrələnmə qaydası pozulmuşdur !'});
+        try {
+            if((e.target.new_password.value === e.target.repeate_password.value) && (pasLength === true && upperCase === true && lowerCase === true)){
+                setErrorMessage({errorCheck:false,errorContent:''})
+                const {data:dataEmail} = await emailIsUserOrCompany({email})
+                // setNewPassword(false);
+                if(dataEmail.succes){
+                    if(dataEmail.u_t_p === 'u_s_r'){
+                        const {data} = await updateUserForgottenPassword({email,otp,newpassword:pasValues.newPass,newpasswordRepeat:pasValues.repeatPass});
+                        if(data.succes){
+                            setErrorMessage({errorCheck:false,errorContent:''});
+                            toast.success(data.message, {
+                                position: "top-right",
+                                autoClose: 5000,
+                                hideProgressBar: false,
+                                closeOnClick: false,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "light",
+                            });
+                            Navigate('/login');
+                        }
+                        else{
+
+                            setErrorMessage({errorCheck:true,errorContent:data.message});
+                        }
+                    }
+                    else{
+                        const {data} = await updateCompanyForgottenPassword({email,otp,newpassword:pasValues.newPass,newpasswordRepeat:pasValues.repeatPass});
+                        if(data.succes){
+                            setErrorMessage({errorCheck:false,errorContent:''});
+                            toast.success(data.message, {
+                                position: "top-right",
+                                autoClose: 5000,
+                                hideProgressBar: false,
+                                closeOnClick: false,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "light",
+                            });
+                            Navigate('/login');
+                        }
+                        else{
+                            
+                            setErrorMessage({errorCheck:true,errorContent:data.message});
+                        }
+                        // alert('It is not working now!')
+                    }
+                }
+                else{
+                    setErrorMessage({errorCheck:true,errorContent:dataEmail.message})
+                }
+                // Navigate("/login");
+                // setErrorMessage(false);
+                // _____ if password restoration was success
+                // opens message box
+                // message content
+                
             }else{
-                setErrorMessage({...errorMessage, errorCheck: false, errorContent : ''});
-            }                        
+                if(e.target.new_password.value !== e.target.repeate_password.value){
+                    setErrorMessage({...errorMessage, errorCheck: true, errorContent : 'Şifrələr eyni deyil !'});
+                }else if(pasLength === false || upperCase === false || lowerCase === false){
+                    setErrorMessage({...errorMessage, errorCheck: true, errorContent : 'Şifrələnmə qaydası pozulmuşdur !'});
+                }else{
+                    setErrorMessage({...errorMessage, errorCheck: false, errorContent : ''});
+                }                        
+            }
+            
+        } catch (error) {
+            if(error.response && error.response.data){
+                setErrorMessage({errorCheck:true,errorContent:error.response.data.message})
+            }
+            else{
+                setErrorMessage({errorCheck:true,errorContent:'Unknown error!'})
+            }
+            
         }
     }
     // back button
@@ -96,7 +149,7 @@ function UpdatePasswordForm({setNewPassword, setOpenOtpWindow, close}) {
     return ( 
         <div> 
             {
-                email_checker(email) && otp.length === 6 ?
+                email_checker(email) && otp.length === 5 ?
                 <div className= {`update_password_form_container ${ reverseAnimation ? "update_password_form_close_animation" : "update_password_form_open_animation"}`}>
                     {/* window close button */}
                     {console.log(pasValues)}

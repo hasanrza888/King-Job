@@ -28,6 +28,7 @@ import CompanyProfileVacancies from './components/company_profile_components/com
 import CompanyProfileMyVacancies from './components/company_profile_components/company_profile_my_vacancies/company_profile_my_vacancies';
 import ComProCreateVacancy from './components/company_profile_components/com_pro_create_vacancy/com_pro_create_vacancy';
 import ComProPremiumVacancies from './components/company_profile_components/com_pro_premium_vacancies/com_pro_premium_vacancies';
+import { useDispatch,useSelector } from 'react-redux';
 function App() {
   const location = useLocation();
   return (
@@ -46,7 +47,7 @@ function App() {
           <Route path='/login' element={<Login/>}>
             <Route index element={<LoginForm />} />
             <Route path='/login/forgot_password' element={<ForgotPasswordForm />} />
-            <Route path='/login/otp/:email' element={<SendOtpForm />}/>
+            <Route path='/login/otp/:email' element={<SendOtpForm tema="password_changing"/>}/>
             <Route path='/login/new_password/:email/:otp' element={<UpdatePasswordForm />}/>
           </Route>
           <Route path='/signup' element={<Signup/>}>

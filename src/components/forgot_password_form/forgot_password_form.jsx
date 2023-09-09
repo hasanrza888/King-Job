@@ -4,6 +4,8 @@ import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { email_checker } from '../email_checker/email_checker';
+import { verifyEmailAndSendOtp,emailIsUserOrCompany } from '../../apiservices';
+import {toast} from 'react-toastify'
 function ForgotPasswordForm({close, setOpenOtpWindow}) {
     const [reverseAnimation, setReverseAnimation] = useState(false);   
     const [email, setEmail] = useState('');
@@ -15,14 +17,46 @@ function ForgotPasswordForm({close, setOpenOtpWindow}) {
     const emailChange = (e)=>{
         setEmail(e.target.value);
     }
-    const forgotPasswordHandle = (e)=>{
+    const forgotPasswordHandle = async (e)=>{
         e.preventDefault();
-        if(email_checker(email)){
-            navigateTo(`/login/otp/${email}`);    
-            setErrorMessage({...errorMessage, errorCheck : false, errorContent: ''});
-        }else{
-            setErrorMessage({...errorMessage, errorCheck : true, errorContent: 'Email sintaksisi doğru deyil!'});
+        try {
+            if(email_checker(email)){
+                const {data:dataEmail} = await emailIsUserOrCompany({email,permission_id:'0f12_j_1'})
+                if(dataEmail.succes){
+                    const {data} = await verifyEmailAndSendOtp({email,type:dataEmail.u_t_p==='u_s_r' ?'u_password_changing':'c_password_changing'});
+                    if(data.succes){
+                        navigateTo(`/login/otp/${email}`);    
+                        setErrorMessage({...errorMessage, errorCheck : false, errorContent: ''});
+                        toast.success(data.message, {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: false,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
+                    }
+                    else{
+                        setErrorMessage({...errorMessage, errorCheck : true, errorContent:data.    message});
+                    }
+
+                }else{
+                    setErrorMessage({...errorMessage, errorCheck : true, errorContent:dataEmail. message});
+                }
+                
+                
+            }else{
+                setErrorMessage({...errorMessage, errorCheck : true, errorContent: 'Email sintaksisi doğru deyil!'});
+            }
+        } catch (error) {
+            if(error.response && error.response.data){
+                setErrorMessage({...errorMessage, errorCheck : true, errorContent:error.response.data.message});
+
+            }
         }
+        
     }    
     const closeWindowBox = ()=>{  
         setReverseAnimation(true);
