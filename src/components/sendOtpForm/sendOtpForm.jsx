@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { email_checker } from '../email_checker/email_checker';
-import { registerUser,verifyOtp,verifyEmailAndSendOtp,emailIsUserOrCompany } from '../../apiservices';
+import { registerUser,registerCompany,verifyOtp,verifyEmailAndSendOtp,emailIsUserOrCompany } from '../../apiservices';
 function SendOtpForm({setOpenOtpWindow, setNewPassword, login,tema,data:formInfo}) {
     const [reverseAnimation, setReverseAnimation] = useState(false); 
     const [countDown, setCountDown] = useState(120);
@@ -18,15 +18,23 @@ function SendOtpForm({setOpenOtpWindow, setNewPassword, login,tema,data:formInfo
     const [otpChecking, setOtpChecking] = useState(false);
     const {email} = useParams();
     const rgstrU = async () => {
-        console.log()
         try {
-            const {data} =await registerUser({name:formInfo.user_name,email:formInfo.email,password:formInfo.password,passwordRepeat:formInfo.passwordRepeat,otp:otpInputValue})
+            const {data} =await registerUser({...formInfo,otp:otpInputValue})
             return data
         } catch (error) {
             if(error && error.response && error.response.data){
                 return error.response.data
-            }
-            
+            }  
+        }
+    }
+    const rgstrC = async () => {
+        try {
+            const {data} =await registerCompany({...formInfo,otp:otpInputValue})
+            return data
+        } catch (error) {
+            if(error && error.response && error.response.data){
+                return error.response.data
+            }  
         }
     }
     const sendOtpCodeHandle = async (e)=>{
@@ -34,7 +42,6 @@ function SendOtpForm({setOpenOtpWindow, setNewPassword, login,tema,data:formInfo
         console.log(formInfo)
         setErrorMessage({errorCheck:false,errorContent:''})   
         // showing loader animation when otp code checking
-        try {
             if(otpInputValue.length === 5){
                 setOtpChecking(true);
             }            
@@ -63,9 +70,35 @@ function SendOtpForm({setOpenOtpWindow, setNewPassword, login,tema,data:formInfo
                     });
                     setTimeout(()=>{
                         navigate('/login');    
-                    }, 5000);  
-
+                    }, 2000);  
                 }             
+            }
+            else if(tema==="company_register"){
+                setOtpChecking(true);
+                console.log(formInfo)
+                const data  = await rgstrC();
+                console.log(data)
+                if(!data.succes){
+                    setOtpChecking(false);
+                    setErrorMessage({errorCheck:true,errorContent:data.message})
+                }
+                else{
+                    setErrorMessage({errorCheck:false,errorContent:''})
+                    setOtpChecking(false)
+                    toast.success(data.message, {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                    setTimeout(()=>{
+                        navigate('/login');    
+                    }, 2000);  
+                }  
             }
             else{
                 setOtpChecking(true);
@@ -82,9 +115,7 @@ function SendOtpForm({setOpenOtpWindow, setNewPassword, login,tema,data:formInfo
                 
             }
             
-        } catch (error) {
-            
-        }
+        
     }
     // back button
     const closeWindowBox = ()=>{  
@@ -109,11 +140,17 @@ function SendOtpForm({setOpenOtpWindow, setNewPassword, login,tema,data:formInfo
         }
     }, [countDown,otpChecking]);
     // function for send otp again button
+    // const [verifEmailData,setVerifyEmailData]=useState({
+    //     email:email || formInfo?.email,
+    //     type:'',
+    //     name:''
+    // })
     const sendOtpAgain = async (e)=>{
         e.preventDefault();
         try {
-            const {data} = await verifyEmailAndSendOtp({email:formInfo.email,type:'u_register',name:formInfo.user_name});
-            if(data.succes){
+            if(tema==="password_changing"){
+                const {data} = await verifyEmailAndSendOtp({email});
+                if(data.succes){
                 setErrorMessage({errorCheck:false,errorContent:''});
                 setCountDown(120);
                 setOtpInputValue('');
@@ -132,6 +169,31 @@ function SendOtpForm({setOpenOtpWindow, setNewPassword, login,tema,data:formInfo
             else{
                 setErrorMessage({errorCheck:true,errorContent:data.message})
             }
+
+            }
+            else{
+                const {data} = await verifyEmailAndSendOtp({email:formInfo.email,n:formInfo.name});
+                if(data.succes){
+                    setErrorMessage({errorCheck:false,errorContent:''});
+                    setCountDown(120);
+                    setOtpInputValue('');
+                    setOtpChecking(false);
+                    toast.success(data.message+"AGAIN", {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                }
+                else{
+                    setErrorMessage({errorCheck:true,errorContent:data.message})
+                }
+            }
+            
         } catch (error) {
             if(error && error.response && error.response.data){
                 setErrorMessage({errorCheck:true,errorContent:error.response.data.message})
