@@ -6,7 +6,7 @@ import PasswordChecker from '../password_checker/password_checker';
 import SendOtpForm from '../sendOtpForm/sendOtpForm';
 import { Link } from 'react-router-dom';
 import { email_checker } from '../email_checker/email_checker';
-import { validateUserData,verifyEmailAndSendOtp,registerUser } from '../../apiservices';
+import { validateUserData } from '../../apiservices';
 import { toast } from 'react-toastify';
 
 
@@ -23,7 +23,7 @@ function UserSignup() {
         errorContent : ''
     }); 
     const [formInfo, setFormInfo] = useState({
-        user_name: '',
+        name: '',
         email: '',
         password: '',
         passwordRepeat:''
@@ -75,49 +75,39 @@ function UserSignup() {
     }
     const validateuserdata = async ()=>{
         try {
-            const {data} = await validateUserData({name:formInfo.user_name,email:formInfo.email,password:formInfo.password,passwordRepeat:formInfo.passwordRepeat},'u_register');
+            const {data} = await validateUserData(formInfo);
             return data
-            
         } catch (error) {
             if(error.response && error.response.data){
                 return error.response.data
             }
         }
     }
+    
     const user_signup_Handle = async(e)=>{
         e.preventDefault();
-        if((e.target.user_signup_password.value === e.target.user_signup_repeat_password.value) && (pasLength && upperCase && lowerCase && email_checker(formInfo.email))){      
-            // console.log(formInfo)  
+        if((e.target.user_signup_password.value === e.target.user_signup_repeat_password.value) && (pasLength && upperCase && lowerCase && email_checker(formInfo.email))){    
+            setErrorMessage({errorCheck:false,errorContent:''});
             const data = await validateuserdata();
-            if(!data.succes){
-                setErrorMessage({...errorMessage, errorCheck: true, errorContent :data.message}); 
+            if(data.succes){
+                setOpenOtpWindow(true);
+                setErrorMessage({errorCheck:false,errorContent:''});
+                toast.success(data.message, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
             }
             else{
-                try {
-                    const {data:dataOtp}  = await verifyEmailAndSendOtp({email:formInfo.email,type:'u_register',name:formInfo.user_name});
-                    if(!dataOtp.succes){
-                        setErrorMessage({...errorMessage, errorCheck: true, errorContent :data.message}); 
-                    }
-                    else{
-                        setErrorMessage({...errorMessage, errorCheck: false, errorContent : ''});                        
-                        setOpenOtpWindow(true);
-                        toast.success(dataOtp.message, {
-                            position: "top-right",
-                            autoClose: 5000,
-                            hideProgressBar: false,
-                            closeOnClick: false,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                            theme: "light",
-                        });
-                    }
-                } 
-                catch (error) {
-                    console.log(error) 
-                }
-            } 
-        }else{
+                setErrorMessage({errorCheck:true,errorContent:data.message})
+            }
+        }
+        else{
             if(!email_checker(formInfo.email)){
                 setErrorMessage({...errorMessage, errorCheck: true, errorContent : 'Email sintaksisi doğru deyil!'});
             }else if(e.target.user_signup_password.value !== e.target.user_signup_repeat_password.value){
@@ -142,7 +132,7 @@ function UserSignup() {
                     <label htmlFor="user_signup_name_surname">
                         Ad və Soyad
                     </label>   
-                    <input type="text" name="user_signup_name_surname" className='user_signup_email_input' onChange={(e)=> {importantFieldFunc(e); setFormInfo({...formInfo, user_name: e.target.value})}} required/>
+                    <input type="text" name="user_signup_name_surname" className='user_signup_email_input' onChange={(e)=> {importantFieldFunc(e); setFormInfo({...formInfo, name: e.target.value})}} required/>
                 </div>
                 {/* form email */}
                 <div className="user_signup_form_label_input">

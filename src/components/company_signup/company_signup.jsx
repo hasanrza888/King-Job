@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SendOtpForm from '../sendOtpForm/sendOtpForm';
 import { Link } from 'react-router-dom';
 import { email_checker } from '../email_checker/email_checker';
+import { validateUserData } from '../../apiservices';
+import {toast} from 'react-toastify';
 function CompanySignup() {
     const [showPassword, setShowPassword] = useState(false);
     // password checker object for update password form
@@ -19,9 +21,10 @@ function CompanySignup() {
         errorContent : ''
     });     
     const [formInfo, setFormInfo] = useState({
-        company_name: '',
+        name: '',
         email: '',
-        password: ''
+        password: '',
+        passwordRepeat:''
     })
     const [showCondition, setShowCondition] = useState(false);
     const [acceptCondition, setAcceptCondition] = useState(false);
@@ -73,11 +76,39 @@ function CompanySignup() {
         }
         setImportantInputField({...copyOfArray});
     }
-    const company_signup_form_handle = (e)=>{
+    const validateuserdata = async ()=>{
+        try {
+            const {data} = await validateUserData(formInfo);
+            return data
+        } catch (error) {
+            if(error.response && error.response.data){
+                return error.response.data
+            }
+        }
+    }
+    const company_signup_form_handle = async (e)=>{
         e.preventDefault();
         if((e.target.company_signup_form_password.value === e.target.company_signup_form_repeat_password.value) && (pasLength && upperCase && lowerCase) && acceptCondition && email_checker(formInfo.email)){            
             setErrorMessage({...errorMessage, errorCheck: false, errorContent : ''});                       
-            setOpenOtpWindow(true);
+            // setOpenOtpWindow(true);
+            const data = await validateuserdata();
+            if(data.succes){
+                setErrorMessage({errorCheck:false,errorContent:''});
+                setOpenOtpWindow(true);
+                toast.success(data.message, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            }
+            else{
+                setErrorMessage({errorCheck:true,errorContent:data.message});
+            }
         }else{
             if(!email_checker(formInfo.email)){
                 setErrorMessage({...errorMessage, errorCheck: true, errorContent : 'Email sintaksisi doğru deyil!'});
@@ -100,7 +131,7 @@ function CompanySignup() {
         <div className="company_signup_container">                        
             {/* otp code form when submitting */}
             {openOtpWindow ? 
-            <SendOtpForm openOtpWindow = {openOtpWindow} setOpenOtpWindow = {setOpenOtpWindow} company_SignUp = {true}/> 
+            <SendOtpForm openOtpWindow = {openOtpWindow} setOpenOtpWindow = {setOpenOtpWindow} tema='company_register' data={formInfo}/> 
             :             
             <form action="#" className="company_signup_form_container" onSubmit={company_signup_form_handle}>               
                 {/* ________________ company signup form ________________  */}
@@ -109,7 +140,7 @@ function CompanySignup() {
                     <label htmlFor="company_signup_form_name">
                         Şirkət adı
                     </label>    
-                    <input type="text" name='company_signup_form_name' onChange={(e)=> {importantFieldFunc(e); setFormInfo({...formInfo, company_name: e.target.value})}} required/>
+                    <input type="text" name='company_signup_form_name' onChange={(e)=> {importantFieldFunc(e); setFormInfo({...formInfo, name: e.target.value})}} required/>
                 </div>
                 {/* company email */}
                 <div className="company_signup_form_label_input">
@@ -143,7 +174,7 @@ function CompanySignup() {
                     </label>
                     <div className="company_signup_form_password_container">
                         {/* repeat password login */}
-                        <input type={showPassword ? 'text' : 'password'} onChange={(e)=> importantFieldFunc(e)} className="company_signup_form_password_input" name="company_signup_form_repeat_password" required />
+                        <input type={showPassword ? 'text' : 'password'} onChange={(e)=>{ importantFieldFunc(e);setFormInfo({...formInfo, passwordRepeat: e.target.value})}} className="company_signup_form_password_input" name="company_signup_form_repeat_password" required />
                         {/* password show and hide buttons */}
                         <div className="company_signup_form_password_show_btn" onClick={show_password_handle}>
                             {showPassword ? 
