@@ -35,7 +35,7 @@ import { logout } from './apiservices';
 import { setSocket } from './redux/reducers/socketReducers';
 function App() {
   const navigate = useNavigate();
-  const socket = io('https://seal-app-5gg2a.ondigitalocean.app/api');
+  const socket = io('https://seal-app-5gg2a.ondigitalocean.app');
   const {user,isLoggedIn} = useSelector(state=>state.user);
   useEffect(()=>{
     if(isLoggedIn && user){
