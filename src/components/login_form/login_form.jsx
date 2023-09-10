@@ -13,9 +13,11 @@ import { useDispatch,useSelector } from 'react-redux';
 import { setUser,clearUser } from '../../redux/reducers/userauthReducers';
 function LoginForm() {
     const dispatch = useDispatch();
+    const tt = new Date();
     const [formInfo, setFormInfo] = useState({
         email: '',
-        password: ''
+        password: '',
+        time:tt.toLocaleString()
     })
     const [showPassword, setShowPassword] = useState(false);
     const [errorMessage, setErrorMessage] = useState({
