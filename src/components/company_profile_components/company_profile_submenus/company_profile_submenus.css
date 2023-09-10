@@ -14,13 +14,31 @@
     justify-content: space-between;
     align-items: center;
 }
-.company_profile_main_menu_name svg{
-    font-size: 20px;
+.company_profile_main_menu_icon_and_icon{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.company_profile_main_menu_icon_and_icon svg{
+    margin-right: 10px;
+    font-size: 18px;
     color: var(--light-text-color);
-    transform: rotate(180deg);
+}
+.company_profile_main_menu_name_close{
+    font-size: 25px;
+    color: var(--light-text-color);
+    transform: rotate(-180deg);
+    transition: 0.3s all;
+}
+.company_profile_main_menu_name_close_rotate{
+    transform: rotate(0deg);
+    /* transition: 0.5s all; */
 }
 .company_profile_main_menu_name:hover{
     background-color: var(--company-menu-active);
+    color: var(--accent-hover);
+}
+.company_profile_main_menu_name:hover .company_profile_main_menu_icon_and_icon svg{
     color: var(--accent-hover);
 }
 .company_profile_main_menu_name_active{
@@ -28,12 +46,15 @@
     color: var(--accent-hover);
     background-color: var(--company-menu-active);
 }
+.company_profile_main_menu_name_active .company_profile_main_menu_icon_and_icon svg{
+    color: var(--accent-hover);
+}
 /* submenu container */
 .company_profile_submenus{
     width: 100%;
     /* height: auto; */
     max-height: 200px;
-    padding-left: 40px;
+    padding-left: 50px;
     margin-top: 10px;
     transition: 0.5s ease all;
     overflow: hidden;

@@ -1,3 +1,60 @@
+@import '../../../color.css';
 .company_profile_main_window_container{
     width: 80%;
+}
+/* company profile header */
+.company_profile_main_window_header{
+    width: 100%;
+    padding: 20px 30px;
+    box-shadow: var(--boxes-shadow-light);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+/* header link */
+.company_profile_main_window_link{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: var(--secondary-text-color);
+}
+/* header link icon */
+.company_profile_main_window_link svg{
+    margin-right: 10px;
+    font-size: 20px;
+    color: var(--light-text-color);
+}
+/* message and notify buttons */
+.comp_pro_main_wndw_header_msg_and_notify_btns{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+/* header button container */
+.comp_pro_main_wndw_header_btn{
+    position: relative;
+}
+.comp_pro_main_wndw_header_btn svg{
+    font-size: 25px;
+    color: var(--light-text-color);
+    cursor: pointer;
+}
+.comp_pro_main_wndw_header_btn:first-child{
+    margin-right: 20px;
+}
+.comp_pro_main_wndw_header_btn_count{
+    position: absolute;
+    top: -2px;
+    right: -7px;
+    width: 16px;
+    height: 16px;
+    background-color: var(--notification-count-color);
+    color: var(--primary-color);
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: 500;
 }

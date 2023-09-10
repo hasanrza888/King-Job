@@ -7,13 +7,17 @@ function CompanyProfileSubmenus({menu}) {
     const location = useLocation();
     const [close_submenu, setClose_submenu] = useState(false);
     const close_submenus = ()=>{
-        setClose_submenu(!close_submenu);
+        if(menu['sub_menus'].length > 0){
+            setClose_submenu(!close_submenu);    
+        }
     }
     return ( 
         <div className="company_profile_submenus_container">
-            <NavLink to={menu['main_url']} className={({isActive})=> isActive ? 'company_profile_main_menu_name company_profile_main_menu_name_active' : 'company_profile_main_menu_name'}>
-                {menu['main']}
-                {menu['sub_menus'].length > 0 ? <FontAwesomeIcon icon={faAngleDown} onClick={close_submenus}/> : ''}
+            <NavLink onClick={close_submenus} to={menu['sub_menus'].length > 0 ? undefined : menu['main_url']} className={`company_profile_main_menu_name ${location.pathname.includes(menu['main_url']) ? 'company_profile_main_menu_name_active' : ''}`}>
+                <div className="company_profile_main_menu_icon_and_icon">
+                    {menu['main_icon']} {menu['main']}    
+                </div>
+                {menu['sub_menus'].length > 0 ? <FontAwesomeIcon icon={faAngleDown} className={`company_profile_main_menu_name_close ${close_submenu ? 'company_profile_main_menu_name_close_rotate' : ''}`}/> : ''}
             </NavLink>
             {
                 menu['sub_menus'].length > 0 ?
