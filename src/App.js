@@ -22,15 +22,46 @@ import LoginForm from './components/login_form/login_form';
 import ForgotPasswordForm from './components/forgot_password_form/forgot_password_form';
 import UpdatePasswordForm from './components/update_password_form/update_password_form';
 import CompanyProfile from './pages/company_profile/company_profile';
-import { useState } from 'react';
+import { useState ,useEffect} from 'react';
 import CompanyProfileDashboard from './components/company_profile_components/company_profile_dashboard/company_profile_dashboard';
 import CompanyProfileVacancies from './components/company_profile_components/company_profile_vacancies/company_profile_vacancies';
 import CompanyProfileMyVacancies from './components/company_profile_components/company_profile_my_vacancies/company_profile_my_vacancies';
 import ComProCreateVacancy from './components/company_profile_components/com_pro_create_vacancy/com_pro_create_vacancy';
 import ComProPremiumVacancies from './components/company_profile_components/com_pro_premium_vacancies/com_pro_premium_vacancies';
 import { useDispatch,useSelector } from 'react-redux';
+import io from 'socket.io-client';
+import { clearUser } from './redux/reducers/userauthReducers';
+import { logout } from './apiservices';
+import { setSocket } from './redux/reducers/socketReducers';
 function App() {
+  const socket = io('http://localhost:5000');
+  const {user,isLoggedIn} = useSelector(state=>state.user);
+  useEffect(()=>{
+    if(isLoggedIn && user){
+      socket.emit('joinRoom',user._id)
+    }
+  },[user,isLoggedIn,socket])
   const location = useLocation();
+  
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setSocket(socket));
+    return () => {
+      socket.disconnect();
+    };
+  }, [dispatch, socket]);
+  const lgout = async () => {
+    const {data} = await logout();
+    if(data.success){
+      dispatch(clearUser())
+    } 
+  }
+  useEffect(()=>{
+    socket.on('company-block',data=>{
+      console.log(data)
+      lgout();
+    })
+  },[socket])
   return (
     <div className='container'>
       {/* _______________ header _______________*/}
