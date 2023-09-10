@@ -1,4 +1,4 @@
-import {Routes, Route, useLocation } from 'react-router-dom';
+import {Routes, Route, useLocation,useNavigate } from 'react-router-dom';
 import './App.css';
 import CompanySignup from './components/company_signup/company_signup';
 import Footer from './components/footer/footer';
@@ -34,7 +34,8 @@ import { clearUser } from './redux/reducers/userauthReducers';
 import { logout } from './apiservices';
 import { setSocket } from './redux/reducers/socketReducers';
 function App() {
-  const socket = io('http://localhost:5000');
+  const navigate = useNavigate();
+  const socket = io('https://seal-app-5gg2a.ondigitalocean.app/api');
   const {user,isLoggedIn} = useSelector(state=>state.user);
   useEffect(()=>{
     if(isLoggedIn && user){
@@ -60,6 +61,7 @@ function App() {
     socket.on('company-block',data=>{
       console.log(data)
       lgout();
+      navigate('/login')
     })
   },[socket])
   return (
