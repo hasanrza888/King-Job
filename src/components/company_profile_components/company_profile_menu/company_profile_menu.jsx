@@ -2,15 +2,19 @@ import StarRating from '../../star_rating_show/star_rating_show';
 import './company_profile_menu.css';
 import small_logo from '../../../images/small_logo.png';
 import CompanyProfileSubmenus from '../company_profile_submenus/company_profile_submenus';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBriefcase, faChartSimple, faEnvelope, faGear, faListCheck, faPaperPlane, faUserGroup } from '@fortawesome/free-solid-svg-icons';
 function CompanyProfileMenu() {
     const menu_names_submenus = [
         {
             main: 'İdarə paneli',
+            main_icon: <FontAwesomeIcon icon={faChartSimple} />,
             main_url: '/company_profile/dashboard',
             sub_menus: []
         },
         {
             main: 'Vakansiyalar',
+            main_icon: <FontAwesomeIcon icon={faBriefcase} />,
             main_url: '/company_profile/vacancies',
             sub_menus: [{
                 sub_name: 'Vakansiyalarım',
@@ -28,6 +32,7 @@ function CompanyProfileMenu() {
         },
         {
             main: 'Müraciətlər',
+            main_icon: <FontAwesomeIcon icon={faPaperPlane} />,
             main_url: '/company_profile/applies',
             sub_menus: [{
                 sub_name: 'Ümumi müraciətlər',
@@ -49,6 +54,7 @@ function CompanyProfileMenu() {
         },
         {
             main: 'Müsahibələr',
+            main_icon: <FontAwesomeIcon icon={faUserGroup} />,
             main_url: '/company_profile/interview',
             sub_menus: [{
                 sub_name: 'Onlayn müsahibələr',
@@ -62,6 +68,7 @@ function CompanyProfileMenu() {
         },
         {
             main: 'Tapşırıqlar',
+            main_icon: <FontAwesomeIcon icon={faListCheck} />,
             main_url: '/company_profile/tasks',
             sub_menus: [{
                 sub_name: 'Tapşırıqlarım',
@@ -75,6 +82,7 @@ function CompanyProfileMenu() {
         },
         {
             main: 'Tənzimləmələr',
+            main_icon: <FontAwesomeIcon icon={faGear} />,
             main_url: '/company_profile/settings',
             sub_menus: [{
                 sub_name: 'Profil məlumatları',
@@ -84,6 +92,7 @@ function CompanyProfileMenu() {
         },
         {
             main: 'Texniki dəstək',
+            main_icon: <FontAwesomeIcon icon={faEnvelope} />,
             main_url: '/company_profile/support',
             sub_menus: [{
                 sub_name: 'Bizə yazın',
