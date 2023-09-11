@@ -62,7 +62,7 @@ function App() {
   useEffect(()=>{
     const chck = async () => {
       const {data} = await loggedin();
-     
+     console.log(data)
       if(!data.succes){
         dispatch(clearUser());
         return
