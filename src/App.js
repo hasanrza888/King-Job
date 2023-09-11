@@ -22,35 +22,64 @@ import LoginForm from './components/login_form/login_form';
 import ForgotPasswordForm from './components/forgot_password_form/forgot_password_form';
 import UpdatePasswordForm from './components/update_password_form/update_password_form';
 import CompanyProfile from './pages/company_profile/company_profile';
-import { useEffect} from 'react';
+import { useEffect,useState} from 'react';
 import CompanyProfileDashboard from './components/company_profile_components/company_profile_dashboard/company_profile_dashboard';
 import CompanyProfileVacancies from './components/company_profile_components/company_profile_vacancies/company_profile_vacancies';
 import CompanyProfileMyVacancies from './components/company_profile_components/company_profile_my_vacancies/company_profile_my_vacancies';
 import ComProCreateVacancy from './components/company_profile_components/com_pro_create_vacancy/com_pro_create_vacancy';
 import ComProPremiumVacancies from './components/company_profile_components/com_pro_premium_vacancies/com_pro_premium_vacancies';
 import { useDispatch,useSelector } from 'react-redux';
-import io from 'socket.io-client';
-import { clearUser } from './redux/reducers/userauthReducers';
-import { logout } from './apiservices';
+import {io} from 'socket.io-client';
+import { clearUser,setUser,setInfo } from './redux/reducers/userauthReducers';
+import { setJobs,updateJobs } from './redux/reducers/jobReducers';
+import { logout,loggedin,getjobs } from './apiservices';
 import { setSocket } from './redux/reducers/socketReducers';
 function App() {
+  const location = useLocation();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const socket = io('https://seal-app-5gg2a.ondigitalocean.app');
+  const [socket,setSocket] = useState(null);
   const {user,isLoggedIn} = useSelector(state=>state.user);
   useEffect(()=>{
-    if(isLoggedIn && user){
+    if(isLoggedIn){
+    setSocket(io('https://seal-app-5gg2a.ondigitalocean.app'));
+    }
+  },[isLoggedIn]);
+  useEffect(()=>{
+    const fetchJobs = async () => {
+      try {
+        const {data} = await getjobs();
+        // console.log(data);
+        if(data.success){
+          dispatch(setJobs(data.jobs));
+        }
+      } catch (error) {
+        console.log("error:",error.name)
+      }
+    }
+    fetchJobs();
+  },[dispatch])
+  useEffect(()=>{
+    const chck = async () => {
+      const {data} = await loggedin();
+     
+      if(!data.succes){
+        dispatch(clearUser());
+        return
+      }
+      else{
+        // console.log(data)
+      dispatch(setUser((data.user).returnedData));
+      dispatch(setInfo((data.user).info));
+      }
+    }
+    chck();
+  },[dispatch])
+  useEffect(()=>{
+    if(isLoggedIn && user && socket){
       socket.emit('joinRoom',user._id)
     }
   },[user,isLoggedIn,socket])
-  const location = useLocation();
-  
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(setSocket(socket));
-    return () => {
-      socket.disconnect();
-    };
-  }, [dispatch, socket]);
   const lgout = async () => {
     const {data} = await logout();
     if(data.success){
@@ -58,11 +87,13 @@ function App() {
     } 
   }
   useEffect(()=>{
+    if(socket && isLoggedIn && user){
     socket.on('company-block',data=>{
-      console.log(data)
+      // console.log(data)
       lgout();
       navigate('/login')
     })
+  }
   },[socket])
   return (
     <div className='container'>

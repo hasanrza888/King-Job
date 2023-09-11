@@ -11,7 +11,10 @@ import oneFlex from '../../images/one_grip.svg';
 import oneFlexActive from '../../images/one_grip_active.svg';
 import twoFlex from '../../images/two_grip.svg';
 import twoFlexActive from '../../images/two_grip_active.svg';
+import { useSelector } from 'react-redux';
 function Vacancies() {
+    const {jobs,loading} = useSelector(state=>state.job);
+    console.log()
     const location = useLocation(); 
     const searchParams = new URLSearchParams(location.search); 
     const [openMobileFilter, setOpenMobileFilter] = useState(false);
@@ -131,23 +134,24 @@ function Vacancies() {
                     {/* <PageHeadText content={'Premium Elanlar'}/> */}
                     <div className="vacancies_page_boxes_head">Premium Elanlar</div>
                     <div className="vacancies_latest_jobs_boxes_container">
-                        {
-                            latest_jobs['latest'].filter(filtered => filtered['premium'] === true).map((item, index)=>{
+                        
+                        {loading ? <p>Loading...</p> :
+                            jobs.filter(filtered => filtered['premium'] === true).map((item, index)=>{
                                 return(
                                     <PostBox 
-                                        job_id = {item.job_id}
+                                        job_id = {item._id}
                                         premium = {item.premium}
-                                        image_url={item.image_url}
+                                        image_url={((item.company)?.companyInfo)?.logo}
                                         salary={item.salary}
-                                        job_title={item.job_title}
-                                        company_name={item.company_name}
-                                        post_views={item.post_views}
-                                        post_applies = {item.post_applies}
-                                        post_start_date={item.post_start_date}
-                                        post_end_date={item.post_end_date}
-                                        location={item.location}
-                                        job_time_type={item.job_time_type}
-                                        key={item.job_id}
+                                        job_title={item.name}
+                                        company_name={(item.company)?.name}
+                                        post_views={item.numberOfViews}
+                                        post_applies = {item.numberOfApplys}
+                                        post_start_date={item.createdAt.includes('T') ? item.createdAt.split('T')[0] : item.createdAt}
+                                        post_end_date={item.endTime.split('T')[0]}
+                                        location={item.city}
+                                        job_time_type={item.type}
+                                        key={item._id}
                                         flexType={flex}
                                     />
                                 )
@@ -158,23 +162,23 @@ function Vacancies() {
                     {/* <PageHeadText content={'Ən Son Elanlar'}/> */}
                     <div className="vacancies_page_boxes_head">Elanlar</div>
                     <div className="vacancies_latest_jobs_boxes_container">
-                        {
-                            latest_jobs['latest'].filter(filtered => filtered['premium'] === false).map((item, index)=>{
+                        {loading ? <p>Loading...</p> :
+                            jobs.filter(filtered => filtered['premium'] === false).map((item, index)=>{
                                 return(
                                     <PostBox 
-                                        job_id = {item.job_id}
+                                        job_id = {item._id}
                                         premium = {item.premium}
-                                        image_url={item.image_url}
+                                        image_url={((item.company)?.companyInfo)?.logo}
                                         salary={item.salary}
-                                        job_title={item.job_title}
-                                        company_name={item.company_name}
-                                        post_views={item.post_views}
-                                        post_applies = {item.post_applies}
-                                        post_start_date={item.post_start_date}
-                                        post_end_date={item.post_end_date}
-                                        location={item.location}
-                                        job_time_type={item.job_time_type}
-                                        key={item.job_id}
+                                        job_title={item.name}
+                                        company_name={(item.company)?.name}
+                                        post_views={item.numberOfViews}
+                                        post_applies = {item.numberOfApplys}
+                                        post_start_date={item.createdAt.includes('T') ? item.createdAt.split('T')[0] : item.createdAt}
+                                        post_end_date={item.endTime.split('T')[0]}
+                                        location={item.city}
+                                        job_time_type={item.type}
+                                        key={item._id}
                                         flexType={flex}
                                     />
                                 )

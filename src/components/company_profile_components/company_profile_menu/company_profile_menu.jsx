@@ -2,9 +2,14 @@ import StarRating from '../../star_rating_show/star_rating_show';
 import './company_profile_menu.css';
 import small_logo from '../../../images/small_logo.png';
 import CompanyProfileSubmenus from '../company_profile_submenus/company_profile_submenus';
+
+import { useSelector } from 'react-redux';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBriefcase, faChartSimple, faEnvelope, faGear, faListCheck, faPaperPlane, faUserGroup } from '@fortawesome/free-solid-svg-icons';
+
 function CompanyProfileMenu() {
+    const {user,isLoggedIn,info} = useSelector(state=>state.user);
     const menu_names_submenus = [
         {
             main: 'İdarə paneli',
@@ -120,10 +125,10 @@ function CompanyProfileMenu() {
             <div className="company_profile_menu_image_and_name">
                 {/* company image */}
                 <div className="company_profile_menu_image">
-                    <img src={small_logo} alt="Company logo" />
+                    <img src={user?.u_t_p==='u_s_r' ? info?.profilepic : info?.logo} alt="Company logo" />
                 </div>
                 {/* Company name */}
-                <div className="company_profile_menu_comName">King Job</div>
+                <div className="company_profile_menu_comName">{user?.name}</div>
                 {/* company rating */}
                 <div className="company_profile_menu_rating">
                     <div className="company_profile_menu_rating_value">5</div>

@@ -12,7 +12,8 @@ import {toast} from 'react-toastify'
 function Header(){
 
     const navigate = useNavigate();
-    const {user,isLoggedIn} = useSelector(state=>state.user);
+    const {user,isLoggedIn,info} = useSelector(state=>state.user);
+    // console.log(info)
     const p_t = user?.u_t_p
     const dispatch = useDispatch();
     const [logged, setLogged] = useState(false);  
@@ -94,9 +95,9 @@ function Header(){
                         isLoggedIn && p_t === 'u_s_r'?  <>                   
                             <NavLink to="/user_profile" className={({isActive})=> isActive ? 'link_none' : 'account_link_btn header_profile_btn'}>
                                 <div className="header_profil_picture">
-                                    <img src={profile_picture} alt="profile"/>
+                                    <img src={info?.profilepic} alt="profile"/>
                                 </div>
-                                Profil
+                                {user?.name}
                             </NavLink> 
                             <button className="account_link_btn" onClick={logOut}>Logout</button>
                             </>
@@ -105,9 +106,9 @@ function Header(){
                         isLoggedIn && p_t === 'c_m_p'?  <>                   
                             <NavLink to='/company_profile/dashboard' className={({isActive})=> isActive ? 'link_none' : 'account_link_btn header_profile_btn'}>
                                 <div className="header_profil_picture">
-                                    <img src='favicon.ico' alt="profile"/>
+                                    <img src={info?.logo} alt="profile"/>
                                 </div>
-                                Profil
+                                {user?.name}
                             </NavLink>   
                             <button className="account_link_btn" onClick={logOut}>Logout</button></>            
                         :
@@ -144,18 +145,18 @@ function Header(){
                             isLoggedIn && p_t==='u_s_r'?  <>                 
                                 <NavLink to="/user_profile" onClick={open_drop_menu} className={({isActive})=> isActive ? 'link_none' : 'account_link_btn header_profile_btn'}>
                                     <div className="header_profil_picture">
-                                        <img src={profile_picture} alt="profile"/>
+                                        <img src={info?.profilepic} alt="profile"/>
                                     </div>
-                                    Profil
+                                    {user?.name}
                                 </NavLink>  
                                 <button className="account_link_btn"  onClick={logOut}>Logout</button>   </>               
                             :
                             isLoggedIn && p_t==='c_m_p' ?<>
                             <NavLink to='/company_profile/dashboard' className={({isActive})=> isActive ? 'link_none' : 'account_link_btn header_profile_btn'}>
                                 <div className="header_profil_picture">
-                                    <img src='favicon.ico' alt="profile"/>
+                                    <img src={info?.logo} alt="profile"/>
                                 </div>
-                                Profil
+                                {user?.name}
                             </NavLink> 
                             <button className="account_link_btn"  onClick={logOut}>Logout</button>
                             </>
