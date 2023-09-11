@@ -34,11 +34,12 @@
 /* header button container */
 .comp_pro_main_wndw_header_btn{
     position: relative;
+    cursor: pointer;
 }
 .comp_pro_main_wndw_header_btn svg{
     font-size: 25px;
     color: var(--light-text-color);
-    cursor: pointer;
+    user-select: none;
 }
 .comp_pro_main_wndw_header_btn:first-child{
     margin-right: 20px;
@@ -57,4 +58,5 @@
     justify-content: center;
     border-radius: 50%;
     font-weight: 500;
+    user-select: none;
 }
