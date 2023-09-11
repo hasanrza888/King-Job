@@ -10,6 +10,7 @@ import { clearUser } from "../../redux/reducers/userauthReducers";
 import { useSelector,useDispatch } from "react-redux";
 import {toast} from 'react-toastify'
 function Header(){
+
     const navigate = useNavigate();
     const {user,isLoggedIn,info} = useSelector(state=>state.user);
     // console.log(info)

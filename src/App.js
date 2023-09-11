@@ -22,7 +22,7 @@ import LoginForm from './components/login_form/login_form';
 import ForgotPasswordForm from './components/forgot_password_form/forgot_password_form';
 import UpdatePasswordForm from './components/update_password_form/update_password_form';
 import CompanyProfile from './pages/company_profile/company_profile';
-import { useState ,useEffect} from 'react';
+import { useEffect} from 'react';
 import CompanyProfileDashboard from './components/company_profile_components/company_profile_dashboard/company_profile_dashboard';
 import CompanyProfileVacancies from './components/company_profile_components/company_profile_vacancies/company_profile_vacancies';
 import CompanyProfileMyVacancies from './components/company_profile_components/company_profile_my_vacancies/company_profile_my_vacancies';
@@ -110,24 +110,23 @@ function App() {
           <Route path='/contact' element={<Contact/>} />
           <Route path='/login' element={<Login/>}>
             <Route index element={<LoginForm />} />
-            <Route path='/login/forgot_password' element={<ForgotPasswordForm />} />
-            <Route path='/login/otp/:email' element={<SendOtpForm tema="password_changing"/>}/>
-            <Route path='/login/new_password/:email/:otp' element={<UpdatePasswordForm />}/>
+            <Route path='forgot_password' element={<ForgotPasswordForm />} />
+            <Route path='otp/:email' element={<SendOtpForm tema="password_changing"/>}/>
+            <Route path='new_password/:email/:otp' element={<UpdatePasswordForm />}/>
           </Route>
           <Route path='/signup' element={<Signup/>}>
             <Route index element={<UserSignup/>}/>
-            <Route path='/signup/user_signup' index element={<UserSignup/>}/>
-            <Route path='/signup/company_signup' element={<CompanySignup/>}/>
+            <Route path='user_signup' index element={<UserSignup/>}/>
+            <Route path='company_signup' element={<CompanySignup/>}/>
           </Route>
           <Route path='/user_profile' element={<UserProfile/>}/>
           {/* _________________  company profile routers __________________ */}
           <Route path='/company_profile' element={<CompanyProfile />}>
-            <Route index path='/company_profile/dashboard' element={<CompanyProfileDashboard />} />
-            <Route path='/company_profile/vacancies' element={<CompanyProfileMyVacancies />}>
+            <Route index path='dashboard' element={<CompanyProfileDashboard />} />
+            <Route path='vacancies' element={<CompanyProfileVacancies />}>
               <Route index element={<CompanyProfileMyVacancies />} />
-              <Route path='/company_profile/vacancies/my_vacancies' element={<CompanyProfileMyVacancies />} />
-              <Route path='/company_profile/vacancies/create_vacancy' element={<ComProCreateVacancy />}/>
-              <Route path='/company_profile/vacancies/premium' element={<ComProPremiumVacancies />}/>
+              <Route path='create_vacancy' element={<ComProCreateVacancy />}/>
+              <Route path='premium' element={<ComProPremiumVacancies />}/>
             </Route>
           </Route>
           <Route path='*' element={<Notfound/>} />            
