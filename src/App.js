@@ -22,7 +22,7 @@ import LoginForm from './components/login_form/login_form';
 import ForgotPasswordForm from './components/forgot_password_form/forgot_password_form';
 import UpdatePasswordForm from './components/update_password_form/update_password_form';
 import CompanyProfile from './pages/company_profile/company_profile';
-import { useEffect} from 'react';
+import { useEffect,useState} from 'react';
 import CompanyProfileDashboard from './components/company_profile_components/company_profile_dashboard/company_profile_dashboard';
 import CompanyProfileVacancies from './components/company_profile_components/company_profile_vacancies/company_profile_vacancies';
 import CompanyProfileMyVacancies from './components/company_profile_components/company_profile_my_vacancies/company_profile_my_vacancies';
