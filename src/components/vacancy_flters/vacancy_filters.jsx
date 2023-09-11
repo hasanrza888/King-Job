@@ -2,62 +2,29 @@ import { useEffect, useState } from 'react';
 import CustomSelectOption from '../custom_select_option/custom_select_option';
 import './vacancy_filters.css'
 import { useNavigate } from 'react-router-dom';
+import { getfilteroptions } from '../../apiservices';
 function VacancyFilters({closeMobileFilter, filter, setFilter}) {
     // navigator
     const navigate_to = useNavigate();
     // categories
-    const [categories, setCategories] = useState([
-        {
-            optionName: 'IT',
-            id: 1,
-            selected: false,
-            subOptions: [
-                {subOptionsName: "Web", selected: false, id: 1.1},
-                {subOptionsName: "QA", selected: false, id: 1.2},
-                {subOptionsName: "Security", selected: false, id: 1.3},
-            ]
-        },
-        {
-            optionName: 'Bank', 
-            id: 2, 
-            selected: false,          
-            subOptions: [
-                {subOptionsName: "Kredit mütəxəssisi", selected: false, id: 2.1},
-                {subOptionsName: "Analitik", selected: false, id: 2.2},
-                {subOptionsName: "Əməliyyatçı", selected: false, id: 2.3},
-                {subOptionsName: "Şöbə müdiri", selected: false, id: 2.4}
-            ]
-        },
-        {
-            optionName: 'Marketinq və Satış',
-            id:3,
-            selected: false,
-            subOptions: '',
-        }
-    ])
+    const [categories, setCategories] = useState([])
     // cities
-    const [jobCity, setJobCity] = useState([
-        {   
-            id: 4,
-            optionName: 'Bakı',
-            selected: false,
-        },
-        {   
-            id: 5,
-            optionName: 'Sumqayıt',
-            selected: false,
-        },
-        {   
-            id: 6,
-            optionName: 'Lənkəran',
-            selected: false,
-        },
-        {   
-            id: 7,
-            optionName: 'Masallı',
-            selected: false,
+    const [jobCity, setJobCity] = useState([])
+    // company
+    const [company, setCompany] = useState([]);
+    useEffect(()=>{
+        const fetchCatSub =  async () => {
+            try {
+                const {data} = await getfilteroptions();
+                setCategories(data.categories);
+                setJobCity(data.cityes);
+                setCompany(data.companies)
+            } catch (error) {
+                console.log('error at fetching subcat'+error.name)
+            }
         }
-    ])
+        fetchCatSub();
+    },[])
     // job experience
     const [jobExperience, setJobExperience] = useState([
         {   
@@ -114,39 +81,7 @@ function VacancyFilters({closeMobileFilter, filter, setFilter}) {
             selected: false,
         }
     ])
-    // company
-    const [company, setCompany] = useState([
-        {
-            id: 18,
-            optionName: 'İŞland',
-            selected: false,
-        },
-        {
-            id: 19,
-            optionName: 'Paşa bank',
-            selected: false,
-        },
-        {
-            id: 20,
-            optionName: 'Kapital bank',
-            selected: false,
-        },
-        {
-            id: 21,
-            optionName: 'Yelo bank',
-            selected: false,
-        },
-        {
-            id: 22,
-            optionName: 'ABB',
-            selected: false,
-        },
-        {
-            id: 23,
-            optionName: 'Pasha sığorta',
-            selected: false,
-        }
-    ])
+    
     // job type
     const [jobType, setJobType] = useState([
         {

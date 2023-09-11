@@ -34,3 +34,12 @@ export const loginCompany = (data) => {
 export const logout = () => {
     return axiosInstance.get('/logout');
 }
+export const loggedin = () => {
+    return axiosInstance.get('/loggedin');
+}
+export const getjobs = () => {
+    return axiosInstance.get('/getJobs');
+}
+export const getfilteroptions = () => {
+    return axiosInstance.get('/getctgsubctg');
+}
