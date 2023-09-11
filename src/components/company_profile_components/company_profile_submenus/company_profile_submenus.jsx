@@ -1,4 +1,4 @@
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import './company_profile_submenus.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
@@ -25,9 +25,29 @@ function CompanyProfileSubmenus({menu}) {
                     {
                         menu['sub_menus'].map((sub, sub_index)=>{
                             if(sub_index === 0){
-                                return <NavLink to={menu['main_url']} className={`company_profile_submenus_link ${location.pathname === menu['main_url'] ? 'company_profile_submenus_link_active' : ''}`} key={sub['sub_url']}>{sub['sub_name']}</NavLink>
+                                return <NavLink to={menu['main_url']} className={`company_profile_submenus_link ${location.pathname === menu['main_url'] ? 'company_profile_submenus_link_active' : ''}`} key={sub['sub_url']}>
+                                            {sub['sub_name']}
+                                            {
+                                                sub['sub_count'] ?
+                                                <div className="company_profile_submenus_link_count">
+                                                    {sub['sub_count']}  
+                                                </div>
+                                                :
+                                                ''
+                                            }
+                                        </NavLink>
                             }
-                            return <NavLink to={sub['sub_url']} className={({isActive})=> isActive ? 'company_profile_submenus_link company_profile_submenus_link_active' : 'company_profile_submenus_link'} key={sub['sub_url']}>{sub['sub_name']}</NavLink>
+                            return <NavLink to={sub['sub_url']} className={({isActive})=> isActive ? 'company_profile_submenus_link company_profile_submenus_link_active' : 'company_profile_submenus_link'} key={sub['sub_url']}>
+                                        {sub['sub_name']}
+                                        {
+                                            sub['sub_count'] ?
+                                            <div className="company_profile_submenus_link_count">
+                                                {sub['sub_count']}
+                                            </div>
+                                            :
+                                            ''
+                                        }
+                                   </NavLink>
                         })
                     }
                 </div>
