@@ -123,15 +123,19 @@ function CustomSelectOption({select_option_name, select_option_array, select_upd
                         select_option_array.map((item, index)=>{
                             return <li key={index} className='custom_options_list'>
                                         <div className={`custom_options_list_item ${item['selected'] ? "custom_options_list_selected" : ''}`} onClick={()=> mainOptionNameClk(item, index, item['id'])}>{item['optionName']}</div>
-                                        <ul className='custom_options_sub_list'>
-                                            {
-                                                // ____________ suboptions list _______________
-                                                item['subOptions'] ?
-                                                (item['subOptions'].map((subItem, subIndex)=>
-                                                    <li key={subItem["subOptionsName"]} className={`custom_options_sub_list_item ${subItem["selected"] ? "custom_options_list_selected" : ''}`} onClick={()=> subOptionNameClick(subItem, subIndex, item, index, subItem['id'])}>{subItem["subOptionsName"]}</li>
-                                                )) : null
-                                            }                                    
-                                        </ul>
+                                        {
+                                            item['subOptions'] ?
+                                            <ul className='custom_options_sub_list'>
+                                                {
+                                                    // ____________ suboptions list _______________
+                                                    
+                                                    item['subOptions'].map((subItem, subIndex)=>
+                                                        <li key={subItem["subOptionsName"]} className={`custom_options_sub_list_item ${subItem["selected"] ? "custom_options_list_selected" : ''}`} onClick={()=> subOptionNameClick(subItem, subIndex, item, index, subItem['id'])}>{subItem["subOptionsName"]}</li>
+                                                    )
+                                                }                                    
+                                            </ul>
+                                            : ''
+                                        }
                                     </li>                            
                         })
                     }
