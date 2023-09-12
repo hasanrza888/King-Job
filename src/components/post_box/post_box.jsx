@@ -5,10 +5,20 @@ import { faEye, faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import "./post_box.css"
 import { Link } from "react-router-dom";
 import { formatNumber } from "../format_number/format_number";
+import { useSelector,useDispatch } from "react-redux";
+import { updateCurrentJob } from "../../redux/reducers/jobReducers";
 function PostBox({setSavedJob, setSuccessMsg, job_id, premium, image_url, salary, job_title, company_name, post_views, post_applies, post_start_date, post_end_date, location, job_time_type, flexType}){
+    const dispatch = useDispatch();
+    const {user,isLoggedIn} = useSelector(state=>state.user);
+    // console.log(user,isLoggedIn)
+    const clearLocalAndCurrentJobInDetailWhenClickJobBox = () => {
+        localStorage.removeItem('c_r_r_n_t');
+        dispatch(updateCurrentJob(null));
+        console.log('clicked')
+    }
     
     return(
-        <div className={`post_box_container ${flexType === 'half_row' && window.innerWidth >= 1130 ? 'post_box_container_half' : ''}`}>
+        <div onClick={clearLocalAndCurrentJobInDetailWhenClickJobBox} className={`post_box_container ${flexType === 'half_row' && window.innerWidth >= 1130 ? 'post_box_container_half' : ''}`}>
             {/* premium vacancies */}
             {
                 premium ? <div className="post_box_premium_vacancy"><div className="post_box_premium_vacancy_text">PREMİUM</div></div> : ''
@@ -27,7 +37,7 @@ function PostBox({setSavedJob, setSuccessMsg, job_id, premium, image_url, salary
                     </div>
                 </Link>
                 {/* post save button */}
-                <PostBoxSaveBtn job_id = {job_id} setSuccessMsg = {setSuccessMsg} setSavedJob={setSavedJob} job_title={job_title}/>
+                {<PostBoxSaveBtn job_id = {job_id} setSuccessMsg = {setSuccessMsg} setSavedJob={setSavedJob} job_title={job_title}/>}
             </div>
             {/* job title and salary */}
             <div className="post_box_job_title_and_salary">
