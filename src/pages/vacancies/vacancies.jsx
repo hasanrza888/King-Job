@@ -1,5 +1,5 @@
 import './vacancies.css';
-import { useLocation } from 'react-router-dom';
+import { useLocation,useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faFilter, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 // import PageHeadText from '../../components/page_head_text/page_head_text';
@@ -12,10 +12,11 @@ import oneFlexActive from '../../images/one_grip_active.svg';
 import twoFlex from '../../images/two_grip.svg';
 import twoFlexActive from '../../images/two_grip_active.svg';
 import { useSelector,useDispatch } from 'react-redux';
-import { searchJobs,getFavoritJobs } from '../../apiservices';
+import { searchJobs,getFavoritJobs,searchadvance } from '../../apiservices';
 import { updateJobs,setFavJobs,updateFavJobs } from '../../redux/reducers/jobReducers';
 function Vacancies() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const {user,isLoggedIn} = useSelector(state=>state.user)
     const {jobs,loading,favoritJobs,loadingFavJobs} = useSelector(state=>state.job);
     // console.log(favoritJobs,loadingFavJobs);
@@ -42,7 +43,7 @@ function Vacancies() {
     const searchParams = new URLSearchParams(location.search); 
     const [openMobileFilter, setOpenMobileFilter] = useState(false);
     const [flex, setFlex] = useState(localStorage.getItem('vacancies_flex') || 'half_row');
-    const [vacancy_name, setVacancy_name] = useState('');
+    
     useEffect(()=>{
         const searchjobs = async () => {
             // console.log(location.search)
@@ -75,9 +76,7 @@ function Vacancies() {
     const openMobileFilterHandle = ()=>{
         setOpenMobileFilter(!openMobileFilter);
     }
-    const vacancySearchChange = (e)=>{
-        setVacancy_name(e.target.value);
-    }
+    
     const change_flex_handle = (flexType)=>{
         localStorage.setItem('vacancies_flex', `${flexType}`);
         setFlex(flexType);
@@ -111,6 +110,32 @@ function Vacancies() {
             window.removeEventListener('scroll', scrollFunc);
         }
     }, []);
+    const [advanceValue, setAdvanceValue] = useState('');
+    const vacancySearchChange = (e)=>{
+        setAdvanceValue(e.target.value);
+        navigate('/vacancies')
+    }
+    // const searchAdvance = async (e) => {
+    //     e.preventDefault()
+    //     navigate(`/vacancies?value=${advanceValue}`);
+    // }
+    useEffect(()=>{
+        const srch = async () => {
+            try {
+                const {data} = await searchadvance(advanceValue);
+                console.log(data)
+                if(data.success){
+                    dispatch(updateJobs(data.jobs))
+                }
+                else{
+                    console.log(data.message)
+                }
+            } catch (error) {
+                console.log("error at search advance",error)
+            }
+        }
+        srch()
+    },[advanceValue,dispatch])
     return ( 
         <div className="vacancies_page_container">
             {/* image slider and job search container */}
@@ -121,8 +146,8 @@ function Vacancies() {
                 <div className={`vacancies_page_job_search_container ${fixSearch ? 'vacancies_page_job_search_fixed' : ''}`}>
                     <form className="vacancies_page_job_search_form">
                         {/* vacancy search input */}
-                        <input type="text" value={vacancy_name} onChange={vacancySearchChange} placeholder='Peşə, Vəzifə'/>
-                        <button type="submit" className='vacancies_page_job_search_form_submit'>
+                        <input type="text" value={advanceValue} onChange={vacancySearchChange} placeholder='Peşə, Vəzifə, Şirkət və s...'/>
+                        <button  type="submit" className='vacancies_page_job_search_form_submit'>
                             <FontAwesomeIcon icon={faMagnifyingGlass} />
                         </button>
                     </form>
