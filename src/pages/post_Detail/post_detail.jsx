@@ -17,13 +17,50 @@ import twoFlex from '../../images/two_grip.svg';
 import twoFlexActive from '../../images/two_grip_active.svg';
 import { formatNumber } from "../../components/format_number/format_number";
 import CVCheckerModal from "../../components/CV_checker_modal/CV_checker_modal";
+import { getJobWithId } from "../../apiservices";
+import { useSelector,useDispatch } from "react-redux";
+import { updateJobs,updateCurrentJob } from "../../redux/reducers/jobReducers";
 function PostDetail() {
+    const dispatch = useDispatch();
+    const [loading,setLoading]  = useState(false);
     const [checkCv, setCheckCv] = useState(false);
     const {id} = useParams();
-    const [data, setData] = useState(null);
+    const {jobs:Jobs,loading:Loading,currentJobInDetail:data} = useSelector(state=>state.job);
+    // const [data, setData] = useState(null);
     useEffect(()=>{
-        setData(latest_jobs['latest'].find((item)=> item['job_id'] === Number(id) ? item : null));
-    },[id]);
+        const ftchJobWithId = async () => {
+            console.log("fetched in detail")
+            console.log(id)
+            setLoading(true);
+            try {
+                const {data} = await getJobWithId(id);
+                setLoading(false);
+                // console.log(data)
+                if(data.succes){
+                    dispatch(updateCurrentJob(data.data));
+                    let newData = Jobs.map(obj=>{
+                        return obj._id === (data.data)._id ?
+                        data.data : obj
+                    });
+                    dispatch(updateJobs(newData)); 
+                }
+                else{
+                    dispatch(updateCurrentJob(null));
+                }
+
+            } catch (error) {
+                setLoading(false);
+                dispatch(updateCurrentJob(null));
+                console.log("error at jobdetail:",error.name);
+            }
+        }
+        const strdinf = JSON.parse(localStorage.getItem('c_r_r_n_t'));
+        // console.log(strdinf._id !== id)
+        if(strdinf === null || strdinf._id !==id){
+            ftchJobWithId();
+        }
+       
+    },[dispatch]);
     const [applyWindow, setApplyWindow] = useState(false);
     const [flex, setFlex] = useState(localStorage.getItem('vacancies_flex') || 'half_row');
     const openApplyWindowF = ()=>{
@@ -69,6 +106,14 @@ function PostDetail() {
     return ( 
         <div className="detail_page">
             {
+                loading ? (
+                    <div className="detail_page_container">
+                    <div className="detail_page_job_header">
+                        <h1 className="loading">Loading....</h1>
+                        
+                    </div>
+                    </div>
+                ):
                 data ?
                 <div className="detail_page_container">
                     {/* detail page job header */}
@@ -76,22 +121,22 @@ function PostDetail() {
                         {/* job title and vacancy buttons */}
                         <div className="detail_page_job_title_and_btns">
                             {/* job title */}
-                            <div className="detail_page_vacancy_name">{data['job_title']}</div>
+                            <div className="detail_page_vacancy_name">{data['name']}</div>
                             {/* vacancy base informations and save button */}
                             <div className="detail_page_vacancy_buttons_container">
                                 {/* job applies number */}
                                 <div className="detail_page_vacancy_button detail_page_vacancy_button_desktop">
                                     <FontAwesomeIcon icon={faPaperPlane} />
-                                    {formatNumber(data['post_applies'])}
+                                    {formatNumber(data['numberOfApplys'])}
                                 </div>
                                 {/* job views number */}
                                 <div className="detail_page_vacancy_button detail_page_vacancy_button_desktop">
                                     <FontAwesomeIcon icon={faEye} />
-                                    {formatNumber(data['post_views'])}
+                                    {formatNumber(data['numberOfViews'])}
                                 </div>
                                 {/* job save button */}
                                 <div className="detail_page_vacancy_save_button" title="Vakansiyanı yadda saxla">
-                                    <PostBoxSaveBtn job_id = {data['job_id']} job_title={data['job_title']}/>                                 
+                                    <PostBoxSaveBtn job_id = {data['_id']} job_title={data['name']}/>                                 
                                 </div>
                             </div>
                         </div>
@@ -99,10 +144,10 @@ function PostDetail() {
                         <div className="detail_page_company">
                             {/* company logo */}
                             <div className="detail_page_company_logo">
-                                <img src={`${data['image_url']}`} alt="company logo"/>
+                                <img src={`${((data.company)?.companyInfo)?.logo}`} alt="company logo"/>
                             </div>
                             {/* company name */}
-                            <div className="detail_page_company_name">{data['company_name']}</div>
+                            <div className="detail_page_company_name">{(data.company)?.name}</div>
                         </div>                                                    
                         {/* dates, salary and apply button */}
                         <div className="detail_page_dates_and_salary">
@@ -112,12 +157,12 @@ function PostDetail() {
                                     {/* vacancy start date */}
                                     <div className="detail_page_date">
                                         <FontAwesomeIcon icon={faHourglassStart} />
-                                        {data['post_start_date']}
+                                        {data['createdAt'].includes('T') ?data['createdAt'].split('T')[0] : data['createdAt']}
                                     </div>
                                     {/* vacancy end date */}
                                     <div className="detail_page_date">
                                         <FontAwesomeIcon icon={faHourglassEnd} />
-                                        {data['post_end_date']}
+                                        {data['endTime'].split('T')[0]}
                                     </div>
                                 </div>
                                 {/* mobile post views and apply numbers */}
@@ -125,12 +170,12 @@ function PostDetail() {
                                     {/* job applies number */}
                                     <div className="detail_page_vacancy_button">
                                         <FontAwesomeIcon icon={faPaperPlane} />
-                                        {formatNumber(data['post_applies'])}
+                                        {formatNumber(data['numberOfApplys'])}
                                     </div>
                                     {/* job views number */}
                                     <div className="detail_page_vacancy_button">
                                         <FontAwesomeIcon icon={faEye} />
-                                        {formatNumber(data['post_views'])}
+                                        {formatNumber(data['numberOfViews'])}
                                     </div>                                
                                 </div>
                             </div>
@@ -176,22 +221,22 @@ function PostDetail() {
                                     {/* city */}
                                     <li className="vacancy_description_body_list_item">
                                         <p className="vacancy_description_list_par">Şəhər</p>
-                                        <p className="vacancy_description_list_par">{data['location']}</p>
+                                        <p className="vacancy_description_list_par">{data['city']}</p>
                                     </li>
                                     {/* category */}
                                     <li className="vacancy_description_body_list_item">
                                         <p className="vacancy_description_list_par">Kateqoriya</p>
-                                        <p className="vacancy_description_list_par">{data['category']} / {data['sub_category']}</p>
+                                        <p className="vacancy_description_list_par">{data['category']} / {data['subCategory']}</p>
                                     </li>
                                     {/* job time type */}
                                     <li className="vacancy_description_body_list_item">
                                         <p className="vacancy_description_list_par">İş qrafiki</p>
-                                        <p className="vacancy_description_list_par">{data['job_time_type']}</p>
+                                        <p className="vacancy_description_list_par">{data['type']}</p>
                                     </li>
                                     {/* job experience */}
                                     <li className="vacancy_description_body_list_item">
                                         <p className="vacancy_description_list_par">Təcrübə</p>
-                                        <p className="vacancy_description_list_par">{data['job_experience']}</p>
+                                        <p className="vacancy_description_list_par">{data['experience']}</p>
                                     </li>
                                     {/* education */}
                                     <li className="vacancy_description_body_list_item">
@@ -201,7 +246,7 @@ function PostDetail() {
                                     {/* age */}
                                     <li className="vacancy_description_body_list_item">
                                         <p className="vacancy_description_list_par">Yaş</p>
-                                        <p className="vacancy_description_list_par">{data['age']}</p>
+                                        <p className="vacancy_description_list_par">{"21"}</p>
                                     </li>
                                 </ul>
                             </div>
@@ -214,7 +259,7 @@ function PostDetail() {
                             <div className="detail_page_vacancy_description_body">
                                 <ul className="detail_page_vacancy_special_req_list">
                                     {
-                                        data['special_requirements'].map((item, index)=>{
+                                        data['specialRequirements'].map((item, index)=>{
                                             return <li key={index}>{item}</li>
                                         })
                                     }
@@ -226,7 +271,7 @@ function PostDetail() {
                             {/* description heading */}
                             <div className="detail_page_vacancy_description_head">Vakansiya Təsviri</div>
                             {/* description body */}
-                            <div className="detail_page_vacancy_description_body">{data['job_description']}</div>
+                            <div className="detail_page_vacancy_description_body">{data['descriptionOfVacancy']}</div>
                         </div>
                         {/* vacancy details =>>> vakansiya skills tags */}
                         <div className="detail_page_vacancy_description">
@@ -292,53 +337,56 @@ function PostDetail() {
                         }            
                         <div className="detail_latest_jobs_boxes_container">
                             {
-                                latest_jobs['latest'].filter(filtered => filtered['premium'] === true && filtered['category'] === data['category']).map((item, index)=>{
+                                Loading ? <p>Loading...</p>:
+                                Jobs.filter(filtered =>  filtered._id!==id && filtered['premium'] === true).map((item, index)=>{
                                     return(
                                         <PostBox 
-                                            job_id = {item.job_id}
-                                            premium = {item.premium}
-                                            image_url={item.image_url}
-                                            salary={item.salary}
-                                            job_title={item.job_title}
-                                            company_name={item.company_name}
-                                            post_views={item.post_views}
-                                            post_applies = {item.post_applies}
-                                            post_start_date={item.post_start_date}
-                                            post_end_date={item.post_end_date}
-                                            location={item.location}
-                                            job_time_type={item.job_time_type}
-                                            key={item.job_id}
-                                            flexType={flex}
-                                        />
+                                        job_id = {item._id}
+                                        premium = {item.premium}
+                                        image_url={((item.company)?.companyInfo)?.logo}
+                                        salary={item.salary}
+                                        job_title={item.name}
+                                        company_name={(item.company)?.name}
+                                        post_views={item.numberOfViews}
+                                        post_applies = {item.numberOfApplys}
+                                        post_start_date={item.createdAt.includes('T') ? item.createdAt.split('T')[0] : item.createdAt}
+                                        post_end_date={item.endTime.split('T')[0]}
+                                        location={item.city}
+                                        job_time_type={item.type}
+                                        key={item._id}
+                                        flexType={flex}
+                                    />
                                     )
                                 })
                             }
                         </div>
                         {/* _________________________ normal vacancies ________________________ */}
                         {
-                            latest_jobs['latest'].filter(filtered => filtered['premium'] === false && filtered['category'] === data['category']).length > 0  ?
+                            Loading ? <p>Loading...</p>:
+                            Jobs.filter(filtered =>  filtered._id!==id && filtered['premium'] === false && filtered['category'] === data['category']).length > 0  ?
                             <div className="vacancies_page_boxes_head">Elanlar</div> : ''
                         }
                         <div className="detail_latest_jobs_boxes_container">
                             {
-                                latest_jobs['latest'].filter(filtered => filtered['premium'] === false && filtered['category'] === data['category']).map((item, index)=>{
+                                Loading ? <p>Loading...</p>:
+                                Jobs.filter(filtered => filtered._id!==id && filtered['premium'] === false && filtered['category'] === data['category']).map((item, index)=>{
                                     return(
                                         <PostBox 
-                                            job_id = {item.job_id}
-                                            premium = {item.premium}
-                                            image_url={item.image_url}
-                                            salary={item.salary}
-                                            job_title={item.job_title}
-                                            company_name={item.company_name}
-                                            post_views={item.post_views}
-                                            post_applies = {item.post_applies}
-                                            post_start_date={item.post_start_date}
-                                            post_end_date={item.post_end_date}
-                                            location={item.location}
-                                            job_time_type={item.job_time_type}
-                                            key={item.job_id}
-                                            flexType={flex}
-                                        />
+                                        job_id = {item._id}
+                                        premium = {item.premium}
+                                        image_url={((item.company)?.companyInfo)?.logo}
+                                        salary={item.salary}
+                                        job_title={item.name}
+                                        company_name={(item.company)?.name}
+                                        post_views={item.numberOfViews}
+                                        post_applies = {item.numberOfApplys}
+                                        post_start_date={item.createdAt.includes('T') ? item.createdAt.split('T')[0] : item.createdAt}
+                                        post_end_date={item.endTime.split('T')[0]}
+                                        location={item.city}
+                                        job_time_type={item.type}
+                                        key={item._id}
+                                        flexType={flex}
+                                    />
                                     )
                                 })
                             }

@@ -43,3 +43,15 @@ export const getjobs = () => {
 export const getfilteroptions = () => {
     return axiosInstance.get('/getctgsubctg');
 }
+export const getJobWithId = (id) => {
+    return axiosInstance.get('/getJobWithId/'+id);
+}
+export const searchJobs = (params) => {
+    return axiosInstance.get('/searchJobs/'+params)
+}
+export const getFavoritJobs = (id) => {
+    return axiosInstance.get('/getAllUSerSavedJobs/'+id);
+}
+export const addFavoritJobs = (userid,jobid) => {
+    return axiosInstance.post('/addJobToSaved/'+userid+'/'+jobid);
+}

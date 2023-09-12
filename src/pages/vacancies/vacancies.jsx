@@ -11,15 +11,53 @@ import oneFlex from '../../images/one_grip.svg';
 import oneFlexActive from '../../images/one_grip_active.svg';
 import twoFlex from '../../images/two_grip.svg';
 import twoFlexActive from '../../images/two_grip_active.svg';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
+import { searchJobs,getFavoritJobs } from '../../apiservices';
+import { updateJobs,setFavJobs,updateFavJobs } from '../../redux/reducers/jobReducers';
 function Vacancies() {
-    const {jobs,loading} = useSelector(state=>state.job);
-    console.log()
+    const dispatch = useDispatch();
+    const {user,isLoggedIn} = useSelector(state=>state.user)
+    const {jobs,loading,favoritJobs,loadingFavJobs} = useSelector(state=>state.job);
+    // console.log(favoritJobs,loadingFavJobs);
+    useEffect(()=>{
+        const ftchfavjobs = async () => {
+            try {
+                const {data} = await getFavoritJobs(user?._id);
+                // console.log(data);
+                if(data.succes){
+                    dispatch(setFavJobs(data.savedJobs));
+                }
+                else{
+                    console.log("error in savedjobsfetching",data.message)
+                }
+            } catch (error) {
+                console.log("error at get favorit jobs:",error.name)
+            }
+        }
+        if(isLoggedIn && user){
+            ftchfavjobs()
+        }
+    },[user?._id,isLoggedIn,user,dispatch])
     const location = useLocation(); 
     const searchParams = new URLSearchParams(location.search); 
     const [openMobileFilter, setOpenMobileFilter] = useState(false);
     const [flex, setFlex] = useState(localStorage.getItem('vacancies_flex') || 'half_row');
     const [vacancy_name, setVacancy_name] = useState('');
+    useEffect(()=>{
+        const searchjobs = async () => {
+            // console.log(location.search)
+            try {
+                const {data} = await searchJobs(location.search);
+                console.log(data)
+                if(data.success){
+                    dispatch(updateJobs(data.jobs))
+                }
+            } catch (error) {
+                console.log("error at searching job:"+error.name)
+            }
+        }
+        searchjobs();
+    },[dispatch,location.search])
     const [filter, setFilter] = useState({
         categories: searchParams.get('category') || "",
         sub_categories: searchParams.get('sub_category') || "",
