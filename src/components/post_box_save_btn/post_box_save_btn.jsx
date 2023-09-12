@@ -26,8 +26,9 @@ function PostBoxSaveBtn({job_id, job_title}) {
     // function for adding jobs to saved 
     const add_saved_posts = async ()=>{
         // console.log(job_id)
-        set_save_post(!save_post);
+        
         if(isLoggedIn && user){
+            set_save_post(!save_post);
         try {
             const {data} = await addFavoritJobs(user?._id,job_id);
             console.log(data)
