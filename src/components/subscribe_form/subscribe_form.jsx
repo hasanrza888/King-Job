@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import './subscribe_form.css';
 import MultiSelectOption from '../multi_select_option/multi_select_option';
 import { toast } from 'react-toastify';
 import { email_checker } from '../email_checker/email_checker';
+import { getCategories,subscribe } from '../../apiservices';
 function SubscribeForm() {
     const [sendingData, setSendingData] = useState(false);
     const [email, setEmail] = useState('');
@@ -10,58 +11,64 @@ function SubscribeForm() {
         errorCheck: false,
         errorContent : ''
     });
-    const [multi_select, setMultiSelect] = useState([
-        {   
-            id: 1,
-            option_name: 'IT',
-            selected: false,
-        },
-        {   
-            id: 2,
-            option_name: 'Bank',
-            selected: false,
-        },
-        {   
-            id: 3,
-            option_name: 'Tikinti',
-            selected: false,
-        },
-        {   
-            id: 4,
-            option_name: 'Mühasibatlıq',
-            selected: false,
-        },
-        {   
-            id: 5,
-            option_name: 'Marketinq',
-            selected: false,
+    const [multi_select, setMultiSelect] = useState([]);
+    useEffect(()=>{
+        const ftchctgs = async () => {
+            try {
+                const {data} = await getCategories();
+                setMultiSelect(data.data);
+            } catch (error) {
+                console.log('error at subscribe form when fetch ctgs,error:',error.name)
+            }
         }
-    ]);
+        ftchctgs();
+    },[])
     const choosed_selects = multi_select.filter(item => item.selected).map(item2 => item2.option_name);
     const email_change_func = (e)=>{
         setEmail(e.target.value);
     }
-    const subscribe_from_handle =(e)=>{
+    const subscribe_from_handle =async(e)=>{
         e.preventDefault();
-        if(choosed_selects.length > 0 && email_checker(email)){
-            // query to database
-            setSendingData(true);
-            setErrorMessage({...errorMessage, errorCheck: false, errorContent: ''});
-            toast.success('Uğurla abunə oldunuz', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
-        }else if(choosed_selects.length === 0){
-            setErrorMessage({...errorMessage, errorCheck: true, errorContent: 'Kateqoriya Seçməmisiniz !'});
-        }else if(!email_checker(email)){
-            setErrorMessage({...errorMessage, errorCheck: true, errorContent: 'Email sintaksisi səhvdir !'});
-
+        setSendingData(true);
+        setErrorMessage({...errorMessage, errorCheck: false, errorContent: ''});
+        try {
+            if(choosed_selects.length > 0 && email_checker(email)){
+                const {data} = await subscribe({email,categories:choosed_selects});
+                if(data.succes){
+                setSendingData(false);
+                setErrorMessage({...errorMessage, errorCheck: false, errorContent: ''});
+                toast.success('Uğurla abunə oldunuz', {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+                setEmail('');
+                setMultiSelect([]);
+                }
+                else{
+                    setErrorMessage({...errorMessage, errorCheck: true, errorContent: data.message});
+                    setSendingData(false);
+                }
+            }else if(choosed_selects.length === 0){
+                setErrorMessage({...errorMessage, errorCheck: true, errorContent: 'Kateqoriya Seçməmisiniz !'});
+                setSendingData(false)
+            }else if(!email_checker(email)){
+                setErrorMessage({...errorMessage, errorCheck: true, errorContent: 'Email sintaksisi səhvdir !'});
+                sendingData(false)
+            }
+        } catch (error) {
+            if(error.response && error.response.data){
+                setErrorMessage({errorCheck:true,errorContent:error.response.data.message})
+            }
+            else{
+                console.log("error at subscribe form anknown error:",error.name)
+            }
+            setSendingData(false)
         }
     };
     return ( 

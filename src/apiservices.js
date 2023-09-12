@@ -47,11 +47,22 @@ export const getJobWithId = (id) => {
     return axiosInstance.get('/getJobWithId/'+id);
 }
 export const searchJobs = (params) => {
-    return axiosInstance.get('/searchJobs/'+params)
+    return axiosInstance.get('/searchJobs'+params)
 }
 export const getFavoritJobs = (id) => {
     return axiosInstance.get('/getAllUSerSavedJobs/'+id);
 }
 export const addFavoritJobs = (userid,jobid) => {
     return axiosInstance.post('/addJobToSaved/'+userid+'/'+jobid);
+}
+export const getCategories = () => {
+    return axiosInstance.get('/allcategories');
+}
+
+export const subscribe = (data) => {
+    return axiosInstance.post('/addEmail',data)
+}
+
+export const searchadvance = (value) => {
+    return axiosInstance.get(`/advancesearch?value=${value}`)
 }

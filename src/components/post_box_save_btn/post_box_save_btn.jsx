@@ -13,7 +13,7 @@ function PostBoxSaveBtn({job_id, job_title}) {
     const dispatch = useDispatch();
     const {user,isLoggedIn} = useSelector(state=>state.user);
     const {jobs,loading,favoritJobs,loadingFavJobs} = useSelector(state=>state.job);
-    console.log("From save btn",favoritJobs);
+    // console.log("From save btn",favoritJobs);
     const [save_post, set_save_post] = useState(false);
     
     useEffect(()=>{
@@ -22,7 +22,7 @@ function PostBoxSaveBtn({job_id, job_title}) {
         }
         chck();
     },[favoritJobs, job_id])
-    console.log(save_post)
+    // console.log(save_post)
     // function for adding jobs to saved 
     const add_saved_posts = async ()=>{
         // console.log(job_id)
