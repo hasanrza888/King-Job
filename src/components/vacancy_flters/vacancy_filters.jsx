@@ -237,7 +237,7 @@ function VacancyFilters({closeMobileFilter, filter, setFilter}) {
     const search =  (e) => {
         e.preventDefault();
         const {categories, sub_categories, jobCity, min_salary, max_salary, jobExperience, educationLevel, company, jobType, skills, vacancyOrder} = filter;
-        const query = `companyName=${company}&category=${categories}&sub_category=${sub_categories}&city=${jobCity}&type=${jobType}&experience=${jobExperience}&education=${educationLevel}&skills=${skills}&min_salary=${min_salary}&max_salary=${max_salary}&order=${vacancyOrder}`;
+        const query = `companyName=${company}&category=${categories}&subCategory=${sub_categories}&city=${jobCity}&type=${jobType}&experience=${jobExperience}&education=${educationLevel}&skills=${skills}&min_salary=${min_salary}&max_salary=${max_salary}&order=${vacancyOrder}`;
         const filteredQuery = filterEmptyQueryParams(query);
         navigate_to(`/vacancies/?${filteredQuery}`);
         closeMobileFilter();  

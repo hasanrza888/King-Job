@@ -12,7 +12,7 @@ import oneFlexActive from '../../images/one_grip_active.svg';
 import twoFlex from '../../images/two_grip.svg';
 import twoFlexActive from '../../images/two_grip_active.svg';
 import { useSelector,useDispatch } from 'react-redux';
-import { searchJobs,getFavoritJobs,searchadvance } from '../../apiservices';
+import { searchJobs,getFavoritJobs,searchadvance,searchall } from '../../apiservices';
 import { updateJobs,setFavJobs,updateFavJobs } from '../../redux/reducers/jobReducers';
 function Vacancies() {
     const dispatch = useDispatch();
@@ -48,7 +48,7 @@ function Vacancies() {
         const searchjobs = async () => {
             // console.log(location.search)
             try {
-                const {data} = await searchJobs(location.search);
+                const {data} = await searchall(location.search);
                 console.log(data)
                 if(data.success){
                     dispatch(updateJobs(data.jobs))
@@ -113,29 +113,29 @@ function Vacancies() {
     const [advanceValue, setAdvanceValue] = useState('');
     const vacancySearchChange = (e)=>{
         setAdvanceValue(e.target.value);
-        navigate('/vacancies')
+        // navigate('/vacancies')
     }
-    // const searchAdvance = async (e) => {
-    //     e.preventDefault()
-    //     navigate(`/vacancies?value=${advanceValue}`);
-    // }
-    useEffect(()=>{
-        const srch = async () => {
-            try {
-                const {data} = await searchadvance(advanceValue);
-                console.log(data)
-                if(data.success){
-                    dispatch(updateJobs(data.jobs))
-                }
-                else{
-                    console.log(data.message)
-                }
-            } catch (error) {
-                console.log("error at search advance",error)
-            }
-        }
-        srch()
-    },[advanceValue,dispatch])
+    const searchAdvance = async (e) => {
+        e.preventDefault()
+        navigate(`/vacancies?value=${advanceValue}`);
+    }
+    // useEffect(()=>{
+    //     const srch = async () => {
+    //         try {
+    //             const {data} = await searchadvance(advanceValue);
+    //             console.log(data)
+    //             if(data.success){
+    //                 dispatch(updateJobs(data.jobs))
+    //             }
+    //             else{
+    //                 console.log(data.message)
+    //             }
+    //         } catch (error) {
+    //             console.log("error at search advance",error)
+    //         }
+    //     }
+    //     srch()
+    // },[advanceValue,dispatch])
     return ( 
         <div className="vacancies_page_container">
             {/* image slider and job search container */}
@@ -144,7 +144,7 @@ function Vacancies() {
                 <div className="vacancies_page_slogan">ARZULADIĞINIZ <span>İŞİ</span> BİZİMLƏ AXTARIN !</div>
                 {/* ___________ job search form ________________ */}
                 <div className={`vacancies_page_job_search_container ${fixSearch ? 'vacancies_page_job_search_fixed' : ''}`}>
-                    <form className="vacancies_page_job_search_form">
+                    <form onSubmit={searchAdvance} className="vacancies_page_job_search_form">
                         {/* vacancy search input */}
                         <input type="text" value={advanceValue} onChange={vacancySearchChange} placeholder='Peşə, Vəzifə, Şirkət və s...'/>
                         <button  type="submit" className='vacancies_page_job_search_form_submit'>

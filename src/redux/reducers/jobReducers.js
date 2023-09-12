@@ -17,7 +17,8 @@ const jobSlice = createSlice({
       state.loading = false;
     },
     updateJobs: (state,action) => {
-        state.jobs = action.payload
+        state.jobs = action.payload;
+        state.loading = false
     },
     updateCurrentJob: (state,action) => {
       state.currentJobInDetail = action.payload;

@@ -32,7 +32,7 @@ import { useDispatch,useSelector } from 'react-redux';
 import {io} from 'socket.io-client';
 import { clearUser,setUser,setInfo } from './redux/reducers/userauthReducers';
 import { setJobs,updateJobs } from './redux/reducers/jobReducers';
-import { logout,loggedin,getjobs } from './apiservices';
+import { logout,loggedin,getjobs,searchall } from './apiservices';
 import { setSocket } from './redux/reducers/socketReducers';
 function App() {
   const location = useLocation();
@@ -48,7 +48,8 @@ function App() {
   useEffect(()=>{
     const fetchJobs = async () => {
       try {
-        const {data} = await getjobs();
+        const {data} = await searchall();
+        console.log(data)
         // console.log(data);
         if(data.success){
           dispatch(setJobs(data.jobs));
@@ -57,7 +58,11 @@ function App() {
         console.log("error:",error.name)
       }
     }
-    fetchJobs();
+    if(!location.search){
+      fetchJobs();
+
+    }
+    
   },[dispatch])
   useEffect(()=>{
     const chck = async () => {
