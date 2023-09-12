@@ -109,7 +109,7 @@ function PostBoxSaveBtn({job_id, job_title}) {
     }
     return (    
         <>  
-        {user?.u_t_p === 'u_s_r' && <div className="post_box_save_button" onClick={(job_id)=> {add_saved_posts(job_id)} }>
+        { ((isLoggedIn && user?.u_t_p === 'u_s_r') || !isLoggedIn) && <div className="post_box_save_button" onClick={(job_id)=> {add_saved_posts(job_id)} }>
             {
                 save_post ? <FontAwesomeIcon icon={solid_bookmark} /> : <FontAwesomeIcon icon={faBookmark} />
             }    
