@@ -66,3 +66,10 @@ export const subscribe = (data) => {
 export const searchadvance = (value) => {
     return axiosInstance.get(`/advancesearch?value=${value}`)
 }
+
+
+
+export const searchall = (query) => {
+    const r = query === undefined ? '' :query
+    return axiosInstance.get('/searchJobsTest'+r);
+}
