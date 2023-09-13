@@ -1,15 +1,32 @@
 import './companies.css';
+import defaultlogo from "../../images/defaultcompanylogo.png";
 import SliderHome from "../../components/slider/slider";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faFilter, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
 import CustomSelectOption from '../../components/custom_select_option/custom_select_option';
 import PageHeadText from '../../components/page_head_text/page_head_text';
-import { companies } from '../../fakeData/companies';
+// import { companies } from '../../fakeData/companies';
 import CompanyPostBox from '../../components/company_post_box/company_post_box';
-import { useEffect } from 'react';
-
+import { useEffect,useState } from 'react';
+import { getcompanies } from '../../apiservices';
 function Companies() {
+    const [companies,setCompanies] = useState([]);
+    const [loading,setLoading] = useState(true);
+    useEffect(()=>{
+        const ftchcmps = async () => {
+            setLoading(true);
+            try {
+                const {data} = await getcompanies();
+                setCompanies(data.companies);
+                setLoading(false);
+            } catch (error) {
+                setLoading(false);
+                console.log("error at fetching companies,error:",error.name)
+            }
+        }
+           ftchcmps();
+        
+    },[])
     const [filter, setFilter] = useState({
         company_name: '',
         company_order: ''
@@ -145,16 +162,16 @@ function Companies() {
                     {/* <PageHeadText content={'Şirkətlər'}/> */}
                     <div className="companies_page_boxes_head">Şirkətlər</div>
                     <div className="companies_page_commpany_boxes_container">
-                        {
+                        {loading ? <p>Loading...</p>:
                             companies.map((item, index)=>{
                                 return (
                                     <CompanyPostBox 
-                                        key={item.company_id}
-                                        company_name = {item.company_name}
-                                        company_logo = {item.company_logo}
-                                        company_rating = {item.rating}
-                                        vacancy_count = {item.vacancy_count}
-                                        apply_count = {item.apply_count}
+                                        key={item._id}
+                                        company_name = {item.name}
+                                        company_logo = {(item.companyInfo)?.logo || defaultlogo}
+                                        company_rating = {4}
+                                        vacancy_count = {(item.companyInfo)?.vacancynum}
+                                        apply_count = {(item.companyInfo)?.applynum}
                                     />
                                 )
                             })
