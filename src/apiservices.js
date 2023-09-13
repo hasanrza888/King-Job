@@ -79,3 +79,8 @@ export const analyzcv = (data) => {
     return axiosInstance.post('/cvanalyzer',data)
 
 }
+
+
+export const getcompanies = () => {
+    return axiosInstance.get('/getCompanies')
+}
