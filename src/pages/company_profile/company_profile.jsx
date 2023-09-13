@@ -1,7 +1,18 @@
 import CompanyProfileMainWindow from '../../components/company_profile_components/company_profile_main_window/company_profile_main_window';
 import CompanyProfileMenu from '../../components/company_profile_components/company_profile_menu/company_profile_menu';
 import './company_profile.css';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 function CompanyProfile() {
+    const navigate = useNavigate();
+    const {user,isLoggedIn} = useSelector(state=>state.user);
+    useEffect(()=>{
+        if(!isLoggedIn || !user){
+            navigate('/login')
+        }
+    },[])
+
     return ( 
         <div className="company_profile_container">
             {/* menu and main window */}
