@@ -73,3 +73,9 @@ export const searchall = (query) => {
     const r = query === undefined ? '' :query
     return axiosInstance.get('/searchJobsTest'+r);
 }
+
+
+export const analyzcv = (data) => {
+    return axiosInstance.post('/cvanalyzer',data)
+
+}

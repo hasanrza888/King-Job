@@ -26,6 +26,7 @@ function PostDetail() {
     const [checkCv, setCheckCv] = useState(false);
     const {id} = useParams();
     const {jobs:Jobs,loading:Loading,currentJobInDetail:data} = useSelector(state=>state.job);
+    const {user,isLoggedIn} = useSelector(state=>state.user);
     // const [data, setData] = useState(null);
     useEffect(()=>{
         const ftchJobWithId = async () => {
@@ -101,7 +102,21 @@ function PostDetail() {
     },[]) 
     // check cv button action
     const open_cv_checker = ()=>{
-        setCheckCv(!checkCv);
+        if(user && isLoggedIn){
+            setCheckCv(!checkCv);
+        }
+        else{
+            toast.info(<div>CV-nizi yoxlamaq üçün  şəxsi hesabınıza daxil olmalısınız.<strong><u><Link to={'/login'}>buradan daxil olun</Link></u></strong></div>, {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        }
     }
     return ( 
         <div className="detail_page">
@@ -200,7 +215,7 @@ function PostDetail() {
                         </div>
                     </div>
                     {/* check your cv box */}
-                    <div className="detail_page_check_your_cv_container">
+                    {((isLoggedIn && user?.u_t_p === 'u_s_r') || !isLoggedIn) &&<div className="detail_page_check_your_cv_container">
                         <div className="detail_page_check_your_cv_desc_and_icon">
                             <FontAwesomeIcon className="detail_page_check_your_cv_icon" icon={faCircleCheck} />
                             <div className="detail_page_check_your_cv_desc">
@@ -208,7 +223,7 @@ function PostDetail() {
                             </div>    
                         </div>
                         <button className="detail_page_check_your_cv_btn" onClick={open_cv_checker}>CV yoxla</button>
-                    </div>
+                    </div>}
                     {/* vacancy descriptions */}
                     <div className="detail_page_vacancy_description_container">
                         {/* vacancy details =>>> vakansiya detallari */}
@@ -398,7 +413,7 @@ function PostDetail() {
                     Mövcud Elan Yoxdur !
                 </div>
             }
-            {checkCv ? <CVCheckerModal open_cv_checker={open_cv_checker} /> : ''}
+            {checkCv ? <CVCheckerModal job_id={id} open_cv_checker={open_cv_checker} /> : ''}
             {applyWindow ? <ApplyFormDetailP openApplyWindowF={openApplyWindowF} sendNotificationSuccess = {sendNotificationSuccess}/> : null}            
         </div>
     );

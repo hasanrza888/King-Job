@@ -4,12 +4,37 @@ import { faRotate, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { TypeAnimation } from 'react-type-animation';
-function CVCheckerModal({open_cv_checker}) {
+import { analyzcv } from '../../apiservices';
+import { useSelector } from 'react-redux';
+function CVCheckerModal({open_cv_checker,job_id}) {
+    const {user,isLoggedIn} = useSelector(state=>state.user);
     const [loadingMessages, setLoadingMessages] = useState(true);
     const containerRef = useRef(null);
     const [message, setMessage] = useState('');
-    const [text, setText] = useState("The CV matches the job description and requirements well. However, there are a few areas where the CV may need improvement to increase its chances of being accepted by the recruiter.First, the CV could provide more details on the candidate's work experience, specifically in the area of web development. The CV only provides a brief overview of the candidate's work experience, and does not provide any details on the projects the candidate has worked on or the skills they have developed.Second, the CV does not mention any specific results the candidate has achieved in their previous roles. It would be helpful for the recruiter to know what the candidate has accomplished in their previous roles, in order to get a better sense of their skills and abilities.Third, the CV could provide more detail on the candidate's education, specifically in the area of mathematics. The CV only provides a brief overview of the candidate's education, and does not provide any details on the specific courses the candidate has taken or the skills they have developed.Fourth, the CV could provide more detail on the candidate's skills. The CV only provides a brief overview of the candidate's skills, and does not provide any details on the specific skills the candidate has developed or the level of experience they have with each skill.Suggestions and improvements: The CV should provide more details on the candidate's work experience, specifically in the area of web development. The CV should provide more.")
+    const [text, setText] = useState("")
     // closes modal
+    useEffect(()=>{
+        const ftchres = async () => {
+            setLoadingMessages(true)
+            try {
+                const {data} = await analyzcv({userId:user?._id,jobId:job_id});
+                console.log(data)
+                setLoadingMessages(false)
+                // setText(data.text)
+                if(data.succes){
+                    setText(data.text)
+                }
+                else{
+                    setText(data.message)
+                }
+            } catch (error) {
+                setLoadingMessages(false)
+                console.log("error at fetchin result from api for cv check,error:",error.name)
+            }
+        }
+        ftchres()
+
+    },[job_id,user?._id])
     const close_modal = (e)=>{
         if(e.target.className === 'CV_checker_modal_container'){
             open_cv_checker();
@@ -36,26 +61,26 @@ function CVCheckerModal({open_cv_checker}) {
             containerRef.current.scrollTop = containerRef.current.scrollHeight;    
         }
     }, [message]);
-    useEffect(()=>{
-        const loadData = ()=>{
-            setLoadingMessages(false);
-        }
-        setTimeout(loadData, 3000)
-        return ()=>{
-            clearTimeout(loadData);
-        }
-    }, [])
+    // useEffect(()=>{
+    //     const loadData = ()=>{
+    //         setLoadingMessages(false);
+    //     }
+    //     setTimeout(loadData, 3000)
+    //     return ()=>{
+    //         clearTimeout(loadData);
+    //     }
+    // }, [])
     return ( 
         <div className="CV_checker_modal_container" onClick={close_modal}>
             <div className="CV_checker_modal">
                 {/* modal heading */}
                 <div className="CV_checker_modal_info">
-                    CV üçün düzəlişlər aşağıda əks olunub
+                    CV üçün düzəlişlər aşağıda əks olunur
                 </div>
                 {
                     loadingMessages ?
                     <div className="CV_checker_modal_loading">
-                        CV yoxlanılır
+                        CV-niz yoxlanılır bu 50-60 saniyə vaxt ala bilər.
                         <FontAwesomeIcon className='CV_checker_modal_loading_rotate' icon={faSpinner} />
                     </div>
                     :

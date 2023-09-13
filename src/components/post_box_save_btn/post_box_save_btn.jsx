@@ -95,7 +95,7 @@ function PostBoxSaveBtn({job_id, job_title}) {
         // } 
     }
     else{
-        toast.warning(<div>Vakansiyanı sevimlilərə əlavə etmək üçün şəxsi hesabınıza daxil olmalısınız.<strong><u><Link to={'/login'}>buradan daxil olun</Link></u></strong></div>, {
+        toast.info(<div>Vakansiyanı sevimlilərə əlavə etmək üçün şəxsi hesabınıza daxil olmalısınız.<strong><u><Link to={'/login'}>buradan daxil olun</Link></u></strong></div>, {
             position: "top-right",
             autoClose: 2000,
             hideProgressBar: false,
