@@ -15,6 +15,7 @@ import Signup from './pages/signup/signup';
 import Vacancies from './pages/vacancies/vacancies';
 import PageTopBtn from './components/page_top_btn/page_top_btn';
 import PostDetail from './pages/post_Detail/post_detail';
+import VideoChat from './pages/videochat/VideoChat';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SendOtpForm from './components/sendOtpForm/sendOtpForm';
@@ -113,7 +114,9 @@ function App() {
           <Route path='/companies' element={<Companies/>} />
           <Route path='/about' element={<About/>} />
           <Route path='/contact' element={<Contact/>} />
+          <Route path='/videochat' element={<VideoChat />} />
           <Route path='/login' element={<Login/>}>
+
             <Route index element={<LoginForm />} />
             <Route path='forgot_password' element={<ForgotPasswordForm />} />
             <Route path='otp/:email' element={<SendOtpForm tema="password_changing"/>}/>
