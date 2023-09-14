@@ -79,6 +79,9 @@
     user-select: none;
     color: var(--secondary-text-color);
 }
+/* .custom_options_sub_list_item{
+    border-bottom: 1px solid var(--form-inputs-border-color);
+} */
 .custom_options_list_item:hover, .custom_options_sub_list_item:hover{
     background-color: var(--main-border-color);
 }
@@ -91,6 +94,13 @@
 .custom_options_list_selected{
     background-color: var(--option-active-bg-color);
 }
+.custom_options_list:last-child .custom_options_sub_list .custom_options_sub_list_item:last-child{
+    border-bottom: none;
+}
 .custom_options_list:last-child .custom_options_list_item{
     border-bottom: none;
+}
+.custom_options_list .custom_options_list_item:has(+ .custom_options_sub_list){
+    /* border-bottom: none; */
+    border-bottom: 1px solid var(--form-inputs-border-color);
 }

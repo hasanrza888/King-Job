@@ -1,6 +1,5 @@
 import {NavLink, Outlet} from "react-router-dom";
 import './signup.css';
-import PageHeadText from "../../components/page_head_text/page_head_text";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBuilding, faUser } from "@fortawesome/free-solid-svg-icons";
 function Signup() {

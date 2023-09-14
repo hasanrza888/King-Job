@@ -52,7 +52,7 @@
 }
 /* job search form input */
 .vacancies_page_job_search_form input{
-    width: 100%;
+    width: 90%;
     padding: 10px;
     outline: none;
     border: none;
@@ -237,6 +237,7 @@
     .vacancies_page_job_search_form input{
         font-size: 15px;
         /* padding: 7px; */
+        width: 85%;
     }
     .vacancies_page_job_search_form_submit{
         width: 28px;
