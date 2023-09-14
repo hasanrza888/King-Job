@@ -68,7 +68,7 @@ export default function VideoChat() {
   return (
     <div
       ref={myMeeting}
-      style={{ width: '100vw', height: '100vh' }}
+      style={{ width: '100%', height: '100vh' }}
     ></div>
   );
 }

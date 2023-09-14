@@ -99,7 +99,7 @@ function Header(){
                                 </div>
                                 {user?.name}
                             </NavLink> 
-                            <button className="account_link_btn" onClick={logOut}>Logout</button>
+                            <button className="account_link_btn_log_out" onClick={logOut}>Çıxış</button>
                             </>
                         :
                         // company profile
@@ -110,7 +110,7 @@ function Header(){
                                 </div>
                                 {user?.name}
                             </NavLink>   
-                            <button className="account_link_btn" onClick={logOut}>Logout</button></>            
+                            <button className="account_link_btn_log_out" onClick={logOut}>Çıxış</button></>            
                         :
                         <>                        
                             <NavLink to="/login" className={({isActive})=> isActive ? 'link_none' : 'header_login_btn'}>Daxil ol</NavLink>                        
@@ -149,7 +149,7 @@ function Header(){
                                     </div>
                                     {user?.name}
                                 </NavLink>  
-                                <button className="account_link_btn"  onClick={logOut}>Logout</button>   </>               
+                                <button className="account_link_btn_log_out"  onClick={logOut}>Çıxış</button>   </>               
                             :
                             isLoggedIn && p_t==='c_m_p' ?<>
                             <NavLink to='/company_profile/dashboard' className={({isActive})=> isActive ? 'link_none' : 'account_link_btn header_profile_btn'}>
@@ -158,7 +158,7 @@ function Header(){
                                 </div>
                                 {user?.name}
                             </NavLink> 
-                            <button className="account_link_btn"  onClick={logOut}>Logout</button>
+                            <button className="account_link_btn_log_out"  onClick={logOut}>Çıxış</button>
                             </>
                             :
                             ''
