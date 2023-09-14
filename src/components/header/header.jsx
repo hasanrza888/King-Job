@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {NavLink, Link, useLocation,useNavigate} from "react-router-dom";
 import svg from '../../images/island_logo.svg';
-import profile_picture from "../../images/my_picture.jpg"
+import defaultProfilePic from "../../images/defaultUser.png"
 import './header.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faAddressBook, faBars, faBriefcase, faBuilding, faCircleInfo, faClose, faHouse} from '@fortawesome/free-solid-svg-icons';
@@ -95,7 +95,7 @@ function Header(){
                         isLoggedIn && p_t === 'u_s_r'?  <>                   
                             <NavLink to="/user_profile" className={({isActive})=> isActive ? 'link_none' : 'account_link_btn header_profile_btn'}>
                                 <div className="header_profil_picture">
-                                    <img src={info?.profilepic} alt="profile"/>
+                                    <img src={info?.profilepic || defaultProfilePic} alt="profile"/>
                                 </div>
                                 {user?.name}
                             </NavLink> 
@@ -106,7 +106,7 @@ function Header(){
                         isLoggedIn && p_t === 'c_m_p'?  <>                   
                             <NavLink to='/company_profile/dashboard' className={({isActive})=> isActive ? 'link_none' : 'account_link_btn header_profile_btn'}>
                                 <div className="header_profil_picture">
-                                    <img src={info?.logo} alt="profile"/>
+                                    <img src={info?.logo || defaultProfilePic} alt="profile"/>
                                 </div>
                                 {user?.name}
                             </NavLink>   
@@ -145,7 +145,7 @@ function Header(){
                             isLoggedIn && p_t==='u_s_r'?  <>                 
                                 <NavLink to="/user_profile" onClick={open_drop_menu} className={({isActive})=> isActive ? 'link_none' : 'account_link_btn header_profile_btn'}>
                                     <div className="header_profil_picture">
-                                        <img src={info?.profilepic} alt="profile"/>
+                                        <img src={info?.profilepic || defaultProfilePic} alt="profile"/>
                                     </div>
                                     {user?.name}
                                 </NavLink>  
@@ -154,7 +154,7 @@ function Header(){
                             isLoggedIn && p_t==='c_m_p' ?<>
                             <NavLink to='/company_profile/dashboard' className={({isActive})=> isActive ? 'link_none' : 'account_link_btn header_profile_btn'}>
                                 <div className="header_profil_picture">
-                                    <img src={info?.logo} alt="profile"/>
+                                    <img src={info?.logo || defaultProfilePic} alt="profile"/>
                                 </div>
                                 {user?.name}
                             </NavLink> 
