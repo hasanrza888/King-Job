@@ -80,8 +80,8 @@
 }
 /* account links such as signup login profile buttons */
 .account_links_container{
-    width: 15%;
-    min-width: 205px;
+    width: 20%;
+    min-width: 280px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -106,6 +106,26 @@
 .account_link_btn:hover{
     background-color: var(--accent-hover);
     border: 1px solid var(--accent-hover);
+}
+.account_link_btn_log_out{
+    color: var(--accent-color);
+    background-color: var(--primary-color);
+    padding: 13px 20px;
+    border: 1px solid var(--accent-color);
+    border-radius: 5px;
+    transition: 0.3s ease all;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 14px;
+    margin-left: 10px;
+}
+.account_link_btn_log_out:hover{
+    background-color: var(--accent-hover);
+    border: 1px solid var(--accent-hover);
+    color: var(--primary-color);
 }
 .header_login_btn{
     color: var(--accent-color);
@@ -151,7 +171,7 @@
 .header_mobile_container{
     display: none;
 }
-@media (width <= 850px){
+@media (width <= 940px){
     .header_desktop{
         display: none;
     }
