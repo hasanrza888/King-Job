@@ -18,7 +18,7 @@ export default function VideoChat() {
   const {user,isLoggedIn} = useSelector(state=>state.user);
   React.useEffect(()=>{
     if(!user && !isLoggedIn){
-      navigate('/login')
+      navigate('/login',{state:{referrer:'/videochat/'+meetingId}})
     }
   },[])
       const roomID = meetingId;
@@ -40,7 +40,7 @@ export default function VideoChat() {
             url:
              window.location.protocol + '//' + 
              window.location.host + window.location.pathname +
-              '?roomID=' +
+              '?meeting=' +
               roomID,
           },
         ],
@@ -68,7 +68,10 @@ export default function VideoChat() {
   return (
     <div
       ref={myMeeting}
+
+
       style={{ width: '100%', height: '100vh' }}
+
     ></div>
   );
 }

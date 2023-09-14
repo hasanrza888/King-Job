@@ -3,7 +3,7 @@ import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { useState,useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ForgotPasswordForm from '../forgot_password_form/forgot_password_form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate,useLocation } from 'react-router-dom';
 import SendOtpForm from '../sendOtpForm/sendOtpForm';
 import UpdatePasswordForm from '../update_password_form/update_password_form';
 import { email_checker } from '../email_checker/email_checker';
@@ -12,6 +12,13 @@ import { loginCompany,loginUser,emailIsUserOrCompany } from '../../apiservices';
 import { useDispatch,useSelector } from 'react-redux';
 import { setUser,clearUser } from '../../redux/reducers/userauthReducers';
 function LoginForm() {
+    const location = useLocation();
+    const [previousUrl, setPreviousUrl] = useState(null);
+    useEffect(() => {
+        // Set the previous URL when the location changes
+        setPreviousUrl(location.state ? location.state.referrer : null);
+      }, [location]);
+      console.log(previousUrl)
     const dispatch = useDispatch();
     const tt = new Date();
     const [formInfo, setFormInfo] = useState({
@@ -108,7 +115,7 @@ function LoginForm() {
                             progress: undefined,
                             theme: "light",
                         });
-                        navigateTo('/')
+                        navigateTo(previousUrl || '/');
                     }
                     else{
                         setErrorMessage({errorCheck:true,errorContent:dataC.message})
@@ -129,7 +136,12 @@ function LoginForm() {
                             progress: undefined,
                             theme: "light",
                         });
-                        navigateTo('/')
+                        // console.log(previousUrl)
+                        // navigateTo(-1)
+                        navigateTo(previousUrl || '/');
+                        // if(previousUrl){
+                        //     navigateTo(previousUrl)
+                        // }
                     }
                     else{
                         setErrorMessage({errorCheck:true,errorContent:dataU.message})

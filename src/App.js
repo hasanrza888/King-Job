@@ -39,6 +39,7 @@ function App() {
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  
   const [socket,setSocket] = useState(null);
   const {user,isLoggedIn} = useSelector(state=>state.user);
   useEffect(()=>{
@@ -104,7 +105,7 @@ function App() {
   return (
     <div className='container'>
       {/* _______________ header _______________*/}
-      <Header/>
+     { !location.pathname.includes('/videochat') && <Header/>}
       {/* ___________ routers ________________  */}
       <div className={`main_pages_container ${location.pathname.includes('/company_profile') ? 'main_pages_top' : ''}`}>
         <Routes>
@@ -154,7 +155,7 @@ function App() {
         theme="colored"
       />
       {/* ________ footer _____________________ */}
-      <Footer/>
+      {!location.pathname.includes('/videochat') && <Footer/>}
       <PageTopBtn />
     </div>
   );
