@@ -114,7 +114,7 @@ function App() {
           <Route path='/companies' element={<Companies/>} />
           <Route path='/about' element={<About/>} />
           <Route path='/contact' element={<Contact/>} />
-          {isLoggedIn && user && <Route path='/videochat' element={<VideoChat />} />}
+           <Route path='/videochat/:meetingId' element={<VideoChat />} />
           <Route path='/login' element={<Login/>}>
 
             <Route index element={<LoginForm />} />
