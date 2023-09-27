@@ -5,22 +5,52 @@ import { ZegoUIKitPrebuilt } from '@zegocloud/zego-uikit-prebuilt';
 import { useSelector } from 'react-redux';
 import svg from '../../images/island_logo.svg';
 import { useNavigate,useParams } from 'react-router-dom';
-export function getUrlParams(
-  url = window.location.href
-) {
-  let urlStr = url.split('?')[1];
-  return new URLSearchParams(urlStr);
-}
-
+import { checkMeetingBetweenUserAndCompany } from '../../apiservices';
+import MessageComponent from './messageComponent';
+import LoadingMeeting from './loadingMeeting';
 export default function VideoChat() {
+  const [error,setError] = React.useState({
+    errorCheck:false,
+    errorContent:''
+  })
+  const [loading,setLoading] = React.useState(true);
   const {meetingId} = useParams();
   const navigate = useNavigate();
   const {user,isLoggedIn} = useSelector(state=>state.user);
+  const [companyInfo,setCompanyInfo] = React.useState(null);
   React.useEffect(()=>{
     if(!user && !isLoggedIn){
       navigate('/login',{state:{referrer:'/videochat/'+meetingId}})
     }
   },[])
+  React.useEffect(()=>{
+    const checkMeeting = async () => {
+      try {
+        const {data} = await checkMeetingBetweenUserAndCompany({meeting_id:meetingId})
+      // console.log(data)
+      // setLoading(false)
+      if(data.succes){
+        console.log(data.data)
+        // console.log(data.data.apply.job.company)
+        // setCompanyInfo(data?.data?.apply?.job?.company)
+      }
+      else{
+        setError({errorCheck:true,errorContent:data.message})
+      }
+      
+      setLoading(false)
+      } catch (error) {
+        setLoading(false)
+        if(error && error.response && error.response.data){
+          setError({errorCheck:true,errorContent:error.response.data.message})
+        }
+        
+      }
+    }
+    if(user && isLoggedIn){
+      checkMeeting();
+    }
+  },[isLoggedIn,meetingId,user,setCompanyInfo])
       const roomID = meetingId;
       let myMeeting = async (element) => {
      // generate Kit Token
@@ -66,12 +96,23 @@ export default function VideoChat() {
   };
 
   return (
-    <div
+    <div style={{width:'100%', height:'100vh'}}>
+      {loading ? <LoadingMeeting/> :
+      error.errorCheck ? <MessageComponent message={error.errorContent} /> :
+      <>
+      {/* <div style={{width:'100%', height:'10vh'}}>
+
+        {companyInfo?.name}
+        </div> */}
+      <div
       ref={myMeeting}
 
 
       style={{ width: '100%', height: '100vh' }}
 
-    ></div>
+    >
+    </div></>}
+    </div>
+    
   );
 }

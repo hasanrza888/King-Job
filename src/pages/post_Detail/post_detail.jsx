@@ -65,10 +65,25 @@ function PostDetail() {
     const [applyWindow, setApplyWindow] = useState(false);
     const [flex, setFlex] = useState(localStorage.getItem('vacancies_flex') || 'half_row');
     const openApplyWindowF = ()=>{
-        setApplyWindow(!applyWindow);
+        if(user && isLoggedIn){
+            setApplyWindow(!applyWindow);
+        }
+        else{
+            toast.info(<div>Müraciət  üçün  şəxsi hesabınıza daxil olmalısınız.<strong><u><Link to={'/login'}>buradan daxil olun</Link></u></strong></div>, {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        }
+        
     }
-    const sendNotificationSuccess = ()=>{
-        toast.success(`${data['job_title']} adlı vakansiyaya müraciət göndərildi!`, {
+    const sendNotificationSuccess = (message)=>{
+        toast.success(message, {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -414,7 +429,7 @@ function PostDetail() {
                 </div>
             }
             {checkCv ? <CVCheckerModal job_id={id} open_cv_checker={open_cv_checker} /> : ''}
-            {applyWindow ? <ApplyFormDetailP openApplyWindowF={openApplyWindowF} sendNotificationSuccess = {sendNotificationSuccess}/> : null}            
+            {applyWindow ? <ApplyFormDetailP job={id} openApplyWindowF={openApplyWindowF} sendNotificationSuccess = {sendNotificationSuccess}/> : null}            
         </div>
     );
 }

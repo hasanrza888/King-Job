@@ -62,9 +62,7 @@ function App() {
     }
     if(!location.search){
       fetchJobs();
-
     }
-    
   },[dispatch])
   useEffect(()=>{
     const chck = async () => {
