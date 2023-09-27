@@ -84,3 +84,13 @@ export const analyzcv = (data) => {
 export const getcompanies = () => {
     return axiosInstance.get('/getCompanies')
 }
+
+
+export const checkMeetingBetweenUserAndCompany = (data) => {
+    return axiosInstance.post('/checkMeetingBetweenUserAndCompanyAndSet',data);
+}
+
+
+export const apllyNewJob = (data) => {
+    return axiosInstance.post('/postApply',data);
+}
