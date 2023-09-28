@@ -1,18 +1,23 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './company_profile_main_window.css'
-import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeftLong, faBars } from '@fortawesome/free-solid-svg-icons';
 import { Link, Outlet } from 'react-router-dom';
 import { faBell, faCommentDots } from '@fortawesome/free-regular-svg-icons';
-function CompanyProfileMainWindow() {
+function CompanyProfileMainWindow({open_company_menu, menu}) {
     return ( 
-    <div className="company_profile_main_window_container">
+    <div className={`company_profile_main_window_container ${menu ? 'company_profile_main_window_full' : ''}`}>
         {/* main window header */}
         <div className="company_profile_main_window_header">
-            {/* link to home page */}
-            <Link to='/' className="company_profile_main_window_link">
-                <FontAwesomeIcon icon={faArrowLeftLong} />
-                Əsas səhifə
-            </Link>
+            <div className="company_profile_main_window_header_menubar_and_back_btn">
+                <div className={`company_profile_main_window_header_menubar ${menu ? '' : 'company_profile_main_window_header_menubar_hide'}`} onClick={()=> {open_company_menu()}}>
+                    <FontAwesomeIcon icon={faBars} />
+                </div>
+                {/* link to home page */}
+                <Link to='/' className="company_profile_main_window_link">
+                    <FontAwesomeIcon icon={faArrowLeftLong} />
+                    Əsas səhifə
+                </Link>
+            </div>
             {/* company profile header buttons */}
             <div className="comp_pro_main_wndw_header_msg_and_notify_btns">
                 <div className="comp_pro_main_wndw_header_btn" title='Mesajlar'>
@@ -25,7 +30,10 @@ function CompanyProfileMainWindow() {
                 </div>
             </div>
         </div>
-        <Outlet />
+        {/* nested windows */}
+        <div className="company_profile_nested_windows">
+            <Outlet />    
+        </div>
     </div> );
 }
 

@@ -1,0 +1,154 @@
+@import '../../../color.css';
+/* dashboard container */
+.company_profile_dashboard_container{
+    width: 100%;
+}
+/* dashboard overview */
+.company_profile_dashboard_overview{
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+    overflow-x: auto;
+    padding: 5px 5px 10px 5px;
+    /* background-color: aqua; */
+    /* justify-content: center; */
+    justify-content: center;
+}
+/* overview card */
+.company_profile_dashboard_overview_card{
+    /* width: 15%; */
+    min-width: 200px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+    border: 1px solid var(--main-border-color);
+    box-shadow: var(--boxes-shadow-light);
+    margin-right: 20px;
+    /* margin-bottom: 20px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+/* logo and desc container*/
+.company_profile_dashboard_overview_logo_and_desc{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+/* box logo */
+.company_profile_dashboard_overview_logo{
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: var(--dashboard-icon-bg-color);
+}
+/* logo icon */
+.company_profile_dashboard_overview_logo svg{
+    font-size: 18px;
+}
+.company_profile_dashboard_overview_desc{
+    display: flex;
+    flex-direction: column;
+}
+/* overview name */
+.company_profile_dashboard_overview_name{
+    /* font-weight: 500; */
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+/* overview count */
+.company_profile_dashboard_overview_count{
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--page-text-slogan-color);
+    letter-spacing: 1px;
+}
+/* overview change */
+.company_profile_dashboard_overview_change{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.company_profile_dashboard_overview_change_name{
+    font-size: 14px;
+    color: var(--light-text-color);
+    margin-right: 10px;
+}
+.company_profile_dashboard_overview_change_count{
+    display: flex;
+    flex-direction: row;
+}
+/* overview change icon */
+.company_profile_dashboard_overview_change_count svg{
+    margin-right: 5px;
+}
+.company_profile_dashboard_overview_increase{
+    color: var(--dashboard-overview-increase-color);
+}
+.company_profile_dashboard_overview_decrease{
+    color: var(--dashboard-overview-decrease-color);
+}
+/* _________________ chart container ___________________________ */
+.company_profile_dashboard_charts_container{
+    width: 100%;
+    margin: 100px 0px 50px;
+    background-color: var(--primary-color);
+    padding: 20px 20px 0px;
+    box-shadow: var(--boxes-shadow-light);
+}
+.company_profile_dashboard_chart_bar_and_pie{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-x: auto;
+}
+/* bar chart */
+.company_profile_dashboard_chart_bar{
+    width: 70%;
+    min-width: 600px;
+    max-width: 750px;
+    height: 350px;
+    padding: 20px 20px 40px;
+}
+/* pie chart */
+.company_profile_dashboard_chart_pie{
+    width: 30%;
+    min-width: 280px;
+    height: 350px;
+    padding: 20px;
+    background-color: var(--primary-color);
+}
+.company_profile_dashboard_chart_name{
+    font-weight: 500;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 17px;
+}
+@media (width <= 600px){
+    .company_profile_dashboard_charts_container{
+        padding: 20px 0px 0px;
+    }
+    .company_profile_dashboard_chart_bar{
+        width: 100%;
+        min-width: unset;
+        padding: 0px 0px 20px;
+    }
+    .company_profile_dashboard_chart_pie{
+        width: 100%;
+        /* min-width: 240px; */
+    }
+    .company_profile_dashboard_chart_pie .recharts-responsive-container{
+        width: 100%;
+        min-width: 160px;
+    }
+}

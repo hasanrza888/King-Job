@@ -2,6 +2,9 @@
 .company_profile_main_window_container{
     width: 80%;
 }
+.company_profile_main_window_full{
+    width: 100%;
+}
 /* company profile header */
 .company_profile_main_window_header{
     width: 100%;
@@ -10,7 +13,29 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: first baseline;
+    flex-wrap: wrap;
+    position: sticky;
+    z-index: 999;
+    top: 0px;
+    background-color: var(--primary-color);
+}
+.company_profile_main_window_header_menubar_and_back_btn{
+    display: flex;
+    flex-direction: row;
     align-items: center;
+    margin-right: 10px;
+}
+.company_profile_main_window_header_menubar{
+    margin-right: 30px;
+    cursor: pointer;
+}
+.company_profile_main_window_header_menubar svg{
+    font-size: 20px;
+    color: var(--main-text-color);
+}
+.company_profile_main_window_header_menubar_hide{
+    display: none;
 }
 /* header link */
 .company_profile_main_window_link{
@@ -30,6 +55,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-top: 10px;
 }
 /* header button container */
 .comp_pro_main_wndw_header_btn{
@@ -59,4 +85,16 @@
     border-radius: 50%;
     font-weight: 500;
     user-select: none;
+}
+.company_profile_nested_windows{
+    width: 100%;
+    padding: 30px 20px;
+}
+@media (width <= 1270px){
+    .company_profile_main_window_container{
+        width: 100%;
+    }
+    .company_profile_main_window_header_menubar_hide{
+        display: block;
+    }
 }
