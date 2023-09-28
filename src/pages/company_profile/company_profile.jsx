@@ -8,10 +8,10 @@ function CompanyProfile() {
     const navigate = useNavigate();
     const {user,isLoggedIn} = useSelector(state=>state.user);
     useEffect(()=>{
-        if(!isLoggedIn || !user){
-            navigate('/login')
+        if(!user && !isLoggedIn){
+          navigate('/login',{state:{referrer:'/company_profile'}})
         }
-    },[])
+      },[isLoggedIn,user,navigate])
 
     return ( 
         <div className="company_profile_container">

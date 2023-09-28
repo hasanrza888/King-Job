@@ -61,9 +61,33 @@
     margin-top: 50px;
     transition: 0.3s ease all;
 }
+.home_page_what_do_box_action_btn_inside{
+    width: 50%;
+    display: block;
+    text-align: center;
+    padding: 10px 30px;
+    border: 1px solid var(--accent-color);
+    border-radius: 10px;
+    font-weight: 500;
+    color: var(--accent-color);
+    background-color: var(--primary-color);
+    margin-top: 50px;
+    transition: 0.3s ease all;
+
+}
+.home_page_what_do_box_buttons{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
 .home_page_what_do_box_action_btn:hover{
     background-color: var(--accent-color);
     color: var(--primary-color);
+}
+.home_page_what_do_box_action_btn_inside:hover{
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+
 }
 .home_page_what_do_box_slider_container{
     width: 60%;
@@ -100,5 +124,11 @@
     }
     .home_page_what_do_box_head{
         font-size: 18px;
+    }
+    .home_page_what_do_box_buttons{
+        display: block;
+    }
+    .home_page_what_do_box_action_btn_inside{
+        width: 100%;
     }
 }
