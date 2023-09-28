@@ -126,7 +126,7 @@ function App() {
             <Route path='user_signup' index element={<UserSignup/>}/>
             <Route path='company_signup' element={<CompanySignup/>}/>
           </Route>
-          {isLoggedIn && user?.u_t_p === 'u_s_r' && <Route path='/user_profile' element={<UserProfile/>}/>}
+          <Route path='/user_profile' element={<UserProfile/>}/>
           {/* _________________  company profile routers __________________ */}
           {isLoggedIn && user?.u_t_p==='c_m_p' && <Route path='/company_profile' element={<CompanyProfile />}>
             <Route index path='dashboard' element={<CompanyProfileDashboard />} />
