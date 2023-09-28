@@ -75,6 +75,9 @@
     transition: 0.3s ease all;
 
 }
+.home_page_what_do_box_action_btn_inside:nth-child(2){
+    margin-left: 10px;
+}
 .home_page_what_do_box_buttons{
     width: 100%;
     display: flex;
@@ -130,5 +133,9 @@
     }
     .home_page_what_do_box_action_btn_inside{
         width: 100%;
+    }
+    .home_page_what_do_box_action_btn_inside:nth-child(2){
+        margin-left: 0px;
+        margin-top: 20px;
     }
 }
