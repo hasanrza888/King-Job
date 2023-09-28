@@ -27,8 +27,10 @@ function Home() {
                     key="first_apply"
                     box_head="King Job" 
                     box_desc="King Job, iş axtarış prosesinizi sürətləndirəcək bir tətbiqdir. Biz iş təcrübəsinin və karyera hədəflərinin ən yaxşı şəkildə təqdim edilməsini təmin etmək üçün buradayıq. İş axtaranlar və işəgötürən şirkətlər üçün inkişaf etmiş və rahat bir platforma təqdim edirik."
-                    action_button_text = 'İndi başla'
+                    action_button_text = 'İş axtaran'
                     action_link='/vacancies'
+                    sec_action_button_text = 'İşə götürən'
+                    sec_action_link = '/company_profile'
                     slider_images = {[]}
                     one_image={mockup}
                 />
