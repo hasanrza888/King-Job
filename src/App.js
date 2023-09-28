@@ -62,9 +62,7 @@ function App() {
     }
     if(!location.search){
       fetchJobs();
-
     }
-    
   },[dispatch])
   useEffect(()=>{
     const chck = async () => {
@@ -128,16 +126,16 @@ function App() {
             <Route path='user_signup' index element={<UserSignup/>}/>
             <Route path='company_signup' element={<CompanySignup/>}/>
           </Route>
-          {isLoggedIn && user?.u_t_p === 'u_s_r' && <Route path='/user_profile' element={<UserProfile/>}/>}
+          <Route path='/user_profile' element={<UserProfile/>}/>
           {/* _________________  company profile routers __________________ */}
-          {isLoggedIn && user?.u_t_p==='c_m_p' && <Route path='/company_profile' element={<CompanyProfile />}>
+          <Route path='/company_profile' element={<CompanyProfile />}>
             <Route index path='dashboard' element={<CompanyProfileDashboard />} />
             <Route path='vacancies' element={<CompanyProfileVacancies />}>
               <Route index element={<CompanyProfileMyVacancies />} />
               <Route path='create_vacancy' element={<ComProCreateVacancy />}/>
               <Route path='premium' element={<ComProPremiumVacancies />}/>
             </Route>
-          </Route>}
+          </Route>
           <Route path='*' element={<Notfound/>} />            
         </Routes>
       </div>            
