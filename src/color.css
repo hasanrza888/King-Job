@@ -35,4 +35,7 @@
     --company-menu-active: #EBEDFF;
     --company-menu-active-border: #DCDCDC;
     --notification-count-color: #FF1111;
+    --dashboard-icon-bg-color: #E7FFE9;
+    --dashboard-overview-increase-color: #40CB00;
+    --dashboard-overview-decrease-color: #FF4545;
 }
