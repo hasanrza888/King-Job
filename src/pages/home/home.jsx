@@ -8,16 +8,50 @@ import first_apply_third from "../../images/first_apply_third.png";
 import first_apply_fourth from "../../images/first_apply_fourth.png";
 import confirm_notification from "../../images/confirm_notification.png";
 import user_tasks from "../../images/user_tasks.jpg";
+import fillyourprofilefull from "../../images/fillyourprofilefull.jpg";
+import mockup from "../../images/smartmockups_ln33e9pp.jpg";
 import online_interview from "../../images/online_interview.jpg";
 import ofline_interview from "../../images/ofline_interview.jpg";
 import OurWorksPromotions from '../../components/our_works_promotions/our_works_promotions';
 import king_job_video from '../../videos/king_job_video.mp4';
+import { useSelector } from 'react-redux';
 function Home() {
+    const {user,isLoggedIn} = useSelector(state=>state.user);
     return ( 
         <div className="home_page_container">
             <SliderHome fromHomePage = {true}/>
             {/* company => what we do boxes*/}
             <div className="home_page_what_do_container">
+                {/* first apply box container */}
+                <OurWorksPromotions 
+                    key="first_apply"
+                    box_head="King Job" 
+                    box_desc="King Job, iş axtarış prosesinizi sürətləndirəcək bir tətbiqdir. Biz iş təcrübəsinin və karyera hədəflərinin ən yaxşı şəkildə təqdim edilməsini təmin etmək üçün buradayıq. İş axtaranlar və işəgötürən şirkətlər üçün inkişaf etmiş və rahat bir platforma təqdim edirik."
+                    action_button_text = 'İndi başla'
+                    action_link='/vacancies'
+                    slider_images = {[]}
+                    one_image={mockup}
+                />
+                {/* fill profile  box container */}
+                <OurWorksPromotions 
+                    key="fill_profile"
+                    box_head="Profili doldurmaq" 
+                    box_desc={<div>Profilinizin Gücü<br />
+                    Sizin yolculuğunuz King Job profili yaratmaq ilə başlayır. Onu özünüzün bir dijital pasportunuz kimi təsəvvür edin.<br />
+                    ✨ Ətraflı Məlumatlar: Profilinizi iş təcrübəniz və təhsilinizdən sertifikatlarınıza, nailiyyətlərinizdən karyera məqsədlərinizə qədər önəmli detallarla doldurun. Profiliniz bacarıqlarınızı və nailiyyətlərinizi göstərmək üçün əsas vasitə hesab olunur.
+                    <br />
+                    📜 CV Yükləyin: CV-nizi yükləyin. Bu, karyera tarixinizin bir             sənətidir və işəgötürənlər onu asanlıqla gözdən keçirə bilərlər.
+                    <br />
+                    ✉️ Niyyət Məktubu Hazırlayın: Fərqlənmək üçün şəxsi qapaq məktubu hazırlayın. Potensial işəgötürənlərə özünüzü onların komandasına uyğun olan səbəbləri ilə bildirin.
+                    <br />
+                    🌐 Sosial və Karyera Platformlarınızı əlavə edin: Sosial və karyera profilinizi əlavə edin ki,özünüzün professional yolunun ətraflı baxışını təqdim edəsiniz. Bu profilinizi dərinlikləndirir və  işəgötürənlər ilə etibar qurur.
+                    <br />
+                    📸 Profil Şəkli: Profesional profil şəkli ilə şəxsiyyətinizi parlaq şəkildə təqdim edin. Bu ilk təsirinizdir və böyük bir şəkil əbədi təsir yarada bilər.</div>}
+                    action_button_text = 'Profilim'
+                    action_link={'/user_profile'}
+                    slider_images = {[]}
+                    one_image={fillyourprofilefull}
+                />
                 {/* first apply box container */}
                 <OurWorksPromotions 
                     key="first_apply"
