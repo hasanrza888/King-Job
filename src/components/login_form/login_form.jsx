@@ -10,7 +10,7 @@ import { email_checker } from '../email_checker/email_checker';
 import { toast } from 'react-toastify';
 import { loginCompany,loginUser,emailIsUserOrCompany } from '../../apiservices';
 import { useDispatch,useSelector } from 'react-redux';
-import { setUser,clearUser } from '../../redux/reducers/userauthReducers';
+import { setUser,clearUser,setInfo } from '../../redux/reducers/userauthReducers';
 function LoginForm() {
     const location = useLocation();
     const [previousUrl, setPreviousUrl] = useState(null);
@@ -18,7 +18,7 @@ function LoginForm() {
         // Set the previous URL when the location changes
         setPreviousUrl(location.state ? location.state.referrer : null);
       }, [location]);
-      console.log(previousUrl)
+    //   console.log(previousUrl)
     const dispatch = useDispatch();
     const tt = new Date();
     const [formInfo, setFormInfo] = useState({
@@ -98,13 +98,14 @@ function LoginForm() {
             const data = await emiscmp();
             if(data.succes){
                 const {u_t_p} = await data;
-                console.log(u_t_p)
+                // console.log(u_t_p)
                 if(u_t_p === 'c_m_p'){
                     const dataC = await lgnC();
                     console.log(dataC)
                     if(dataC.succes){
                         const {user} = await dataC;
-                        dispatch(setUser(user));
+                        dispatch(setUser(user.modified));
+                        dispatch(setInfo(user.info));
                         toast.success('Succesfully loggedin', {
                             position: "top-right",
                             autoClose: 5000,
@@ -125,7 +126,8 @@ function LoginForm() {
                     const dataU = await lgnU();
                     if(dataU.succes){
                         const {user} = await dataU;
-                        dispatch(setUser(user));
+                        dispatch(setUser(user.modified));
+                        dispatch(setInfo(user.info));
                         toast.success('Succesfully loggedin', {
                             position: "top-right",
                             autoClose: 5000,

@@ -24,7 +24,7 @@ function Home() {
             <div className="home_page_what_do_container">
                 {/* first apply box container */}
                 <OurWorksPromotions 
-                    key="first_apply"
+                    key="kingjob"
                     box_head="King Job" 
                     box_desc="King Job, iş axtarış prosesinizi sürətləndirəcək bir tətbiqdir. Biz iş təcrübəsinin və karyera hədəflərinin ən yaxşı şəkildə təqdim edilməsini təmin etmək üçün buradayıq. İş axtaranlar və işəgötürən şirkətlər üçün inkişaf etmiş və rahat bir platforma təqdim edirik."
                     action_button_text = 'İş axtaran'
