@@ -2,7 +2,7 @@ import StarRating from '../../star_rating_show/star_rating_show';
 import './company_profile_menu.css';
 import small_logo from '../../../images/small_logo.png';
 import CompanyProfileSubmenus from '../company_profile_submenus/company_profile_submenus';
-
+import {defaultcompanylogo} from '../../../images/defaultcompanylogo.png'
 import { useSelector } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -130,7 +130,7 @@ function CompanyProfileMenu({menu, open_company_menu}) {
                 <div className="company_profile_menu_image_and_name">
                     {/* company image */}
                     <div className="company_profile_menu_image">
-                        <img src={user?.u_t_p==='u_s_r' ? info?.profilepic : info?.logo} alt="Company logo" />
+                        <img src={(user?.u_t_p==='u_s_r' ? info?.profilepic : info?.logo)|| defaultcompanylogo} alt="Company logo" />
                     </div>
                     {/* Company name */}
                     <div className="company_profile_menu_comName">{user?.name}</div>
