@@ -134,6 +134,11 @@
     text-align: center;
     font-size: 17px;
 }
+@media (width <= 950px){
+    .company_profile_dashboard_overview{
+        justify-content: unset;
+    }
+}
 @media (width <= 600px){
     .company_profile_dashboard_charts_container{
         padding: 20px 0px 0px;

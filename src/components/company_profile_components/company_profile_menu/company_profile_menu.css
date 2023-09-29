@@ -104,9 +104,12 @@
 @media (width <= 1270px){
     .company_profile_menu_container{
         width: 0px;
+        height: 100vh;
         min-width: 0px;
-        position: absolute;
+        position: fixed;
         overflow: hidden;
+        top: 0px;
+        left: 0px;
     }
     .company_profile_menu_open{
         width: 0px;
