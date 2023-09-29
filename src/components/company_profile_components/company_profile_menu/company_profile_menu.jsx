@@ -9,6 +9,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBriefcase, faChartSimple, faEnvelope, faGear, faListCheck, faPaperPlane, faUserGroup } from '@fortawesome/free-solid-svg-icons';
 import defaultlogo from "../../../images/defaultcompanylogo.png";
 function CompanyProfileMenu() {
+import { faBriefcase, faChartSimple, faEnvelope, faGear, faListCheck, faPaperPlane, faUserGroup, faXmark } from '@fortawesome/free-solid-svg-icons';
+
+function CompanyProfileMenu({menu, open_company_menu}) {
     const {user,isLoggedIn,info} = useSelector(state=>state.user);
     console.log(info)
     const menu_names_submenus = [
@@ -127,23 +130,35 @@ function CompanyProfileMenu() {
                 {/* company image */}
                 <div className="company_profile_menu_image">
                     <img src={(user?.u_t_p==='u_s_r' ? info?.profilepic : info?.logo) || defaultlogo} alt="Company logo" />
+        <div className={`company_profile_menu_container ${menu ? 'company_profile_menu_close' : 'company_profile_menu_open'}`}>
+            <div className={`company_profile_menu`}>
+                {/* menu close */}
+                <div className="company_profile_menu_close_btn" onClick={()=>{open_company_menu()}}>
+                    <FontAwesomeIcon icon={faXmark} />
                 </div>
-                {/* Company name */}
-                <div className="company_profile_menu_comName">{user?.name}</div>
-                {/* company rating */}
-                <div className="company_profile_menu_rating">
-                    <div className="company_profile_menu_rating_value">5</div>
-                    <StarRating rating_count={5}/>    
+                {/* company image and name */}
+                <div className="company_profile_menu_image_and_name">
+                    {/* company image */}
+                    <div className="company_profile_menu_image">
+                        <img src={user?.u_t_p==='u_s_r' ? info?.profilepic : info?.logo} alt="Company logo" />
+                    </div>
+                    {/* Company name */}
+                    <div className="company_profile_menu_comName">{user?.name}</div>
+                    {/* company rating */}
+                    <div className="company_profile_menu_rating">
+                        <div className="company_profile_menu_rating_value">5</div>
+                        <StarRating rating_count={5}/>    
+                    </div>
                 </div>
+                {/* menu items container */}
+                <ul className="company_profile_menu_items_container">
+                    {
+                        menu_names_submenus.map((item, index)=>{
+                            return <li key={index}><CompanyProfileSubmenus key={index} menu={item}/></li> 
+                        })
+                    }
+                </ul>
             </div>
-            {/* menu items container */}
-            <ul className="company_profile_menu_items_container">
-                {
-                    menu_names_submenus.map((item, index)=>{
-                        return <li key={index}><CompanyProfileSubmenus key={index} menu={item}/></li> 
-                    })
-                }
-            </ul>
         </div>
      );
 }
