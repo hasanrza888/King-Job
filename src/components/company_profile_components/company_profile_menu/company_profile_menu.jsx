@@ -6,11 +6,10 @@ import CompanyProfileSubmenus from '../company_profile_submenus/company_profile_
 import { useSelector } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import defaultlogo from "../../../images/defaultcompanylogo.png";
 import { faBriefcase, faChartSimple, faEnvelope, faGear, faListCheck, faPaperPlane, faUserGroup, faXmark } from '@fortawesome/free-solid-svg-icons';
+
 function CompanyProfileMenu({menu, open_company_menu}) {
     const {user,isLoggedIn,info} = useSelector(state=>state.user);
-    console.log(info)
     const menu_names_submenus = [
         {
             main: 'İdarə paneli',
@@ -121,12 +120,6 @@ function CompanyProfileMenu({menu, open_company_menu}) {
         }
     ]
     return ( 
-        <div className="company_profile_menu_container">
-            {/* company image and name */}
-            <div className="company_profile_menu_image_and_name">
-                {/* company image */}
-                <div div className="company_profile_menu_image">
-                    <img src={(user?.u_t_p==='u_s_r' ? info?.profilepic : info?.logo) || defaultlogo} alt="Company logo" />
         <div className={`company_profile_menu_container ${menu ? 'company_profile_menu_close' : 'company_profile_menu_open'}`}>
             <div className={`company_profile_menu`}>
                 {/* menu close */}
@@ -157,9 +150,7 @@ function CompanyProfileMenu({menu, open_company_menu}) {
                 </ul>
             </div>
         </div>
-        </div>
-        </div>
-        </div>
      );
 }
+
 export default CompanyProfileMenu;
