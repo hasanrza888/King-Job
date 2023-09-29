@@ -8,9 +8,6 @@ import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import defaultlogo from "../../../images/defaultcompanylogo.png";
 import { faBriefcase, faChartSimple, faEnvelope, faGear, faListCheck, faPaperPlane, faUserGroup, faXmark } from '@fortawesome/free-solid-svg-icons';
-function CompanyProfileMenu() {
-
-
 function CompanyProfileMenu({menu, open_company_menu}) {
     const {user,isLoggedIn,info} = useSelector(state=>state.user);
     console.log(info)
@@ -164,6 +161,5 @@ function CompanyProfileMenu({menu, open_company_menu}) {
         </div>
         </div>
      );
-}
 }
 export default CompanyProfileMenu;
