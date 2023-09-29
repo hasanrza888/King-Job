@@ -76,6 +76,7 @@ function App() {
         // console.log(data)
       dispatch(setUser((data.user).returnedData));
       dispatch(setInfo((data.user).info));
+      console.log(data)
       }
     }
     chck();
