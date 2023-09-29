@@ -133,7 +133,7 @@ function CompanyProfileDashboard() {
                 </div>
                 <div className="company_profile_dashboard_overview_change">
                     {/* change name */}
-                    <div className="company_profile_dashboard_overview_change_name">Sonuncu ay</div>
+                    <div className="company_profile_dashboard_overview_change_name">Sonuncu ay</div> 
                     {/* change count */}
                     <div className="company_profile_dashboard_overview_change_count">
                         <FontAwesomeIcon className='company_profile_dashboard_overview_decrease' icon={faArrowTrendDown} />
