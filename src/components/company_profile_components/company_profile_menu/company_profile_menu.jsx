@@ -2,7 +2,7 @@ import StarRating from '../../star_rating_show/star_rating_show';
 import './company_profile_menu.css';
 import small_logo from '../../../images/small_logo.png';
 import CompanyProfileSubmenus from '../company_profile_submenus/company_profile_submenus';
-import {defaultcompanylogo} from '../../../images/defaultcompanylogo.png'
+import defaultcompanylogo from '../../../images/defaultcompanylogo.png'
 import { useSelector } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
