@@ -41,7 +41,8 @@ function App() {
   const navigate = useNavigate();
   
   const [socket,setSocket] = useState(null);
-  const {user,isLoggedIn} = useSelector(state=>state.user);
+  const {user,isLoggedIn,info} = useSelector(state=>state.user);
+  // console.log(info)
   useEffect(()=>{
     if(isLoggedIn){
     setSocket(io('https://seal-app-5gg2a.ondigitalocean.app'));
@@ -67,16 +68,22 @@ function App() {
   useEffect(()=>{
     const chck = async () => {
       const {data} = await loggedin();
+      // console.log(data)
     //  console.log(data)
       if(!data.succes){
         dispatch(clearUser());
         return
       }
       else{
+        if(((data.user).returnedData).u_t_p === 'c_m_p'){
+          if(((data.user).info).isBlock){
+           return lgout();
+          }
+        }
         // console.log(data)
       dispatch(setUser((data.user).returnedData));
       dispatch(setInfo((data.user).info));
-      console.log(data)
+      // console.log(data)
       }
     }
     chck();
@@ -86,7 +93,7 @@ function App() {
       socket.emit('joinRoom',user._id)
     }
   },[user,isLoggedIn,socket])
-  const lgout = async () => {
+  async function lgout(){
     const {data} = await logout();
     if(data.success){
       dispatch(clearUser())

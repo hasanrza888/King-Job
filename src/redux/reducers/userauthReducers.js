@@ -18,6 +18,7 @@ const userSlice = createSlice({
     clearUser: (state) => {
       state.user = null;
       state.isLoggedIn = false;
+      state.info = null;
       localStorage.removeItem('user');
     },
     setInfo:(state,action) => {
