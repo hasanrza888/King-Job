@@ -7,9 +7,10 @@ import { useSelector } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBriefcase, faChartSimple, faEnvelope, faGear, faListCheck, faPaperPlane, faUserGroup } from '@fortawesome/free-solid-svg-icons';
-
+import defaultlogo from "../../../images/defaultcompanylogo.png";
 function CompanyProfileMenu() {
     const {user,isLoggedIn,info} = useSelector(state=>state.user);
+    console.log(info)
     const menu_names_submenus = [
         {
             main: 'İdarə paneli',
@@ -125,7 +126,7 @@ function CompanyProfileMenu() {
             <div className="company_profile_menu_image_and_name">
                 {/* company image */}
                 <div className="company_profile_menu_image">
-                    <img src={user?.u_t_p==='u_s_r' ? info?.profilepic : info?.logo} alt="Company logo" />
+                    <img src={(user?.u_t_p==='u_s_r' ? info?.profilepic : info?.logo) || defaultlogo} alt="Company logo" />
                 </div>
                 {/* Company name */}
                 <div className="company_profile_menu_comName">{user?.name}</div>
