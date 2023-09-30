@@ -2,8 +2,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './company_profile_dashboard.css';
 import { faArrowTrendDown, faArrowTrendUp, faBriefcase, faCheck, faEye, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { BarChart, Bar, Pie, Cell, PieChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-
+import { useSelector,useDispatch } from 'react-redux';
 function CompanyProfileDashboard() {
+    const dispatch = useDispatch();
+    const {numbers} = useSelector(state=>state.companyProfile)
     const Vacancies_analytics_bar = [
         {
           name: 'Yanvar',
@@ -100,7 +102,7 @@ function CompanyProfileDashboard() {
                         {/* overview name */}
                         <div className="company_profile_dashboard_overview_name">Qəbul edilmiş namizədlər</div>
                         {/* overview count */}
-                        <div className="company_profile_dashboard_overview_count">200</div>
+                        <div className="company_profile_dashboard_overview_count">{numbers?.numOfApproved}</div>
                     </div>
                 </div>
                 <div className="company_profile_dashboard_overview_change">
@@ -128,7 +130,7 @@ function CompanyProfileDashboard() {
                         {/* overview name */}
                         <div className="company_profile_dashboard_overview_name">Vakansiyalar</div>
                         {/* overview count */}
-                        <div className="company_profile_dashboard_overview_count">145</div>
+                        <div className="company_profile_dashboard_overview_count">{numbers?.premJobsCount}</div>
                     </div>
                 </div>
                 <div className="company_profile_dashboard_overview_change">
@@ -156,7 +158,7 @@ function CompanyProfileDashboard() {
                         {/* overview name */}
                         <div className="company_profile_dashboard_overview_name">Müraciətlər</div>
                         {/* overview count */}
-                        <div className="company_profile_dashboard_overview_count">2556</div>
+                        <div className="company_profile_dashboard_overview_count">{numbers?.numOfAllApply}</div>
                     </div>
                 </div>
                 <div className="company_profile_dashboard_overview_change">
@@ -184,7 +186,7 @@ function CompanyProfileDashboard() {
                         {/* overview name */}
                         <div className="company_profile_dashboard_overview_name">Vakansiyalara baxış</div>
                         {/* overview count */}
-                        <div className="company_profile_dashboard_overview_count">9876</div>
+                        <div className="company_profile_dashboard_overview_count">{numbers?.allView}</div>
                     </div>
                 </div>
                 <div className="company_profile_dashboard_overview_change">

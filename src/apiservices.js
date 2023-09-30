@@ -94,3 +94,10 @@ export const checkMeetingBetweenUserAndCompany = (data) => {
 export const apllyNewJob = (data) => {
     return axiosInstance.post('/postApply',data);
 }
+
+
+
+
+export const getAllNumbersForCompanyMenuAndDashboard = (id) => {
+    return axiosInstance.get('/getNumbersForCompanyMenu/'+id);
+}

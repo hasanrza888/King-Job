@@ -28,24 +28,22 @@ function CompanyProfileSubmenus({menu}) {
                                 return <NavLink to={menu['main_url']} className={`company_profile_submenus_link ${location.pathname === menu['main_url'] ? 'company_profile_submenus_link_active' : ''}`} key={sub['sub_url']}>
                                             {sub['sub_name']}
                                             {
-                                                sub['sub_count'] ?
+                                                sub['sub_count'] === '' ? '' :
                                                 <div className="company_profile_submenus_link_count">
                                                     {sub['sub_count']}  
                                                 </div>
-                                                :
-                                                ''
+                                            
                                             }
                                         </NavLink>
                             }
                             return <NavLink to={sub['sub_url']} className={({isActive})=> isActive ? 'company_profile_submenus_link company_profile_submenus_link_active' : 'company_profile_submenus_link'} key={sub['sub_url']}>
                                         {sub['sub_name']}
                                         {
-                                            sub['sub_count'] ?
+                                            sub['sub_count'] === '' ? '' :
                                             <div className="company_profile_submenus_link_count">
                                                 {sub['sub_count']}
                                             </div>
-                                            :
-                                            ''
+                                            
                                         }
                                    </NavLink>
                         })
