@@ -130,7 +130,7 @@ function CompanyProfileDashboard() {
                         {/* overview name */}
                         <div className="company_profile_dashboard_overview_name">Vakansiyalar</div>
                         {/* overview count */}
-                        <div className="company_profile_dashboard_overview_count">{numbers?.premJobsCount}</div>
+                        <div className="company_profile_dashboard_overview_count">{numbers?.jobsCount}</div>
                     </div>
                 </div>
                 <div className="company_profile_dashboard_overview_change">
