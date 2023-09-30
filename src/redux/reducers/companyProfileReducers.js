@@ -7,7 +7,8 @@ const initialState = {
         numOfAllApply:0,
         numOfApproved:0,
         numOfRejected:0,
-        allView:0
+        allView:0,
+        percentageChangeNumOfAllApply:0
   },
 };
 

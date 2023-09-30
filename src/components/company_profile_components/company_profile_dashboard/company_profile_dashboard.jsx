@@ -166,9 +166,9 @@ function CompanyProfileDashboard() {
                     <div className="company_profile_dashboard_overview_change_name">Sonuncu ay</div>
                     {/* change count */}
                     <div className="company_profile_dashboard_overview_change_count">
-                        <FontAwesomeIcon className='company_profile_dashboard_overview_increase' icon={faArrowTrendUp} />
-                        <div className="company_profile_dashboard_overview_change_count_number company_profile_dashboard_overview_increase">
-                            +3%
+                        <FontAwesomeIcon className={numbers?.percentageChangeNumOfAllApply >=0 ?'company_profile_dashboard_overview_increase':'company_profile_dashboard_overview_decrease'} icon={numbers?.percentageChangeNumOfAllApply >=0 ?faArrowTrendUp :faArrowTrendDown} />
+                        <div className={numbers?.percentageChangeNumOfAllApply >=0 ?"company_profile_dashboard_overview_change_count_number company_profile_dashboard_overview_increase":"company_profile_dashboard_overview_change_count_number company_profile_dashboard_overview_decrease"}>
+                            {numbers?.percentageChangeNumOfAllApply}
                         </div>
                     </div>
                 </div>
