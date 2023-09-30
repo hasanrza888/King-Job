@@ -4,12 +4,13 @@ import small_logo from '../../../images/small_logo.png';
 import CompanyProfileSubmenus from '../company_profile_submenus/company_profile_submenus';
 import defaultcompanylogo from '../../../images/defaultcompanylogo.png'
 import { useSelector } from 'react-redux';
-
+import { useEffect,useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBriefcase, faChartSimple, faEnvelope, faGear, faListCheck, faPaperPlane, faUserGroup, faXmark } from '@fortawesome/free-solid-svg-icons';
-
-function CompanyProfileMenu({menu, open_company_menu}) {
+import { getAllNumbersForCompanyMenuAndDashboard } from '../../../apiservices';
+function CompanyProfileMenu({menu, open_company_menu,menuNumbers}) {
     const {user,isLoggedIn,info} = useSelector(state=>state.user);
+    
     const menu_names_submenus = [
         {
             main: 'İdarə paneli',
@@ -24,7 +25,7 @@ function CompanyProfileMenu({menu, open_company_menu}) {
             sub_menus: [{
                 sub_name: 'Vakansiyalarım',
                 sub_url: '/company_profile/vacancies/my_vacancies',
-                sub_count: '300'
+                sub_count: menuNumbers?.jobsCount
             },
             {
                 sub_name: 'Vakansiya yarat',
@@ -34,7 +35,7 @@ function CompanyProfileMenu({menu, open_company_menu}) {
             {
                 sub_name: 'Premium vakansiyalar',
                 sub_url: '/company_profile/vacancies/premium',
-                sub_count: '300'
+                sub_count: menuNumbers?.premJobsCount
             }
             ]
         },
@@ -45,7 +46,7 @@ function CompanyProfileMenu({menu, open_company_menu}) {
             sub_menus: [{
                 sub_name: 'Ümumi müraciətlər',
                 sub_url: '/company_profile/applies',
-                sub_count: '110'
+                sub_count: menuNumbers?.numOfAllApply
             },
             {
                 sub_name: 'Seçilmişlər',
@@ -55,12 +56,12 @@ function CompanyProfileMenu({menu, open_company_menu}) {
             {
                 sub_name: 'Qəbul edilmişlər',
                 sub_url: '/company_profile/applies/accepted',
-                sub_count: '18'
+                sub_count: menuNumbers?.numOfApproved
             },
             {
                 sub_name: 'Ləğv edilmişlər',
                 sub_url: '/company_profile/applies/rejected',
-                sub_count: '92'
+                sub_count: menuNumbers?.numOfRejected
             }
             ]
         },

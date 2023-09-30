@@ -32,7 +32,7 @@ function CompanyProfileMainWindow({open_company_menu, menu}) {
         </div>
         {/* nested windows */}
         <div className="company_profile_nested_windows">
-            <Outlet />    
+            <Outlet  />    
         </div>
     </div> );
 }
