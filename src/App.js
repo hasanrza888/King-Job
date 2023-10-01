@@ -70,7 +70,7 @@ function App() {
   useEffect(() => {
     const checkLoggedIn = async () => {
       const { data } = await loggedin();
-      if (!data.success) {
+      if (!data.succes) {
         dispatch(clearUser());
         return;
       } else {
