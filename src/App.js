@@ -8,6 +8,7 @@ import { setJobs } from './redux/reducers/jobReducers';
 import { logout, loggedin, searchall } from './apiservices';
 import { setSocket } from './redux/reducers/socketReducers';
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // Lazy-loaded components
 const CompanySignup = React.lazy(() => import('./components/company_signup/company_signup'));
 const Footer = React.lazy(() => import('./components/footer/footer'));
@@ -109,6 +110,18 @@ function App() {
 
   return (
     <div className='container'>
+     <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={false}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
       <React.Suspense fallback={<h1>Loadingghghhgh...</h1>}>
         {!location.pathname.includes('/videochat') && <Header />}
         <div className={`main_pages_container ${location.pathname.includes('/company_profile') ? 'main_pages_top' : ''}`}>
@@ -143,18 +156,7 @@ function App() {
             <Route path='*' element={<Notfound />} />
           </Routes>
         </div>
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick={false}
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-        />
+       
         {!location.pathname.includes('/videochat') && <Footer />}
         <PageTopBtn />
       </React.Suspense>
