@@ -8,7 +8,8 @@ const initialState = {
         numOfApproved:0,
         numOfRejected:0,
         allView:0,
-        percentageChangeNumOfAllApply:0
+        percentageChangeNumOfAllApply:0,
+        percentageChangeCreatedVacancy:0,
   },
 };
 
