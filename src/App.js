@@ -1,169 +1,165 @@
-import {Routes, Route, useLocation,useNavigate } from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import './App.css';
-import CompanySignup from './components/company_signup/company_signup';
-import Footer from './components/footer/footer';
-import Header from './components/header/header';
-import UserSignup from './components/user_signup/user_signup';
-import About from './pages/about/about';
-import Companies from './pages/companies/companies';
-import Contact from './pages/contact/contact';
-import Home from './pages/home/home';
-import Login from './pages/login/login';
-import Notfound from './pages/not_found_page/not_found';
-import UserProfile from './pages/user_profile/user_profile';
-import Signup from './pages/signup/signup';
-import Vacancies from './pages/vacancies/vacancies';
-import PageTopBtn from './components/page_top_btn/page_top_btn';
-import PostDetail from './pages/post_Detail/post_detail';
-import VideoChat from './pages/videochat/VideoChat';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import SendOtpForm from './components/sendOtpForm/sendOtpForm';
-import LoginForm from './components/login_form/login_form';
-import ForgotPasswordForm from './components/forgot_password_form/forgot_password_form';
-import UpdatePasswordForm from './components/update_password_form/update_password_form';
-import CompanyProfile from './pages/company_profile/company_profile';
-import { useEffect,useState} from 'react';
-import CompanyProfileDashboard from './components/company_profile_components/company_profile_dashboard/company_profile_dashboard';
-import CompanyProfileVacancies from './components/company_profile_components/company_profile_vacancies/company_profile_vacancies';
-import CompanyProfileMyVacancies from './components/company_profile_components/company_profile_my_vacancies/company_profile_my_vacancies';
-import ComProCreateVacancy from './components/company_profile_components/com_pro_create_vacancy/com_pro_create_vacancy';
-import ComProPremiumVacancies from './components/company_profile_components/com_pro_premium_vacancies/com_pro_premium_vacancies';
-import { useDispatch,useSelector } from 'react-redux';
-import {io} from 'socket.io-client';
-import { clearUser,setUser,setInfo } from './redux/reducers/userauthReducers';
-import { setJobs,updateJobs } from './redux/reducers/jobReducers';
-import { logout,loggedin,getjobs,searchall } from './apiservices';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { io } from 'socket.io-client';
+import { clearUser, setUser, setInfo } from './redux/reducers/userauthReducers';
+import { setJobs } from './redux/reducers/jobReducers';
+import { logout, loggedin, searchall } from './apiservices';
 import { setSocket } from './redux/reducers/socketReducers';
+import { ToastContainer } from 'react-toastify';
+// Lazy-loaded components
+const CompanySignup = React.lazy(() => import('./components/company_signup/company_signup'));
+const Footer = React.lazy(() => import('./components/footer/footer'));
+const Header = React.lazy(() => import('./components/header/header'));
+const UserSignup = React.lazy(() => import('./components/user_signup/user_signup'));
+const About = React.lazy(() => import('./pages/about/about'));
+const Companies = React.lazy(() => import('./pages/companies/companies'));
+const Contact = React.lazy(() => import('./pages/contact/contact'));
+const Home = React.lazy(() => import('./pages/home/home'));
+const Login = React.lazy(() => import('./pages/login/login'));
+const Notfound = React.lazy(() => import('./pages/not_found_page/not_found'));
+const UserProfile = React.lazy(() => import('./pages/user_profile/user_profile'));
+const Signup = React.lazy(() => import('./pages/signup/signup'));
+const Vacancies = React.lazy(() => import('./pages/vacancies/vacancies'));
+const PageTopBtn = React.lazy(() => import('./components/page_top_btn/page_top_btn'));
+const PostDetail = React.lazy(() => import('./pages/post_Detail/post_detail'));
+const VideoChat = React.lazy(() => import('./pages/videochat/VideoChat'));
+const SendOtpForm = React.lazy(() => import('./components/sendOtpForm/sendOtpForm'));
+const LoginForm = React.lazy(() => import('./components/login_form/login_form'));
+const ForgotPasswordForm = React.lazy(() => import('./components/forgot_password_form/forgot_password_form'));
+const UpdatePasswordForm = React.lazy(() => import('./components/update_password_form/update_password_form'));
+const CompanyProfile = React.lazy(() => import('./pages/company_profile/company_profile'));
+const CompanyProfileDashboard = React.lazy(() => import('./components/company_profile_components/company_profile_dashboard/company_profile_dashboard'));
+const CompanyProfileVacancies = React.lazy(() => import('./components/company_profile_components/company_profile_vacancies/company_profile_vacancies'));
+const CompanyProfileMyVacancies = React.lazy(() => import('./components/company_profile_components/company_profile_my_vacancies/company_profile_my_vacancies'));
+const ComProCreateVacancy = React.lazy(() => import('./components/company_profile_components/com_pro_create_vacancy/com_pro_create_vacancy'));
+const ComProPremiumVacancies = React.lazy(() => import('./components/company_profile_components/com_pro_premium_vacancies/com_pro_premium_vacancies'));
+
 function App() {
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
-  const [socket,setSocket] = useState(null);
-  const {user,isLoggedIn,info} = useSelector(state=>state.user);
-  // console.log(info)
-  useEffect(()=>{
-    if(isLoggedIn){
-    setSocket(io('https://seal-app-5gg2a.ondigitalocean.app'));
+
+  const [socket, setSocket] = useState(null);
+  const { user, isLoggedIn, info } = useSelector(state => state.user);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      setSocket(io('https://seal-app-5gg2a.ondigitalocean.app'));
     }
-  },[isLoggedIn]);
-  useEffect(()=>{
+  }, [isLoggedIn]);
+
+  useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const {data} = await searchall();
-        console.log(data)
-        // console.log(data);
-        if(data.success){
+        const { data } = await searchall();
+        if (data.success) {
           dispatch(setJobs(data.jobs));
         }
       } catch (error) {
-        console.log("error:",error.name)
+        console.log("error:", error.name);
       }
-    }
-    if(!location.search){
+    };
+    if (!location.search) {
       fetchJobs();
     }
-  },[dispatch])
-  useEffect(()=>{
-    const chck = async () => {
-      const {data} = await loggedin();
-      // console.log(data)
-    //  console.log(data)
-      if(!data.succes){
+  }, [dispatch, location.search]);
+
+  useEffect(() => {
+    const checkLoggedIn = async () => {
+      const { data } = await loggedin();
+      if (!data.success) {
         dispatch(clearUser());
-        return
-      }
-      else{
-        if(((data.user).returnedData).u_t_p === 'c_m_p'){
-          if(((data.user).info).isBlock){
-           return lgout();
+        return;
+      } else {
+        if (data.user.returnedData.u_t_p === 'c_m_p') {
+          if (data.user.info.isBlock) {
+            return logoutUser();
           }
         }
-        // console.log(data)
-      dispatch(setUser((data.user).returnedData));
-      dispatch(setInfo((data.user).info));
-      // console.log(data)
+        dispatch(setUser(data.user.returnedData));
+        dispatch(setInfo(data.user.info));
       }
+    };
+    checkLoggedIn();
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (isLoggedIn && user && socket) {
+      socket.emit('joinRoom', user._id);
     }
-    chck();
-  },[dispatch])
-  useEffect(()=>{
-    if(isLoggedIn && user && socket){
-      socket.emit('joinRoom',user._id)
+  }, [user, isLoggedIn, socket]);
+
+  async function logoutUser() {
+    const { data } = await logout();
+    if (data.success) {
+      dispatch(clearUser());
     }
-  },[user,isLoggedIn,socket])
-  async function lgout(){
-    const {data} = await logout();
-    if(data.success){
-      dispatch(clearUser())
-    } 
   }
-  useEffect(()=>{
-    if(socket && isLoggedIn && user){
-    socket.on('company-block',data=>{
-      // console.log(data)
-      lgout();
-      navigate('/login')
-    })
-  }
-  },[socket])
+
+  useEffect(() => {
+    if (socket && isLoggedIn && user) {
+      socket.on('company-block', (data) => {
+        logoutUser();
+        navigate('/login');
+      });
+    }
+  }, [socket, isLoggedIn, navigate, user]);
+
   return (
     <div className='container'>
-      {/* _______________ header _______________*/}
-     { !location.pathname.includes('/videochat') && <Header/>}
-      {/* ___________ routers ________________  */}
-      <div className={`main_pages_container ${location.pathname.includes('/company_profile') ? 'main_pages_top' : ''}`}>
-        <Routes>
-          <Route path='/' element={<Home/>} />
-          <Route path='/vacancies' element={<Vacancies/>} />
-          <Route path='/vacancies/:id' element={<PostDetail />} />
-          <Route path='/companies' element={<Companies/>} />
-          <Route path='/about' element={<About/>} />
-          <Route path='/contact' element={<Contact/>} />
-           <Route path='/videochat/:meetingId' element={<VideoChat />} />
-          <Route path='/login' element={<Login/>}>
-
-            <Route index element={<LoginForm />} />
-            <Route path='forgot_password' element={<ForgotPasswordForm />} />
-            <Route path='otp/:email' element={<SendOtpForm tema="password_changing"/>}/>
-            <Route path='new_password/:email/:otp' element={<UpdatePasswordForm />}/>
-          </Route>
-          <Route path='/signup' element={<Signup/>}>
-            <Route index element={<UserSignup/>}/>
-            <Route path='user_signup' index element={<UserSignup/>}/>
-            <Route path='company_signup' element={<CompanySignup/>}/>
-          </Route>
-          <Route path='/user_profile' element={<UserProfile/>}/>
-          {/* _________________  company profile routers __________________ */}
-          <Route path='/company_profile' element={<CompanyProfile />}>
-            <Route index path='dashboard' element={<CompanyProfileDashboard />} />
-            <Route path='vacancies' element={<CompanyProfileVacancies />}>
-              <Route index element={<CompanyProfileMyVacancies />} />
-              <Route path='create_vacancy' element={<ComProCreateVacancy />}/>
-              <Route path='premium' element={<ComProPremiumVacancies />}/>
+      <React.Suspense fallback={<h1>Loadingghghhgh...</h1>}>
+        {!location.pathname.includes('/videochat') && <Header />}
+        <div className={`main_pages_container ${location.pathname.includes('/company_profile') ? 'main_pages_top' : ''}`}>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/vacancies' element={<Vacancies />} />
+            <Route path='/vacancies/:id' element={<PostDetail />} />
+            <Route path='/companies' element={<Companies />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/contact' element={<Contact />} />
+            <Route path='/videochat/:meetingId' element={<VideoChat />} />
+            <Route path='/login' element={<Login />}>
+              <Route index element={<LoginForm />} />
+              <Route path='forgot_password' element={<ForgotPasswordForm />} />
+              <Route path='otp/:email' element={<SendOtpForm tema="password_changing" />} />
+              <Route path='new_password/:email/:otp' element={<UpdatePasswordForm />} />
             </Route>
-          </Route>
-          <Route path='*' element={<Notfound/>} />            
-        </Routes>
-      </div>            
-      {/* notification message in react toastify */}
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
-      {/* ________ footer _____________________ */}
-      {!location.pathname.includes('/videochat') && <Footer/>}
-      <PageTopBtn />
+            <Route path='/signup' element={<Signup />}>
+              <Route index element={<UserSignup />} />
+              <Route path='user_signup' index element={<UserSignup />} />
+              <Route path='company_signup' element={<CompanySignup />} />
+            </Route>
+            <Route path='/user_profile' element={<UserProfile />} />
+            <Route path='/company_profile' element={<CompanyProfile />}>
+              <Route index path='dashboard' element={<CompanyProfileDashboard />} />
+              <Route path='vacancies' element={<CompanyProfileVacancies />}>
+                <Route index element={<CompanyProfileMyVacancies />} />
+                <Route path='create_vacancy' element={<ComProCreateVacancy />} />
+                <Route path='premium' element={<ComProPremiumVacancies />} />
+              </Route>
+            </Route>
+            <Route path='*' element={<Notfound />} />
+          </Routes>
+        </div>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={false}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
+        {!location.pathname.includes('/videochat') && <Footer />}
+        <PageTopBtn />
+      </React.Suspense>
     </div>
   );
 }
+
 export default App;
