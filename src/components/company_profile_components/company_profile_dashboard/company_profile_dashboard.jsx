@@ -10,25 +10,24 @@ function CompanyProfileDashboard() {
     const {numbers} = useSelector(state=>state.companyProfile)
     const {user} = useSelector(state=>state.user);
     const [Vacancies_analytics_bar,setVacancyAnalitiksBar] = useState({});
+    const[Vacancies_analytics_pie,setVacancyAnaliticsPie] = useState([]);
     useEffect(()=>{
         const ftchMonthlyData = async () => {
             try {
                 const {data} = await getMonthlyVacancyData(user?._id);
                 if(data.success){
-                    setVacancyAnalitiksBar(data.values.monthlyData)
+                    setVacancyAnalitiksBar(data.values.monthlyData);
+                    setVacancyAnaliticsPie(data.values.dataDiagram)
                 }
-                // console.log(data)
+                console.log(data)
             } catch (error) {
                 console.log(error.name)
             }
         }
         ftchMonthlyData();
     },[user])
-    // console.log(Vacancies_analytics_bar)
-    const Vacancies_analytics_pie = [
-        { name: 'Adi', value: 200 },
-        { name: 'Premium', value: 20 }
-    ];
+    console.log(Vacancies_analytics_pie)
+    
     const COLORS = ['#98A2FF', '#CAD7FF'];
     return ( 
     <div className="company_profile_dashboard_container">
@@ -190,7 +189,7 @@ function CompanyProfileDashboard() {
                             fill="#8884d8"
                             label
                         >
-                            {Vacancies_analytics_pie.map((entry, index) => (
+                            {Vacancies_analytics_pie?.map((entry, index) => (
                                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                             ))}
                         </Pie>
