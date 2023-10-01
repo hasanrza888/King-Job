@@ -2,84 +2,29 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './company_profile_dashboard.css';
 import { faArrowTrendDown, faArrowTrendUp, faBriefcase, faCheck, faEye, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { BarChart, Bar, Pie, Cell, PieChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { useEffect,useState } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
+import { getMonthlyVacancyData } from '../../../apiservices';
 function CompanyProfileDashboard() {
     const dispatch = useDispatch();
     const {numbers} = useSelector(state=>state.companyProfile)
-    const Vacancies_analytics_bar = [
-        {
-          name: 'Yanvar',
-          Adi: 4000,
-          Premium: 2400,
-          amt: 2400,
-        },
-        {
-          name: 'Fevral',
-          Adi: 3000,
-          Premium: 1398,
-          amt: 2210,
-        },
-        {
-          name: 'Mart',
-          Adi: 2000,
-          Premium: 9800,
-          amt: 2290,
-        },
-        {
-          name: 'Aprel',
-          Adi: 2780,
-          Premium: 3908,
-          amt: 2000,
-        },
-        {
-          name: 'May',
-          Adi: 1890,
-          Premium: 4800,
-          amt: 2181,
-        },
-        {
-          name: 'İyun',
-          Adi: 2390,
-          Premium: 3800,
-          amt: 2500,
-        },
-        {
-          name: 'İyul',
-          Adi: 3490,
-          Premium: 4300,
-          amt: 2100,
-        },
-        {
-          name: 'Avqust',
-          Adi: 3490,
-          Premium: 4300,
-          amt: 2100,
-        },
-        {
-          name: 'Sentyabr',
-          Adi: 3490,
-          Premium: 4300,
-          amt: 2100,
-        },
-        {
-          name: 'Oktyabr',
-          Adi: 3490,
-          Premium: 4300,
-          amt: 2100,
-        },
-        {
-          name: 'Noyabr',
-          Adi: 3490,
-          Premium: 4300,
-          amt: 2100,
-        },
-        {
-          name: 'Dekabr',
-          Adi: 3490,
-          Premium: 4300,
-          amt: 2100,
+    const {user} = useSelector(state=>state.user);
+    const [Vacancies_analytics_bar,setVacancyAnalitiksBar] = useState({});
+    useEffect(()=>{
+        const ftchMonthlyData = async () => {
+            try {
+                const {data} = await getMonthlyVacancyData(user?._id);
+                if(data.success){
+                    setVacancyAnalitiksBar(data.values.monthlyData)
+                }
+                // console.log(data)
+            } catch (error) {
+                console.log(error.name)
+            }
         }
-    ];
+        ftchMonthlyData();
+    },[user])
+    // console.log(Vacancies_analytics_bar)
     const Vacancies_analytics_pie = [
         { name: 'Adi', value: 200 },
         { name: 'Premium', value: 20 }
@@ -138,9 +83,9 @@ function CompanyProfileDashboard() {
                     <div className="company_profile_dashboard_overview_change_name">Sonuncu ay</div> 
                     {/* change count */}
                     <div className="company_profile_dashboard_overview_change_count">
-                        <FontAwesomeIcon className='company_profile_dashboard_overview_decrease' icon={faArrowTrendDown} />
-                        <div className="company_profile_dashboard_overview_change_count_number company_profile_dashboard_overview_decrease">
-                            -3%
+                        <FontAwesomeIcon className={numbers?.percentageChangeCreatedVacancy>=0 ?'company_profile_dashboard_overview_increase':'company_profile_dashboard_overview_decrease'} icon={numbers?.percentageChangeCreatedVacancy>=0 ?faArrowTrendUp :faArrowTrendDown} />
+                        <div className={numbers?.percentageChangeCreatedVacancy>=0 ?"company_profile_dashboard_overview_change_count_number company_profile_dashboard_overview_increase":"company_profile_dashboard_overview_change_count_number company_profile_dashboard_overview_decrease"}>
+                            {numbers?.percentageChangeCreatedVacancy}%
                         </div>
                     </div>
                 </div>
