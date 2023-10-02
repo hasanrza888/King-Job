@@ -116,7 +116,7 @@ function LoginForm() {
                             progress: undefined,
                             theme: "light",
                         });
-                        navigateTo(previousUrl || '/');
+                        navigateTo(previousUrl || -1);
                     }
                     else{
                         setErrorMessage({errorCheck:true,errorContent:dataC.message})
@@ -140,7 +140,7 @@ function LoginForm() {
                         });
                         // console.log(previousUrl)
                         // navigateTo(-1)
-                        navigateTo(previousUrl || '/');
+                        navigateTo(previousUrl || -1);
                         // if(previousUrl){
                         //     navigateTo(previousUrl)
                         // }
