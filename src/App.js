@@ -71,7 +71,6 @@ function App() {
   useEffect(() => {
     const checkLoggedIn = async () => {
       const { data } = await loggedin();
-      console.log(data)
       if (!data.succes) {
         dispatch(clearUser());
         return;
@@ -159,7 +158,6 @@ function App() {
             <Route path='*' element={<Notfound />} />
           </Routes>
         </div>
-        
         {!location.pathname.includes('/videochat') && <Footer />}
         <PageTopBtn />
       </React.Suspense>

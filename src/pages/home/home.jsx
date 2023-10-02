@@ -33,7 +33,7 @@ function Home() {
                     action_button_text = 'İş axtaran'
                     action_link='/vacancies'
                     sec_action_button_text = 'İşə götürən'
-                    sec_action_link = '/company_profile'
+                    sec_action_link = '/company_profile/dashboard'
                     slider_images = {[]}
                     one_image={mockup}
                 />
