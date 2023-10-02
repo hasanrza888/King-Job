@@ -9,6 +9,7 @@ import { logout, loggedin, searchall } from './apiservices';
 import { setSocket } from './redux/reducers/socketReducers';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import LoadingSpinner from './components/spinnerForPageLoading/LoadingSpinner';
 // Lazy-loaded components
 const CompanySignup = React.lazy(() => import('./components/company_signup/company_signup'));
 const Footer = React.lazy(() => import('./components/footer/footer'));
@@ -123,8 +124,7 @@ function App() {
           pauseOnHover
           theme="colored"
         />
-      <React.Suspense fallback={<div>Loading...</div>}>
-
+      <React.Suspense fallback={<LoadingSpinner />}>
         {!location.pathname.includes('/videochat') && <Header />}
         <div className={`main_pages_container ${location.pathname.includes('/company_profile') ? 'main_pages_top' : ''}`}>
           <Routes>
