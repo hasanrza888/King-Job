@@ -1,4 +1,5 @@
 import './home.css';
+import { useState } from 'react';
 import SliderHome from '../../components/slider/slider';
 import { Link } from 'react-router-dom';
 import OurWorksSlider from '../../components/our_works_slider/our_works_slider';
@@ -17,8 +18,10 @@ import king_job_video from '../../videos/king_job_video.mp4';
 import { useSelector } from 'react-redux';
 function Home() {
     const {user,isLoggedIn} = useSelector(state=>state.user);
+    
     return ( 
         <div className="home_page_container">
+            
             <SliderHome fromHomePage = {true}/>
             {/* company => what we do boxes*/}
             <div className="home_page_what_do_container">

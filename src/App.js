@@ -8,6 +8,7 @@ import { setJobs } from './redux/reducers/jobReducers';
 import { logout, loggedin, searchall } from './apiservices';
 import { setSocket } from './redux/reducers/socketReducers';
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // Lazy-loaded components
 const CompanySignup = React.lazy(() => import('./components/company_signup/company_signup'));
 const Footer = React.lazy(() => import('./components/footer/footer'));
@@ -69,12 +70,14 @@ function App() {
   useEffect(() => {
     const checkLoggedIn = async () => {
       const { data } = await loggedin();
-      if (!data.success) {
+      console.log(data)
+      if (!data.succes) {
         dispatch(clearUser());
         return;
       } else {
         if (data.user.returnedData.u_t_p === 'c_m_p') {
           if (data.user.info.isBlock) {
+            console.log("okkkokokok")
             return logoutUser();
           }
         }
@@ -109,7 +112,19 @@ function App() {
 
   return (
     <div className='container'>
-      <React.Suspense fallback={<h1>Loadingghghhgh...</h1>}>
+      <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={false}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
+      <React.Suspense fallback={<div>Loading...</div>}>
         {!location.pathname.includes('/videochat') && <Header />}
         <div className={`main_pages_container ${location.pathname.includes('/company_profile') ? 'main_pages_top' : ''}`}>
           <Routes>
@@ -143,18 +158,7 @@ function App() {
             <Route path='*' element={<Notfound />} />
           </Routes>
         </div>
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick={false}
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-        />
+        
         {!location.pathname.includes('/videochat') && <Footer />}
         <PageTopBtn />
       </React.Suspense>
