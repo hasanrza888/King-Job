@@ -61,7 +61,7 @@ function PostDetail() {
             ftchJobWithId();
         }
        
-    },[dispatch]);
+    },[dispatch,id]);
     const [applyWindow, setApplyWindow] = useState(false);
     const [flex, setFlex] = useState(localStorage.getItem('vacancies_flex') || 'half_row');
     const openApplyWindowF = ()=>{
