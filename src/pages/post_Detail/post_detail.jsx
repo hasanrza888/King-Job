@@ -55,9 +55,9 @@ function PostDetail() {
                 console.log("error at jobdetail:",error.name);
             }
         }
-        const strdinf = currentJobInDetail || JSON.parse(localStorage.getItem('c_r_r_n_t'));
+        const strdinf = JSON.parse(localStorage.getItem('c_r_r_n_t'));
         // console.log(strdinf._id !== id)
-        if(strdinf === null || strdinf._id !==id){
+        if(currentJobInDetail===null || strdinf === null || strdinf._id !==id){
             ftchJobWithId();
         }
        
