@@ -57,7 +57,7 @@ function PostDetail() {
         }
         const strdinf = JSON.parse(localStorage.getItem('c_r_r_n_t'));
         // console.log(strdinf._id !== id)
-        if(currentJobInDetail===null || strdinf === null || strdinf._id !==id){
+        if(strdinf === null || strdinf._id !==id){
             ftchJobWithId();
         }
        
