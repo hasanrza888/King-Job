@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import CustomSelectOption from '../../custom_select_option/custom_select_option';
+import CustomSelectOptionForCreatVacancy from './custom_select_option_for_creat_vacancy'
 import './com_pro_create_vacancy.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarDays, faClock } from '@fortawesome/free-regular-svg-icons';
@@ -13,15 +14,41 @@ function ComProCreateVacancy() {
     const minDate = today.toISOString().split('T')[0];
     const [specReqVal, setSpecReqVal] = useState('');
     const [specSkillsVal, setSpecSkillsVal] = useState('');
+    const genCategor = [
+        {
+            optionName: 'IT',
+            id: 1,
+            selected: false,
+        },
+        {
+            optionName: 'Bank', 
+            id: 2, 
+            selected: false,  
+        },
+        {
+            optionName: 'Marketinq və Satış',
+            id:3,
+            selected: false,
+        }
+
+    ]
+    const findSubForMain = (arr,m) => {
+        for(let i of arr){
+            if(i['optionName'] === m){
+                return i['subOptions']
+            }
+        }
+    }
+    const [subs,setsubs] = useState("");
     const [category, setCategories] = useState([
         {
             optionName: 'IT',
             id: 1,
             selected: false,
             subOptions: [
-                {subOptionsName: "Web", selected: false, id: 1.1},
-                {subOptionsName: "QA", selected: false, id: 1.2},
-                {subOptionsName: "Security", selected: false, id: 1.3},
+                {optionName: "Web", selected: false, id: 1.1},
+                {optionName: "QA", selected: false, id: 1.2},
+                {optionName: "Security", selected: false, id: 1.3},
             ]
         },
         {
@@ -29,17 +56,17 @@ function ComProCreateVacancy() {
             id: 2, 
             selected: false,          
             subOptions: [
-                {subOptionsName: "Kredit mütəxəssisi", selected: false, id: 2.1},
-                {subOptionsName: "Analitik", selected: false, id: 2.2},
-                {subOptionsName: "Əməliyyatçı", selected: false, id: 2.3},
-                {subOptionsName: "Şöbə müdiri", selected: false, id: 2.4}
+                {optionName: "Kredit mütəxəssisi", selected: false, id: 2.1},
+                {optionName: "Analitik", selected: false, id: 2.2},
+                {optionName: "Əməliyyatçı", selected: false, id: 2.3},
+                {optionName: "Şöbə müdiri", selected: false, id: 2.4}
             ]
         },
         {
             optionName: 'Marketinq və Satış',
             id:3,
             selected: false,
-            subOptions: '',
+            subOptions: null,
         }
     ]);
     // filter
@@ -332,7 +359,7 @@ function ComProCreateVacancy() {
                         {/* form input */}
                         <div className="com_pro_create_vacancy_form_line_input">
                             <div className="com_pro_create_vacancy_form_options">
-                                <CustomSelectOption key={'category'} select_option_name={'Kateqoriya'} select_option_id="category" subOptionId='subCategory' select_option_array={category} select_update={setCategories} filter={filter} setFilter={setFilter}/>
+                                <CustomSelectOptionForCreatVacancy  subs={subs} setsubs={setsubs} key={'category'} select_option_name={'Kateqoriya'} select_option_id="category" subOptionId='category' select_option_array={category} select_update={setCategories} filter={filter} setFilter={setFilter}/>
                             </div>
                         </div>
                     </div>
@@ -348,7 +375,7 @@ function ComProCreateVacancy() {
                         {/* form input */}
                         <div className="com_pro_create_vacancy_form_line_input">
                             <div className="com_pro_create_vacancy_form_options">
-                                <CustomSelectOption key={'sub_category'} select_option_name={'Alt Kateqoriya'} select_option_id="category" subOptionId='subCategory' select_option_array={category} select_update={setCategories} filter={filter} setFilter={setFilter}/>
+                                <CustomSelectOptionForCreatVacancy key={'sub_category'} select_option_name={'Alt Kateqoriya'} select_option_id="subCategory" subOptionId='subCategory' select_option_array={findSubForMain(category,subs)} select_update={setCategories} filter={filter} setFilter={setFilter} setsubs={setsubs} subs={subs}/>
                             </div>
                         </div>
                     </div>

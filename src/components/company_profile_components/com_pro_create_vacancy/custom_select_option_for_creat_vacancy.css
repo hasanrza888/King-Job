@@ -1,0 +1,108 @@
+@import "../../../color.css";
+/* select option container */
+.custom_select_option_container_creat_vacancy{
+    width: 100%;
+    position: relative;
+}
+.custom_select_name_container_creat_vacancy{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    /* border: 1px solid var(--main-border-color); */
+    border: 1px solid var(--form-inputs-border-color);
+    /* box-shadow: var(--boxes-shadow-light); */
+    color: var(--light-text-color);
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+    user-select: none;
+}
+.custom_select_name_active_creat_vacancy{
+    background-color: var(--option-active-bg-color);
+    /* border: 1px solid var(--option-active-bg-color); */
+    border: 1px solid var(--form-inputs-border-color);
+    color: var(--main-text-color);
+}
+/* select name */
+.custom_select_name_creat_vacancy{
+    font-size: 16px;
+}
+/* select option arrow */
+.custom_select_name_container_creat_vacancy svg{
+    font-size: 20px;
+    color: var(--light-text-color);
+}
+/* options lists */
+.custom_options_container_creat_vacancy{
+    width: 100%;
+    max-height: 0px;
+    overflow-y: auto;    
+    transition: max-height 0.5s;
+    margin-top: 5px;
+    box-shadow: var(--boxes-shadow-light);
+    background-color: var(--primary-color);
+}
+.custom_options_container_creat_vacancy::-webkit-scrollbar{
+    width: 5px;
+}
+.custom_options_container_creat_vacancy::-webkit-scrollbar-track {
+    padding: 5px 0px;
+}
+.custom_options_container_creat_vacancy::-webkit-scrollbar-thumb{
+    border-radius: 5px;
+    background-color: var(--page-text-slogan-color);
+}
+.custom_options_container_creat_vacancy::-webkit-scrollbar-thumb:hover{
+    background-color: var(--light-text-color);
+}
+/* showing options of custom select */
+.custom_options_show_creat_vacancy{
+    max-height: 300px;
+    border: 1px solid var(--main-border-color);
+}
+/* hiding options of custom select */
+.custom_options_hide_creat_vacancy{    
+    max-height: 0px;    
+}
+.custom_options_lists_creat_vacancy{
+    width: 100%;
+    padding: 10px;
+}
+/* list item */
+.custom_options_list_item_creat_vacancy, .custom_options_sub_list_item_creat_vacancy{
+    width: 100%;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: 0.5s ease all;
+    border-bottom: 1px solid var(--form-inputs-border-color);
+    user-select: none;
+    color: var(--secondary-text-color);
+}
+/* .custom_options_sub_list_item{
+    border-bottom: 1px solid var(--form-inputs-border-color);
+} */
+.custom_options_list_item_creat_vacancy:hover, .custom_options_sub_list_item_creat_vacancy:hover{
+    background-color: var(--main-border-color);
+}
+/* sub list */
+.custom_options_sub_list_item_creat_vacancy{
+    padding-left: 30px;
+    position: relative;
+    z-index: 1;
+}
+.custom_options_list_selected_creat_vacancy{
+    background-color: var(--option-active-bg-color);
+}
+.custom_options_list_creat_vacancy:last-child .custom_options_sub_list_creat_vacancy .custom_options_sub_list_item_creat_vacancy:last-child{
+    border-bottom: none;
+}
+.custom_options_list_creat_vacancy:last-child .custom_options_list_item_creat_vacancy{
+    border-bottom: none;
+}
+.custom_options_list_creat_vacancy .custom_options_list_item_creat_vacancy:has(+ .custom_options_sub_list_creat_vacancy){
+    /* border-bottom: none; */
+    border-bottom: 1px solid var(--form-inputs-border-color);
+}
