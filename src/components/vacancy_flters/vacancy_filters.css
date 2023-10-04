@@ -58,8 +58,9 @@
 }
 .vacancies_page_filters_salary_input{
     width: 48%;
-    border: 1px solid var(--main-border-color);
-    box-shadow: var(--boxes-shadow-light);
+    /* border: 1px solid var(--main-border-color); */
+    border: 1px solid var(--form-inputs-border-color);
+    /* box-shadow: var(--boxes-shadow-light); */
     border-radius: 10px;
     padding: 5px 10px;
     outline: none;
@@ -76,11 +77,12 @@
 .vacancies_page_filters_box_text_input{
     width: 100%;
     padding: 5px 10px;
-    border: 1px solid var(--main-border-color);
+    /* border: 1px solid var(--main-border-color); */
+    border: 1px solid var(--form-inputs-border-color);
     border-radius: 10px;
     outline: none;
     font-size: 16px;
-    box-shadow: var(--boxes-shadow-light);
+    /* box-shadow: var(--boxes-shadow-light); */
     color: var(--main-text-color);
 }
 .vacancies_page_filters_box_text_input::placeholder{

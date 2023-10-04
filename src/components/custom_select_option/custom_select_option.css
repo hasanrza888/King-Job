@@ -10,8 +10,9 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: baseline;
-    border: 1px solid var(--main-border-color);
-    box-shadow: var(--boxes-shadow-light);
+    /* border: 1px solid var(--main-border-color); */
+    border: 1px solid var(--form-inputs-border-color);
+    /* box-shadow: var(--boxes-shadow-light); */
     color: var(--light-text-color);
     background-color: var(--primary-color);
     border-radius: 10px;
@@ -21,7 +22,8 @@
 }
 .custom_select_name_active{
     background-color: var(--option-active-bg-color);
-    border: 1px solid var(--option-active-bg-color);
+    /* border: 1px solid var(--option-active-bg-color); */
+    border: 1px solid var(--form-inputs-border-color);
     color: var(--main-text-color);
 }
 /* select name */
