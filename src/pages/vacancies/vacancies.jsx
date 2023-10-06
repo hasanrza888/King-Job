@@ -20,6 +20,7 @@ function Vacancies() {
     const {user,isLoggedIn} = useSelector(state=>state.user)
     const {jobs,loading,favoritJobs,loadingFavJobs} = useSelector(state=>state.job);
     // console.log(favoritJobs,loadingFavJobs);
+    console.log(jobs)
     useEffect(()=>{
         const ftchfavjobs = async () => {
             try {
@@ -204,10 +205,10 @@ function Vacancies() {
                                     <PostBox 
                                         job_id = {item._id}
                                         premium = {item.premium}
-                                        image_url={((item.company)?.companyInfo)?.logo}
+                                        image_url={item.logo}
                                         salary={item.salary}
                                         job_title={item.name}
-                                        company_name={(item.company)?.name}
+                                        company_name={item.companyName}
                                         post_views={item.numberOfViews}
                                         post_applies = {item.numberOfApplys}
                                         post_start_date={item.createdAt.includes('T') ? item.createdAt.split('T')[0] : item.createdAt}
@@ -231,10 +232,10 @@ function Vacancies() {
                                     <PostBox 
                                         job_id = {item._id}
                                         premium = {item.premium}
-                                        image_url={((item.company)?.companyInfo)?.logo}
+                                        image_url={item.logo}
                                         salary={item.salary}
                                         job_title={item.name}
-                                        company_name={(item.company)?.name}
+                                        company_name={item.companyName}
                                         post_views={item.numberOfViews}
                                         post_applies = {item.numberOfApplys}
                                         post_start_date={item.createdAt.includes('T') ? item.createdAt.split('T')[0] : item.createdAt}
