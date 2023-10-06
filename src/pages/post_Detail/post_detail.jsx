@@ -174,10 +174,10 @@ function PostDetail() {
                         <div className="detail_page_company">
                             {/* company logo */}
                             <div className="detail_page_company_logo">
-                                <img src={`${((data.company)?.companyInfo)?.logo}`} alt="company logo"/>
+                                <img src={`${data.logo}`} alt="company logo"/>
                             </div>
                             {/* company name */}
-                            <div className="detail_page_company_name">{(data.company)?.name}</div>
+                            <div className="detail_page_company_name">{data.companyName}</div>
                         </div>                                                    
                         {/* dates, salary and apply button */}
                         <div className="detail_page_dates_and_salary">
@@ -373,10 +373,10 @@ function PostDetail() {
                                         <PostBox 
                                         job_id = {item._id}
                                         premium = {item.premium}
-                                        image_url={((item.company)?.companyInfo)?.logo}
+                                        image_url={item.logo}
                                         salary={item.salary}
                                         job_title={item.name}
-                                        company_name={(item.company)?.name}
+                                        company_name={item.companyName}
                                         post_views={item.numberOfViews}
                                         post_applies = {item.numberOfApplys}
                                         post_start_date={item.createdAt.includes('T') ? item.createdAt.split('T')[0] : item.createdAt}
@@ -404,10 +404,10 @@ function PostDetail() {
                                         <PostBox 
                                         job_id = {item._id}
                                         premium = {item.premium}
-                                        image_url={((item.company)?.companyInfo)?.logo}
+                                        image_url={item.logo}
                                         salary={item.salary}
                                         job_title={item.name}
-                                        company_name={(item.company)?.name}
+                                        company_name={item.companyName}
                                         post_views={item.numberOfViews}
                                         post_applies = {item.numberOfApplys}
                                         post_start_date={item.createdAt.includes('T') ? item.createdAt.split('T')[0] : item.createdAt}

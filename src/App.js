@@ -11,32 +11,35 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import LoadingSpinner from './components/spinnerForPageLoading/LoadingSpinner';
 // Lazy-loaded components
-const CompanySignup = React.lazy(() => import('./components/company_signup/company_signup'));
-const Footer = React.lazy(() => import('./components/footer/footer'));
-const Header = React.lazy(() => import('./components/header/header'));
-const UserSignup = React.lazy(() => import('./components/user_signup/user_signup'));
-const About = React.lazy(() => import('./pages/about/about'));
-const Companies = React.lazy(() => import('./pages/companies/companies'));
-const Contact = React.lazy(() => import('./pages/contact/contact'));
-const Home = React.lazy(() => import('./pages/home/home'));
-const Login = React.lazy(() => import('./pages/login/login'));
-const Notfound = React.lazy(() => import('./pages/not_found_page/not_found'));
-const UserProfile = React.lazy(() => import('./pages/user_profile/user_profile'));
-const Signup = React.lazy(() => import('./pages/signup/signup'));
-const Vacancies = React.lazy(() => import('./pages/vacancies/vacancies'));
-const PageTopBtn = React.lazy(() => import('./components/page_top_btn/page_top_btn'));
-const PostDetail = React.lazy(() => import('./pages/post_Detail/post_detail'));
-const VideoChat = React.lazy(() => import('./pages/videochat/VideoChat'));
-const SendOtpForm = React.lazy(() => import('./components/sendOtpForm/sendOtpForm'));
-const LoginForm = React.lazy(() => import('./components/login_form/login_form'));
-const ForgotPasswordForm = React.lazy(() => import('./components/forgot_password_form/forgot_password_form'));
-const UpdatePasswordForm = React.lazy(() => import('./components/update_password_form/update_password_form'));
-const CompanyProfile = React.lazy(() => import('./pages/company_profile/company_profile'));
-const CompanyProfileDashboard = React.lazy(() => import('./components/company_profile_components/company_profile_dashboard/company_profile_dashboard'));
-const CompanyProfileVacancies = React.lazy(() => import('./components/company_profile_components/company_profile_vacancies/company_profile_vacancies'));
-const CompanyProfileMyVacancies = React.lazy(() => import('./components/company_profile_components/company_profile_my_vacancies/company_profile_my_vacancies'));
-const ComProCreateVacancy = React.lazy(() => import('./components/company_profile_components/com_pro_create_vacancy/com_pro_create_vacancy'));
-const ComProPremiumVacancies = React.lazy(() => import('./components/company_profile_components/com_pro_premium_vacancies/com_pro_premium_vacancies'));
+import CompanySignup from './components/company_signup/company_signup';
+import Footer from './components/footer/footer';
+import Header from './components/header/header';
+import UserSignup from './components/user_signup/user_signup';
+import About from './pages/about/about';
+import Companies from './pages/companies/companies';
+import Contact from './pages/contact/contact';
+import Home from './pages/home/home';
+import Login from './pages/login/login';
+import Notfound from './pages/not_found_page/not_found';
+import UserProfile from './pages/user_profile/user_profile';
+import Signup from './pages/signup/signup';
+import Vacancies from './pages/vacancies/vacancies';
+import PageTopBtn from './components/page_top_btn/page_top_btn';
+import PostDetail from './pages/post_Detail/post_detail';
+import VideoChat from './pages/videochat/VideoChat';
+import SendOtpForm from './components/sendOtpForm/sendOtpForm';
+import LoginForm from './components/login_form/login_form';
+import ForgotPasswordForm from './components/forgot_password_form/forgot_password_form';
+import UpdatePasswordForm from './components/update_password_form/update_password_form';
+import CompanyProfile from './pages/company_profile/company_profile';
+import CompanyProfileDashboard from './components/company_profile_components/company_profile_dashboard/company_profile_dashboard';
+import CompanyProfileVacancies from './components/company_profile_components/company_profile_vacancies/company_profile_vacancies';
+import CompanyProfileMyVacancies from './components/company_profile_components/company_profile_my_vacancies/company_profile_my_vacancies';
+import ComProCreateVacancy from './components/company_profile_components/com_pro_create_vacancy/com_pro_create_vacancy';
+import ComProPremiumVacancies from './components/company_profile_components/com_pro_premium_vacancies/com_pro_premium_vacancies';
+
+// Use these components in your code as needed
+
 
 function App() {
   const location = useLocation();
@@ -124,7 +127,7 @@ function App() {
           pauseOnHover
           theme="colored"
         />
-      <React.Suspense fallback={<LoadingSpinner />}>
+      {/* <React.Suspense fallback={<LoadingSpinner />}> */}
         {!location.pathname.includes('/videochat') && <Header />}
         <div className={`main_pages_container ${location.pathname.includes('/company_profile') ? 'main_pages_top' : ''}`}>
           <Routes>
@@ -160,7 +163,7 @@ function App() {
         </div>
         {!location.pathname.includes('/videochat') && <Footer />}
         <PageTopBtn />
-      </React.Suspense>
+      {/* </React.Suspense> */}
     </div>
   );
 }
