@@ -12,10 +12,10 @@ function CompanyProfile() {
     const navigate = useNavigate();
     const {user,isLoggedIn} = useSelector(state=>state.user);
     const {numbers} = useSelector(state=>state.companyProfile)
-    console.log(numbers)
+    // console.log(numbers)
     useEffect(()=>{
         if(!user && !isLoggedIn){
-          navigate('/login',{state:{referrer:'/company_profile'}})
+          navigate('/login',{state:{referrer:'/company_profile/dashboard'}})
         }
     },[isLoggedIn,user,navigate])
     const open_company_menu =()=>{

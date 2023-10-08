@@ -14,7 +14,7 @@ function CustomSelectOptionForCreatVacancy({select_option_name,filter,setFilter,
         // removes all selected main options and subOptions
         select_option_array.map((itemF, indexF) => {
             // removes all selected main options
-            console.log(itemF["id"],mainId)
+            // console.log(itemF["id"],mainId)
             if(itemF['id'] !== mainId){
                 // console.log("mmmm")
                 itemF["selected"] = false;
@@ -39,7 +39,7 @@ function CustomSelectOptionForCreatVacancy({select_option_name,filter,setFilter,
         setOptionsShow(false); 
         // console.log(filter)
     }
-    console.log(filter)
+    // console.log(filter)
     return ( 
         <div className="custom_select_option_container_creat_vacancy">
             {/* select name */}

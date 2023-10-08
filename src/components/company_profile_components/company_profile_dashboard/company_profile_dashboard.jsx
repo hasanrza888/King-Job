@@ -19,14 +19,14 @@ function CompanyProfileDashboard() {
                     setVacancyAnalitiksBar(data.values.monthlyData);
                     setVacancyAnaliticsPie(data.values.dataDiagram)
                 }
-                console.log(data)
+                // console.log(data)
             } catch (error) {
-                console.log(error.name)
+                // console.log(error.name)
             }
         }
         ftchMonthlyData();
     },[user])
-    console.log(Vacancies_analytics_pie)
+    // console.log(Vacancies_analytics_pie)
     
     const COLORS = ['#98A2FF', '#CAD7FF'];
     return ( 
