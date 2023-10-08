@@ -6,7 +6,7 @@ function UserProfile() {
     const {user,isLoggedIn} = useSelector(state=>state.user);
     useEffect(()=>{
         if(!user && !isLoggedIn){
-          navigate('/login',{state:{referrer:'/user_profile'}})
+          navigate('/login');
         }
       },[isLoggedIn,user,navigate])
     return ( 
