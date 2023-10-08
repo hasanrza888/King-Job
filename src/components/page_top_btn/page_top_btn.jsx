@@ -1,13 +1,19 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './page_top_btn.css'
 import { faAngleUp } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 function PageTopBtn() {
     const [top, setTop] = useState(false);
-    window.addEventListener('scroll', ()=>{
-        setTop(document.documentElement.scrollTop > 0)
- 
-    })
+    const openTopBtn = ()=>{
+        setTop(document.documentElement.scrollTop > 0);
+    }
+    // window.addEventListener('scroll', openTopBtn);
+    useEffect(()=>{
+        window.addEventListener('scroll', openTopBtn);
+        return ()=>{
+            window.removeEventListener('scroll', openTopBtn);
+        }
+    },[])
     const go_to_top = ()=>{
         window.scrollTo(0 , 0);
     }

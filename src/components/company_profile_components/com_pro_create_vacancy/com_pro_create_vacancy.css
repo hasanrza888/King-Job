@@ -26,13 +26,14 @@
     flex-direction: row;
     padding: 30px 20px;
     border-bottom: 1px solid #D1D1D1;
+    justify-content: space-between;
 }
-.com_pro_create_vacancy_form_line:nth-child(13){
+.com_pro_create_vacancy_form_line:nth-child(12){
     border-bottom: unset;
 }
 /* name and description container */
 .com_pro_create_vacancy_form_line_name_and_desc{
-    width: 50%;
+    max-width: 50%;
     display: flex;
     flex-direction: column;
     padding-right: 20px;
@@ -53,6 +54,7 @@
 /* form input */
 .com_pro_create_vacancy_form_line_input{
     width: 50%;
+    min-width: 450px;
 }
 /* form select options */
 .com_pro_create_vacancy_form_options{
@@ -78,6 +80,7 @@
 /* sub form */
 .com_pro_create_vacancy_form_line_sub_form{
     width: 50%;
+    min-width: 450px;
 }
 .com_pro_create_vacancy_form_line_sub_form_cont{
     width: 100%;
@@ -169,6 +172,8 @@
 /* salary type box */
 .com_pro_create_vacancy_form_salary_type_box{
     width: 33%;
+    max-width: 150px;
+    min-width: 110px;
     padding: 20px 30px;
     position: relative;
     background-color: var(--primary-color);
@@ -269,12 +274,19 @@
 ::-webkit-calendar-picker-indicator {
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 24 24"><path fill="%23bbbbbb" d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>');
 }
+/* form errors */
+.com_pro_create_vacancy_form_errors_cont{
+    font-size: 14px;
+    color: #FF1111;
+    text-align: center;
+    margin-top: 50px;
+}
 /* main form submit */
 .com_pro_create_vacancy_form_main_submit{
     display: block;
     width: 30%;
     min-width: 40px;
-    margin: 50px auto 0px;
+    margin: 20px auto 0px;
     padding: 10px 30px;
     font-size: 16px;
     outline: none;
@@ -283,8 +295,12 @@
     background-color: var(--accent-color);
     color: var(--primary-color);
     cursor: pointer;
+    opacity: 0.5;
 }
-.com_pro_create_vacancy_form_main_submit:hover{
+.com_pro_create_vacancy_form_main_submit_ready{
+    opacity: 1;
+}
+.com_pro_create_vacancy_form_main_submit_ready:hover{
     background-color: var(--accent-hover);
 }
 /* react quill */
@@ -299,7 +315,79 @@
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
     background-color: var(--primary-color);
+    /* min-height: 200px; */
+}
+.ql-editor{
+    /* height: 100% !important; */
+    min-height: 200px;
 }
 .ql-toolbar svg{
     color: var(--light-text-color) !important;
+}
+@media (width <= 800px){
+    .com_pro_create_vacancy_p_title{
+        margin-bottom: 20px;
+    }
+    .com_pro_create_vacancy_form_container{
+        /* width: 80%; */
+        max-width: 650px;
+        margin: 0px auto;
+    }
+    .com_pro_create_vacancy_form_line{
+        flex-direction: column;
+    }
+    /* name and description container */
+    .com_pro_create_vacancy_form_line_name_and_desc{
+        width: 100%;
+        max-width: unset;
+        padding-right: 0px;
+        margin-bottom: 20px;
+    }
+    .com_pro_create_vacancy_form_line_input{
+        width: 100%;
+        min-width: unset;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .com_pro_create_vacancy_form_salary_types{
+        justify-content: center;
+    }
+    .com_pro_create_vacancy_form_line_sub_form{
+        width: 100%;
+        min-width: unset;
+    }
+    .com_pro_create_vacancy_form_main_submit{
+        width: 80%;
+        max-width: 300px;
+    }
+}
+@media (width <= 500px){
+    .com_pro_create_vacancy_form_line{
+        padding: 30px 0px;
+    }
+    .com_pro_create_vacancy_form_salary_types{
+        flex-direction: column;
+        align-items: center;
+    }
+    .com_pro_create_vacancy_form_salary_type_box{
+        margin-bottom: 10px;
+        margin-right: 0px;
+    }
+    /* .com_pro_create_vacancy_form_line_input_txt{
+        font-size: 13px;
+    }
+    .com_pro_create_vacancy_form_line_input_txt::placeholder{
+        font-size: 13px;
+    } */
+    .com_pro_create_vacancy_form_line_sub_form_input{
+        font-size: 15px;
+    }
+    .com_pro_create_vacancy_form_line_sub_form_submit{
+        min-width: 100px;
+        font-size: 12px;
+        padding: 10px;
+        text-align: center;
+    }
 }
