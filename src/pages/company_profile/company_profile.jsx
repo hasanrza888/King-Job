@@ -15,7 +15,7 @@ function CompanyProfile() {
     console.log(numbers)
     useEffect(()=>{
         if(!user && !isLoggedIn){
-          navigate('/login',{state:{referrer:'/company_profile'}})
+          navigate('/login')
         }
     },[isLoggedIn,user,navigate])
     const open_company_menu =()=>{
