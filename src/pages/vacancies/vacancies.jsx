@@ -50,7 +50,7 @@ function Vacancies() {
             // console.log(location.search)
             try {
                 const {data} = await searchall(location.search);
-                console.log(data)
+                // console.log(data)
                 if(data.success){
                     dispatch(updateJobs(data.jobs))
                 }

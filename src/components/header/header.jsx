@@ -40,7 +40,7 @@ function Header(){
         console.log(data)
         if(data.success){
             dispatch(clearUser());
-            toast.success('Succesfully loggedin', {
+            toast.success('Succesfully logged out', {
                 position: "top-right",
                 autoClose: 2000,
                 hideProgressBar: false,

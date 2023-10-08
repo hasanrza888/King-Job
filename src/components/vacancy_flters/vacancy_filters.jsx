@@ -242,7 +242,6 @@ function VacancyFilters({closeMobileFilter, filter, setFilter}) {
         navigate_to(`/vacancies/?${filteredQuery}`);
         closeMobileFilter();  
     }
-
     return ( 
     <div className={`vacancies_filters_container ${fixScroll ? "vacancies_page_filters_fix_position" : ''}`} >
             {/* {console.log(categories)} */}

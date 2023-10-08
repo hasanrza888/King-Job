@@ -101,6 +101,30 @@
 .company_profile_menu_items_container li{
     width: 100%;
 }
+.company_profile_menu_log_out{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 20px;
+    transition: 0.3s ease all;
+    color: var(--secondary-text-color);
+    font-family: 'Roboto Slab', serif;
+    cursor: pointer;
+}
+.company_profile_menu_log_out svg{
+    font-size: 18px;
+    color: var(--light-text-color);
+    transition: 0.3s ease all;
+    margin-right: 10px;
+}
+.company_profile_menu_log_out:hover{
+    background-color: var(--company-menu-active);
+    color: var(--accent-hover);
+}
+.company_profile_menu_log_out:hover svg{
+    color: var(--accent-hover);
+}
 @media (width <= 1270px){
     .company_profile_menu_container{
         width: 0px;

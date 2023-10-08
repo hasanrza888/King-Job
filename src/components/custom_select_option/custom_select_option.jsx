@@ -24,8 +24,10 @@ function CustomSelectOption({select_option_name, select_option_array, select_upd
                     setFilter({...filter});
                 }else{
                     filter[`${select_option_id}`] = itemF['optionName'];
-                    filter[`${subOptionId}`] = '';
-                    setFilter({...filter});
+                    if(itemF['subOptions']){
+                        filter[`${subOptionId}`] = '';
+                        setFilter({...filter});
+                    }
                 }
             }            
             // removes all sub_options

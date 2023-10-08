@@ -9,7 +9,6 @@ import { toast } from 'react-toastify';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 function ComProCreateVacancy() {
-    const [acceptAgreedSalary, setAcceptAgreedSalary] = useState(false);
     const today = new Date();
     const minDate = today.toISOString().split('T')[0];
     const [specReqVal, setSpecReqVal] = useState('');
@@ -264,12 +263,12 @@ function ComProCreateVacancy() {
         type: "",
         experience: "",
         education: "",
-        descriptionOfVacancy: "",
+        descriptionOfVacancy: "<p><br></p>",
         specialRequirements: [],
         skills: [],
         salary: "",
         salaryType: "",
-        premium: false,
+        agreedSalary: false,
         endTime: "",
     })
     // job type
@@ -395,18 +394,18 @@ function ComProCreateVacancy() {
             type: 'İllik'
         }
     ]) 
+    // _________ error message for form ____________ 
+    const [errorMessage, setErrorMessage] = useState({
+        errorCheck: false,
+        errorContent: ''
+    })
     // checkbox function for agreed salary
     const acceptAgreedSalaryFunc = ()=>{
-        setAcceptAgreedSalary(!acceptAgreedSalary);
-        setFilter({...filter, salary: ''});
+        setFilter({...filter, salary: '', salaryType: '', agreedSalary: !filter.agreedSalary});
         salaryTypes.map((itemA, indexA)=>{
             itemA.selected = false;
         })
         setSalaryTypes([...salaryTypes]);
-    }
-    // checkbox function for premium vacancy
-    const acceptPremiunFunc = ()=>{
-        setFilter({...filter, premium: !filter.premium});
     }
     // const [selectedDate, setSelectedDate] = useState('');
     const [maxDate, setMaxDate] = useState('');
@@ -453,7 +452,7 @@ function ComProCreateVacancy() {
             }
             if(itemA.id === item.id && itemA.selected === false){
                 itemA.selected = true;
-                setFilter({...filter, salaryType: itemA.type});
+                setFilter({...filter, salaryType: itemA.type, agreedSalary: false});
             }
         })
         setSalaryTypes([...salaryTypes]);
@@ -464,7 +463,7 @@ function ComProCreateVacancy() {
     }
     // change salary
     const changeVacSalary = (e)=>{
-        setFilter({...filter, salary: e.target.value});
+        setFilter({...filter, salary: e.target.value, agreedSalary: false});
     }
     // react quill toolbar options
     const modules = {
@@ -524,6 +523,40 @@ function ComProCreateVacancy() {
         const filteredSkills = filter.skills.filter((itemR, indexR)=> indexR != index);
         setFilter({...filter, skills: [...filteredSkills]});
     }
+    // form submit function
+    const post_vacancy_form_submit = (e)=>{
+        e.preventDefault();
+        if(filter.category && filter.subCategory && filter.name && filter.city && filter.type && filter.experience && filter.education && filter.descriptionOfVacancy != "<p><br></p>" && filter.specialRequirements.length >0 && filter.skills.length >0 && (filter.agreedSalary || (filter.salary && filter.salaryType)) && filter.endTime){
+            // submit to database, Mr Shixkarim
+            setErrorMessage({...errorMessage, errorCheck:false, errorContent: ''});
+            console.log('ready to goooooooo!');
+        }else if(!filter.category){
+            setErrorMessage({...errorMessage, errorCheck:true, errorContent: 'Kateqoriya seçilməyib !'});
+        }else if(!filter.subCategory){
+            setErrorMessage({...errorMessage, errorCheck:true, errorContent: 'Alt kateqoriya seçilməyib !'});
+        }else if(!filter.city){
+            setErrorMessage({...errorMessage, errorCheck:true, errorContent: 'Şəhər seçilməyib !'});
+        }else if(!filter.type){
+            setErrorMessage({...errorMessage, errorCheck:true, errorContent: 'İş qrafiki seçilməyib !'});
+        }else if(!filter.experience){
+            setErrorMessage({...errorMessage, errorCheck:true, errorContent: 'İş təcrübəsi seçilməyib !'});
+        }else if(!filter.education){
+            setErrorMessage({...errorMessage, errorCheck:true, errorContent: 'Təhsil səviyyəsi seçilməyib !'});
+        }else if(filter.descriptionOfVacancy === "<p><br></p>"){
+            setErrorMessage({...errorMessage, errorCheck:true, errorContent: 'Vakansiya təsviri yazılmayıb !'});
+        }else if(filter.specialRequirements.length === 0){
+            setErrorMessage({...errorMessage, errorCheck:true, errorContent: 'Xüsusi tələblər yazılmayıb !'});
+        }else if(filter.skills.length === 0){
+            setErrorMessage({...errorMessage, errorCheck:true, errorContent: 'Bacarıqlar yazılmayıb !'});
+        }else if(filter.agreedSalary === false){
+            if(!filter.salary){
+                setErrorMessage({...errorMessage, errorCheck:true, errorContent: 'Maaş yazılmayıb !'});    
+            }else if(!filter.salaryType){
+                setErrorMessage({...errorMessage, errorCheck:true, errorContent: 'Maaş tipi seçilməyib !'}); 
+            }
+        }
+    }
+    // console.log(filter)
     return ( 
         <div className="com_pro_create_vacancy_container">
             {/* page head text */}
@@ -531,7 +564,7 @@ function ComProCreateVacancy() {
             {/* vacancy create form container*/}
             <div className="com_pro_create_vacancy_form_container">
                 {/* vacancy create form */}
-                <form className="com_pro_create_vacancy_form">
+                <form className="com_pro_create_vacancy_form" onSubmit={post_vacancy_form_submit}>
                     {/* form one line => category */}
                     <div className="com_pro_create_vacancy_form_line">
                         {/* name and description */}
@@ -575,7 +608,7 @@ function ComProCreateVacancy() {
                         </div>
                         {/* form input */}
                         <div className="com_pro_create_vacancy_form_line_input">
-                            <input className='com_pro_create_vacancy_form_line_input_txt' value={filter.name} onChange={vacancyNameChange} type="text" name="vacancy_name" placeholder='Baş mühasib' />
+                            <input className='com_pro_create_vacancy_form_line_input_txt' value={filter.name} onChange={vacancyNameChange} type="text" name="vacancy_name" placeholder='Baş mühasib' required/>
                         </div>
                     </div>
                     {/* form one line => city */}
@@ -759,36 +792,13 @@ function ComProCreateVacancy() {
                                 }
                             </div>
                             {/* salary input */}
-                            <input type="number" value={filter.salary} onChange={changeVacSalary} className="com_pro_create_vacancy_form_line_input_txt" placeholder='Əmək haqqı' required/>
+                            <input type="number" value={filter.salary} onChange={changeVacSalary} className="com_pro_create_vacancy_form_line_input_txt" placeholder='Əmək haqqı'/>
                             {/* agreed salary */}
                             <div className="com_pro_create_vacancy_form_line_checkbox_cont">
-                                <div className={`com_pro_create_vacancy_form_line_checkbox ${acceptAgreedSalary ? "com_pro_create_vacancy_form_line_checkbox_accepted" : ""}`} onClick={acceptAgreedSalaryFunc}>
-                                    {acceptAgreedSalary ? <span className="com_pro_create_vacancy_form_line_checkbox_checkmark"></span> : null} 
+                                <div className={`com_pro_create_vacancy_form_line_checkbox ${filter.agreedSalary ? "com_pro_create_vacancy_form_line_checkbox_accepted" : ""}`} onClick={acceptAgreedSalaryFunc}>
+                                    {filter.agreedSalary ? <span className="com_pro_create_vacancy_form_line_checkbox_checkmark"></span> : null} 
                                 </div>
                                 <div className="com_pro_create_vacancy_form_line_checkbox_txt">Razılaşma yolu ilə</div>
-                            </div>
-                        </div>
-                    </div>
-                    {/* form one line => premium*/}
-                    <div className="com_pro_create_vacancy_form_line">
-                        {/* name and description */}
-                        <div className="com_pro_create_vacancy_form_line_name_and_desc">
-                            {/* line name */}
-                            <div className="com_pro_create_vacancy_form_line_name">Premium elan</div>
-                            {/* line description */}
-                            <div className="com_pro_create_vacancy_form_line_desc">Vakansiya elanınızı premium edərək daha çox baxışlar əldə edin və daha tez namizədləri tapın</div>
-                        </div>
-                        {/* form input */}
-                        <div className="com_pro_create_vacancy_form_line_input">
-                            <div className="com_pro_create_vacancy_form_line_input_desc">
-                            Xidmətdən istifadə haqqı <span>15</span> manatdır və istifadə müddəti <span>20</span> gündür
-                            </div>
-                            {/* agreed advertisement */}
-                            <div className="com_pro_create_vacancy_form_line_checkbox_cont">
-                                <div className={`com_pro_create_vacancy_form_line_checkbox ${filter.premium ? "com_pro_create_vacancy_form_line_checkbox_accepted" : ""}`} onClick={acceptPremiunFunc}>
-                                    {filter.premium ? <span className="com_pro_create_vacancy_form_line_checkbox_checkmark"></span> : null} 
-                                </div>
-                                <div className="com_pro_create_vacancy_form_line_checkbox_txt">Bu xidmətdən istifadə etməyə razıyam</div>
                             </div>
                         </div>
                     </div>
@@ -803,12 +813,22 @@ function ComProCreateVacancy() {
                         </div>
                         {/* form input */}
                         <div className="com_pro_create_vacancy_form_line_input">
-                            <input type="date" value={filter.endTime} min={minDate} max={maxDate} onBlur={handleBlur} onChange={handleDateChange} className='com_pro_create_vacancy_form_line_input_final_date' name="final_date"/>
+                            <input type="date" value={filter.endTime} min={minDate} max={maxDate} onBlur={handleBlur} onChange={handleDateChange} className='com_pro_create_vacancy_form_line_input_final_date' name="final_date" required/>
                             <div className="com_pro_create_vacancy_form_error"></div>
                         </div>
                     </div>
+                    <div className="com_pro_create_vacancy_form_errors_cont">
+                        {
+                            errorMessage.errorCheck ? errorMessage.errorContent : ''
+                        }
+                    </div>
                     {/* form submit */}
-                    <button type="submit" className="com_pro_create_vacancy_form_main_submit">Növbəti</button>
+                    <button 
+                    type="submit" 
+                    className={`com_pro_create_vacancy_form_main_submit ${filter.category && filter.subCategory && filter.name && filter.city && filter.type && filter.experience && filter.education && filter.descriptionOfVacancy != "<p><br></p>" && filter.specialRequirements.length >0 && filter.skills.length >0 && (filter.agreedSalary || (filter.salary && filter.salaryType)) && filter.endTime ? 'com_pro_create_vacancy_form_main_submit_ready' : ''}`}
+                    >
+                        Növbəti
+                    </button>
                 </form>
             </div>
         </div>

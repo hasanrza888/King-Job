@@ -1,16 +1,21 @@
 import StarRating from '../../star_rating_show/star_rating_show';
+import {useNavigate} from "react-router-dom";
 import './company_profile_menu.css';
 import small_logo from '../../../images/small_logo.png';
 import CompanyProfileSubmenus from '../company_profile_submenus/company_profile_submenus';
 import defaultcompanylogo from '../../../images/defaultcompanylogo.png'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useEffect,useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBriefcase, faChartSimple, faEnvelope, faGear, faListCheck, faPaperPlane, faUserGroup, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faBriefcase, faChartSimple, faEnvelope, faGear, faListCheck, faPaperPlane, faPowerOff, faUserGroup, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { getAllNumbersForCompanyMenuAndDashboard } from '../../../apiservices';
+import { logout } from "../../../apiservices";
+import {toast} from 'react-toastify';
+import { clearUser } from "../../../redux/reducers/userauthReducers";
 function CompanyProfileMenu({menu, open_company_menu,menuNumbers}) {
     const {user,isLoggedIn,info} = useSelector(state=>state.user);
-    
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const menu_names_submenus = [
         {
             main: 'İdarə paneli',
@@ -120,6 +125,24 @@ function CompanyProfileMenu({menu, open_company_menu,menuNumbers}) {
             ]
         }
     ]
+    const logOut = async () => {
+        const {data} = await logout();
+        console.log(data)
+        if(data.success){
+            dispatch(clearUser());
+            toast.success('Succesfully logged out', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            navigate('/');
+        }
+    }
     return ( 
         <div className={`company_profile_menu_container ${menu ? 'company_profile_menu_close' : 'company_profile_menu_open'}`}>
             <div className={`company_profile_menu`}>
@@ -145,10 +168,15 @@ function CompanyProfileMenu({menu, open_company_menu,menuNumbers}) {
                 <ul className="company_profile_menu_items_container">
                     {
                         menu_names_submenus.map((item, index)=>{
-                            return <li key={index}><CompanyProfileSubmenus key={index} menu={item}/></li> 
+                            return <li key={index}><CompanyProfileSubmenus key={index} open_company_menu={open_company_menu} menu={item}/></li> 
                         })
                     }
                 </ul>
+                {/* logout button */}
+                <div className="company_profile_menu_log_out" onClick={logOut}>
+                    <FontAwesomeIcon icon={faPowerOff} />
+                    Çıxış
+                </div>
             </div>
         </div>
      );
