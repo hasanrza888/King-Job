@@ -79,7 +79,7 @@ function UpdatePasswordForm({setNewPassword, setOpenOtpWindow, close}) {
                                 progress: undefined,
                                 theme: "light",
                             });
-                            Navigate('/login');
+                            Navigate('/login',{state:{referrer:'/'}});
                         }
                         else{
 
@@ -100,7 +100,7 @@ function UpdatePasswordForm({setNewPassword, setOpenOtpWindow, close}) {
                                 progress: undefined,
                                 theme: "light",
                             });
-                            Navigate('/login');
+                            Navigate('/login',{state:{referrer:'/'}});
                         }
                         else{
                             
