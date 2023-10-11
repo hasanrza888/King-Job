@@ -14,7 +14,7 @@ function ComProCreateVacancy() {
     const minDate = today.toISOString().split('T')[0];
     const [specReqVal, setSpecReqVal] = useState('');
     const [specSkillsVal, setSpecSkillsVal] = useState('');
-    const [completed, setCompleted] = useState(true);
+    const [completed, setCompleted] = useState(false);
     const genCategor = [
         {
             optionName: 'IT',
