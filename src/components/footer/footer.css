@@ -134,6 +134,10 @@
     color: var(--main-text-color);
     font-size: 14px;
 }
+.desktop_footer_info svg{
+    color: red;
+    font-size: 18px;
+}
 .desktop_footer_copyright{
     width: 80%;
     margin: 0px auto;

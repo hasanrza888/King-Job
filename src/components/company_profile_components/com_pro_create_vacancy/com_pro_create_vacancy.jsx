@@ -8,11 +8,13 @@ import { faCalendar, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import CreatePremiumForVacany from './c_p_c_v_create_premium/c_p_c_v_create_premium';
 function ComProCreateVacancy() {
     const today = new Date();
     const minDate = today.toISOString().split('T')[0];
     const [specReqVal, setSpecReqVal] = useState('');
     const [specSkillsVal, setSpecSkillsVal] = useState('');
+    const [completed, setCompleted] = useState(false);
     const genCategor = [
         {
             optionName: 'IT',
@@ -260,6 +262,7 @@ function ComProCreateVacancy() {
         subCategory: "",
         name: "",
         city: "",
+        age: "",
         type: "",
         experience: "",
         education: "",
@@ -270,6 +273,7 @@ function ComProCreateVacancy() {
         salaryType: "",
         agreedSalary: false,
         endTime: "",
+        premium: false
     })
     // job type
     const [type, setType] = useState([
@@ -314,6 +318,29 @@ function ComProCreateVacancy() {
         {
             id: 11,
             optionName: 'Şəki',
+            selected: false,
+        }
+    ])
+    // ages
+    const [age, setAge] = useState([
+        {   
+            id: 8,
+            optionName: '18-25',
+            selected: false,
+        },
+        {
+            id: 9,
+            optionName: '26-30',
+            selected: false,
+        },
+        {
+            id: 10,
+            optionName: '31-35',
+            selected: false,
+        },
+        {
+            id: 11,
+            optionName: '36-40',
             selected: false,
         }
     ])
@@ -529,7 +556,9 @@ function ComProCreateVacancy() {
         if(filter.category && filter.subCategory && filter.name && filter.city && filter.type && filter.experience && filter.education && filter.descriptionOfVacancy != "<p><br></p>" && filter.specialRequirements.length >0 && filter.skills.length >0 && (filter.agreedSalary || (filter.salary && filter.salaryType)) && filter.endTime){
             // submit to database, Mr Shixkarim
             setErrorMessage({...errorMessage, errorCheck:false, errorContent: ''});
-            console.log('ready to goooooooo!');
+            // console.log('ready to goooooooo!');
+            // go to premium
+            setCompleted(true);
         }else if(!filter.category){
             setErrorMessage({...errorMessage, errorCheck:true, errorContent: 'Kateqoriya seçilməyib !'});
         }else if(!filter.subCategory){
@@ -558,6 +587,8 @@ function ComProCreateVacancy() {
     }
     // console.log(filter)
     return ( 
+        <>{completed ? 
+            <CreatePremiumForVacany setCompleted = {setCompleted} filter={filter} setFilter={setFilter}/>:
         <div className="com_pro_create_vacancy_container">
             {/* page head text */}
             <div className="com_pro_create_vacancy_p_title">Yeni Vakansiya</div>
@@ -640,6 +671,22 @@ function ComProCreateVacancy() {
                         <div className="com_pro_create_vacancy_form_line_input">
                             <div className="com_pro_create_vacancy_form_options">
                                 <CustomSelectOption select_option_name={'İş qrafiki'} select_option_id="type" select_option_array={type} select_update={setType} filter={filter} setFilter={setFilter}/>
+                            </div>
+                        </div>
+                    </div>
+                    {/* form one line => age */}
+                    <div className="com_pro_create_vacancy_form_line">
+                        {/* name and description */}
+                        <div className="com_pro_create_vacancy_form_line_name_and_desc">
+                            {/* line name */}
+                            <div className="com_pro_create_vacancy_form_line_name">Yaş</div>
+                            {/* line description */}
+                            <div className="com_pro_create_vacancy_form_line_desc">Namizəd üçün uyğun olan yaşı qeyd edin</div>
+                        </div>
+                        {/* form input */}
+                        <div className="com_pro_create_vacancy_form_line_input">
+                            <div className="com_pro_create_vacancy_form_options">
+                                <CustomSelectOption select_option_name={'Yaş'} select_option_id="age" select_option_array={age} select_update={setAge} filter={filter} setFilter={setFilter}/>       
                             </div>
                         </div>
                     </div>
@@ -832,6 +879,8 @@ function ComProCreateVacancy() {
                 </form>
             </div>
         </div>
+    }</>
+        
      );
 }
 

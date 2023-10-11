@@ -4,6 +4,7 @@ import {Link, NavLink, useLocation} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faFacebookSquare, faInstagram, faLinkedin, faTwitterSquare} from '@fortawesome/free-brands-svg-icons';
 import SubscribeForm from "../subscribe_form/subscribe_form";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 // import {icon, brands, } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 function Footer() {
@@ -62,28 +63,31 @@ function Footer() {
                         </span>
                         {/* social icons */}
                         <div className="footer_social_icons">
-                            <a href="#" target="_blank">
+                            <Link to="#" target="_blank">
                                 <FontAwesomeIcon icon={faInstagram} className="footer_instagram"/>    
-                            </a>
-                            <a href="#" target="_blank">
+                            </Link>
+                            <Link to="#" target="_blank">
                                 <FontAwesomeIcon icon={faFacebookSquare} className="footer_facebook" />    
-                            </a>                            
-                            <a href="#" target="_blank">
+                            </Link>                            
+                            <Link to="https://az.linkedin.com/company/king-job?trk=public_post_main-feed-card_reshare_feed-actor-name" target="_blank">
                                 <FontAwesomeIcon icon={faLinkedin} className="footer_linkedin" />
-                            </a>                            
-                            <a href="#" target="_blank">
+                            </Link>                            
+                            <Link to="#" target="_blank">
                                 <FontAwesomeIcon icon={faTwitterSquare} className="footer_twitter" />
-                            </a>                            
+                            </Link>                            
                         </div>
                     </div>
                 </div>
                 {/* copyright container */}
                 <div className="desktop_footer_copyright_container">
                     <div className="desktop_footer_info">
+                    Azərbaycandan  <FontAwesomeIcon icon={faHeart} />-lə hazırlanmışdır.
+                    </div>
+                    <div className="desktop_footer_info">
                     Saytın rəhbərliyi yerləşdirilmiş elanların məzmununa görə məsuliyyət daşımır.
                     </div>
                     <div className="desktop_footer_copyright">
-                        island.az @2023 island MMC
+                        <Link to="https://kigjob.com" target="_blank">kigjob.com</Link> @2023 King Job MMC
                     </div>
                 </div>
             </div>
