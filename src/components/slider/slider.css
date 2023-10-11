@@ -1,3 +1,4 @@
+@import '../../color.css';
 .home_slider_container{
     width: 100%;
     position: relative;
@@ -7,7 +8,7 @@
     overflow: hidden;
 }
 .home_slider_image{
-    max-height: 200px;
+    /* max-height: 200px; */
 }
 .home_slider_image img{
     width: 100%;
@@ -21,6 +22,7 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     user-select: none;
@@ -34,6 +36,26 @@
     /* overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis; */
+}
+/* action button */
+.home_slider_slogan_action_btn{
+    margin-top: 100px;
+    border: none;
+    padding: 10px 30px;
+    background-color: var(--primary-color);
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 20px;
+    transition: 0.1s ease all;
+    font-weight: 500;
+}
+.home_slider_slogan_action_btn:hover{
+    background-color: var(--accent-hover);
+    border: 1px solid var(--accent-hover);
+    transform: scale(1.01);
+    color: var(--primary-color);
 }
 @media (width <= 1220px){
     .home_slider_slogan_text{
