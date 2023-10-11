@@ -36,8 +36,8 @@ function CreatePremiumForVacany({setCompleted, filter, setFilter}) {
             progress: undefined,
             theme: "light",
         });
-        // navigateTo('/company_profile/vacancies');
-        console.log(filter)
+        navigateTo('/company_profile/vacancies');
+        // console.log(filter)
     }
     return ( 
         <div className="c_p_c_v_create_premium_container">

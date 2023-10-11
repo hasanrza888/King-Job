@@ -6,6 +6,7 @@ import imgOne from '../../images/slider_img_one.jpg';
 import imgTwo from '../../images/slider_img_two.jpg';
 import imgThree from '../../images/slider_img_three.png';
 import TextTypingAnimation from "../text-typing/text-typing";
+import { Link } from "react-router-dom";
 
 function SliderHome({fromHomePage}){
     const slider_settings = {
@@ -37,6 +38,7 @@ function SliderHome({fromHomePage}){
                     <div className="home_slider_slogan_text">
                         <TextTypingAnimation text={'Azərbaycanın ən mükəmməl və professional vakansiya saytı'} />
                     </div>
+                    <Link to='/contact' className="home_slider_slogan_action_btn">Bizimlə əlaqə</Link>
                 </div>
                 :
                 null
