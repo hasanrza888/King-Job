@@ -257,7 +257,6 @@ function ComProCreateVacancy() {
       
     // filter
     const [filter, setFilter] = useState({
-        company: "",
         category: "",
         subCategory: "",
         name: "",
@@ -269,7 +268,7 @@ function ComProCreateVacancy() {
         descriptionOfVacancy: "<p><br></p>",
         specialRequirements: [],
         skills: [],
-        salary: "",
+        salary: 0,
         salaryType: "",
         agreedSalary: false,
         endTime: "",

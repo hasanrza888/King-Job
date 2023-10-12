@@ -105,3 +105,8 @@ export const getAllNumbersForCompanyMenuAndDashboard = (id) => {
 export const getMonthlyVacancyData = (id) => {
     return axiosInstance.get('/getMontlhyVakansyData/'+id);
 }
+
+
+export const postJob = (data) => {
+    return axiosInstance.post('/addJob',data);
+}

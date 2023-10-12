@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-
+import { postJob } from '../../../../apiservices';
 function CreatePremiumForVacany({setCompleted, filter, setFilter}) {
     // const [agreePremium, setAgreePremium] = useState(false);
     const [agreeTotalBalance, setAgreeTotalBalance] = useState(false);
@@ -22,22 +22,44 @@ function CreatePremiumForVacany({setCompleted, filter, setFilter}) {
         setTotalBalError(false);
     }
     // send vacancy funbction
-    const shareVacancy =()=>{
+    const shareVacancy =async()=>{
         if(!agreeTotalBalance){
             return setTotalBalError(true);
         }
-        toast.success('Vakansiya Uğurla paylaşıldı !', {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: false,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-        });
-        navigateTo('/company_profile/vacancies');
-        // console.log(filter)
+        try{
+            const {data} = await postJob(filter);
+            if(!data.succes){
+                toast.info(data.message, {
+                    position: "top-center",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            }
+            else{
+                toast.success(data.message, {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+                navigateTo('/company_profile/vacancies');
+            }
+
+        }catch(error){
+
+        }
+
+        
+        
     }
     return ( 
         <div className="c_p_c_v_create_premium_container">

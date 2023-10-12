@@ -301,7 +301,10 @@ function PostDetail() {
                             {/* description heading */}
                             <div className="detail_page_vacancy_description_head">Vakansiya Təsviri</div>
                             {/* description body */}
-                            <div className="detail_page_vacancy_description_body">{data['descriptionOfVacancy']}</div>
+                            <div 
+                            className="detail_page_vacancy_description_body"
+                            dangerouslySetInnerHTML={{ __html: data['descriptionOfVacancy'] }}
+                            />
                         </div>
                         {/* vacancy details =>>> vakansiya skills tags */}
                         <div className="detail_page_vacancy_description">
