@@ -2,7 +2,18 @@ import {NavLink, Outlet} from "react-router-dom";
 import './signup.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBuilding, faUser } from "@fortawesome/free-solid-svg-icons";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 function Signup() {
+    const navigate= useNavigate()
+    const {user,isLoggedIn} = useSelector(state=>state.user);
+    console.log(user,isLoggedIn)
+    useEffect(()=>{
+        if(user && isLoggedIn){
+            navigate('/')
+        }
+    },[user,isLoggedIn,navigate])
     return ( 
         <div className="sign_up_page_container">
             {/* <PageHeadText content = "Qeydiyyatdan Keçin !"/> */}
