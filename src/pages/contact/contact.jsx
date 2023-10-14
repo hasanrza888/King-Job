@@ -56,7 +56,7 @@ function Contact() {
                         <FontAwesomeIcon icon={faEnvelope} />
                     </div>                    
                     <div className="contact_page_box_text">
-                        info@island.az
+                    kinggjobb@gmail.com
                     </div>
                 </Link>
                 <Link to="tel:+9940775773133" className="contact_page_box">
@@ -80,21 +80,21 @@ function Contact() {
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d512.6125278886502!2d50.08737083718522!3d40.38494957811747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x403066630c235b35%3A0xb86f0de275ed2af!2sSurakhani%2C%20Hovsan!5e1!3m2!1sen!2saz!4v1692276461516!5m2!1sen!2saz" width="600" height="450" style={{border:0}} loading="lazy"></iframe>
             </div>
             {/* social networks */}
-            <div className="contact_page_slogan">Bizi Sosial Şəbəkələrdə İzləyin !</div>
+            <div className="contact_page_slogan">Bizi Linkedin-də İzləyin !</div>
             {/* social icons */}
             <div className="contact_page_social_icons">
-                <Link to="#" target="_blank">
+                {/* <Link to="#" target="_blank">
                     <FontAwesomeIcon icon={faInstagram} className="contact_page_instagram"/>    
                 </Link>
                 <Link to="#" target="_blank">
                     <FontAwesomeIcon icon={faFacebookSquare} className="contact_page_facebook" />    
-                </Link>                            
-                <Link to="#" target="_blank">
+                </Link>                             */}
+                <Link to="https://az.linkedin.com/company/king-job?trk=public_post_main-feed-card_reshare_feed-actor-name" target="_blank">
                     <FontAwesomeIcon icon={faLinkedin} className="contact_page_linkedin" />
                 </Link>                            
-                <Link to="#" target="_blank">
+                {/* <Link to="#" target="_blank">
                     <FontAwesomeIcon icon={faTwitterSquare} className="contact_page_twitter" />
-                </Link>                            
+                </Link>                             */}
             </div>  
             {/* contact page form  */}
             <div className="contact_page_form_container">

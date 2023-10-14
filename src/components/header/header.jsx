@@ -50,7 +50,8 @@ function Header(){
                 progress: undefined,
                 theme: "light",
             });
-            navigate('/')
+            open_drop_menu();
+            navigate('/');
         }
     }
 
@@ -137,7 +138,7 @@ function Header(){
                         <FontAwesomeIcon icon={faClose} className="mobile_menu_close" onClick={open_drop_menu}/>
                         {/* mobile header logo */}
                         <div className="mobile_header_logo">
-                            <Link to="/">
+                            <Link onClick={open_drop_menu} to="/">
                                 <img src= {svg} alt="logo" />    
                             </Link>                
                         </div>
@@ -152,7 +153,7 @@ function Header(){
                                 <button className="account_link_btn_log_out"  onClick={logOut}>Çıxış</button>   </>               
                             :
                             isLoggedIn && p_t==='c_m_p' ?<>
-                            <NavLink to='/company_profile/dashboard' className={({isActive})=> isActive ? 'link_none' : 'account_link_btn header_profile_btn'}>
+                            <NavLink to='/company_profile/dashboard' onClick={open_drop_menu} className={({isActive})=> isActive ? 'link_none' : 'account_link_btn header_profile_btn'}>
                                 <div className="header_profil_picture">
                                     <img src={info?.logo || defaultProfilePic} alt="profile"/>
                                 </div>

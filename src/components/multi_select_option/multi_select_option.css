@@ -31,9 +31,9 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: baseline;
-    border: 1px solid var(--main-border-color);
-    box-shadow: var(--boxes-shadow-light);
+    /* align-items: baseline; */
+    border: 1px solid var(--form-inputs-border-color);
+    /* box-shadow: var(--boxes-shadow-light); */
     color: var(--light-text-color);
     background-color: var(--primary-color);
     border-radius: 10px;
@@ -49,20 +49,21 @@
 /* select name */
 .multi_select_name{
     width: 100%;
-    overflow-x: auto;
+    max-height: 50px;
+    overflow-y: auto;
     font-size: 16px;
-    display: flex;
-    flex-direction: row;
+    /* display: flex;
+    flex-direction: row; */
 }
 .multi_select_name::-webkit-scrollbar{
-    height: 5px;
+    width: 8px;
 }
 .multi_select_name::-webkit-scrollbar-track {
-    height: 4px;
+    width: 8px;
     padding: 1px 0px;
 }
 .multi_select_name::-webkit-scrollbar-thumb{
-    border-radius: 5px;
+    border-radius: 3px;
     background-color: var(--page-text-slogan-color);
 }
 .multi_select_name::-webkit-scrollbar-thumb:hover{
@@ -72,6 +73,7 @@
     margin-right: 10px;
     position: relative;
     padding-bottom: 5px;
+    display: inline-block;
 }
 .multi_select_name_item::after{
     position: absolute;
@@ -94,7 +96,7 @@
     overflow-y: auto;    
     transition: max-height 0.5s;
     margin-top: 5px;
-    box-shadow: var(--boxes-shadow-light);
+    /* box-shadow: var(--boxes-shadow-light); */
     background-color: var(--primary-color);
     position: absolute;
     z-index: 10;
@@ -115,7 +117,8 @@
 /* showing options of custom select */
 .multi_options_show{
     max-height: 300px;
-    border: 1px solid var(--main-border-color);
+    border: 1px solid var(--form-inputs-border-color);
+    border-radius: 10px;
 }
 /* hiding options of custom select */
 .multi_options_hide{    

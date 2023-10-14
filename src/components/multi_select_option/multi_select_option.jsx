@@ -32,7 +32,7 @@ function MultiSelectOption({multi_select_name, multi_select_array, multi_select_
                     {
                         multi_select_array.filter(item=> item['selected'] === true).length > 0 ? 
                         multi_select_array.filter(item=> item['selected'] === true).map((item, index)=> {
-                            return <div className="multi_select_name_item" key={item['id']}>{item['option_name']}</div>
+                            return <span className="multi_select_name_item" key={item['id']}>{item['option_name']}</span>
                         }) 
                         : multi_select_name
                     }

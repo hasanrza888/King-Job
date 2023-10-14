@@ -89,6 +89,7 @@
 .company_profile_nested_windows{
     width: 100%;
     padding: 30px 20px;
+    overflow: hidden;
 }
 @media (width <= 1270px){
     .company_profile_main_window_container{

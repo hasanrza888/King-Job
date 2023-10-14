@@ -37,27 +37,33 @@ function Companies() {
     const [openMobileFilter, setOpenMobileFilter] = useState(false);
     // vacancy order
     const [company_order, setCompany_order] = useState([
-        {
+        {   
+            id: 1,
             optionName: 'Ən reytinqli',
             selected: false,
         },  
-        {
+        {   
+            id: 2,
             optionName: 'Ada görə (A-Z) artan',
             selected: false,
         },
-        {
+        {   
+            id: 3,
             optionName: 'Ada görə (A-Z) azalan',
             selected: false,
         },
-        {
+        {   
+            id: 4,
             optionName: 'Ən çox müraciət',
             selected: false,
         },
-        {
+        {   
+            id: 5,
             optionName: 'Ən çox vakansiya',
             selected: false,
         },
-        {
+        {   
+            id: 6,
             optionName: 'Ən az vakansiya',
             selected: false,
         }

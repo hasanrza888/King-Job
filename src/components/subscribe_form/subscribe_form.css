@@ -5,7 +5,8 @@
 .subscribe_form_categories{
     width: 100%;
     max-width: 300px;
-    margin: 0px auto 20px;
+    /* margin: 0px auto 20px; */
+    margin-bottom: 20px;
 }
 .subscribe_form_categories_number{
     margin-bottom: 10px;
@@ -15,7 +16,7 @@
 .subscribe_form{
     width: 100%;
     border: 1px solid var(--accent-color);
-    border-radius: 5px;
+    border-radius: 10px;
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -29,14 +30,17 @@
     background-color: var(--primary-color);
 }
 .subscribe_form_submit_btn_container{
-    width: 40%;
+    width: 41%;
     min-width: 120px;
     position: relative;
+    overflow: hidden;
 }
 .subscribe_form_submit_btn{
     width: 100%;
     padding: 10px;
     border: none;
+    /* border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px; */
     outline: none;
     background-color: var(--accent-color);
     color: var(--primary-color);
@@ -44,6 +48,7 @@
     font-size: 16px;
     cursor: pointer;
     transition: 0.3s ease all;
+    display: block;
 }
 .subscribe_form_submit_btn:hover{
     background-color: var(--accent-hover);
