@@ -42,7 +42,7 @@ function CreatePremiumForVacany({setCompleted, filter, setFilter}) {
     return ( 
         <div className="c_p_c_v_create_premium_container">
             {/* page title */}
-            <div className="c_p_c_v_create_premium_p_title">Premium Yarat</div>
+            <div className="c_p_c_v_create_premium_p_title">Premium Vakansiya</div>
             {/* page back button */}
             <div className="c_p_c_v_create_premium_back_btn" onClick={()=>{ setCompleted(false)}}>
                 <FontAwesomeIcon icon={faAngleLeft} />

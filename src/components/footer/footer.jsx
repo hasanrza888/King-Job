@@ -59,22 +59,22 @@ function Footer() {
                     {/* socials */}
                     <div className="footer_column">
                         <span className="footer_column_head">
-                            Sosial
+                            Bizi Linkedin-də İzləyin !
                         </span>
                         {/* social icons */}
                         <div className="footer_social_icons">
-                            <Link to="#" target="_blank">
+                            {/* <Link to="#" target="_blank">
                                 <FontAwesomeIcon icon={faInstagram} className="footer_instagram"/>    
                             </Link>
                             <Link to="#" target="_blank">
                                 <FontAwesomeIcon icon={faFacebookSquare} className="footer_facebook" />    
-                            </Link>                            
+                            </Link>                             */}
                             <Link to="https://az.linkedin.com/company/king-job?trk=public_post_main-feed-card_reshare_feed-actor-name" target="_blank">
                                 <FontAwesomeIcon icon={faLinkedin} className="footer_linkedin" />
                             </Link>                            
-                            <Link to="#" target="_blank">
+                            {/* <Link to="#" target="_blank">
                                 <FontAwesomeIcon icon={faTwitterSquare} className="footer_twitter" />
-                            </Link>                            
+                            </Link>                             */}
                         </div>
                     </div>
                 </div>

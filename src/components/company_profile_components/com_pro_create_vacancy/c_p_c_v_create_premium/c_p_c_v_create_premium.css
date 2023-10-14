@@ -1,5 +1,14 @@
 @import '../../../../color.css';
+@keyframes left_to_right{
+    from{left: -500px;}
+    to{left: 0px;}
+}
 /* page head text */
+.c_p_c_v_create_premium_container{
+    width: 100%;
+    animation: 0.4s left_to_right;
+    position: relative;
+}
 .c_p_c_v_create_premium_p_title{
     width: 100%;
     text-align: center;
@@ -93,6 +102,7 @@
     color: var(--page-text-slogan-color);
     font-weight: 600;
     letter-spacing: 2px;
+    margin-bottom: 20px;
 }
 /* balance values cont */
 .c_p_c_v_create_premium_balance_values_container{

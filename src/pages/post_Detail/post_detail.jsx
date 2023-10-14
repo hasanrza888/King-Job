@@ -20,6 +20,7 @@ import CVCheckerModal from "../../components/CV_checker_modal/CV_checker_modal";
 import { getJobWithId } from "../../apiservices";
 import { useSelector,useDispatch } from "react-redux";
 import { updateJobs,updateCurrentJob } from "../../redux/reducers/jobReducers";
+import LoadingSpinner from "../../components/spinnerForPageLoading/LoadingSpinner";
 function PostDetail() {
     const dispatch = useDispatch();
     const [loading,setLoading]  = useState(false);
@@ -136,14 +137,9 @@ function PostDetail() {
     return ( 
         <div className="detail_page">
             {
-                loading ? (
-                    <div className="detail_page_container">
-                    <div className="detail_page_job_header">
-                        <h1 className="loading">Loading....</h1>
-                        
-                    </div>
-                    </div>
-                ):
+                loading ? 
+                    <LoadingSpinner />
+                :
                 data ?
                 <div className="detail_page_container">
                     {/* detail page job header */}

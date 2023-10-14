@@ -10,8 +10,8 @@ function About() {
                 <div className="about_page_information_head">Şirkət haqqında:</div>
                 <div className="about_page_information_body">
                     <div className="about_page_information_list">
-                        <li><strong>Kingjob.az</strong> iş və ya işçi axtaranların onlayn platformasıdır.</li>
-                        <li>Kingjob.az 2023-cü ildə fəaliyyətə başlayaraq əmək bazarında ölkənin ən yaxşı iş axtarma platformasına çevrilmişdir.</li>
+                        <li><strong>Kigjob.com</strong> iş və ya işçi axtaranların onlayn platformasıdır.</li>
+                        <li>Kigjob.com 2023-cü ildə fəaliyyətə başlayaraq əmək bazarında ölkənin ən yaxşı iş axtarma platformasına çevrilmişdir.</li>
                     </div>                  
                 </div>
             </div>
@@ -21,7 +21,7 @@ function About() {
                 <div className="about_page_information_body">
                     <div className="about_page_information_list">
                         <li>
-                            <strong>Kingjob.az</strong> onlayn platformasında iş elanlarına müraciət etdiyiniz zaman mütləq geri dönüş cavabı alacaqsınız.
+                            <strong>Kigjob.com</strong> onlayn platformasında iş elanlarına müraciət etdiyiniz zaman mütləq geri dönüş cavabı alacaqsınız.
                         </li>
                         <li>
                             Saxta elanların olmaması.
