@@ -11,6 +11,7 @@ const initialState = {
         percentageChangeNumOfAllApply:0,
         percentageChangeCreatedVacancy:0,
   },
+  companyJobsData:[]
 };
 
 const companyProfileSlice = createSlice({
@@ -20,9 +21,15 @@ const companyProfileSlice = createSlice({
     setNumbers: (state, action) => {
       state.numbers = action.payload
     },
+    setCompanyJobsData : (state,action) => {
+      state.companyJobsData = action.payload
+    },
+    addNewJob : (state,action) => {
+      state.companyJobsData = [...state.companyJobsData,action.payload]
+    }
   },
 });
 
-export const { setNumbers } = companyProfileSlice.actions;
+export const { setNumbers,setCompanyJobsData,addNewJob } = companyProfileSlice.actions;
 
 export default companyProfileSlice.reducer;

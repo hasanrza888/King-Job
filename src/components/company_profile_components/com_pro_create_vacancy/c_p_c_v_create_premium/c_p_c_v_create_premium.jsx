@@ -5,7 +5,10 @@ import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { postJob } from '../../../../apiservices';
+import { useDispatch } from 'react-redux';
+import { addNewJob } from '../../../../redux/reducers/companyProfileReducers';
 function CreatePremiumForVacany({setCompleted, filter, setFilter}) {
+    const dispatch = useDispatch();
     // const [agreePremium, setAgreePremium] = useState(false);
     const [agreeTotalBalance, setAgreeTotalBalance] = useState(false);
     const [vacancyValue, setVacancyValue] = useState(2);
@@ -52,8 +55,8 @@ function CreatePremiumForVacany({setCompleted, filter, setFilter}) {
                     theme: "light",
                 });
                 navigateTo('/company_profile/vacancies');
+                dispatch(addNewJob(data.data));
             }
-
         }catch(error){
 
         }
