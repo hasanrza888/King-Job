@@ -94,6 +94,7 @@
     font-size: 17px;
     color: var(--secondary-text-color);
     font-family: 'Roboto Slab', serif;
+    font-weight: 400;
 }
 /* job title and salary */
 .post_box_job_title_and_salary{
