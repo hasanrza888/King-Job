@@ -1,0 +1,243 @@
+@import '../../../color.css';
+.company_profile_my_vacancies_container{
+    width: 100%;
+}
+/* search form container */
+.c_p_m_v_Search_form_and_new_cont{
+  width: 80%;
+  max-width: 600px;
+  margin: 10px auto 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+/* search form  */
+.c_p_m_v_Search_form{
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid var(--form-inputs-border-color);
+  border-radius: 10px;
+  overflow: hidden;
+}
+/* form input */
+.c_p_m_v_Search_form_input{
+  width: 90%;
+  border: none;
+  outline: none;
+  padding: 10px;
+  font-size: 16px;
+  background-color: var(--primary-color);
+}
+/* form submit */
+.c_p_m_v_Search_form_sbmt{
+  width: 37px;
+  height: 30px;
+  background-color: var(--accent-color);
+  position: absolute;
+  z-index: 1;
+  right: 10px;
+  top: 13%;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s ease all;
+}
+.c_p_m_v_Search_form_sbmt svg{
+  font-size: 18px;
+  color: var(--primary-color);
+}
+.c_p_m_v_Search_form_sbmt:hover{
+  background-color: var(--accent-hover);
+}
+/* new vacancy button */
+.c_p_m_v_Search_form_create_new_vac{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-width: 160px;
+  margin-left: 20px;
+  background-color: var(--primary-color);
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
+  transition: 0.3s ease all;
+  border-radius: 10px;
+  padding: 9px;
+}
+.c_p_m_v_Search_form_create_new_vac:hover{
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: var(--primary-color);
+}
+.c_p_m_v_Search_form_create_new_vac svg{
+  margin-right: 10px;
+}
+/* vacancy table */
+.c_p_vacancies_table_container{
+    width: 100%;
+    padding: 0px 0px 5px; 
+    overflow-x: auto;
+}
+.c_p_vacancies_table_container::-webkit-scrollbar{
+  height: 15px;
+}
+.c_p_vacancies_table_container::-webkit-scrollbar-track {
+  padding: 5px 0px;
+  background-color: var(--main-border-color);
+  border-radius: 5px;
+}
+.c_p_vacancies_table_container::-webkit-scrollbar-thumb{
+  border-radius: 5px;
+  background-color: var(--page-text-slogan-color);
+  transition: 0.3s ease all;
+  cursor: pointer;
+}
+.c_p_vacancies_table_container::-webkit-scrollbar-thumb:hover{
+  background-color: var(--light-text-color);
+}
+/* Table styling */
+.c_p_vacancies_table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--primary-color);
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+}
+.c_p_vacancies_table tr{
+  transition: 0.3s ease all;
+}
+.c_p_vacancies_table tbody tr{
+  border-bottom: 1px solid var(--main-border-color);
+
+}
+.c_p_vacancies_table th,
+.c_p_vacancies_table td {
+  /* border-bottom: 1px solid var(--main-border-color); */
+  padding: 12px;
+  text-align: center;
+  min-width: 180px;
+  font-size: 14px;
+}
+.c_p_count{
+  min-width: 50px !important;
+}
+/* Header row styling */
+.c_p_vacancies_table th {
+  background-color: var(--company-menu-active);
+  color: var(--secondary-text-color);
+  border-top: none;
+  text-transform: uppercase;
+  font-family: 'Roboto Flex', sans-serif;
+  font-size: 15px;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  letter-spacing: 1px;
+}
+/* table status  */
+.c_p_status_sign{
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 10px;
+  background-color: var(--list-active-bg-color);
+}
+.c_p_status_active{
+  color: var(--checkbox-accept-color);
+}
+.c_p_status_deactive{
+  color: var(--dashboard-overview-decrease-color);
+}
+/* Action buttons styling */
+.c_p_vacancies_table tbody .c_p_actions{
+  display: flex;
+  flex-direction: row;
+  /* border-bottom: none; */
+  /* align-items: center; */
+}
+.c_p_actions .c_p_actions_btn {
+  cursor: pointer;
+  transition: 0.3s ease all;
+}
+/* edit button */
+.c_p_actions .c_p_edit{
+  background-color: transparent;
+  color: var(--accent-color);
+  border: none;
+  margin-right: 15px;
+  font-size: 18px;
+  cursor: pointer;
+}
+.c_p_actions .c_p_edit:hover{
+  color: var(--accent-hover);
+}
+/* deactivate button */
+.c_p_actions .c_p_deactivate{
+  background-color: transparent;
+  color: var(--dashboard-overview-decrease-color);
+  margin-right: 15px;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+.c_p_actions .c_p_deactivate:hover{
+  color: var(--notification-count-color);
+}
+/* detail button */
+.c_p_actions .c_p_details{
+  color: var(--accent-color);
+  text-decoration: underline;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.c_p_actions .c_p_details svg{
+  margin-left: 10px;
+}
+.c_p_actions .c_p_details:hover {
+  color: var(--accent-hover);
+}
+/* Alternate row background color */
+.c_p_vacancies_table tr:nth-child(even) {
+  background-color: var(--company-menu_bg-color);
+}
+.c_p_vacancies_table tbody tr:hover{
+  background-color: var(--company-menu-active);
+  cursor: pointer;
+}
+/* sort buttons */
+/* Style the up and down arrow icons */
+.c_p_vacancies_table_sort_btns svg{
+  font-size: 16px;
+  position: absolute;
+  right: 0px;
+  /* top: 50%;
+  transform: translateY(-50%); */
+  opacity: 0.6;
+  /* transition: opacity 0.3s; */
+  cursor: pointer;
+  color: var(--light-text-color);
+}
+.c_p_vacancies_table_sort_btns svg:hover{
+  opacity: 1;
+}
+@media (width <= 750px){
+  .c_p_m_v_Search_form_and_new_cont{
+    width: 90%;
+    max-width: unset;
+  }
+}
+@media (width <= 550px){
+  .c_p_m_v_Search_form_and_new_cont{
+    width: 100%;
+    max-width: unset;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .c_p_m_v_Search_form{
+    margin-bottom: 10px;
+  }
+  .c_p_m_v_Search_form_create_new_vac{
+    margin-left: 0px;
+  }
+}
