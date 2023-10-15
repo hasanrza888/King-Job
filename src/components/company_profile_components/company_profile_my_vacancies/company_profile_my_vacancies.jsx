@@ -3,83 +3,50 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightLong, faFilter, faMagnifyingGlass, faPen, faPlus, faSearch, faSortDown, faSortUp, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 function CompanyProfileMyVacancies() {
+    const {companyJobsData:vacancies} = useSelector(state=>state.companyProfile);
+    console.log(vacancies)
     const [searchQuery, setSearchQuery] = useState('');
-    // Example vacancy data
-    const vacancies = [
-        {
-            id: 1,
-            status: true,
-            name: 'Software Developer',
-            category: 'Bank',
-            subcategory: 'Web',
-            views: 150,
-            applies: 50,
-            city: 'Bakı',
-            jobType: 'Tam',
-            age: '18-25',
-            experience: '2-5 il',
-            educationLevel: 'ALi',
-            salary: '6600',
-            salaryType: 'Aylıq',
-            startDate: '12-10-2023',
-            endDate: '31-12-2023',
-        },
-        {
-            id: 2,
-            status: false,
-            name: 'Front end Developer',
-            category: 'Information Technology',
-            subcategory: 'Programming',
-            views: 100,
-            applies: 34,
-            city: 'Ganca',
-            jobType: 'Onlayn',
-            age: '25-30',
-            experience: '1 il',
-            educationLevel: 'Orta',
-            salary: '6000',
-            salaryType: 'İllik',
-            startDate: '14-10-2023',
-            endDate: '25-12-2023',
-        },    
-        {
-            id: 3,
-            status: false,
-            name: 'Front end Developer',
-            category: 'Information Technology',
-            subcategory: 'Programming',
-            views: 100,
-            applies: 90,
-            city: 'Bakı',
-            jobType: 'Onlayn',
-            age: '30-35',
-            experience: '2-5 il',
-            educationLevel: 'ALi',
-            salary: '6000',
-            salaryType: 'Aylıq',
-            startDate: '14-10-2023',
-            endDate: '25-12-2023',
-        },
-        {
-            id: 4,
-            status: false,
-            name: 'Front end Developer',
-            category: 'Information Technology',
-            subcategory: 'Programming',
-            views: 100,
-            applies: 90,
-            city: 'Bakı',
-            jobType: 'Onlayn',
-            age: '35-40',
-            experience: '2-5 il',
-            educationLevel: 'ALi',
-            salary: '6000',
-            salaryType: 'Aylıq',
-            startDate: '14-10-2023',
-            endDate: '25-12-2023',
-        },
-    ];
+    // const vacancies = [
+    //     {
+    //         id: 1,
+    //         active: true,
+    //         name: 'Software Developer',
+    //         category: 'Bank',
+    //         subCategory: 'Web',
+    //         numberOfViews: 150,
+    //         numberOfApplys: 31,
+    //         applies: 50,
+    //         city: 'Bakı',
+    //         type: 'Tam',
+    //         age: '18-25',
+    //         experience: '2-5 il',
+    //         education: 'ALi',
+    //         salary: '6600',
+    //         salaryType: 'Aylıq',
+    //         createdAt: '12-10-2023',
+    //         endTime: '31-12-2023',
+    //     },
+    //     {
+    //         id: 2,
+    //         active: false,
+    //         name: 'Front end Developer',
+    //         category: 'Information Technology',
+    //         subCategory: 'Programming',
+    //         numberOfViews: 100,
+    //         numberOfApplys: 34,
+    //         city: 'Ganca',
+    //         type: 'Onlayn',
+    //         age: '25-30',
+    //         experience: '1 il',
+    //         education: 'Orta',
+    //         salary: '6000',
+    //         salaryType: 'İllik',
+    //         createdAt: '14-10-2023',
+    //         endTime: '25-12-2023',
+    //     }
+    // ];
     const [sortColumn, setSortColumn] = useState(null);
     const [sortDirection, setSortDirection] = useState(1);
     const handleSort = (column) => {
@@ -95,36 +62,36 @@ function CompanyProfileMyVacancies() {
     const sortedVacancies = [...vacancies].sort((a, b) => {
         if (sortColumn === 'id') {
           return sortDirection * (a.id - b.id);
-        } else if (sortColumn === 'status') {
-            return sortDirection * (a.status - b.status);
+        } else if (sortColumn === 'active') {
+            return sortDirection * (a.active - b.active);
         } else if (sortColumn === 'name') {
             return sortDirection * a.name.localeCompare(b.name);
         } else if (sortColumn === 'category') {
           return sortDirection * a.category.localeCompare(b.category);
-        } else if (sortColumn === 'subcategory') {
-          return sortDirection * a.subcategory.localeCompare(b.subcategory);
-        } else if (sortColumn === 'views') {
-          return sortDirection * (a.views - b.views);
-        } else if (sortColumn === 'applies') {
-          return sortDirection * (a.applies - b.applies);
+        } else if (sortColumn === 'subCategory') {
+          return sortDirection * a.subCategory.localeCompare(b.subCategory);
+        } else if (sortColumn === 'numberOfViews') {
+          return sortDirection * (a.numberOfViews - b.numberOfViews);
+        } else if (sortColumn === 'numberOfApplys') {
+          return sortDirection * (a.numberOfApplys - b.numberOfApplys);
         } else if (sortColumn === 'city') {
           return sortDirection * a.city.localeCompare(b.city);
-        } else if (sortColumn === 'jobType') {
-          return sortDirection * a.jobType.localeCompare(b.jobType);
-        } else if (sortColumn === 'age') {
-          return sortDirection * a.age.localeCompare(b.age);
+        } else if (sortColumn === 'type') {
+          return sortDirection * a.type.localeCompare(b.type);
+        // } else if (sortColumn === 'age') {
+        //   return sortDirection * a.age.localeCompare(b.age);
         } else if (sortColumn === 'experience') {
           return sortDirection * a.experience.localeCompare(b.experience);
-        } else if (sortColumn === 'educationLevel') {
-          return sortDirection * a.educationLevel.localeCompare(b.educationLevel);
+        } else if (sortColumn === 'education') {
+          return sortDirection * a.education.localeCompare(b.education);
         } else if (sortColumn === 'salary') {
           return sortDirection * (a.salary - b.salary);
         } else if (sortColumn === 'salaryType') {
           return sortDirection * a.salaryType.localeCompare(b.salaryType);
-        } else if (sortColumn === 'startDate') {
-          return sortDirection * a.startDate.localeCompare(b.startDate);
+        } else if (sortColumn === 'createdAt') {
+          return sortDirection * a.createdAt.localeCompare(b.createdAt);
         } else if (sortColumn === 'endDate') {
-          return sortDirection * a.endDate.localeCompare(b.endDate);
+          return sortDirection * a.endTime.localeCompare(b.endTime);
         }
         return 0;
     });
@@ -163,9 +130,9 @@ function CompanyProfileMyVacancies() {
                                     <span className="c_p_vacancies_table_sort_btns"><FontAwesomeIcon icon={faSortDown} /></span> 
                                 )}
                             </th>
-                            <th className="c_p_status" onClick={() => handleSort('status')}>
+                            <th className="c_p_status" onClick={() => handleSort('active')}>
                                 Status
-                                {sortColumn === 'status' && (
+                                {sortColumn === 'active' && (
                                     sortDirection === 1 ? 
                                     <span className="c_p_vacancies_table_sort_btns"><FontAwesomeIcon icon={faSortUp} /></span> 
                                     :
@@ -190,27 +157,27 @@ function CompanyProfileMyVacancies() {
                                     <span className="c_p_vacancies_table_sort_btns"><FontAwesomeIcon icon={faSortDown} /></span> 
                                 )}
                             </th>
-                            <th className="c_p_subcategory" onClick={() => handleSort('subcategory')}>
+                            <th className="c_p_subcategory" onClick={() => handleSort('subCategory')}>
                                 Alt kateqoriya
-                                {sortColumn === 'subcategory' && (
+                                {sortColumn === 'subCategory' && (
                                     sortDirection === 1 ? 
                                     <span className="c_p_vacancies_table_sort_btns"><FontAwesomeIcon icon={faSortUp} /></span> 
                                     :
                                     <span className="c_p_vacancies_table_sort_btns"><FontAwesomeIcon icon={faSortDown} /></span> 
                                 )}
                             </th>
-                            <th className="c_p_views_count" onClick={() => handleSort('views')}>
+                            <th className="c_p_views_count" onClick={() => handleSort('numberOfViews')}>
                                 Baxış sayı
-                                {sortColumn === 'views' && (
+                                {sortColumn === 'numberOfViews' && (
                                     sortDirection === 1 ? 
                                     <span className="c_p_vacancies_table_sort_btns"><FontAwesomeIcon icon={faSortUp} /></span> 
                                     :
                                     <span className="c_p_vacancies_table_sort_btns"><FontAwesomeIcon icon={faSortDown} /></span> 
                                 )}
                             </th>
-                            <th className="c_p_applies_count" onClick={() => handleSort('applies')}>
+                            <th className="c_p_applies_count" onClick={() => handleSort('numberOfApplys')}>
                                 Müraciət sayı
-                                {sortColumn === 'applies' && (
+                                {sortColumn === 'numberOfApplys' && (
                                     sortDirection === 1 ? 
                                     <span className="c_p_vacancies_table_sort_btns"><FontAwesomeIcon icon={faSortUp} /></span> 
                                     :
@@ -226,9 +193,9 @@ function CompanyProfileMyVacancies() {
                                     <span className="c_p_vacancies_table_sort_btns"><FontAwesomeIcon icon={faSortDown} /></span> 
                                 )}
                             </th>
-                            <th className="c_p_job_type" onClick={() => handleSort('jobType')}>
+                            <th className="c_p_job_type" onClick={() => handleSort('type')}>
                                 İş qrafiki
-                                {sortColumn === 'jobType' && (
+                                {sortColumn === 'type' && (
                                     sortDirection === 1 ? 
                                     <span className="c_p_vacancies_table_sort_btns"><FontAwesomeIcon icon={faSortUp} /></span> 
                                     :
@@ -253,9 +220,9 @@ function CompanyProfileMyVacancies() {
                                     <span className="c_p_vacancies_table_sort_btns"><FontAwesomeIcon icon={faSortDown} /></span> 
                                 )}
                             </th>
-                            <th className="c_p_education_level" onClick={() => handleSort('educationLevel')}>
+                            <th className="c_p_education_level" onClick={() => handleSort('education')}>
                                 Təhsil səviyyəsi
-                                {sortColumn === 'educationLevel' && (
+                                {sortColumn === 'education' && (
                                     sortDirection === 1 ? 
                                     <span className="c_p_vacancies_table_sort_btns"><FontAwesomeIcon icon={faSortUp} /></span> 
                                     :
@@ -280,18 +247,18 @@ function CompanyProfileMyVacancies() {
                                     <span className="c_p_vacancies_table_sort_btns"><FontAwesomeIcon icon={faSortDown} /></span> 
                                 )}
                             </th>
-                            <th className="c_p_start_date" onClick={() => handleSort('startDate')}>
+                            <th className="c_p_start_date" onClick={() => handleSort('createdAt')}>
                                 Başlama tarixi
-                                {sortColumn === 'startDate' && (
+                                {sortColumn === 'createdAt' && (
                                     sortDirection === 1 ? 
                                     <span className="c_p_vacancies_table_sort_btns"><FontAwesomeIcon icon={faSortUp} /></span> 
                                     :
                                     <span className="c_p_vacancies_table_sort_btns"><FontAwesomeIcon icon={faSortDown} /></span> 
                                 )}
                             </th>
-                            <th className="c_p_end_date" onClick={() => handleSort('endDate')}>
+                            <th className="c_p_end_date" onClick={() => handleSort('endTime')}>
                                 Son tarix
-                                {sortColumn === 'endDate' && (
+                                {sortColumn === 'endTime' && (
                                     sortDirection === 1 ? 
                                     <span className="c_p_vacancies_table_sort_btns"><FontAwesomeIcon icon={faSortUp} /></span> 
                                     :
@@ -306,10 +273,10 @@ function CompanyProfileMyVacancies() {
                     <tbody>
                     {sortedVacancies.filter((item)=>{return item.name.toLowerCase().includes(searchQuery.toLowerCase())}).map((vacancy, index) => (
                         <tr key={vacancy.id}>
-                            <td className="c_p_count">{vacancy.id}</td>
+                            <td className="c_p_count">{index+1}</td>
                             <td className="c_p_status">
                                 {
-                                    vacancy.status ? 
+                                    vacancy.active ? 
                                     <span className="c_p_status_sign c_p_status_active">Aktiv</span>
                                     :
                                     <span className="c_p_status_sign c_p_status_deactive">Deaktiv</span>
@@ -317,18 +284,18 @@ function CompanyProfileMyVacancies() {
                             </td>
                             <td className="c_p_vacancy_name"><Link to={'/vacancies/232'}>{vacancy.name}</Link></td>
                             <td className="c_p_category">{vacancy.category}</td>
-                            <td className="c_p_subcategory">{vacancy.subcategory}</td>
-                            <td className="c_p_views_count">{vacancy.views}</td>
-                            <td className="c_p_applies_count">{vacancy.applies}</td>
+                            <td className="c_p_subcategory">{vacancy.subCategory}</td>
+                            <td className="c_p_views_count">{vacancy.numberOfViews}</td>
+                            <td className="c_p_applies_count">{vacancy.numberOfApplys}</td>
                             <td className="c_p_city">{vacancy.city}</td>
-                            <td className="c_p_job_type">{vacancy.jobType}</td>
-                            <td className="c_p_age">{vacancy.age}</td>
+                            <td className="c_p_job_type">{vacancy.type}</td>
+                            <td className="c_p_age">{21}</td>
                             <td className="c_p_experience">{vacancy.experience}</td>
-                            <td className="c_p_education_level">{vacancy.educationLevel}</td>
+                            <td className="c_p_education_level">{vacancy.education}</td>
                             <td className="c_p_salary">{vacancy.salary}</td>
                             <td className="c_p_salary_type">{vacancy.salaryType}</td>
-                            <td className="c_p_start_date">{vacancy.startDate}</td>
-                            <td className="c_p_end_date">{vacancy.endDate}</td>
+                            <td className="c_p_start_date">{vacancy.createdAt.split('T')[0]}</td>
+                            <td className="c_p_end_date">{vacancy.endTime.split('T')[0]}</td>
                             <td className="c_p_actions">
                                 <button className="c_p_actions_btn c_p_edit" title='Redaktə et'>
                                     <FontAwesomeIcon icon={faPen} />

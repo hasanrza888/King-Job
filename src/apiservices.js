@@ -110,3 +110,7 @@ export const getMonthlyVacancyData = (id) => {
 export const postJob = (data) => {
     return axiosInstance.post('/addJob',data);
 }
+
+export const getCompanyJobsData = (id) => {
+    return axiosInstance.get('/jobsEachCompany/'+id);
+}

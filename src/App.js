@@ -5,7 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { io } from 'socket.io-client';
 import { clearUser, setUser, setInfo } from './redux/reducers/userauthReducers';
 import { setJobs } from './redux/reducers/jobReducers';
-import { logout, loggedin, searchall } from './apiservices';
+import { setCompanyJobsData } from './redux/reducers/companyProfileReducers';
+import { logout, loggedin, searchall,getCompanyJobsData } from './apiservices';
 import { setSocket } from './redux/reducers/socketReducers';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -112,7 +113,22 @@ function App() {
       });
     }
   }, [socket, isLoggedIn, navigate, user]);
-
+  useEffect(()=>{
+    const getcompanyjobsdata = async (id) => {
+      try {
+        const {data} = await getCompanyJobsData(user._id);
+        // console.log(data)
+        dispatch(setCompanyJobsData(data.jobs));
+        
+      } catch (error) {
+        console.log("error at getting companysharedjobs",error.name)
+      }
+    }
+    if(user && isLoggedIn && user.u_t_p === 'c_m_p'){
+      getcompanyjobsdata()
+    }
+    
+  },[user,isLoggedIn])
   return (
     <div className='container'>
       <ToastContainer
