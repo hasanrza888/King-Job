@@ -20,6 +20,7 @@
   border: 1px solid var(--form-inputs-border-color);
   border-radius: 10px;
   overflow: hidden;
+  background-color: var(--primary-color);
 }
 /* form input */
 .c_p_m_v_Search_form_input{
@@ -74,35 +75,54 @@
 .c_p_m_v_Search_form_create_new_vac svg{
   margin-right: 10px;
 }
+.company_profile_my_vacancies_error{
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 18px;
+}
 /* vacancy table */
 .c_p_vacancies_table_container{
-    width: 100%;
-    padding: 0px 0px 5px; 
-    overflow-x: auto;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0px auto;
+  display: flex;
+  /* padding: 0px 0px 5px;  */
 }
-.c_p_vacancies_table_container::-webkit-scrollbar{
+.company_profile_main_window_full .c_p_vacancies_table_container{
+  max-width: unset;
+}
+/* Table styling */
+.c_p_vacancies_table {
+  width: 100%;
+  min-width: 100%;
+  padding: 0px 0px 5px; 
+  display: block;
+  border-collapse: collapse;
+  overflow-x: auto;
+  background-color: var(--primary-color);
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+}
+.c_p_vacancies_table::-webkit-scrollbar{
   height: 15px;
 }
-.c_p_vacancies_table_container::-webkit-scrollbar-track {
+.c_p_vacancies_table::-webkit-scrollbar-track {
   padding: 5px 0px;
   background-color: var(--main-border-color);
   border-radius: 5px;
 }
-.c_p_vacancies_table_container::-webkit-scrollbar-thumb{
+.c_p_vacancies_table::-webkit-scrollbar-thumb{
   border-radius: 5px;
   background-color: var(--page-text-slogan-color);
   transition: 0.3s ease all;
   cursor: pointer;
 }
-.c_p_vacancies_table_container::-webkit-scrollbar-thumb:hover{
+.c_p_vacancies_table::-webkit-scrollbar-thumb:hover{
   background-color: var(--light-text-color);
 }
-/* Table styling */
-.c_p_vacancies_table {
+.c_p_vacancies_table tbody {
+  display: table;
   width: 100%;
-  border-collapse: collapse;
-  background-color: var(--primary-color);
-  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
 }
 .c_p_vacancies_table tr{
   transition: 0.3s ease all;
@@ -221,9 +241,14 @@
 .c_p_vacancies_table_sort_btns svg:hover{
   opacity: 1;
 }
+@media (width <= 1380px){
+  .c_p_vacancies_table_container{
+    max-width: unset;
+  }
+}
 @media (width <= 750px){
   .c_p_m_v_Search_form_and_new_cont{
-    width: 90%;
+    width: 100%;
     max-width: unset;
   }
 }

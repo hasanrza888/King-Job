@@ -37,11 +37,11 @@ function CompanyProfileMenu({menu, open_company_menu,menuNumbers}) {
                 sub_url: '/company_profile/vacancies/create_vacancy',
                 sub_count: ''
             },
-            {
-                sub_name: 'Premium vakansiyalar',
-                sub_url: '/company_profile/vacancies/premium',
-                sub_count: menuNumbers?.premJobsCount
-            }
+            // {
+            //     sub_name: 'Premium vakansiyalar',
+            //     sub_url: '/company_profile/vacancies/premium',
+            //     sub_count: menuNumbers?.premJobsCount
+            // }
             ]
         },
         {

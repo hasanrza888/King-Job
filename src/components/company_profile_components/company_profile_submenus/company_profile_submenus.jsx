@@ -13,7 +13,7 @@ function CompanyProfileSubmenus({menu, open_company_menu}) {
     }
     // close main menu when clicking menu links
     const close_main_menu_for_subOp = ()=>{
-        if(window.innerWidth <= 1270){
+        if(window.innerWidth <= 1380){
             open_company_menu();    
         }
     }
