@@ -125,7 +125,7 @@
 .company_profile_menu_log_out:hover svg{
     color: var(--accent-hover);
 }
-@media (width <= 1270px){
+@media (width <= 1380px){
     .company_profile_menu_container{
         width: 0px;
         height: 100vh;

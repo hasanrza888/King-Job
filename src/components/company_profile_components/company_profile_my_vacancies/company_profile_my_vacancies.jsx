@@ -117,6 +117,7 @@ function CompanyProfileMyVacancies() {
                 </Link>
             </div>
             {/* vacancies table */}
+            {sortedVacancies.length > 0 ?
             <div className='c_p_vacancies_table_container'>
                 <table className="c_p_vacancies_table">
                     <thead>
@@ -272,7 +273,7 @@ function CompanyProfileMyVacancies() {
                     </thead>
                     <tbody>
                     {sortedVacancies.filter((item)=>{return item.name.toLowerCase().includes(searchQuery.toLowerCase())}).map((vacancy, index) => (
-                        <tr key={vacancy.id}>
+                        <tr key={vacancy._id}>
                             <td className="c_p_count">{index+1}</td>
                             <td className="c_p_status">
                                 {
@@ -282,7 +283,7 @@ function CompanyProfileMyVacancies() {
                                     <span className="c_p_status_sign c_p_status_deactive">Deaktiv</span>
                                 }
                             </td>
-                            <td className="c_p_vacancy_name"><Link to={'/vacancies/232'}>{vacancy.name}</Link></td>
+                            <td className="c_p_vacancy_name"><Link to={`/vacancies/${vacancy._id}`}>{vacancy.name}</Link></td>
                             <td className="c_p_category">{vacancy.category}</td>
                             <td className="c_p_subcategory">{vacancy.subCategory}</td>
                             <td className="c_p_views_count">{vacancy.numberOfViews}</td>
@@ -303,7 +304,7 @@ function CompanyProfileMyVacancies() {
                                 <button className="c_p_actions_btn c_p_deactivate" title='Deaktiv et'>
                                     <FontAwesomeIcon icon={faTrash} />
                                 </button>
-                                <Link to="/vacancies/232"className="c_p_actions_btn c_p_details">
+                                <Link to={`/vacancies/${vacancy._id}`} className="c_p_actions_btn c_p_details">
                                     Ətraflı
                                     <FontAwesomeIcon icon={faArrowRightLong} />
                                 </Link>
@@ -312,7 +313,7 @@ function CompanyProfileMyVacancies() {
                     ))}
                     </tbody>
                 </table>
-            </div>
+            </div> : <div className='company_profile_my_vacancies_error'>Mövcud Vakansiya yoxdur!</div>}
         </div>
      );
 }

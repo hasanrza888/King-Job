@@ -183,7 +183,7 @@ function App() {
               <Route path='vacancies' element={<CompanyProfileVacancies />}>
                 <Route index element={<CompanyProfileMyVacancies />} />
                 <Route path='create_vacancy' element={<ComProCreateVacancy />} />
-                <Route path='premium' element={<ComProPremiumVacancies />} />
+                {/* <Route path='premium' element={<ComProPremiumVacancies />} /> */}
               </Route>
             </Route>
             )}
