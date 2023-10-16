@@ -298,7 +298,7 @@ function PostDetail() {
                             <div className="detail_page_vacancy_description_head">Vakansiya Təsviri</div>
                             {/* description body */}
                             <div 
-                            className="detail_page_vacancy_description_body"
+                            className="detail_page_vacancy_description_body detail_page_vacancy_description_body_for_rctxt"
                             dangerouslySetInnerHTML={{ __html: data['descriptionOfVacancy'] }}
                             />
                         </div>

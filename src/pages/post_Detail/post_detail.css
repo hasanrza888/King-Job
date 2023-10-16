@@ -303,6 +303,19 @@
     letter-spacing: 2px;
     line-height: 1.4;
 }
+.detail_page_vacancy_description_body_for_rctxt ul, .detail_page_vacancy_description_body_for_rctxt ol{
+    padding-left: 20px;
+}
+.detail_page_vacancy_description_body_for_rctxt ul li{
+    width: 100%;
+    list-style: disc;
+    padding: 5px 0px;
+}
+.detail_page_vacancy_description_body_for_rctxt ol li{
+    width: 100%;
+    list-style: decimal;
+    padding: 5px 0px;
+}
 .vacancy_description_body_list_cont{
     width: 100%;
 }
