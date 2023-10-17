@@ -3,50 +3,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightLong, faFilter, faMagnifyingGlass, faPen, faPlus, faSearch, faSortDown, faSortUp, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
+import {toast} from 'react-toastify'
+import { deactivatevacancy,deleteJob } from '../../../apiservices';
+import { updateCompanyJob,deleteCompanyJob } from '../../../redux/reducers/companyProfileReducers';
 function CompanyProfileMyVacancies() {
+    const dispatch = useDispatch();
     const {companyJobsData:vacancies} = useSelector(state=>state.companyProfile);
     console.log(vacancies)
     const [searchQuery, setSearchQuery] = useState('');
-    // const vacancies = [
-    //     {
-    //         id: 1,
-    //         active: true,
-    //         name: 'Software Developer',
-    //         category: 'Bank',
-    //         subCategory: 'Web',
-    //         numberOfViews: 150,
-    //         numberOfApplys: 31,
-    //         applies: 50,
-    //         city: 'Bakı',
-    //         type: 'Tam',
-    //         age: '18-25',
-    //         experience: '2-5 il',
-    //         education: 'ALi',
-    //         salary: '6600',
-    //         salaryType: 'Aylıq',
-    //         createdAt: '12-10-2023',
-    //         endTime: '31-12-2023',
-    //     },
-    //     {
-    //         id: 2,
-    //         active: false,
-    //         name: 'Front end Developer',
-    //         category: 'Information Technology',
-    //         subCategory: 'Programming',
-    //         numberOfViews: 100,
-    //         numberOfApplys: 34,
-    //         city: 'Ganca',
-    //         type: 'Onlayn',
-    //         age: '25-30',
-    //         experience: '1 il',
-    //         education: 'Orta',
-    //         salary: '6000',
-    //         salaryType: 'İllik',
-    //         createdAt: '14-10-2023',
-    //         endTime: '25-12-2023',
-    //     }
-    // ];
     const [sortColumn, setSortColumn] = useState(null);
     const [sortDirection, setSortDirection] = useState(1);
     const handleSort = (column) => {
@@ -101,6 +66,62 @@ function CompanyProfileMyVacancies() {
         // console.log(e.target.search_form_input.value)
         setSearchQuery(e.target.search_form_input.value);
     };
+    const deactivateVacancy = async (id) => {
+        try {
+            const {data} = await deactivatevacancy(id);
+            if(data.succes){
+                toast.success(data.message, {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+                dispatch(updateCompanyJob(data.data));
+
+            }
+            else{
+                toast.warning(data.message, {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            }
+            
+        } catch (error) {
+            console.log('error at deactivate vacancy,error: '+error.name)
+        }
+    }
+    const deletejob = async (id) => {
+        try {
+            const {data} = await deleteJob(id);
+            if(data.succes){
+                toast.success(data.message, {
+                    position: "top-center",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            }
+            dispatch(deleteCompanyJob(id));
+            
+        } catch (error) {
+            console.log('error at deleting job,error:'+error.name);
+        }
+
+    }
     return ( 
         <div className="company_profile_my_vacancies_container">
             <div className="c_p_m_v_Search_form_and_new_cont">
@@ -275,7 +296,7 @@ function CompanyProfileMyVacancies() {
                     {sortedVacancies.filter((item)=>{return item.name.toLowerCase().includes(searchQuery.toLowerCase())}).map((vacancy, index) => (
                         <tr key={vacancy._id}>
                             <td className="c_p_count">{index+1}</td>
-                            <td className="c_p_status">
+                            <td onClick={()=>deactivateVacancy(vacancy._id)} className="c_p_status" title={vacancy.active ? 'deactive et':'active et'}>
                                 {
                                     vacancy.active ? 
                                     <span className="c_p_status_sign c_p_status_active">Aktiv</span>
@@ -301,7 +322,7 @@ function CompanyProfileMyVacancies() {
                                 <button className="c_p_actions_btn c_p_edit" title='Redaktə et'>
                                     <FontAwesomeIcon icon={faPen} />
                                 </button>
-                                <button className="c_p_actions_btn c_p_deactivate" title='Deaktiv et'>
+                                <button onClick={()=>deletejob(vacancy._id)} className="c_p_actions_btn c_p_deactivate" title='Sil'>
                                     <FontAwesomeIcon icon={faTrash} />
                                 </button>
                                 <Link to={`/vacancies/${vacancy._id}`} className="c_p_actions_btn c_p_details">

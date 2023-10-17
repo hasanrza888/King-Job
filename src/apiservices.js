@@ -114,3 +114,13 @@ export const postJob = (data) => {
 export const getCompanyJobsData = (id) => {
     return axiosInstance.get('/jobsEachCompany/'+id);
 }
+
+
+export const deactivatevacancy = (id) => {
+    return axiosInstance.put('/deactivate/'+id);
+}
+
+
+export const deleteJob = (id) => {
+    return axiosInstance.delete('/deleteJob/'+id);
+}

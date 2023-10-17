@@ -59,10 +59,9 @@ function CreatePremiumForVacany({setCompleted, filter, setFilter}) {
             }
         }catch(error){
 
-        }
+            console.log("error at sharing vacancy error"+error.name)
 
-        
-        
+        } 
     }
     return ( 
         <div className="c_p_c_v_create_premium_container">

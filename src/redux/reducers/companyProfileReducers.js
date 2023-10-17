@@ -22,14 +22,28 @@ const companyProfileSlice = createSlice({
       state.numbers = action.payload
     },
     setCompanyJobsData : (state,action) => {
-      state.companyJobsData = action.payload
+      state.companyJobsData = action.payload;
+      // state.numbers.jobsCount = (action.payload)?.length
     },
     addNewJob : (state,action) => {
-      state.companyJobsData = [...state.companyJobsData,action.payload]
+      state.companyJobsData = [...state.companyJobsData,action.payload];
+      state.numbers.jobsCount +=1;
+    },
+    updateCompanyJob : (state,action) => {
+      const updatedJob = action.payload;
+      const index = state.companyJobsData.findIndex(job => job._id === updatedJob._id);
+      if (index !== -1) {
+        state.companyJobsData[index] = updatedJob;
+      }
+    },
+    deleteCompanyJob : (state,action) => {
+      const jobId = action.payload;
+      const filteredData = [...state.companyJobsData].filter(job=>job._id!==jobId);
+      state.companyJobsData = filteredData;
     }
   },
 });
 
-export const { setNumbers,setCompanyJobsData,addNewJob } = companyProfileSlice.actions;
+export const { setNumbers,setCompanyJobsData,addNewJob,updateCompanyJob,deleteCompanyJob } = companyProfileSlice.actions;
 
 export default companyProfileSlice.reducer;
