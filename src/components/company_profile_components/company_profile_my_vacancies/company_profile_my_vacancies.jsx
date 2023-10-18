@@ -319,9 +319,9 @@ function CompanyProfileMyVacancies() {
                             <td className="c_p_start_date">{vacancy.createdAt.split('T')[0]}</td>
                             <td className="c_p_end_date">{vacancy.endTime.split('T')[0]}</td>
                             <td className="c_p_actions">
-                                <button className="c_p_actions_btn c_p_edit" title='Redaktə et'>
+                                <Link to={`/company_profile/vacancies/create_vacancy/?editvacancy=${vacancy._id}&category=${vacancy.category}&subCategory=${vacancy.subCategory}&name=${vacancy.name}&city=${vacancy.city}&age=${vacancy.age}&type=${vacancy.type}&experience=${vacancy.experience}&education=${vacancy.education}&descriptionOfVacancy=${vacancy.descriptionOfVacancy}&specialRequirements=${vacancy.specialRequirements.join(',')}&skills=${vacancy.skills.join(',')}&salary=${vacancy.salary}&salaryType=${vacancy.salaryType}&agreedSalary=${vacancy.agreedSalary}&endTime=${vacancy.endTime.split('T')[0]}&premium=${vacancy.premium}`} className="c_p_actions_btn c_p_edit" title='Redaktə et'>
                                     <FontAwesomeIcon icon={faPen} />
-                                </button>
+                                </Link>
                                 <button onClick={()=>deletejob(vacancy._id)} className="c_p_actions_btn c_p_deactivate" title='Sil'>
                                     <FontAwesomeIcon icon={faTrash} />
                                 </button>
