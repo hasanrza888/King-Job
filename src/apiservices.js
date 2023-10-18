@@ -124,3 +124,8 @@ export const deactivatevacancy = (id) => {
 export const deleteJob = (id) => {
     return axiosInstance.delete('/deleteJob/'+id);
 }
+
+
+export const updateJob = (id,data) => {
+    return axiosInstance.put('/updateJob/'+id,data);
+}
