@@ -207,6 +207,7 @@ function Vacancies() {
                                         premium = {item.premium}
                                         image_url={item.logo}
                                         salary={item.salary}
+                                        agreedSalary = {item.agreedSalary}
                                         job_title={item.name}
                                         company_name={item.companyName}
                                         post_views={item.numberOfViews}
@@ -234,6 +235,7 @@ function Vacancies() {
                                         premium = {item.premium}
                                         image_url={item.logo}
                                         salary={item.salary}
+                                        agreedSalary = {item.agreedSalary}
                                         job_title={item.name}
                                         company_name={item.companyName}
                                         post_views={item.numberOfViews}
