@@ -40,7 +40,7 @@ function ComProCreateVacancy() {
         salaryType:searchParams.get('salaryType') || "",
         agreedSalary: JSON.parse(searchParams.get('agreedSalary')),
         endTime:searchParams.get('endTime') || "",
-        premium:JSON.parse(searchParams.get('premium'))
+        premium:JSON.parse(searchParams.get('premium'))===null ?false :JSON.parse(searchParams.get('premium'))
     })
     const [salaryTypes, setSalaryTypes] = useState([
         {
