@@ -90,6 +90,7 @@ function ComProCreateVacancy() {
             { optionName: 'Art Director', selected: false, id: 1.12 },
             { optionName: 'Artist', selected: false, id: 1.13 },
             { optionName: 'Audio-visual Engineer', selected: false, id: 1.14 },
+            { optionName: 'UI/UX designer', selected: false, id: 1.15 },
           ],
         },
         {
