@@ -311,7 +311,7 @@ function CompanyProfileMyVacancies() {
                             <td className="c_p_applies_count">{vacancy.numberOfApplys}</td>
                             <td className="c_p_city">{vacancy.city}</td>
                             <td className="c_p_job_type">{vacancy.type}</td>
-                            <td className="c_p_age">{21}</td>
+                            <td className="c_p_age">{vacancy.age}</td>
                             <td className="c_p_experience">{vacancy.experience}</td>
                             <td className="c_p_education_level">{vacancy.education}</td>
                             <td className="c_p_salary">{vacancy.salary}</td>

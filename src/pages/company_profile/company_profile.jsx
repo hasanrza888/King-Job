@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAllNumbersForCompanyMenuAndDashboard } from '../../apiservices';
 import { setNumbers } from '../../redux/reducers/companyProfileReducers';
+
 function CompanyProfile() {
     const dispatch = useDispatch();
     const [menu, setMenu] = useState(false);
