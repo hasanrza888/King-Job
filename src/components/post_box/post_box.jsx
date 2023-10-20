@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { formatNumber } from "../format_number/format_number";
 import { useSelector,useDispatch } from "react-redux";
 import { updateCurrentJob } from "../../redux/reducers/jobReducers";
-function PostBox({setSavedJob, setSuccessMsg, job_id, premium, image_url, salary, job_title, company_name, post_views, post_applies, post_start_date, post_end_date, location, job_time_type, flexType}){
+function PostBox({setSavedJob, setSuccessMsg, job_id, premium, image_url, salary,agreedSalary, job_title, company_name, post_views, post_applies, post_start_date, post_end_date, location, job_time_type, flexType}){
     const dispatch = useDispatch();
     const {user,isLoggedIn} = useSelector(state=>state.user);
     // console.log(user,isLoggedIn)
@@ -48,7 +48,7 @@ function PostBox({setSavedJob, setSuccessMsg, job_id, premium, image_url, salary
                 </div>
                 {/* job salary */}
                 <div className="post_box_job_salary">
-                    {salary} AZN
+                    {salary ? salary +"AZN" : "Razılaşma"}
                 </div>                
             </div>
             {/* job location and time type */}
