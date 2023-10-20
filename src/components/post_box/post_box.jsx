@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { formatNumber } from "../format_number/format_number";
 import { useSelector,useDispatch } from "react-redux";
 import { updateCurrentJob } from "../../redux/reducers/jobReducers";
+import { useEffect,useState } from "react";
 function PostBox({setSavedJob, setSuccessMsg, job_id, premium, image_url, salary,agreedSalary, job_title, company_name, post_views, post_applies, post_start_date, post_end_date, location, job_time_type, flexType}){
     const dispatch = useDispatch();
     const {user,isLoggedIn} = useSelector(state=>state.user);
