@@ -2,8 +2,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './company_profile_main_window.css'
 import { faArrowLeftLong, faBars } from '@fortawesome/free-solid-svg-icons';
 import { Link, Outlet } from 'react-router-dom';
-import { faBell, faCommentDots } from '@fortawesome/free-regular-svg-icons';
+import { faBell, faCommentDots,faMoneyBill1 } from '@fortawesome/free-regular-svg-icons';
+import { useSelector } from 'react-redux';
 function CompanyProfileMainWindow({open_company_menu, menu}) {
+    const { user, isLoggedIn, info } = useSelector(state => state.user);
+    console.log(info)
     return ( 
     <div className={`company_profile_main_window_container ${menu ? 'company_profile_main_window_full' : ''}`}>
         {/* main window header */}
@@ -20,6 +23,10 @@ function CompanyProfileMainWindow({open_company_menu, menu}) {
             </div>
             {/* company profile header buttons */}
             <div className="comp_pro_main_wndw_header_msg_and_notify_btns">
+            {/* <div className="comp_pro_main_wndw_header_btn" title='Hesab'>
+                    <FontAwesomeIcon icon={faMoneyBill1} />
+                    <span className='comp_pro_main_wndw_header_btn_count'>{info?.numberOfJobSharing}</span>
+                </div> */}
                 <div className="comp_pro_main_wndw_header_btn" title='Mesajlar'>
                     <FontAwesomeIcon icon={faCommentDots} />
                     <span className='comp_pro_main_wndw_header_btn_count'>1</span>

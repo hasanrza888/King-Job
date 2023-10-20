@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PostBoxSaveBtn from "../post_box_save_btn/post_box_save_btn";
+import defaultlogo from "../../images/defaultcompanylogo.png"
 import { faArrowRightLong, faHourglassEnd, faHourglassStart } from "@fortawesome/free-solid-svg-icons";
 import { faEye, faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import "./post_box.css"
@@ -29,7 +30,7 @@ function PostBox({setSavedJob, setSuccessMsg, job_id, premium, image_url, salary
                 <Link to={`/${company_name}`} className="post_box_company_logo_name">
                     {/* company logo */}
                     <div className="post_box_company_logo">
-                        <img src={image_url} alt={company_name} />
+                        <img src={image_url || defaultlogo } alt={company_name} />
                     </div>
                     {/* company name */}
                     <div className="post_box_company_name">

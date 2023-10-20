@@ -38,51 +38,30 @@ function ComProCreateVacancy() {
         skills:searchParams.get('skills')?.split(',') || [],
         salary:searchParams.get('salary') || 0,
         salaryType:searchParams.get('salaryType') || "",
-        agreedSalary: searchParams.get('agreedSalary') ||false,
+        agreedSalary: JSON.parse(searchParams.get('agreedSalary')),
         endTime:searchParams.get('endTime') || "",
         premium:JSON.parse(searchParams.get('premium'))
     })
     const [salaryTypes, setSalaryTypes] = useState([
         {
             id: 1,
-            selected:false,
+            selected:filter.salaryType === 'Saatlıq',
             icon: <FontAwesomeIcon icon={faClock} />,
             type: 'Saatlıq'
         },
         {
             id: 2,
-            selected:false,
+            selected:filter.salaryType === 'Aylıq',
             icon: <FontAwesomeIcon icon={faCalendarDays} />,
             type: 'Aylıq'
         },
         {
             id: 3,
-            selected: false,
+            selected: filter.salaryType === 'İllik',
             icon: <FontAwesomeIcon icon={faCalendar} />,
             type: 'İllik'
         }
     ]) 
-    useEffect(()=>{
-        const fetch = async () => {
-            try {
-                const {data:vcncy} = await getJobWithId(editableVacancyId);
-                // console.log(vcncy.data)
-            } catch (error) {
-                console.log("error at fetching editable vanacy")
-            }
-        }
-        fetch();
-        // if(editableVacancyId){
-        // const vcncy = vacancies.find(vac=>vac._id === editableVacancyId);
-        // console.log(vcncy)
-        // seteditablevacancy(vcncy)
-        
-        // }
-
-    },[editableVacancyId,vacancies])
-    // console.log(editablevanacy?.category)
-    
-    // console.log(searchParams.get('editvacancy'))
     const findSubForMain = (arr,m) => {
         for(let i of arr){
             if(i['optionName'] === m){

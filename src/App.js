@@ -49,7 +49,7 @@ function App() {
 
   const [socket, setSocket] = useState(null);
   const { user, isLoggedIn, info } = useSelector(state => state.user);
-
+  // console.log(info)
   useEffect(() => {
     if (isLoggedIn) {
       setSocket(io('https://seal-app-5gg2a.ondigitalocean.app'));
