@@ -273,7 +273,7 @@ function PostDetail() {
                                     {/* age */}
                                     <li className="vacancy_description_body_list_item">
                                         <p className="vacancy_description_list_par">Yaş</p>
-                                        <p className="vacancy_description_list_par">{"21"}</p>
+                                        <p className="vacancy_description_list_par">{data['age']}</p>
                                     </li>
                                 </ul>
                             </div>
