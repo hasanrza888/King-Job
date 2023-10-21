@@ -1,14 +1,16 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './custom_select_option.css';
 import { faSortDown } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 function CustomSelectOption({select_option_name, select_option_array, select_update, filter, setFilter, select_option_id, subOptionId}) {
     const [optionsShow, setOptionsShow] = useState(false);
     const [choosedOption, setChoosedOption] = useState('');
+    const dropDown = useRef(null);
     const select_option_opener = ()=>{
         setOptionsShow(!optionsShow);
     }
+  
     const mainOptionNameClk = (item, index, mainId)=> {
         // removes all selected main options and subOptions
         select_option_array.map((itemF, indexF) => {
@@ -73,8 +75,23 @@ function CustomSelectOption({select_option_name, select_option_array, select_upd
         // close options window        
         setOptionsShow(false);
     }
+    useEffect(()=>{
+        const select_option_close = (e)=>{
+            if(optionsShow && dropDown.current && !dropDown.current.contains(e.target)){
+                setOptionsShow(false);
+                // console.log(dropDown)
+
+            }
+        }
+
+        document.addEventListener('click', select_option_close);
+        return ()=>{
+            document.removeEventListener('click', select_option_close);
+        }
+    }, [optionsShow])
+    // console.log(dropDown)
     return ( 
-        <div className="custom_select_option_container">
+        <div className="custom_select_option_container" ref={dropDown}>
             {/* select name */}
             <div className={`custom_select_name_container ${filter[select_option_id] || filter[`${subOptionId}`] ? 'custom_select_name_active' : ''}`} onClick={select_option_opener}>
                 <div className="custom_select_name">{filter[select_option_id] ? filter[select_option_id] : filter[subOptionId] ?  filter[subOptionId] : select_option_name}</div>
