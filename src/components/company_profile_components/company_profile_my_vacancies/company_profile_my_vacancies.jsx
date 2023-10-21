@@ -12,6 +12,8 @@ import { updateCurrentJob } from '../../../redux/reducers/jobReducers';
 import { updateCompanyJob,deleteCompanyJob } from '../../../redux/reducers/companyProfileReducers';
 
 function CompanyProfileMyVacancies() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [filter, setFilter] = useState({
         active: '',
         category: '',
