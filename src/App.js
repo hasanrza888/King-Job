@@ -81,7 +81,7 @@ function App() {
       } else {
         if (data.user.returnedData.u_t_p === 'c_m_p') {
           if (data.user.info.isBlock) {
-            console.log("okkkokokok")
+            // console.log("okkkokokok")
             return logoutUser();
           }
         }

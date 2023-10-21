@@ -101,7 +101,7 @@ function LoginForm() {
                 // console.log(u_t_p)
                 if(u_t_p === 'c_m_p'){
                     const dataC = await lgnC();
-                    console.log(dataC)
+                    // console.log(dataC)
                     if(dataC.succes){
                         const {user} = await dataC;
                         dispatch(setUser(user.modified));

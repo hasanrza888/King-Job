@@ -31,7 +31,7 @@ function PostBoxSaveBtn({job_id, job_title}) {
             set_save_post(!save_post);
         try {
             const {data} = await addFavoritJobs(user?._id,job_id);
-            console.log(data)
+            // console.log(data)
             if(data.succes){
                 if(data.action === 'remove'){
                     const returnedData = favoritJobs.filter(fav=>fav.job!==job_id);
