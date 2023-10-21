@@ -32,8 +32,8 @@ function PostDetail() {
     // const [data, setData] = useState(null);
     useEffect(()=>{
         const ftchJobWithId = async () => {
-            console.log("fetched in detail")
-            console.log(id)
+            // console.log("fetched in detail")
+            // console.log(id)
             setLoading(true);
             try {
                 const {data} = await getJobWithId(id);
@@ -209,7 +209,7 @@ function PostDetail() {
                             {/* salary and apply button container */}
                             <div className="detail_page_salary_and_apply_btn">
                                 {/* salary  */}
-                                <div className="detail_page_salary">{data['salary']} AZN</div>
+                                <div className="detail_page_salary">{!data['agreedSalary'] ? data['salary']+' AZN':'Razılaşma'} </div>
                                 {/* apply button */}
                                 <div className="detail_page_apply_btn_container">
                                     <button onClick={openApplyWindowF} className="detail_page_apply_btn">Müraciət Et</button>

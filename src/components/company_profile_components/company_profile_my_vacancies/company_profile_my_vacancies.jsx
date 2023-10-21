@@ -2,15 +2,17 @@ import './company_profile_my_vacancies.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightLong, faFilter, faMagnifyingGlass, faPen, faPlus, faSearch, faSortDown, faSortUp, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import { useSelector,useDispatch } from 'react-redux';
 import {toast} from 'react-toastify'
 import { deactivatevacancy,deleteJob } from '../../../apiservices';
+import { updateCurrentJob } from '../../../redux/reducers/jobReducers';
 import { updateCompanyJob,deleteCompanyJob } from '../../../redux/reducers/companyProfileReducers';
 function CompanyProfileMyVacancies() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const {companyJobsData:vacancies} = useSelector(state=>state.companyProfile);
-    console.log(vacancies)
+    // console.log(vacancies)
     const [searchQuery, setSearchQuery] = useState('');
     const [sortColumn, setSortColumn] = useState(null);
     const [sortDirection, setSortDirection] = useState(1);
@@ -121,6 +123,12 @@ function CompanyProfileMyVacancies() {
             console.log('error at deleting job,error:'+error.name);
         }
 
+    }
+
+    const goDetail = (id) => {
+        navigate('/vacancies/'+id);
+        localStorage.removeItem('c_r_r_n_t');
+        dispatch(updateCurrentJob(null));
     }
     return ( 
         <div className="company_profile_my_vacancies_container">
@@ -325,10 +333,10 @@ function CompanyProfileMyVacancies() {
                                 <button onClick={()=>deletejob(vacancy._id)} className="c_p_actions_btn c_p_deactivate" title='Sil'>
                                     <FontAwesomeIcon icon={faTrash} />
                                 </button>
-                                <Link to={`/vacancies/${vacancy._id}`} className="c_p_actions_btn c_p_details">
+                                <button onClick={()=>goDetail(vacancy._id)} className="c_p_actions_btn c_p_details">
                                     Ətraflı
                                     <FontAwesomeIcon icon={faArrowRightLong} />
-                                </Link>
+                                </button>
                             </td>
                         </tr>
                     ))}

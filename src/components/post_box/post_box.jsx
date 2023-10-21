@@ -16,7 +16,7 @@ function PostBox({setSavedJob, setSuccessMsg, job_id, premium, image_url, salary
     const clearLocalAndCurrentJobInDetailWhenClickJobBox = () => {
         localStorage.removeItem('c_r_r_n_t');
         dispatch(updateCurrentJob(null));
-        console.log('clicked')
+        // console.log('clicked')
     }
     
     return(
