@@ -49,7 +49,7 @@ function ApplyFormDetailP({openApplyWindowF, setSuccessMsg, successMsg, sendNoti
                       'Content-Type': 'multipart/form-data',
                     },
                   });
-                  console.log(data)
+                //   console.log(data)
                   if(data.succes){
                     setErrorMessage({errorCheck:false,errorContent:''});
                     openApplyWindowF();

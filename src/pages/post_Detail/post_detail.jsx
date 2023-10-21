@@ -6,6 +6,7 @@ import { latest_jobs } from "../../fakeData/latestJobs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import { faCircleCheck, faHourglassEnd, faHourglassStart, faTag } from "@fortawesome/free-solid-svg-icons";
+import defaultCompanyLogo from "../../images/defaultcompanylogo.png"
 import PageHeadText from "../../components/page_head_text/page_head_text";
 import PostBox from "../../components/post_box/post_box";
 import PostBoxSaveBtn from "../../components/post_box_save_btn/post_box_save_btn";
@@ -31,8 +32,8 @@ function PostDetail() {
     // const [data, setData] = useState(null);
     useEffect(()=>{
         const ftchJobWithId = async () => {
-            console.log("fetched in detail")
-            console.log(id)
+            // console.log("fetched in detail")
+            // console.log(id)
             setLoading(true);
             try {
                 const {data} = await getJobWithId(id);
@@ -170,7 +171,7 @@ function PostDetail() {
                         <div className="detail_page_company">
                             {/* company logo */}
                             <div className="detail_page_company_logo">
-                                <img src={`${data.logo}`} alt="company logo"/>
+                                <img src={`${data.logo || defaultCompanyLogo}`} alt="company logo"/>
                             </div>
                             {/* company name */}
                             <div className="detail_page_company_name">{data.companyName}</div>
@@ -208,7 +209,7 @@ function PostDetail() {
                             {/* salary and apply button container */}
                             <div className="detail_page_salary_and_apply_btn">
                                 {/* salary  */}
-                                <div className="detail_page_salary">{data['salary']} AZN</div>
+                                <div className="detail_page_salary">{!data['agreedSalary'] ? data['salary']+' AZN':'Razılaşma'} </div>
                                 {/* apply button */}
                                 <div className="detail_page_apply_btn_container">
                                     <button onClick={openApplyWindowF} className="detail_page_apply_btn">Müraciət Et</button>
@@ -272,7 +273,7 @@ function PostDetail() {
                                     {/* age */}
                                     <li className="vacancy_description_body_list_item">
                                         <p className="vacancy_description_list_par">Yaş</p>
-                                        <p className="vacancy_description_list_par">{"21"}</p>
+                                        <p className="vacancy_description_list_par">{data['age']}</p>
                                     </li>
                                 </ul>
                             </div>
@@ -374,6 +375,7 @@ function PostDetail() {
                                         premium = {item.premium}
                                         image_url={item.logo}
                                         salary={item.salary}
+                                        agreedSalary = {item.agreedSalary}
                                         job_title={item.name}
                                         company_name={item.companyName}
                                         post_views={item.numberOfViews}
@@ -405,6 +407,7 @@ function PostDetail() {
                                         premium = {item.premium}
                                         image_url={item.logo}
                                         salary={item.salary}
+                                        agreedSalary = {item.agreedSalary}
                                         job_title={item.name}
                                         company_name={item.companyName}
                                         post_views={item.numberOfViews}

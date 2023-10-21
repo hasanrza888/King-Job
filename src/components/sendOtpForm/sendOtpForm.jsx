@@ -39,7 +39,7 @@ function SendOtpForm({setOpenOtpWindow, setNewPassword, login,tema,data:formInfo
     }
     const sendOtpCodeHandle = async (e)=>{
         e.preventDefault(); 
-        console.log(formInfo)
+        // console.log(formInfo)
         setErrorMessage({errorCheck:false,errorContent:''})   
         // showing loader animation when otp code checking
             if(otpInputValue.length === 5){
@@ -48,9 +48,9 @@ function SendOtpForm({setOpenOtpWindow, setNewPassword, login,tema,data:formInfo
             // naviagates when form completed
             if(tema === 'user_register'){
                 setOtpChecking(true);
-                console.log(formInfo)
+                // console.log(formInfo)
                 const data  = await rgstrU();
-                console.log(data)
+                // console.log(data)
                 if(!data.succes){
                     setOtpChecking(false);
                     setErrorMessage({errorCheck:true,errorContent:data.message})
@@ -75,9 +75,9 @@ function SendOtpForm({setOpenOtpWindow, setNewPassword, login,tema,data:formInfo
             }
             else if(tema==="company_register"){
                 setOtpChecking(true);
-                console.log(formInfo)
+                // console.log(formInfo)
                 const data  = await rgstrC();
-                console.log(data)
+                // console.log(data)
                 if(!data.succes){
                     setOtpChecking(false);
                     setErrorMessage({errorCheck:true,errorContent:data.message})

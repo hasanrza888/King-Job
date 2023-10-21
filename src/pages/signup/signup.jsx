@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 function Signup() {
     const navigate= useNavigate()
     const {user,isLoggedIn} = useSelector(state=>state.user);
-    console.log(user,isLoggedIn)
+    // console.log(user,isLoggedIn)
     useEffect(()=>{
         if(user && isLoggedIn){
             navigate('/')

@@ -20,7 +20,7 @@ function Vacancies() {
     const {user,isLoggedIn} = useSelector(state=>state.user)
     const {jobs,loading,favoritJobs,loadingFavJobs} = useSelector(state=>state.job);
     // console.log(favoritJobs,loadingFavJobs);
-    console.log(jobs)
+    // console.log(jobs)
     useEffect(()=>{
         const ftchfavjobs = async () => {
             try {
@@ -207,6 +207,7 @@ function Vacancies() {
                                         premium = {item.premium}
                                         image_url={item.logo}
                                         salary={item.salary}
+                                        agreedSalary = {item.agreedSalary}
                                         job_title={item.name}
                                         company_name={item.companyName}
                                         post_views={item.numberOfViews}
@@ -234,6 +235,7 @@ function Vacancies() {
                                         premium = {item.premium}
                                         image_url={item.logo}
                                         salary={item.salary}
+                                        agreedSalary = {item.agreedSalary}
                                         job_title={item.name}
                                         company_name={item.companyName}
                                         post_views={item.numberOfViews}

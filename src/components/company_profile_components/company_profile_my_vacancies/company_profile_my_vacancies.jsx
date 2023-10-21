@@ -2,11 +2,15 @@ import './company_profile_my_vacancies.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightLong, faFilter, faMagnifyingGlass, faPen, faPlus, faSearch, faSortDown, faSortUp, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import CustomSelectOption from '../../custom_select_option/custom_select_option';
 import CustomSelectOptionForCreatVacancy from '../com_pro_create_vacancy/custom_select_option_for_creat_vacancy';
 import { toast } from 'react-toastify';
+import { deactivatevacancy,deleteJob } from '../../../apiservices';
+import { updateCurrentJob } from '../../../redux/reducers/jobReducers';
+import { updateCompanyJob,deleteCompanyJob } from '../../../redux/reducers/companyProfileReducers';
+
 function CompanyProfileMyVacancies() {
     const [filter, setFilter] = useState({
         active: '',
@@ -409,6 +413,7 @@ function CompanyProfileMyVacancies() {
             selected: false,
         }
     ])
+    
     const {companyJobsData:vacancies} = useSelector(state=>state.companyProfile);
     const [searchQuery, setSearchQuery] = useState('');
     const [sortColumn, setSortColumn] = useState(null);
@@ -468,6 +473,7 @@ function CompanyProfileMyVacancies() {
         // console.log(e.target.search_form_input.value)
         setSearchQuery(e.target.search_form_input.value);
     };
+  
     // salary changer function
     const salaryFiltChange = (e)=>{
         if(e.target.name === 'min_salary'){
@@ -516,6 +522,41 @@ function CompanyProfileMyVacancies() {
             }    
         }
     }
+
+    const deactivateVacancy = async (id) => {
+        try {
+            const {data} = await deactivatevacancy(id);
+            if(data.succes){
+                toast.success(data.message, {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+                dispatch(updateCompanyJob(data.data));
+
+            }
+            else{
+                toast.warning(data.message, {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            }
+        } catch (error) {
+            console.log('error at deactivate vacancy,error: '+error.name)
+        }
+    }
+   
     // maximum start date onblur function
     const maxStartDateBlur = ()=>{
         if(filter.minStartDate && filter.maxStartDate){
@@ -559,7 +600,8 @@ function CompanyProfileMyVacancies() {
                 return setFilter({...filter, minEndDate : ''});
             }    
         }
-    }
+    }   
+
     // maximum start date onblur function
     const maxEndDateBlur = ()=>{
         if(filter.minEndDate && filter.maxEndDate){
@@ -578,12 +620,41 @@ function CompanyProfileMyVacancies() {
             }   
         }
     }
+
+    const deletejob = async (id) => {
+        try {
+            const {data} = await deleteJob(id);
+            if(data.succes){
+                    toast.success(data.message, {
+                    position: "top-center",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            }
+            dispatch(deleteCompanyJob(id));
+            
+        } catch (error) {
+            console.log('error at deleting job,error:'+error.name);
+        }
+
+    }
+                    
     // filters opener function
     const openFiltersBox = ()=>{
         setOpenFilters(!openFilters);
     }
-    console.log(filter);
-    console.log(sortedVacancies);
+
+    const goDetail = (id) => {
+        navigate('/vacancies/'+id);
+        localStorage.removeItem('c_r_r_n_t');
+        dispatch(updateCurrentJob(null));
+    }
+
     return ( 
         <div className="company_profile_my_vacancies_container">
             {/* vakancy search form and new vacancy create button */}
@@ -842,7 +913,7 @@ function CompanyProfileMyVacancies() {
                     {sortedVacancies.map((vacancy, index) => (
                         <tr key={vacancy._id}>
                             <td className="c_p_count">{index+1}</td>
-                            <td className="c_p_status">
+                            <td onClick={()=>deactivateVacancy(vacancy._id)} className="c_p_status" title={vacancy.active ? 'deactive et':'active et'}>
                                 {
                                     vacancy.active ? 
                                     <span className="c_p_status_sign c_p_status_active">Aktiv</span>
@@ -857,7 +928,7 @@ function CompanyProfileMyVacancies() {
                             <td className="c_p_applies_count">{vacancy.numberOfApplys}</td>
                             <td className="c_p_city">{vacancy.city}</td>
                             <td className="c_p_job_type">{vacancy.type}</td>
-                            <td className="c_p_age">{21}</td>
+                            <td className="c_p_age">{vacancy.age}</td>
                             <td className="c_p_experience">{vacancy.experience}</td>
                             <td className="c_p_education_level">{vacancy.education}</td>
                             <td className="c_p_salary">{vacancy.salary}</td>
@@ -865,16 +936,16 @@ function CompanyProfileMyVacancies() {
                             <td className="c_p_start_date">{vacancy.createdAt.split('T')[0]}</td>
                             <td className="c_p_end_date">{vacancy.endTime.split('T')[0]}</td>
                             <td className="c_p_actions">
-                                <button className="c_p_actions_btn c_p_edit" title='Redaktə et'>
+                                <Link to={`/company_profile/vacancies/create_vacancy/?editvacancy=${vacancy._id}&category=${vacancy.category}&subCategory=${vacancy.subCategory}&name=${vacancy.name}&city=${vacancy.city}&age=${vacancy.age}&type=${vacancy.type}&experience=${vacancy.experience}&education=${vacancy.education}&descriptionOfVacancy=${vacancy.descriptionOfVacancy}&specialRequirements=${vacancy.specialRequirements.join(',')}&skills=${vacancy.skills.join(',')}&salary=${vacancy.salary}&salaryType=${vacancy.salaryType}&agreedSalary=${vacancy.agreedSalary}&endTime=${vacancy.endTime.split('T')[0]}&premium=${vacancy.premium}`} className="c_p_actions_btn c_p_edit" title='Redaktə et'>
                                     <FontAwesomeIcon icon={faPen} />
-                                </button>
-                                <button className="c_p_actions_btn c_p_deactivate" title='Deaktiv et'>
+                                </Link>
+                                <button onClick={()=>deletejob(vacancy._id)} className="c_p_actions_btn c_p_deactivate" title='Sil'>
                                     <FontAwesomeIcon icon={faTrash} />
                                 </button>
-                                <Link to={`/vacancies/${vacancy._id}`} className="c_p_actions_btn c_p_details">
+                                <button onClick={()=>goDetail(vacancy._id)} className="c_p_actions_btn c_p_details">
                                     Ətraflı
                                     <FontAwesomeIcon icon={faArrowRightLong} />
-                                </Link>
+                                </button>
                             </td>
                         </tr>
                     ))}

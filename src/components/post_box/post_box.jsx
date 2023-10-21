@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PostBoxSaveBtn from "../post_box_save_btn/post_box_save_btn";
+import defaultlogo from "../../images/defaultcompanylogo.png"
 import { faArrowRightLong, faHourglassEnd, faHourglassStart } from "@fortawesome/free-solid-svg-icons";
 import { faEye, faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import "./post_box.css"
@@ -7,14 +8,15 @@ import { Link } from "react-router-dom";
 import { formatNumber } from "../format_number/format_number";
 import { useSelector,useDispatch } from "react-redux";
 import { updateCurrentJob } from "../../redux/reducers/jobReducers";
-function PostBox({setSavedJob, setSuccessMsg, job_id, premium, image_url, salary, job_title, company_name, post_views, post_applies, post_start_date, post_end_date, location, job_time_type, flexType}){
+import { useEffect,useState } from "react";
+function PostBox({setSavedJob, setSuccessMsg, job_id, premium, image_url, salary,agreedSalary, job_title, company_name, post_views, post_applies, post_start_date, post_end_date, location, job_time_type, flexType}){
     const dispatch = useDispatch();
     const {user,isLoggedIn} = useSelector(state=>state.user);
     // console.log(user,isLoggedIn)
     const clearLocalAndCurrentJobInDetailWhenClickJobBox = () => {
         localStorage.removeItem('c_r_r_n_t');
         dispatch(updateCurrentJob(null));
-        console.log('clicked')
+        // console.log('clicked')
     }
     
     return(
@@ -29,7 +31,7 @@ function PostBox({setSavedJob, setSuccessMsg, job_id, premium, image_url, salary
                 <Link to={`/${company_name}`} className="post_box_company_logo_name">
                     {/* company logo */}
                     <div className="post_box_company_logo">
-                        <img src={image_url} alt={company_name} />
+                        <img src={image_url || defaultlogo } alt={company_name} />
                     </div>
                     {/* company name */}
                     <div className="post_box_company_name">
@@ -47,7 +49,7 @@ function PostBox({setSavedJob, setSuccessMsg, job_id, premium, image_url, salary
                 </div>
                 {/* job salary */}
                 <div className="post_box_job_salary">
-                    {salary} AZN
+                    {salary ? salary +"AZN" : "Razılaşma"}
                 </div>                
             </div>
             {/* job location and time type */}

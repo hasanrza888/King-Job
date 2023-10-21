@@ -9,30 +9,59 @@ import { toast } from 'react-toastify';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import CreatePremiumForVacany from './c_p_c_v_create_premium/c_p_c_v_create_premium';
+import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { getJobWithId } from '../../../apiservices';
 function ComProCreateVacancy() {
     const today = new Date();
     const minDate = today.toISOString().split('T')[0];
     const [specReqVal, setSpecReqVal] = useState('');
     const [specSkillsVal, setSpecSkillsVal] = useState('');
     const [completed, setCompleted] = useState(false);
-    const genCategor = [
+    const {companyJobsData:vacancies} = useSelector(state=>state.companyProfile);
+    const location = useLocation(); 
+    const searchParams = new URLSearchParams(location.search); 
+    // console.log(searchParams.get('specialRequirements').split(','))
+    const editableVacancyId = searchParams.get('editvacancy')
+    const [editablevanacy,seteditablevacancy] = useState(null);
+    const [filter, setFilter] = useState({
+        category:searchParams.get('category') ||  "",
+        subCategory: searchParams.get('subCategory') ||"",
+        name: searchParams.get('name') ||"",
+        city:searchParams.get('city') || "",
+        age:searchParams.get('age') || "",
+        type:searchParams.get('type') || "",
+        experience:searchParams.get('experience') || "",
+        education:searchParams.get('education') || "",
+        descriptionOfVacancy:searchParams.get('descriptionOfVacancy') || "<p><br></p>",
+        specialRequirements:searchParams.get('specialRequirements')?.split(',') || [],
+        skills:searchParams.get('skills')?.split(',') || [],
+        salary:searchParams.get('salary') || 0,
+        salaryType:searchParams.get('salaryType') || "",
+        agreedSalary: JSON.parse(searchParams.get('agreedSalary')),
+        endTime:searchParams.get('endTime') || "",
+        premium:JSON.parse(searchParams.get('premium'))===null ?false :JSON.parse(searchParams.get('premium'))
+    })
+    const [salaryTypes, setSalaryTypes] = useState([
         {
-            optionName: 'IT',
             id: 1,
-            selected: false,
+            selected:filter.salaryType === 'Saatlıq',
+            icon: <FontAwesomeIcon icon={faClock} />,
+            type: 'Saatlıq'
         },
         {
-            optionName: 'Bank', 
-            id: 2, 
-            selected: false,  
+            id: 2,
+            selected:filter.salaryType === 'Aylıq',
+            icon: <FontAwesomeIcon icon={faCalendarDays} />,
+            type: 'Aylıq'
         },
         {
-            optionName: 'Marketinq və Satış',
-            id:3,
-            selected: false,
+            id: 3,
+            selected: filter.salaryType === 'İllik',
+            icon: <FontAwesomeIcon icon={faCalendar} />,
+            type: 'İllik'
         }
-
-    ]
+    ]) 
     const findSubForMain = (arr,m) => {
         for(let i of arr){
             if(i['optionName'] === m){
@@ -61,6 +90,7 @@ function ComProCreateVacancy() {
             { optionName: 'Art Director', selected: false, id: 1.12 },
             { optionName: 'Artist', selected: false, id: 1.13 },
             { optionName: 'Audio-visual Engineer', selected: false, id: 1.14 },
+            { optionName: 'UI/UX designer', selected: false, id: 1.15 },
           ],
         },
         {
@@ -256,24 +286,7 @@ function ComProCreateVacancy() {
       ]);
       
     // filter
-    const [filter, setFilter] = useState({
-        category: "",
-        subCategory: "",
-        name: "",
-        city: "",
-        age: "",
-        type: "",
-        experience: "",
-        education: "",
-        descriptionOfVacancy: "<p><br></p>",
-        specialRequirements: [],
-        skills: [],
-        salary: 0,
-        salaryType: "",
-        agreedSalary: false,
-        endTime: "",
-        premium: false
-    })
+    
     // job type
     const [type, setType] = useState([
         {
@@ -400,26 +413,7 @@ function ComProCreateVacancy() {
         }
     ])
     // salary types
-    const [salaryTypes, setSalaryTypes] = useState([
-        {
-            id: 1,
-            selected: false,
-            icon: <FontAwesomeIcon icon={faClock} />,
-            type: 'Saatlıq'
-        },
-        {
-            id: 2,
-            selected: false,
-            icon: <FontAwesomeIcon icon={faCalendarDays} />,
-            type: 'Aylıq'
-        },
-        {
-            id: 3,
-            selected: false,
-            icon: <FontAwesomeIcon icon={faCalendar} />,
-            type: 'İllik'
-        }
-    ]) 
+    
     // _________ error message for form ____________ 
     const [errorMessage, setErrorMessage] = useState({
         errorCheck: false,
@@ -587,7 +581,7 @@ function ComProCreateVacancy() {
     // console.log(filter)
     return ( 
         <>{completed ? 
-            <CreatePremiumForVacany setCompleted = {setCompleted} filter={filter} setFilter={setFilter}/>:
+            <CreatePremiumForVacany editvacancy={editableVacancyId} setCompleted = {setCompleted} filter={filter} setFilter={setFilter}/>:
         <div className="com_pro_create_vacancy_container">
             {/* page head text */}
             <div className="com_pro_create_vacancy_p_title">Yeni Vakansiya</div>
