@@ -1,11 +1,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './custom_select_option_for_creat_vacancy.css';
 import { faSortDown } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 function CustomSelectOptionForCreatVacancy({select_option_name,filter,setFilter, select_option_array, select_update,select_option_id, subOptionId,setsubs,subs}) {
     const [optionsShow, setOptionsShow] = useState(false);
     const [choosedOption, setChoosedOption] = useState('');
+    const dropDown = useRef(null);
     const select_option_opener = ()=>{
         setOptionsShow(!optionsShow);
     }
@@ -39,9 +40,23 @@ function CustomSelectOptionForCreatVacancy({select_option_name,filter,setFilter,
         setOptionsShow(false); 
         // console.log(filter)
     }
+    useEffect(()=>{
+        const select_option_close = (e)=>{
+            if(optionsShow && dropDown.current && !dropDown.current.contains(e.target)){
+                setOptionsShow(false);
+                console.log(dropDown)
+
+            }
+        }
+
+        document.addEventListener('click', select_option_close);
+        return ()=>{
+            document.removeEventListener('click', select_option_close);
+        }
+    }, [optionsShow])
     // console.log(filter)
     return ( 
-        <div className="custom_select_option_container_creat_vacancy">
+        <div ref={dropDown} className="custom_select_option_container_creat_vacancy">
             {/* select name */}
             <div className={`custom_select_name_container_creat_vacancy ${filter[select_option_id] ? 'custom_select_name_active_creat_vacancy' : ''}`} onClick={select_option_opener}>
                 <div className="custom_select_name_creat_vacancy">{filter[select_option_id] ? filter[select_option_id] : select_option_name}</div>
