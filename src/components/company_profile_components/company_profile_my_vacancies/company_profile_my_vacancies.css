@@ -306,15 +306,18 @@
 /* table status  */
 .c_p_status_sign{
   display: inline-block;
-  padding: 5px 10px;
+  padding: 5px 20px;
   border-radius: 10px;
-  background-color: var(--list-active-bg-color);
+  background-color: var(--primary-color);
+  cursor: pointer;
 }
 .c_p_status_active{
-  color: var(--checkbox-accept-color);
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
 }
 .c_p_status_deactive{
   color: var(--dashboard-overview-decrease-color);
+  border: 1px solid var(--dashboard-overview-decrease-color);
 }
 /* Action buttons styling */
 .c_p_vacancies_table tbody .c_p_actions{
@@ -353,6 +356,8 @@
 }
 /* detail button */
 .c_p_actions .c_p_details{
+  background: transparent;
+  border: none;
   color: var(--accent-color);
   text-decoration: underline;
   display: flex;
