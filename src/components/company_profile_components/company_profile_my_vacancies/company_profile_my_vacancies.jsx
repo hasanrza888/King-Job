@@ -915,12 +915,12 @@ function CompanyProfileMyVacancies() {
                     {sortedVacancies.map((vacancy, index) => (
                         <tr key={vacancy._id}>
                             <td className="c_p_count">{index+1}</td>
-                            <td onClick={()=>deactivateVacancy(vacancy._id)} className="c_p_status" title={vacancy.active ? 'deactive et':'active et'}>
+                            <td  className="c_p_status" title={vacancy.active ? 'deactive et':'active et'}>
                                 {
                                     vacancy.active ? 
-                                    <span className="c_p_status_sign c_p_status_active">Aktiv</span>
+                                    <button onClick={()=>deactivateVacancy(vacancy._id)} className="c_p_status_sign c_p_status_active">Aktiv</button>
                                     :
-                                    <span className="c_p_status_sign c_p_status_deactive">Deaktiv</span>
+                                    <button onClick={()=>deactivateVacancy(vacancy._id)} className="c_p_status_sign c_p_status_deactive">Deaktiv</button>
                                 }
                             </td>
                             <td className="c_p_vacancy_name"><Link to={`/vacancies/${vacancy._id}`}>{vacancy.name}</Link></td>
