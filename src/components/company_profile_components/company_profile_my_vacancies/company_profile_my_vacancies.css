@@ -227,6 +227,18 @@
   background-color: var(--option-active-bg-color);
   /* border: 1px solid var(--option-active-bg-color); */
 }
+/* loading */
+.c_p_m_v_loading_rotates{
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+.c_p_m_v_loading_rot_icon{
+  font-size: 40px;
+  color: var(--accent-color);
+  animation: loading_rotate 0.7s infinite linear;
+}
 /* _______________________ vacancy table ______________________________________ */
 .c_p_vacancies_table_container{
   width: 100%;

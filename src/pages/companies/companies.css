@@ -159,6 +159,18 @@
 .companies_filters_confirm_btn:hover{
     background-color: var(--accent-hover);
 }
+/* loading */
+.companies_page_loading_rotates{
+    width: 100%;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+.companies_page_loading_rot_icon{
+    font-size: 40px;
+    color: var(--accent-color);
+    animation: loading_rotate 0.7s infinite linear;
+}
 .companies_page_boxes_head{
     width: 100%;
     text-transform: uppercase;
