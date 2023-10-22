@@ -2,7 +2,7 @@ import './companies.css';
 import defaultlogo from "../../images/defaultcompanylogo.png";
 import SliderHome from "../../components/slider/slider";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faFilter, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faFilter, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import CustomSelectOption from '../../components/custom_select_option/custom_select_option';
 import PageHeadText from '../../components/page_head_text/page_head_text';
 // import { companies } from '../../fakeData/companies';
@@ -165,24 +165,31 @@ function Companies() {
                 </div>
                 {/* company post boxes */}
                 <div className="companies_page_commpany_boxes">
-                    {/* <PageHeadText content={'Şirkətlər'}/> */}
-                    <div className="companies_page_boxes_head">Şirkətlər</div>
-                    <div className="companies_page_commpany_boxes_container">
-                        {loading ? <p>Loading...</p>:
-                            companies.map((item, index)=>{
-                                return (
-                                    <CompanyPostBox 
-                                        key={item._id}
-                                        company_name = {item.name}
-                                        company_logo = {(item.companyInfo)?.logo || defaultlogo}
-                                        company_rating = {4}
-                                        vacancy_count = {(item.companyInfo)?.vacancynum}
-                                        apply_count = {(item.companyInfo)?.applynum}
-                                    />
-                                )
-                            })
-                        }
-                    </div>
+                    {
+                        loading ? 
+                        <div className="companies_page_loading_rotates">
+                            <FontAwesomeIcon className='companies_page_loading_rot_icon' icon={faSpinner} />
+                        </div>
+                        :
+                        <>
+                        <div className="companies_page_boxes_head">Şirkətlər</div>
+                        <div className="companies_page_commpany_boxes_container">
+                            {
+                                companies.map((item, index)=>{
+                                    return (
+                                        <CompanyPostBox 
+                                            key={item._id}
+                                            company_name = {item.name}
+                                            company_logo = {(item.companyInfo)?.logo || defaultlogo}
+                                            company_rating = {4}
+                                            vacancy_count = {(item.companyInfo)?.vacancynum}
+                                            apply_count = {(item.companyInfo)?.applynum}
+                                        />
+                                    )
+                                })
+                            }
+                        </div>
+                    </>}
                 </div>
             </div>
         </div>

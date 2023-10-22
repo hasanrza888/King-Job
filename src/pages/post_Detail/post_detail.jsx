@@ -227,7 +227,7 @@ function PostDetail() {
                         </div>
                     </div>
                     {/* check your cv box */}
-                    {/* {((isLoggedIn && user?.u_t_p === 'u_s_r') || !isLoggedIn) &&<div className="detail_page_check_your_cv_container">
+                    {((isLoggedIn && user?.u_t_p === 'u_s_r') || !isLoggedIn) &&<div className="detail_page_check_your_cv_container">
                         <div className="detail_page_check_your_cv_desc_and_icon">
                             <FontAwesomeIcon className="detail_page_check_your_cv_icon" icon={faCircleCheck} />
                             <div className="detail_page_check_your_cv_desc">
@@ -235,7 +235,7 @@ function PostDetail() {
                             </div>    
                         </div>
                         <button className="detail_page_check_your_cv_btn" onClick={open_cv_checker}>CV yoxla</button>
-                    </div>} */}
+                    </div>}
                     {/* vacancy descriptions */}
                     <div className="detail_page_vacancy_description_container">
                         {/* vacancy details =>>> vakansiya detallari */}
@@ -430,7 +430,7 @@ function PostDetail() {
                     Mövcud Elan Yoxdur !
                 </div>
             }
-            {/* {checkCv ? <CVCheckerModal job_id={id} open_cv_checker={open_cv_checker} /> : ''} */}
+            {checkCv ? <CVCheckerModal job_id={id} open_cv_checker={open_cv_checker} /> : ''}
             {applyWindow ? <ApplyFormDetailP job={id} openApplyWindowF={openApplyWindowF} sendNotificationSuccess = {sendNotificationSuccess}/> : null}            
         </div>
     );
