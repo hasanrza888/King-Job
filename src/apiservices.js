@@ -129,3 +129,8 @@ export const deleteJob = (id) => {
 export const updateJob = (id,data) => {
     return axiosInstance.put('/updateJob/'+id,data);
 }
+
+
+export const getCompaniesJobApplys = (id) => {
+    return axiosInstance.get('/getApplysForEachCompanyOnlyTestLevel/'+id)
+}
