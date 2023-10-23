@@ -38,6 +38,8 @@ import CompanyProfileVacancies from './components/company_profile_components/com
 import CompanyProfileMyVacancies from './components/company_profile_components/company_profile_my_vacancies/company_profile_my_vacancies';
 import ComProCreateVacancy from './components/company_profile_components/com_pro_create_vacancy/com_pro_create_vacancy';
 import ComProPremiumVacancies from './components/company_profile_components/com_pro_premium_vacancies/com_pro_premium_vacancies';
+import CpAppliesMainWindow from './components/company_profile_components/c_p_applies/c_p_applies_main_w/c_p_applies_main_w';
+import CpTotalApplies from './components/company_profile_components/c_p_applies/c_p_total_applies/c_p_total_applies';
 
 // Use these components in your code as needed
 
@@ -170,23 +172,39 @@ function App() {
             ) : (
               !isLoggedIn && <Route path='/user_profile' element={<UserProfile />} />
             )}
-            {isLoggedIn && user.u_t_p === 'c_m_p' ?(<Route path='/company_profile' element={<CompanyProfile />}>
-              <Route index path='dashboard' element={<CompanyProfileDashboard />} />
-              <Route path='vacancies' element={<CompanyProfileVacancies />}>
-                <Route index element={<CompanyProfileMyVacancies />} />
-                <Route path='create_vacancy' element={<ComProCreateVacancy />} />
-                <Route path='premium' element={<ComProPremiumVacancies />} />
-              </Route>
-            </Route>):(
-              !isLoggedIn && <Route path='/company_profile' element={<CompanyProfile />}>
-              <Route index path='dashboard' element={<CompanyProfileDashboard />} />
-              <Route path='vacancies' element={<CompanyProfileVacancies />}>
-                <Route index element={<CompanyProfileMyVacancies />} />
-                <Route path='create_vacancy' element={<ComProCreateVacancy />} />
-                {/* <Route path='premium' element={<ComProPremiumVacancies />} /> */}
-              </Route>
-            </Route>
-            )}
+            {
+              isLoggedIn && user.u_t_p === 'c_m_p' ?
+                (<Route path='/company_profile' element={<CompanyProfile />}>
+                  <Route index path='dashboard' element={<CompanyProfileDashboard />} />
+                  <Route path='vacancies' element={<CompanyProfileVacancies />}>
+                    <Route index element={<CompanyProfileMyVacancies />} />
+                    <Route path='create_vacancy' element={<ComProCreateVacancy />} />
+                    {/* <Route path='premium' element={<ComProPremiumVacancies />} /> */}
+                  </Route>
+                  <Route path='applies' element={<CpAppliesMainWindow />}>
+                    <Route index element={<CpTotalApplies />} />
+                    <Route path='' element={''} />
+                    <Route path='' element={''} />
+                    <Route path='' element={''} />
+                  </Route>
+                </Route>)
+                :
+                (!isLoggedIn && 
+                <Route path='/company_profile' element={<CompanyProfile />}>
+                  <Route index path='dashboard' element={<CompanyProfileDashboard />} />
+                  <Route path='vacancies' element={<CompanyProfileVacancies />}>
+                    <Route index element={<CompanyProfileMyVacancies />} />
+                    <Route path='create_vacancy' element={<ComProCreateVacancy />} />
+                    {/* <Route path='premium' element={<ComProPremiumVacancies />} /> */}
+                  </Route>
+                  <Route path='applies' element={<CpAppliesMainWindow />}>
+                    <Route index element={<CpTotalApplies />} />
+                    <Route path='' element={''} />
+                    <Route path='' element={''} />
+                    <Route path='' element={''} />
+                  </Route>
+                </Route>)
+            }
             <Route path='*' element={<Notfound />} />
           </Routes>
         </div>
