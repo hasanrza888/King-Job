@@ -11,7 +11,8 @@ const initialState = {
         percentageChangeNumOfAllApply:0,
         percentageChangeCreatedVacancy:0,
   },
-  companyJobsData:[]
+  companyJobsData:[],
+  companyJobsApplys:[]
 };
 
 const companyProfileSlice = createSlice({
@@ -40,10 +41,13 @@ const companyProfileSlice = createSlice({
       const jobId = action.payload;
       const filteredData = [...state.companyJobsData].filter(job=>job._id!==jobId);
       state.companyJobsData = filteredData;
+    },
+    setCompanyJobsApplys : (state,action) => {
+      state.companyJobsApplys = action.payload
     }
   },
 });
 
-export const { setNumbers,setCompanyJobsData,addNewJob,updateCompanyJob,deleteCompanyJob } = companyProfileSlice.actions;
+export const { setNumbers,setCompanyJobsData,addNewJob,updateCompanyJob,deleteCompanyJob,setCompanyJobsApplys } = companyProfileSlice.actions;
 
 export default companyProfileSlice.reducer;
