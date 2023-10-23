@@ -77,6 +77,25 @@
     font-size: 18px;
     color: var(--primary-color);
 }
+/* loading */
+.vacancies_page_loading_rotates{
+    width: 100%;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+.vacancies_page_loading_rot_icon{
+    font-size: 40px;
+    color: var(--accent-color);
+    animation: loading_rotate 0.7s infinite linear;
+}
+@keyframes loading_rotate{
+    from{
+        transform: rotate(0deg);
+    }to{
+        transform: rotate(360deg);
+    }
+}
 /* filter and vacancies boxes container */
 .vacancies_filters_and_boxes_container{
     width: 95%;

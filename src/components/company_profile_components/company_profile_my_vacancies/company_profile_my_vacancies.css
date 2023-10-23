@@ -2,7 +2,7 @@
 .company_profile_my_vacancies_container{
     width: 100%;
 }
-/* search form container */
+/* _________________- search form container _________________________ */
 .c_p_m_v_Search_form_and_new_cont{
   width: 80%;
   max-width: 600px;
@@ -53,6 +53,34 @@
 .c_p_m_v_Search_form_sbmt:hover{
   background-color: var(--accent-hover);
 }
+/* filter button and link container */
+.c_p_m_v_Search_form_flt_btn_and_link{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 20px;
+}
+/* filter open button */
+.c_p_m_v_Search_form_open_filters{
+  background-color: transparent;
+  padding: 9px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  transition: 0.3s ease all;
+  cursor: pointer;
+}
+.c_p_m_v_Search_form_open_filters svg{
+  font-size: 19px;
+  color: var(--accent-color);
+  transition: 0.3s ease all;
+}
+.c_p_m_v_Search_form_open_filters:hover{
+  background-color: var(--accent-hover);
+}
+.c_p_m_v_Search_form_open_filters:hover svg{
+  color: var(--primary-color);
+}
 /* new vacancy button */
 .c_p_m_v_Search_form_create_new_vac{
   display: flex;
@@ -81,7 +109,137 @@
   text-transform: uppercase;
   font-size: 18px;
 }
-/* vacancy table */
+/* _______________  company page vacancies filters container __________________ */
+.c_p_m_v_filters_container{
+  width: 95%;
+  margin: 0px auto;
+  /* height: 0px; */
+  max-height: 0px;
+  overflow: hidden;
+  transition: 0.5s ease all;
+  overflow-y: auto;
+  background-color: var(--primary-color);
+}
+.c_p_m_v_filters_container::-webkit-scrollbar{
+  width: 10px;
+  height: 10px;
+}
+.c_p_m_v_filters_container::-webkit-scrollbar-track {
+  padding: 5px 0px;
+  background-color: var(--main-border-color);
+  border-radius: 5px;
+}
+.c_p_m_v_filters_container::-webkit-scrollbar-thumb{
+  border-radius: 5px;
+  background-color: var(--page-text-slogan-color);
+  transition: 0.3s ease all;
+  cursor: pointer;
+}
+.c_p_m_v_filters_container::-webkit-scrollbar-thumb:hover{
+  background-color: var(--light-text-color);
+}
+.c_p_m_v_filters_close{
+  /* height: auto; */
+  max-height: 300px;
+  margin: 0px auto 50px;
+  padding: 20px;
+  border: 1px solid var(--main-border-color);
+  border-radius: 10px;
+  box-shadow: var(--boxes-shadow-light);
+}
+/* filters list */
+.c_p_m_v_filters{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+/* filters list item */
+.c_p_m_v_filters .c_p_m_v_filters_list_item{
+  width: 18%;
+  max-width: 200px;
+  min-width: 150px;
+  margin: 0px 10px 15px 0px; 
+}
+.c_p_m_v_filters .c_p_m_v_filters_list_item:nth-child(11), .c_p_m_v_filters .c_p_m_v_filters_list_item:nth-child(12){
+  width: unset;
+  max-width: unset;
+  min-width: unset;
+  margin-right: 20px; 
+}
+/* two inputs container */
+.c_p_m_v_filters_name{
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: var(--secondary-text-color);
+}
+.c_p_m_v_filters_two_inp_cont{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.c_p_m_v_filters_two_inp{
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+}
+.c_p_m_v_filters_two_inp:first-child{
+  margin-right: 10px;
+}
+/* input label */
+.c_p_m_v_filters_two_inp_label{
+  font-size: 12px;
+  margin-bottom: 5px;
+  color: var(--light-text-color);
+}
+.c_p_m_v_filters_salary_input{
+  width: 48%;
+  border: 1px solid var(--form-inputs-border-color);
+  /* box-shadow: var(--boxes-shadow-light); */
+  border-radius: 10px;
+  padding: 5px 10px;
+  outline: none;
+  font-size: 16px;
+  color: var(--main-text-color);
+}
+.c_p_m_v_filters_salary_input:first-child{
+  margin-right: 10px;
+}
+/* date inputs */
+.c_p_m_v_filter_date_inputs{
+  width: 100%;
+  border: 1px solid var(--form-inputs-border-color);
+  /* box-shadow: var(--boxes-shadow-light); */
+  border-radius: 10px;
+  padding: 5px 10px;
+  outline: none;
+  font-size: 16px;
+  color: var(--main-text-color);
+}
+.c_p_m_v_filter_date_inputs::placeholder{
+  color: var(--light-text-color);
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+}
+/* active inputs */
+.c_p_m_v_filters_active_input{
+  background-color: var(--option-active-bg-color);
+  /* border: 1px solid var(--option-active-bg-color); */
+}
+/* loading */
+.c_p_m_v_loading_rotates{
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+.c_p_m_v_loading_rot_icon{
+  font-size: 40px;
+  color: var(--accent-color);
+  animation: loading_rotate 0.7s infinite linear;
+}
+/* _______________________ vacancy table ______________________________________ */
 .c_p_vacancies_table_container{
   width: 100%;
   max-width: 1000px;
@@ -96,15 +254,17 @@
 .c_p_vacancies_table {
   width: 100%;
   min-width: 100%;
-  padding: 0px 0px 5px; 
+  max-height: 80vh;
+  padding: 0px 0px 5px 5px; 
   display: block;
   border-collapse: collapse;
-  overflow-x: auto;
+  overflow: auto;
   background-color: var(--primary-color);
   /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
 }
 .c_p_vacancies_table::-webkit-scrollbar{
-  height: 15px;
+  width: 10px;
+  height: 10px;
 }
 .c_p_vacancies_table::-webkit-scrollbar-track {
   padding: 5px 0px;
@@ -158,15 +318,18 @@
 /* table status  */
 .c_p_status_sign{
   display: inline-block;
-  padding: 5px 10px;
+  padding: 5px 20px;
   border-radius: 10px;
-  background-color: var(--list-active-bg-color);
+  background-color: var(--primary-color);
+  cursor: pointer;
 }
 .c_p_status_active{
-  color: var(--checkbox-accept-color);
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
 }
 .c_p_status_deactive{
   color: var(--dashboard-overview-decrease-color);
+  border: 1px solid var(--dashboard-overview-decrease-color);
 }
 /* Action buttons styling */
 .c_p_vacancies_table tbody .c_p_actions{
@@ -205,6 +368,8 @@
 }
 /* detail button */
 .c_p_actions .c_p_details{
+  background: transparent;
+  border: none;
   color: var(--accent-color);
   text-decoration: underline;
   display: flex;
@@ -260,9 +425,11 @@
     align-items: flex-start;
   }
   .c_p_m_v_Search_form{
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
-  .c_p_m_v_Search_form_create_new_vac{
+  .c_p_m_v_Search_form_flt_btn_and_link{
+    width: 100%;
     margin-left: 0px;
+    justify-content: space-between;
   }
 }

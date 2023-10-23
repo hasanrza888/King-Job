@@ -1,8 +1,7 @@
 import './vacancies.css';
 import { useLocation,useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft, faFilter, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-// import PageHeadText from '../../components/page_head_text/page_head_text';
+import { faChevronLeft, faFilter, faMagnifyingGlass, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import PostBox from '../../components/post_box/post_box';
 import { latest_jobs } from '../../fakeData/latestJobs';
 import { useEffect, useState } from 'react';
@@ -14,6 +13,7 @@ import twoFlexActive from '../../images/two_grip_active.svg';
 import { useSelector,useDispatch } from 'react-redux';
 import { searchJobs,getFavoritJobs,searchadvance,searchall } from '../../apiservices';
 import { updateJobs,setFavJobs,updateFavJobs } from '../../redux/reducers/jobReducers';
+import LoadingSpinner from '../../components/spinnerForPageLoading/LoadingSpinner';
 function Vacancies() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -194,63 +194,69 @@ function Vacancies() {
                             }
                         </div>
                     </div>
-                    {/* premium vacancies */}
-                    {/* <PageHeadText content={'Premium Elanlar'}/> */}
-                    <div className="vacancies_page_boxes_head">Premium Elanlar</div>
-                    <div className="vacancies_latest_jobs_boxes_container">
-                        
-                        {loading ? <p>Loading...</p> :
-                            jobs.filter(filtered => filtered['premium'] === true).map((item, index)=>{
-                                return(
-                                    <PostBox 
-                                        job_id = {item._id}
-                                        premium = {item.premium}
-                                        image_url={item.logo}
-                                        salary={item.salary}
-                                        agreedSalary = {item.agreedSalary}
-                                        job_title={item.name}
-                                        company_name={item.companyName}
-                                        post_views={item.numberOfViews}
-                                        post_applies = {item.numberOfApplys}
-                                        post_start_date={item.createdAt.includes('T') ? item.createdAt.split('T')[0] : item.createdAt}
-                                        post_end_date={item.endTime.split('T')[0]}
-                                        location={item.city}
-                                        job_time_type={item.type}
-                                        key={item._id}
-                                        flexType={flex}
-                                    />
-                                )
-                            })
-                        }
-                    </div>
-                    {/* latest vacancies */}
-                    {/* <PageHeadText content={'Ən Son Elanlar'}/> */}
-                    <div className="vacancies_page_boxes_head">Elanlar</div>
-                    <div className="vacancies_latest_jobs_boxes_container">
-                        {loading ? <p>Loading...</p> :
-                            jobs.filter(filtered => filtered['premium'] === false).map((item, index)=>{
-                                return(
-                                    <PostBox 
-                                        job_id = {item._id}
-                                        premium = {item.premium}
-                                        image_url={item.logo}
-                                        salary={item.salary}
-                                        agreedSalary = {item.agreedSalary}
-                                        job_title={item.name}
-                                        company_name={item.companyName}
-                                        post_views={item.numberOfViews}
-                                        post_applies = {item.numberOfApplys}
-                                        post_start_date={item.createdAt.includes('T') ? item.createdAt.split('T')[0] : item.createdAt}
-                                        post_end_date={item.endTime.split('T')[0]}
-                                        location={item.city}
-                                        job_time_type={item.type}
-                                        key={item._id}
-                                        flexType={flex}
-                                    />
-                                )
-                            })
-                        }
-                    </div>
+                    {
+                        loading ?
+                        <div className="vacancies_page_loading_rotates">
+                            <FontAwesomeIcon className='vacancies_page_loading_rot_icon' icon={faSpinner} />
+                        </div>
+                        :
+                        <>
+                            {/* premium vacancies */}
+                            {jobs.filter(filtered => filtered['premium'] === true).length > 0 && <div className="vacancies_page_boxes_head">Premium Elanlar</div>}
+                            <div className="vacancies_latest_jobs_boxes_container">
+                                {
+                                    jobs.filter(filtered => filtered['premium'] === true).map((item, index)=>{
+                                        return(
+                                            <PostBox 
+                                                job_id = {item._id}
+                                                premium = {item.premium}
+                                                image_url={item.logo}
+                                                salary={item.salary}
+                                                agreedSalary = {item.agreedSalary}
+                                                job_title={item.name}
+                                                company_name={item.companyName}
+                                                post_views={item.numberOfViews}
+                                                post_applies = {item.numberOfApplys}
+                                                post_start_date={item.createdAt.includes('T') ? item.createdAt.split('T')[0] : item.createdAt}
+                                                post_end_date={item.endTime.split('T')[0]}
+                                                location={item.city}
+                                                job_time_type={item.type}
+                                                key={item._id}
+                                                flexType={flex}
+                                            />
+                                        )
+                                    })
+                                }
+                            </div>
+                            {/* latest vacancies */}
+                            {jobs.filter(filtered => filtered['premium'] === false).length > 0 && <div className="vacancies_page_boxes_head">Elanlar</div>}
+                            <div className="vacancies_latest_jobs_boxes_container">
+                                {
+                                    jobs.filter(filtered => filtered['premium'] === false).map((item, index)=>{
+                                        return(
+                                            <PostBox 
+                                                job_id = {item._id}
+                                                premium = {item.premium}
+                                                image_url={item.logo}
+                                                salary={item.salary}
+                                                agreedSalary = {item.agreedSalary}
+                                                job_title={item.name}
+                                                company_name={item.companyName}
+                                                post_views={item.numberOfViews}
+                                                post_applies = {item.numberOfApplys}
+                                                post_start_date={item.createdAt.includes('T') ? item.createdAt.split('T')[0] : item.createdAt}
+                                                post_end_date={item.endTime.split('T')[0]}
+                                                location={item.city}
+                                                job_time_type={item.type}
+                                                key={item._id}
+                                                flexType={flex}
+                                            />
+                                        )
+                                    })
+                                }
+                            </div>
+                        </>
+                    }
                 </div>
             </div>
         </div>
