@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import './c_p_total_applies.css';
-
+import { useSelector } from 'react-redux';
 function CpTotalApplies() {
+    const {companyJobsApplys:applyes} = useSelector(state=>state.companyProfile);
+    console.log(applyes)
     const applies = [
         // Example applies data
         {
@@ -30,6 +32,7 @@ function CpTotalApplies() {
                 <table className="c_p_applies_table">
                     <thead>
                         <tr>
+                            <th>N</th>
                             <th>Ad</th>
                             <th>Soyad</th>
                             <th>Vakansiya adı</th>
@@ -39,13 +42,14 @@ function CpTotalApplies() {
                         </tr>
                     </thead>
                     <tbody>
-                        {applies.map((apply) => (
-                            <tr key={apply.id}>
-                                <td>{apply.FirstName}</td>
-                                <td>{apply.LastName}</td>
-                                <td>{apply.VacancyName}</td>
-                                <td><Link to={`mailto:${apply.Email}`}>{apply.Email}</Link></td>
-                                <td>{<Link to={`/${apply.CVFile}`}>{apply.CVFile}</Link>}</td>
+                        {applyes.map((apply,ind) => (
+                            <tr key={apply._id}>
+                                <td>{ind+1}</td>
+                                <td>{apply.userName}</td>
+                                <td>{"surname"}</td>
+                                <td>{apply.jobName}</td>
+                                <td><Link to={`mailto:${apply.userEmail}`}>{apply.userEmail}</Link></td>
+                                <td>{<Link target='blank' to={`${apply.file}`}>{"Cv yə bax"}</Link>}</td>
                                 <td className='applies_manage'>
                                     <button className="c_p_action_button cancel-button">Ləğv et</button>
                                     <button className="c_p_action_button select-button">Seç</button>

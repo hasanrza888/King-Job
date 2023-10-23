@@ -123,14 +123,14 @@ function App() {
         dispatch(setCompanyJobsData(data.jobs));
         
       } catch (error) {
-        console.log("error at getting companysharedjobs",error.name)
+        console.log("error at getting companyjobsapplys,error: "+error.name)
       }
     };
     const getcompanyjobsapplys = async (id) => {
       try {
         const {data} = await getCompaniesJobApplys(user._id);
         console.log(data)
-        dispatch(setCompanyJobsApplys(data.jobs));
+        dispatch(setCompanyJobsApplys(data.data));
         
       } catch (error) {
         console.log("error at getting companysharedjobs",error.name)
