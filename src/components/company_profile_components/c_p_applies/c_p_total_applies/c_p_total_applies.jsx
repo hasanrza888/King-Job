@@ -24,7 +24,7 @@ function CpTotalApplies() {
         },
         // Add more applies as needed
     ];
-
+    console.log(applyes)
     return ( 
         <div className="c_p_total_applies_cont">
             {/* table container */}
@@ -37,6 +37,7 @@ function CpTotalApplies() {
                             <th>Vakansiya adı</th>
                             <th>Email</th>
                             <th>CV faylı</th>
+                            <th>Status</th>
                             <th>İdarəetmə</th>
                         </tr>
                     </thead>
@@ -48,6 +49,7 @@ function CpTotalApplies() {
                                 <td>{apply.jobName}</td>
                                 <td><Link to={`mailto:${apply.userEmail}`}>{apply.userEmail}</Link></td>
                                 <td>{<Link target='blank' to={`${apply.file}`}>{"Cv yə bax"}</Link>}</td>
+                                <td>{apply.status}</td>
                                 <td className='applies_manage'>
                                     <button className="c_p_action_button cancel-button">Ləğv et</button>
                                     <button className="c_p_action_button select-button">Seç</button>
