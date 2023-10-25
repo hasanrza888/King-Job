@@ -43,7 +43,7 @@
 .c_p_applies_table tbody{
   display: table;
   background-color: var(--primary-color);
-  /* width: 100%; */
+  width: 100%;
 }
 .c_p_applies_table tr{
     transition: 0.3s ease all;
@@ -55,6 +55,7 @@
     padding: 12px;
     text-align: center;
     min-width: 200px;
+    max-width: 200px;
     font-size: 14px;
 }
 .c_p_applies_table th {
