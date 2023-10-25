@@ -84,6 +84,26 @@
     background-color: var(--company-menu-active);
     cursor: pointer;
 }
+.c_p_apply_status{
+  background-color: var(--main-border-color);
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 10px;
+  color: var(--primary-color);
+  font-weight: 500;
+}
+.c_p_apply_status_pending{
+  background-color: rgb(255, 196, 0);
+}
+.c_p_apply_status_accepted{
+  background-color: var(--form-psw-ch-color);
+}
+.c_p_apply_status_rejected{
+  background-color: var(--notification-count-color);
+}
+.c_p_apply_status_thinking{
+  background-color: var(--copyright-box-bg-color);
+}
 .applies_manage{
     /* display: flex;
     flex-direction: column; */
