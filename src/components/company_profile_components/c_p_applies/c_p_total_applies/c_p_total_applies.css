@@ -130,11 +130,11 @@
 }
 .select-button{
     background-color: var(--primary-color);
-    color: var(--accent-color);
-    border: 1px solid var(--accent-color);
+    color: var(--form-psw-ch-color);
+    border: 1px solid var(--form-psw-ch-color);
 }
 .select-button:hover{
-    background-color: var(--accent-hover);
+    background-color: var(--form-psw-ch-color);
     color: var(--primary-color);
 }
 .interview-button{
@@ -143,6 +143,15 @@
 }
 .interview-button:hover{
     background-color: var(--accent-hover);
+}
+.think-button{
+  background-color: var(--primary-color);
+  color: var(--copyright-box-bg-color);
+  border: 1px solid var(--copyright-box-bg-color);
+}
+.think-button:hover{
+  background-color: var(--copyright-box-bg-color);
+  color: var(--primary-color);
 }
 @media (width <= 1380px){
   .c_p_applies{
