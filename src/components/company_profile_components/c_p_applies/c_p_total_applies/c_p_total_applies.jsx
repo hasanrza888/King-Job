@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import './c_p_total_applies.css';
 import { useSelector } from 'react-redux';
+import {companyAcceptUserApply} from '../../../../apiservices'
 function CpTotalApplies() {
     const {companyJobsApplys:applyes} = useSelector(state=>state.companyProfile);
     console.log(applyes)
@@ -24,7 +25,14 @@ function CpTotalApplies() {
         },
         // Add more applies as needed
     ];
-
+    const acceptuserapply = async (id) => {
+        try {
+            const {data} = await companyAcceptUserApply(id);
+            console.log(data)
+        } catch (error) {
+            console.log('error at accepting user apply user error:'+error.name);
+        }
+    }
     return ( 
         <div className="c_p_total_applies_cont">
             {/* table container */}
