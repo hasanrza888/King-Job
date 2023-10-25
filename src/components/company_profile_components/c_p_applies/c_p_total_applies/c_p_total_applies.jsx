@@ -28,6 +28,7 @@ function CpTotalApplies() {
         },
         // Add more applies as needed
     ];
+
     const acceptuserapply = async (id,status) => {
         try {
             if(status !=='approved'){
@@ -73,6 +74,7 @@ function CpTotalApplies() {
                             <th>Vakansiya adı</th>
                             <th>Email</th>
                             <th>CV faylı</th>
+                            <th>Status</th>
                             <th>İdarəetmə</th>
                         </tr>
                     </thead>
@@ -84,9 +86,12 @@ function CpTotalApplies() {
                                 <td>{apply.jobName}</td>
                                 <td><Link to={`mailto:${apply.userEmail}`}>{apply.userEmail}</Link></td>
                                 <td>{<Link target='blank' to={`${apply.file}`}>{"Cv yə bax"}</Link>}</td>
+                                <td>
+                                    <span className={`c_p_apply_status ${apply.status === "pending" ? 'c_p_apply_status_pending' : apply.status === "accepted" ? "c_p_apply_status_accepted" : apply.status === "rejected" ? "c_p_apply_status_rejected" : "c_p_apply_status_thinking"}`}>{apply.status}</span>
+                                </td>
                                 <td className='applies_manage'>
                                     <button className="c_p_action_button cancel-button">Ləğv et</button>
-                                    <button onClick={()=>acceptuserapply(apply._id)} className="c_p_action_button select-button">Seç</button>
+                                    <button onClick={()=>acceptuserapply(apply._id,apply.status)} className="c_p_action_button select-button">Seç</button>
                                     <button className="c_p_action_button interview-button">Müsahibə dəvəti</button>
                                 </td>
                             </tr>
