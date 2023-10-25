@@ -42,42 +42,17 @@ function CpTotalApplies() {
                         <tr>
                             <th>N</th>
                             <th>Ad</th>
-                            <th>Soyad</th>
                             <th>Vakansiya adı</th>
                             <th>Email</th>
                             <th>CV faylı</th>
                             <th>İdarəetmə</th>
                         </tr>
                     </thead>
-                    <tbody>
-                    {
-    applyes.map((applys, ind) => (
-        <div key={applies.job}>
-            <div style={{backgroundColor:'green',color:'white',padding:'5px'}}>{applys.jobName}</div>
-            {applys?.applies.map((apply, ind) => (
-                <tr key={apply._id}>
-                    <td>{ind + 1}</td>
-                    <td>{apply.userName}</td>
-                    <td>{"surname"}</td>
-                    <td>{apply.jobName}</td>
-                    <td><Link to={`mailto:${apply.userEmail}`}>{apply.userEmail}</Link></td>
-                    <td>{<Link target='blank' to={`${apply.file}`}>{"Cv yə bax"}</Link>}</td>
-                    <td className='applies_manage'>
-                        <button className="c_p_action_button cancel-button">Ləğv et</button>
-                        <button className="c_p_action_button select-button">Seç</button>
-                        <button className="c_p_action_button interview-button">Müsahibə dəvəti</button>
-                    </td>
-                </tr>
-            ))}
-        </div>
-    ))
-}
-
-                        {/* {applyes.map((apply,ind) => (
+                    <tbody>                        
+                        {applyes.map((apply,ind) => (
                             <tr key={apply._id}>
                                 <td>{ind+1}</td>
                                 <td>{apply.userName}</td>
-                                <td>{"surname"}</td>
                                 <td>{apply.jobName}</td>
                                 <td><Link to={`mailto:${apply.userEmail}`}>{apply.userEmail}</Link></td>
                                 <td>{<Link target='blank' to={`${apply.file}`}>{"Cv yə bax"}</Link>}</td>
@@ -87,7 +62,7 @@ function CpTotalApplies() {
                                     <button className="c_p_action_button interview-button">Müsahibə dəvəti</button>
                                 </td>
                             </tr>
-                        ))} */}
+                        ))}
                     </tbody>
                 </table>
             </div>

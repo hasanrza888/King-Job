@@ -290,9 +290,9 @@ function VacancyFilters({closeMobileFilter, filter, setFilter}) {
                     <input type="text" onChange={specialSkillsChange} value={filter.skills} className={`vacancies_page_filters_box_text_input ${filter.skills ? "vacancies_page_filters_active_input" : ''}`} placeholder='Ms word, Python, AutoCAD'/>
                 </li>
                 {/* vacancy boxes order  */}
-                <li className="vacancies_page_filters_box">
+                {/* <li className="vacancies_page_filters_box">
                     <CustomSelectOption select_option_name={'Sıralama'} select_option_id="vacancyOrder" select_option_array={vacancyOrder} select_update={setVacancyOrder} filter={filter} setFilter={setFilter}/>
-                </li> 
+                </li>  */}
             </ul>
             <div className="vacancies_filters_confirm_and_reset_btns">
                 <div className="vacancies_filters_reset_btn" onClick={()=>{closeMobileFilter(); resetFiltersHandle()}}>Sıfırla</div>
