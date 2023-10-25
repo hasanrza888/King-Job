@@ -30,12 +30,15 @@ function CpTotalApplies() {
     ];
 
     const acceptuserapply = async (id,status) => {
+        const messages = {
+            'thinking':'Sonra yeniden baxmaq ucun elave etmek isteyirsizmi?',
+            'approved':'Birinci merheleni kecirtmeye razisizmi? applicanta mail gedecek.',
+            'rejected':'Muracieti reject etmeynize eminsizmi,reject etdiyiniz halda reject buttonu itecek ve usere mail gedecek bir daha geri qaytara bilen deyilsiz.'
+        }
         try {
-            if(status !=='approved'){
-            if(window.confirm('Deqiq qebul edirsizmi')){
+            if(window.confirm(messages[status])){
                 // console.log("ok")
-                
-                const {data} = await companyAcceptUserApply(id);
+                const {data} = await companyAcceptUserApply(id,{status});
                 console.log(data)
                 if(data.succes){
                     toast.success(data.message, {
@@ -53,7 +56,6 @@ function CpTotalApplies() {
                 else{
                     alert(data.message)
                 }}
-            }
             
             // confirm('dshbs') === 
             // const {data} = await companyAcceptUserApply(id);
@@ -90,9 +92,12 @@ function CpTotalApplies() {
                                     <span className={`c_p_apply_status ${apply.status === "pending" ? 'c_p_apply_status_pending' : apply.status === "approved" ? "c_p_apply_status_accepted" : apply.status === "rejected" ? "c_p_apply_status_rejected" : "c_p_apply_status_thinking"}`}>{apply.status}</span>
                                 </td>
                                 <td className='applies_manage'>
-                                    <button className="c_p_action_button cancel-button">Ləğv et</button>
-                                    <button onClick={()=>acceptuserapply(apply._id,apply.status)} className="c_p_action_button select-button">Seç</button>
-                                    <button className="c_p_action_button interview-button">Müsahibə dəvəti</button>
+                                    {apply.status!=='rejected' && <button onClick={()=>acceptuserapply(apply._id,'rejected')}className='c_p_action_button cancel-button'>reject</button>}
+                                    {apply.status!=='rejected' && <button onClick={()=>acceptuserapply(apply._id,'approved')} className='c_p_action_button select-button'>approv</button>}
+                                    {apply.status!=='rejected' && <button onClick={()=>acceptuserapply(apply._id,'thinking')} className='c_p_action_button think-button'>think</button>}
+                                    {/* /* <button className="c_p_action_button cancel-button">Ləğv et</button> */}
+                                    {/* <button onClick={()=>acceptuserapply(apply._id,apply.status)} className="c_p_action_button select-button">Seç</button>
+                                    <button className="c_p_action_button interview-button">Müsahibə dəvəti</button> */}
                                 </td>
                             </tr>
                         ))}
