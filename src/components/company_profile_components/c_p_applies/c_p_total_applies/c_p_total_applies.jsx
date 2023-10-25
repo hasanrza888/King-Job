@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom';
 import './c_p_total_applies.css';
-import { useSelector } from 'react-redux';
-import {companyAcceptUserApply} from '../../../../apiservices'
+import { useSelector,useDispatch } from 'react-redux';
+import {companyAcceptUserApply} from '../../../../apiservices';
+import {toast} from 'react-toastify'
+import { updateUserApply } from '../../../../redux/reducers/companyProfileReducers';
 function CpTotalApplies() {
     const {companyJobsApplys:applyes} = useSelector(state=>state.companyProfile);
     console.log(applyes)
+    const dispatch = useDispatch();
     const applies = [
         // Example applies data
         {
@@ -25,10 +28,35 @@ function CpTotalApplies() {
         },
         // Add more applies as needed
     ];
-    const acceptuserapply = async (id) => {
+    const acceptuserapply = async (id,status) => {
         try {
-            const {data} = await companyAcceptUserApply(id);
-            console.log(data)
+            if(status !=='approved'){
+            if(window.confirm('Deqiq qebul edirsizmi')){
+                // console.log("ok")
+                
+                const {data} = await companyAcceptUserApply(id);
+                console.log(data)
+                if(data.succes){
+                    toast.success(data.message, {
+                        position: "top-center",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                    dispatch(updateUserApply(data.data))
+                }
+                else{
+                    alert(data.message)
+                }}
+            }
+            
+            // confirm('dshbs') === 
+            // const {data} = await companyAcceptUserApply(id);
+            // console.log(data)
         } catch (error) {
             console.log('error at accepting user apply user error:'+error.name);
         }
@@ -58,7 +86,7 @@ function CpTotalApplies() {
                                 <td>{<Link target='blank' to={`${apply.file}`}>{"Cv yə bax"}</Link>}</td>
                                 <td className='applies_manage'>
                                     <button className="c_p_action_button cancel-button">Ləğv et</button>
-                                    <button className="c_p_action_button select-button">Seç</button>
+                                    <button onClick={()=>acceptuserapply(apply._id)} className="c_p_action_button select-button">Seç</button>
                                     <button className="c_p_action_button interview-button">Müsahibə dəvəti</button>
                                 </td>
                             </tr>
