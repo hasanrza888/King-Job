@@ -44,10 +44,17 @@ const companyProfileSlice = createSlice({
     },
     setCompanyJobsApplys : (state,action) => {
       state.companyJobsApplys = action.payload
-    }
+    },
+    updateUserApply : (state,action) => {
+      const updatedApply = action.payload;
+      const index = state.companyJobsApplys.findIndex(app => app._id === updatedApply._id);
+      if (index !== -1) {
+        state.companyJobsApplys[index] = updatedApply;
+      }
+    },
   },
 });
 
-export const { setNumbers,setCompanyJobsData,addNewJob,updateCompanyJob,deleteCompanyJob,setCompanyJobsApplys } = companyProfileSlice.actions;
+export const { setNumbers,setCompanyJobsData,addNewJob,updateCompanyJob,deleteCompanyJob,setCompanyJobsApplys,updateUserApply } = companyProfileSlice.actions;
 
 export default companyProfileSlice.reducer;
