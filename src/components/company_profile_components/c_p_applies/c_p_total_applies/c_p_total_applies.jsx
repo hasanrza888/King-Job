@@ -50,7 +50,7 @@ function CpTotalApplies() {
                                 <td><Link to={`mailto:${apply.userEmail}`}>{apply.userEmail}</Link></td>
                                 <td>{<Link target='blank' to={`${apply.file}`}>{"Cv yə bax"}</Link>}</td>
                                 <td>
-                                    <span className={`c_p_apply_status ${apply.status === "pending" ? 'c_p_apply_status_pending' : apply.status === "accepted" ? "c_p_apply_status_accepted" : apply.status === "rejected" ? "c_p_apply_status_rejected" : "c_p_apply_status_thinking"}`}>{apply.status}</span>
+                                    <span className={`c_p_apply_status ${apply.status === "pending" ? 'c_p_apply_status_pending' : apply.status === "approved" ? "c_p_apply_status_accepted" : apply.status === "rejected" ? "c_p_apply_status_rejected" : "c_p_apply_status_thinking"}`}>{apply.status}</span>
                                 </td>
                                 <td className='applies_manage'>
                                     <button className="c_p_action_button cancel-button">Ləğv et</button>
