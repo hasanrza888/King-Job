@@ -84,6 +84,20 @@
     background-color: var(--company-menu-active);
     cursor: pointer;
 }
+.c_p_open_cv{
+  padding: 6px 12px;
+  background-color: var(--accent-color);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 0px 10px 0px 0px;
+  transition: 0.3s ease all;
+  font-weight: 500;
+}
+.c_p_open_cv:hover{
+  background-color: var(--accent-hover);
+}
 .c_p_apply_status{
   background-color: var(--main-border-color);
   display: inline-block;
@@ -143,6 +157,52 @@
 }
 .interview-button:hover{
     background-color: var(--accent-hover);
+}
+/* cv modal  */
+.c_p_total_applies_CV_mod_cont{
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0px;
+  left: 0px;
+  z-index: 9999;
+  background-color: var(--modal-bg-color);
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.c_p_total_applies_CV_mod{
+  width: 90%;
+  max-width: 850px;
+  max-height: 80vh;
+  /* margin: 100px auto; */
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  padding: 20px;
+  position: relative;
+}
+/* modal close */
+.c_p_total_applies_CV_mod_header{
+  padding: 10px;
+  position: sticky;
+  top: 5px;
+  right: 10px;
+  margin-bottom: 10px;
+}
+.c_p_total_applies_CV_mod_header svg{
+  font-size: 25px;
+  color: var(--light-text-color);
+  transition: 0.3s ease all;
+  cursor: pointer;
+}
+.c_p_total_applies_CV_mod_header:hover svg{
+  color: var(--secondary-text-color);
+} 
+/* modal body */
+.c_p_total_applies_CV_mod_body{
+  max-height: 60vh;
+  overflow-y: auto;
 }
 .think-button{
   background-color: var(--primary-color);

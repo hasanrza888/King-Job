@@ -6,7 +6,7 @@ import { faBell, faCommentDots,faMoneyBill1 } from '@fortawesome/free-regular-sv
 import { useSelector } from 'react-redux';
 function CompanyProfileMainWindow({open_company_menu, menu}) {
     const { user, isLoggedIn, info } = useSelector(state => state.user);
-    console.log(info)
+    // console.log(info)
     return ( 
     <div className={`company_profile_main_window_container ${menu ? 'company_profile_main_window_full' : ''}`}>
         {/* main window header */}

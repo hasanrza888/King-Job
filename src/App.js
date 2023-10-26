@@ -129,7 +129,7 @@ function App() {
     const getcompanyjobsapplys = async (id) => {
       try {
         const {data} = await getCompaniesJobApplys(user._id);
-        console.log(data)
+        // console.log(data)
         dispatch(setCompanyJobsApplys(data.data));
         
       } catch (error) {

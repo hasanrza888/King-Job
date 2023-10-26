@@ -1,33 +1,19 @@
 import { Link } from 'react-router-dom';
 import './c_p_total_applies.css';
+import PdfViewer from '../../../pdf_viewer/pdf_viewer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClose } from '@fortawesome/free-solid-svg-icons';
+import { useEffect, useRef, useState } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 import {companyAcceptUserApply} from '../../../../apiservices';
 import {toast} from 'react-toastify'
 import { updateUserApply } from '../../../../redux/reducers/companyProfileReducers';
+
 function CpTotalApplies() {
+    const [showCV, setShowCV] = useState(false);
+    const [CVFile, setCvFile] = useState('');
     const {companyJobsApplys:applyes} = useSelector(state=>state.companyProfile);
-    console.log(applyes)
     const dispatch = useDispatch();
-    const applies = [
-        // Example applies data
-        {
-          id: 1,
-          FirstName: 'John',
-          LastName: 'Doe',
-          VacancyName: 'Software Engineer',
-          Email: 'john.doe@example.com',
-          CVFile: 'resume.pdf'
-        },
-        {
-          id: 2,
-          FirstName: 'Jane',
-          LastName: 'Smith',
-          VacancyName: 'Marketing Specialist',
-          Email: 'jane.smith@example.com',
-          CVFile: 'cv.doc'
-        },
-        // Add more applies as needed
-    ];
 
     const acceptuserapply = async (id,status) => {
         const messages = {
@@ -64,6 +50,28 @@ function CpTotalApplies() {
             console.log('error at accepting user apply user error:'+error.name);
         }
     }
+    
+    const OpenCvFUnc = (Cvf)=>{
+        setShowCV(true);
+        setCvFile(Cvf);
+    }
+    const closeModalFunc = ()=>{
+        setShowCV(false);
+    }
+    useEffect(()=>{
+        const closeModal = (e)=>{
+            if(showCV && e.target.className === 'c_p_total_applies_CV_mod_cont'){
+                setShowCV(false);
+            }
+        }
+
+        document.addEventListener('click', closeModal);
+        return ()=>{
+            document.removeEventListener('click', closeModal);
+        }
+        
+    }, [showCV])
+
     return ( 
         <div className="c_p_total_applies_cont">
             {/* table container */}
@@ -87,7 +95,7 @@ function CpTotalApplies() {
                                 <td>{apply.userName}</td>
                                 <td>{apply.jobName}</td>
                                 <td><Link to={`mailto:${apply.userEmail}`}>{apply.userEmail}</Link></td>
-                                <td>{<Link target='blank' to={`${apply.file}`}>{"Cv yə bax"}</Link>}</td>
+                                <td><button className='c_p_open_cv' onClick={()=> { return OpenCvFUnc(apply.file)}}>{"Cv-ə bax"}</button></td>
                                 <td>
                                     <span className={`c_p_apply_status ${apply.status === "pending" ? 'c_p_apply_status_pending' : apply.status === "approved" ? "c_p_apply_status_accepted" : apply.status === "rejected" ? "c_p_apply_status_rejected" : "c_p_apply_status_thinking"}`}>{apply.status}</span>
                                 </td>
@@ -104,6 +112,21 @@ function CpTotalApplies() {
                     </tbody>
                 </table>
             </div>
+           
+            {/* cv modal */}
+            {
+                showCV &&
+                <div className="c_p_total_applies_CV_mod_cont">
+                    <div className="c_p_total_applies_CV_mod">
+                        <span onClick={closeModalFunc} className="c_p_total_applies_CV_mod_header">
+                            <FontAwesomeIcon icon={faClose} />
+                        </span>
+                        <div className="c_p_total_applies_CV_mod_body">
+                            <PdfViewer fileUrl={CVFile} />
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
      );
 }
