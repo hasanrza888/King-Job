@@ -134,3 +134,7 @@ export const updateJob = (id,data) => {
 export const getCompaniesJobApplys = (id) => {
     return axiosInstance.get('/getApplysForEachCompanyOnlyTestLevel/'+id)
 }
+
+export const companyAcceptUserApply = (id,data) => {
+    return axiosInstance.put('/companyAcceptUserApply/'+id,data);
+}
