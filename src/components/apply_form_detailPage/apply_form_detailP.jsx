@@ -91,13 +91,13 @@ function ApplyFormDetailP({openApplyWindowF, setSuccessMsg, successMsg, sendNoti
                 <div className="apply_form_detail_page_body">
                 {error.errorCheck && <span style={{color:'red'}}>{error.errorContent}</span>}
                     {/* checkbox and text */}
-                    <div className="apply_form_checkbox_and_text">
+                    {/* <div className="apply_form_checkbox_and_text">
                         <div className={`apply_form_checkbox ${agreeCurrentCv ? "apply_form_checkbox_accepted" : ""}`} onClick={agreeCurrentCVHandle}>
                             {agreeCurrentCv ? <span className="apply_form_checkbox_checkmark"></span> : null}                        
                         </div>
                         
                         <div className="apply_form_check_text">Profilimdəki mövcud CV-ni seç</div>
-                    </div>
+                    </div> */}
                     {/* company logo */}
                     <label htmlFor="choose_new_cv" className='apply_form_detailP_CV_choose'>
                         Yeni CV
