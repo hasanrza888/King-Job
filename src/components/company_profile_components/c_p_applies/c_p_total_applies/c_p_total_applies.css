@@ -281,7 +281,7 @@
   background-color: var(--notification-count-color);
 }
 .c_p_apply_status_thinking{
-  background-color: var(--copyright-box-bg-color);
+  background-color: var(--thinking-color);
 }
 .applies_manage{
     /* display: flex;
@@ -322,6 +322,15 @@
 }
 .interview-button:hover{
     background-color: var(--accent-hover);
+}
+.think-button{
+  background-color: var(--primary-color);
+  color: var(--thinking-color);
+  border: 1px solid var(--thinking-color);
+}
+.think-button:hover{
+  background-color: var(--thinking-color);
+  color: var(--primary-color);
 }
 /* cv modal  */
 .c_p_total_applies_CV_mod_cont{
@@ -368,15 +377,6 @@
 .c_p_total_applies_CV_mod_body{
   max-height: 85vh;
   overflow-y: auto;
-}
-.think-button{
-  background-color: var(--primary-color);
-  color: var(--copyright-box-bg-color);
-  border: 1px solid var(--copyright-box-bg-color);
-}
-.think-button:hover{
-  background-color: var(--copyright-box-bg-color);
-  color: var(--primary-color);
 }
 @media (width <= 1380px){
   .c_p_applies{
