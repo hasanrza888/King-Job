@@ -227,6 +227,14 @@
     user-select: none;
     letter-spacing: 1px;
 }
+.c_p_applies_table th:first-child{
+  min-width: 100px;
+  max-width: 100px;
+}
+.c_p_applies_table td:first-child{
+  min-width: 100px;
+  max-width: 100px;
+}
 .c_p_applies_table th:last-child{
     min-width: 300px;
 }
