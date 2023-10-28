@@ -132,7 +132,6 @@ function CpTotalApplies() {
                     </li>
                 </ul>
             </div>
-            {/* table container */}
             {
                 loading ?
                 <div className="c_p_total_applies_loading_rotates">
@@ -144,6 +143,7 @@ function CpTotalApplies() {
                     applyes.filter((item) => {return item.userName.toLowerCase().includes(searchQuery.toLowerCase()) && item.jobName.toLowerCase().includes(filter.vacancyName.toLowerCase())}).length > 0 ?
                     
                     <div className="c_p_applies">
+                        {/* table container */}
                         <table className="c_p_applies_table">
                             <thead>
                                 <tr>
@@ -168,9 +168,9 @@ function CpTotalApplies() {
                                             <span className={`c_p_apply_status ${apply.status === "pending" ? 'c_p_apply_status_pending' : apply.status === "approved" ? "c_p_apply_status_accepted" : apply.status === "rejected" ? "c_p_apply_status_rejected" : "c_p_apply_status_thinking"}`}>{apply.status}</span>
                                         </td>
                                         <td className='applies_manage'>
-                                            {apply.status!=='rejected' && <button onClick={()=>acceptuserapply(apply._id,'rejected')}className='c_p_action_button cancel-button'>reject</button>}
-                                            {apply.status!=='rejected' && <button onClick={()=>acceptuserapply(apply._id,'approved')} className='c_p_action_button select-button'>approv</button>}
-                                            {apply.status!=='rejected' && <button onClick={()=>acceptuserapply(apply._id,'thinking')} className='c_p_action_button think-button'>think</button>}
+                                            {apply.status!=='rejected' && <button onClick={()=>acceptuserapply(apply._id,'rejected')}className='c_p_action_button cancel-button'>Ləğv et</button>}
+                                            {apply.status!=='rejected' && <button onClick={()=>acceptuserapply(apply._id,'approved')} className='c_p_action_button select-button'>Seç</button>}
+                                            {apply.status!=='rejected' && <button onClick={()=>acceptuserapply(apply._id,'thinking')} className='c_p_action_button think-button'>Fikirləş</button>}
                                             {/* /* <button className="c_p_action_button cancel-button">Ləğv et</button> */}
                                             {/* <button onClick={()=>acceptuserapply(apply._id,apply.status)} className="c_p_action_button select-button">Seç</button>
                                             <button className="c_p_action_button interview-button">Müsahibə dəvəti</button> */}
