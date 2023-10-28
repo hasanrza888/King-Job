@@ -181,7 +181,7 @@ function CpTotalApplies() {
                         </table>
                     </div>    
                     :
-                    <div className="company_profile_my_vacancies_error">MÖVCUD NAMİZƏD YOXDUR!</div>
+                    <div className="company_profile_total_applies_error">MÖVCUD NAMİZƏD YOXDUR!</div>
                 }
                 </>
             }

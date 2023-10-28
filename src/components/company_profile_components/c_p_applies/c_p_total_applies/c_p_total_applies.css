@@ -154,6 +154,12 @@
   color: var(--accent-color);
   animation: loading_rotate 0.7s infinite linear;
 }
+.company_profile_total_applies_error{
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 18px;
+}
 .c_p_applies {
   width: 100%;
   max-width: 1000px;
@@ -367,5 +373,27 @@
 @media (width <= 1380px){
   .c_p_applies{
     max-width: unset;
+  }
+}
+@media (width <= 750px){
+  .c_p_total_applies_Search_form_and_new_cont{
+    width: 100%;
+    max-width: unset;
+  }
+}
+@media (width <= 550px){
+  .c_p_total_applies_Search_form_and_new_cont{
+    width: 100%;
+    max-width: unset;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .c_p_total_applies_Search_form{
+    margin-bottom: 20px;
+  }
+  .c_p_total_applies_Search_form_flt_btn_and_link{
+    width: 100%;
+    margin-left: 0px;
+    justify-content: space-between;
   }
 }
