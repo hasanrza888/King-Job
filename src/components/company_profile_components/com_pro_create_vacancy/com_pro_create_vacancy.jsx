@@ -254,6 +254,7 @@ function ComProCreateVacancy() {
             { optionName: 'Market Researcher', selected: false, id: 9.10 },
             { optionName: 'Sales Engineer', selected: false, id: 9.11 },
             { optionName: 'Director of Marketing', selected: false, id: 9.12 },
+            { optionName: 'Marketing Assistant', selected: false, id: 9.13 },
           ],
         },
         {
