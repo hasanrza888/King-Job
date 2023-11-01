@@ -17,7 +17,8 @@ function CpTotalApplies() {
     const [openFilters, setOpenFilters] = useState(false);
     const [loading, setLoading] = useState(false);
     const [filter, setFilter] = useState({
-        vacancyName: ''
+        vacancyName: '',
+        applyStatus: '',
     })
     const [vacancyName, setVacancyName] = useState([
         {
@@ -36,6 +37,32 @@ function CpTotalApplies() {
             optionName: 'Software QA Engineer (Unpaid internship)',
             selected: false,
         }
+    ])
+    const [applyStatus, setApplyStatus] = useState([
+        {
+            id: 1,
+            optionName: 'pending',
+            value: '',
+            selected: false,
+        },
+        {
+            id: 2,
+            optionName: 'thinking',
+            value: '',
+            selected: false,
+        },
+        {
+            id: 3,
+            optionName: 'rejected',
+            value: '',
+            selected: false,
+        },
+        {
+            id: 4,
+            optionName: 'approved',
+            value: '',
+            selected: false,
+        },
     ])
     const {companyJobsApplys:applyes} = useSelector(state=>state.companyProfile);
     const dispatch = useDispatch();
@@ -130,6 +157,9 @@ function CpTotalApplies() {
                     <li className='c_p_total_applies_filters_list_item'>
                         <CustomSelectOption key="vacancy_name" select_option_name={'Vakansiya adı'} select_option_id="vacancyName" subOptionId='' select_option_array={vacancyName} select_update={setVacancyName} filter={filter} setFilter={setFilter}/>
                     </li>
+                    <li className='c_p_total_applies_filters_list_item'>
+                        <CustomSelectOption key="apply_status" select_option_name={'Müraciət statusu'} select_option_id="applyStatus" subOptionId='' select_option_array={applyStatus} select_update={setApplyStatus} filter={filter} setFilter={setFilter}/>
+                    </li>
                 </ul>
             </div>
             {
@@ -157,7 +187,7 @@ function CpTotalApplies() {
                                 </tr>
                             </thead>
                             <tbody>                        
-                                {applyes.filter((item) => {return item.userName.toLowerCase().includes(searchQuery.toLowerCase()) && item.jobName.toLowerCase().includes(filter.vacancyName.toLowerCase())}).map((apply,ind) => (
+                                {applyes.filter((item) => {return item.userName.toLowerCase().includes(searchQuery.toLowerCase()) && item.jobName.toLowerCase().includes(filter.vacancyName.toLowerCase()) && item.status.toLowerCase().includes(filter.applyStatus.toLowerCase())}).map((apply,ind) => (
                                     <tr key={apply._id}>
                                         <td>{ind+1}</td>
                                         <td>{apply.userName}</td>
