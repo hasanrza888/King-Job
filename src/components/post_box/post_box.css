@@ -79,14 +79,16 @@
 .post_box_company_logo{
     width: 40px;
     height: 40px;
-    /* border: 1px solid var(--quaternary-color); */
+    /* border: 1px solid var(--accent-color); */
     border-radius: 40px;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--list-active-bg-color);
 }
 .post_box_company_logo img{
-    width: 60%;
+    width: 95%;
 }
 /* company name */
 .post_box_company_name{
@@ -287,11 +289,11 @@
         padding: 10px;
         padding-top: 20px;
     }
-    .post_box_company_logo{
+    /* .post_box_company_logo{
         width: 35px;
         height: 35px;
         border-radius: 35px;
-    }
+    } */
     .post_box_job_title_and_salary{
         flex-direction: column;
         padding: 0px;
