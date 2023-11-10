@@ -5,7 +5,7 @@
     display: block;
     border: 1px solid rgb(201, 199, 199);
     /* box-shadow: var(--boxes-shadow-dark); */
-    border-radius: 10px;
+    border-radius: 1px;
     margin-bottom: 20px;
     padding: 15px;
     padding-top: 20px;
