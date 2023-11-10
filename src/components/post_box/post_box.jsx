@@ -10,6 +10,20 @@ import { useSelector,useDispatch } from "react-redux";
 import { updateCurrentJob } from "../../redux/reducers/jobReducers";
 import { useEffect,useState } from "react";
 function PostBox({setSavedJob, setSuccessMsg, job_id, premium, image_url, salary,agreedSalary, job_title, company_name, post_views, post_applies, post_start_date, post_end_date, location, job_time_type, flexType}){
+    console.log(formatTimeDifference(post_start_date))
+    function formatTimeDifference(timestamp) {
+        const now = new Date().getTime();
+        let tim = new Date(timestamp)
+        const difference = now - tim.getTime();
+        if (difference < 60 * 1000) {
+          return `${Math.floor(difference / 1000)} seconds ago`;
+        } else if (difference < 60 * 60 * 1000) {
+          return `${Math.floor(difference / (60 * 1000))} minutes ago`;
+        } else if (difference < 24 * 60 * 60 * 1000) {
+          return `${Math.floor(difference / (60 * 60 * 1000))} hours ago`;
+        }
+        return timestamp.split('T')[0]
+    }
     const dispatch = useDispatch();
     const {user,isLoggedIn} = useSelector(state=>state.user);
     // console.log(user,isLoggedIn)
@@ -71,7 +85,7 @@ function PostBox({setSavedJob, setSuccessMsg, job_id, premium, image_url, salary
                     <div className="post_box_dates_container">
                         <div className="post_box_date post_box_start_date">
                             <FontAwesomeIcon icon={faHourglassStart} />
-                            {post_start_date}
+                            {formatTimeDifference(post_start_date)}
                         </div>
                         <div className="post_box_date post_box_end_date">
                             <FontAwesomeIcon icon={faHourglassEnd} />

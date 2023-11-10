@@ -38,7 +38,7 @@ function Home() {
                     one_image={mockup}
                 />
                 {/* fill profile  box container */}
-                <OurWorksPromotions 
+                {/* <OurWorksPromotions 
                     key="fill_profile"
                     box_head="Profili doldurmaq" 
                     box_desc={<div>Profilinizin Gücü<br />
@@ -56,7 +56,7 @@ function Home() {
                     action_link={'/user_profile'}
                     slider_images = {[]}
                     one_image={fillyourprofilefull}
-                />
+                /> */}
                 {/* first apply box container */}
                 <OurWorksPromotions 
                     key="first_apply"
