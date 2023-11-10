@@ -81,7 +81,7 @@
     user-select: none;
 }
 .detail_page_company_logo img{
-    width: 32px;
+    width: 95%;
 }
 /* company name */
 .detail_page_company_name{
@@ -475,9 +475,9 @@
         width: 35px;
         height: 35px;
     }
-    .detail_page_company_logo img{
+    /* .detail_page_company_logo img{
         width: 20px;
-    }
+    } */
     .detail_page_vacancy_buttons_container{
         display: flex;
     }
