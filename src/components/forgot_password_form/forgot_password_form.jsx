@@ -23,7 +23,8 @@ function ForgotPasswordForm({close, setOpenOtpWindow}) {
             if(email_checker(email)){
                 const {data:dataEmail} = await emailIsUserOrCompany({email,permission_id:'0f12_j_1'})
                 if(dataEmail.succes){
-                    const {data} = await verifyEmailAndSendOtp({email,type:dataEmail.u_t_p==='u_s_r' ?'u_password_changing':'c_password_changing'});
+                    const {data} = await verifyEmailAndSendOtp({email});
+                    console.log(data)
                     if(data.succes){
                         navigateTo(`/login/otp/${email}`);    
                         setErrorMessage({...errorMessage, errorCheck : false, errorContent: ''});
