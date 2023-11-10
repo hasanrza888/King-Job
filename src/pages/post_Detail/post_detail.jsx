@@ -380,7 +380,7 @@ function PostDetail() {
                                         company_name={item.companyName}
                                         post_views={item.numberOfViews}
                                         post_applies = {item.numberOfApplys}
-                                        post_start_date={item.createdAt.includes('T') ? item.createdAt.split('T')[0] : item.createdAt}
+                                        post_start_date={item.createdAt}
                                         post_end_date={item.endTime.split('T')[0]}
                                         location={item.city}
                                         job_time_type={item.type}
@@ -412,7 +412,7 @@ function PostDetail() {
                                         company_name={item.companyName}
                                         post_views={item.numberOfViews}
                                         post_applies = {item.numberOfApplys}
-                                        post_start_date={item.createdAt.includes('T') ? item.createdAt.split('T')[0] : item.createdAt}
+                                        post_start_date={item.createdAt}
                                         post_end_date={item.endTime.split('T')[0]}
                                         location={item.city}
                                         job_time_type={item.type}
