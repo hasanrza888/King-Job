@@ -43,8 +43,8 @@ export const getjobs = () => {
 export const getfilteroptions = () => {
     return axiosInstance.get('/getctgsubctg');
 }
-export const getJobWithId = (id) => {
-    return axiosInstance.get('/getJobWithId/'+id);
+export const getJobWithId = (id,d) => {
+    return axiosInstance.get('/getJobWithId/'+id+`?isViewed=${d}`);
 }
 export const searchJobs = (params) => {
     return axiosInstance.get('/searchJobs'+params)
