@@ -24,21 +24,21 @@ import { updateJobs,updateCurrentJob } from "../../redux/reducers/jobReducers";
 import LoadingSpinner from "../../components/spinnerForPageLoading/LoadingSpinner";
 function PostDetail() {
     const dispatch = useDispatch();
+    const [rltd,setrltd] = useState([]);
     const [loading,setLoading]  = useState(false);
     const [checkCv, setCheckCv] = useState(false);
     const {id} = useParams();
     const {jobs:Jobs,loading:Loading,currentJobInDetail:data} = useSelector(state=>state.job);
     const {user,isLoggedIn} = useSelector(state=>state.user);
+    console.log(Jobs)
     // const [data, setData] = useState(null);
     useEffect(()=>{
-        const ftchJobWithId = async () => {
-            // console.log("fetched in detail")
-            // console.log(id)
+        const ftchJobWithId = async (d) => {
             setLoading(true);
             try {
-                const {data} = await getJobWithId(id);
+                const {data} = await getJobWithId(id,d);
                 setLoading(false);
-                // console.log(data)
+                console.log(data)
                 if(data.succes){
                     dispatch(updateCurrentJob(data.data));
                     let newData = Jobs.map(obj=>{
@@ -46,6 +46,7 @@ function PostDetail() {
                         data.data : obj
                     });
                     dispatch(updateJobs(newData)); 
+                    setrltd(data.relatedJobs)
                 }
                 else{
                     dispatch(updateCurrentJob(null));
@@ -57,11 +58,15 @@ function PostDetail() {
                 console.log("error at jobdetail:",error.name);
             }
         }
-        const strdinf = JSON.parse(localStorage.getItem('c_r_r_n_t'));
-        // console.log(strdinf._id !== id)
-        if(strdinf === null || strdinf._id !==id){
-            ftchJobWithId();
-        }
+        const viewedJobs = localStorage.getItem('viewedJobs') ? JSON.parse(localStorage.getItem('viewedJobs')) : [];
+    if (!viewedJobs.includes(id)) {
+      ftchJobWithId("not");
+      viewedJobs.push(id);
+      localStorage.setItem('viewedJobs', JSON.stringify(viewedJobs));
+    }
+    else{
+        ftchJobWithId("yes")
+    }
        
     },[dispatch,id]);
     const [applyWindow, setApplyWindow] = useState(false);
@@ -361,46 +366,11 @@ function PostDetail() {
                                 }
                             </div>
                         </div>  
-                        {/* __________________ premium vacancies  __________________ */}
-                        { latest_jobs['latest'].filter(filtered => filtered['premium'] === true && filtered['category'] === data['category']).length > 0 ? 
-                        <div className="vacancies_page_boxes_head">Premium Elanlar</div> : '' 
-                        }            
+                        {/* __________________ premium vacancies  __________________ */}        
                         <div className="detail_latest_jobs_boxes_container">
                             {
                                 Loading ? <p>Loading...</p>:
-                                Jobs.filter(filtered =>  filtered._id!==id && filtered['premium'] === true).map((item, index)=>{
-                                    return(
-                                        <PostBox 
-                                        job_id = {item._id}
-                                        premium = {item.premium}
-                                        image_url={item.logo}
-                                        salary={item.salary}
-                                        agreedSalary = {item.agreedSalary}
-                                        job_title={item.name}
-                                        company_name={item.companyName}
-                                        post_views={item.numberOfViews}
-                                        post_applies = {item.numberOfApplys}
-                                        post_start_date={item.createdAt}
-                                        post_end_date={item.endTime.split('T')[0]}
-                                        location={item.city}
-                                        job_time_type={item.type}
-                                        key={item._id}
-                                        flexType={flex}
-                                    />
-                                    )
-                                })
-                            }
-                        </div>
-                        {/* _________________________ normal vacancies ________________________ */}
-                        {
-                            Loading ? <p>Loading...</p>:
-                            Jobs.filter(filtered =>  filtered._id!==id && filtered['premium'] === false && filtered['category'] === data['category']).length > 0  ?
-                            <div className="vacancies_page_boxes_head">Elanlar</div> : ''
-                        }
-                        <div className="detail_latest_jobs_boxes_container">
-                            {
-                                Loading ? <p>Loading...</p>:
-                                Jobs.filter(filtered => filtered._id!==id && filtered['premium'] === false && filtered['category'] === data['category']).map((item, index)=>{
+                                rltd.map((item, index)=>{
                                     return(
                                         <PostBox 
                                         job_id = {item._id}

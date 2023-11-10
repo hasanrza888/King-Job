@@ -72,6 +72,7 @@ function App() {
     if (!location.search) {
       fetchJobs();
     }
+    console.log("from app")
   }, [dispatch, location.search]);
 
   useEffect(() => {
