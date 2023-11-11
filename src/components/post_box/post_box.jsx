@@ -63,7 +63,7 @@ function PostBox({setSavedJob, setSuccessMsg, job_id, premium, image_url, salary
                 </div>
                 {/* job salary */}
                 <div className="post_box_job_salary">
-                    {salary ? salary +"AZN" : "Razılaşma"}
+                    {salary ? salary + " AZN" : "Razılaşma"}
                 </div>                
             </div>
             {/* job location and time type */}
