@@ -5,12 +5,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose, faFilter, faSearch, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useRef, useState } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
-import {companyAcceptUserApply} from '../../../../apiservices';
+import {companyAcceptUserApply,fetchFiltersValueForJobsFilter} from '../../../../apiservices';
 import {toast} from 'react-toastify'
 import { updateUserApply } from '../../../../redux/reducers/companyProfileReducers';
 import CustomSelectOption from '../../../custom_select_option/custom_select_option';
 
 function CpTotalApplies() {
+    const { user, isLoggedIn, info } = useSelector(state => state.user);
+    console.log(user)
     const [showCV, setShowCV] = useState(false);
     const [CVFile, setCvFile] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
@@ -20,24 +22,16 @@ function CpTotalApplies() {
         vacancyName: '',
         applyStatus: '',
     })
-    const [vacancyName, setVacancyName] = useState([
-        {
-            id: 1,
-            optionName: 'Front End Developer (Unpaid Internship)',
-            value: '',
-            selected: false,
-        },
-        {   
-            id: 2,
-            optionName: 'UI/UX Designer(Unpaid Internship)',
-            selected: false,
-        },
-        {   
-            id: 3,
-            optionName: 'Software QA Engineer (Unpaid internship)',
-            selected: false,
+    const [vacancyName, setVacancyName] = useState([]);
+
+    useEffect(()=>{
+        const ftchfilter = async () => {
+            const {data} = await fetchFiltersValueForJobsFilter(user?._id);
+            console.log(data)
+            setVacancyName(data.data)
         }
-    ])
+        ftchfilter();
+    },[user._id])
     const [applyStatus, setApplyStatus] = useState([
         {
             id: 1,

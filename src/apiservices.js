@@ -138,3 +138,7 @@ export const getCompaniesJobApplys = (id) => {
 export const companyAcceptUserApply = (id,data) => {
     return axiosInstance.put('/companyAcceptUserApply/'+id,data);
 }
+
+export const fetchFiltersValueForJobsFilter = (id) => {
+    return axiosInstance.get('/fetchfiltersvaluesforjobs/'+id)
+}
