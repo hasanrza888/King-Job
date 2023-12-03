@@ -5,6 +5,7 @@ import { BarChart, Bar, Pie, Cell, PieChart, XAxis, YAxis, CartesianGrid, Toolti
 import { useEffect,useState } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 import { getMonthlyVacancyData } from '../../../apiservices';
+import PageTitle from '../../page_title_maker/page_title';
 function CompanyProfileDashboard() {
     const dispatch = useDispatch();
     const {numbers} = useSelector(state=>state.companyProfile)
@@ -29,6 +30,9 @@ function CompanyProfileDashboard() {
     // console.log(Vacancies_analytics_pie)
     
     const COLORS = ['#98A2FF', '#CAD7FF'];
+    useEffect(()=>{
+        PageTitle('İdarə Paneli');
+    },[])
     return ( 
     <div className="company_profile_dashboard_container">
         {/* overview statistics */}

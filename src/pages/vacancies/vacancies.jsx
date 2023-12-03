@@ -14,6 +14,7 @@ import { useSelector,useDispatch } from 'react-redux';
 import { searchJobs,getFavoritJobs,searchadvance,searchall } from '../../apiservices';
 import { updateJobs,setFavJobs,updateFavJobs } from '../../redux/reducers/jobReducers';
 import LoadingSpinner from '../../components/spinnerForPageLoading/LoadingSpinner';
+import PageTitle from '../../components/page_title_maker/page_title';
 function Vacancies() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -137,6 +138,9 @@ function Vacancies() {
     //     }
     //     srch()
     // },[advanceValue,dispatch])
+    useEffect(()=>{
+        PageTitle('Vakansiyalar');
+    },[])
     return ( 
         <div className="vacancies_page_container">
             {/* image slider and job search container */}

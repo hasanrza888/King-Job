@@ -5,9 +5,10 @@ import { faEnvelope, faLocationDot, faPhone } from '@fortawesome/free-solid-svg-
 import { faFacebookSquare, faInstagram, faLinkedin, faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
 import SubscribeForm from '../../components/subscribe_form/subscribe_form';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { email_checker } from '../../components/email_checker/email_checker';
 import { toast } from 'react-toastify';
+import PageTitle from '../../components/page_title_maker/page_title';
 function Contact() {
     const [sendingdata, setSendingData] = useState(false);
     const [errorMessage, setErrorMessage] = useState({
@@ -44,6 +45,9 @@ function Contact() {
             setErrorMessage({...errorMessage, errorCheck: true, errorContent: 'Email sintaksisi səhvdir!'});
         }
     }
+    useEffect(()=>{
+        PageTitle('Əlaqə');
+    },[])
     return ( 
         <div className="contact_page_container">
             {/* page name */}
@@ -51,12 +55,12 @@ function Contact() {
             <div className="contact_page_slogan">Bizimlə Əlaqə Saxlayın !</div>
             {/* contact means boxes */}
             <div className="contact_page_boxes_container">
-                <Link to="mailto:info@island.az" className="contact_page_box">
+                <Link to="mailto:info@kingjob.pro" className="contact_page_box">
                     <div className="contact_page_box_icon">
                         <FontAwesomeIcon icon={faEnvelope} />
                     </div>                    
                     <div className="contact_page_box_text">
-                    kinggjobb@gmail.com
+                        info@kingjob.pro
                     </div>
                 </Link>
                 <Link to="tel:+9940775773133" className="contact_page_box">

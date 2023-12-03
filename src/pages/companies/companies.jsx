@@ -9,6 +9,7 @@ import PageHeadText from '../../components/page_head_text/page_head_text';
 import CompanyPostBox from '../../components/company_post_box/company_post_box';
 import { useEffect,useState } from 'react';
 import { getcompanies } from '../../apiservices';
+import PageTitle from '../../components/page_title_maker/page_title';
 function Companies() {
     const [companies,setCompanies] = useState([]);
     const [loading,setLoading] = useState(true);
@@ -116,6 +117,9 @@ function Companies() {
             window.removeEventListener('scroll', scrollForSearchForm);
         }
     }, []);
+    useEffect(()=>{
+        PageTitle('Şirkətlər');
+    },[])
     return ( 
         <div className="companies_page_container">
             <div className="companies_page_slider_and_search">

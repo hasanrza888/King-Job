@@ -1,7 +1,7 @@
 import './company_profile_my_vacancies.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightLong, faFilter, faMagnifyingGlass, faPen, faPlus, faSearch, faSortDown, faSortUp, faSpinner, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import CustomSelectOption from '../../custom_select_option/custom_select_option';
@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 import { deactivatevacancy,deleteJob } from '../../../apiservices';
 import { updateCurrentJob } from '../../../redux/reducers/jobReducers';
 import { updateCompanyJob,deleteCompanyJob } from '../../../redux/reducers/companyProfileReducers';
+import PageTitle from '../../page_title_maker/page_title';
 
 function CompanyProfileMyVacancies() {
     const dispatch = useDispatch();
@@ -655,7 +656,10 @@ function CompanyProfileMyVacancies() {
         localStorage.removeItem('c_r_r_n_t');
         dispatch(updateCurrentJob(null));
     }
-    console.log(sortedVacancies)
+    // console.log(sortedVacancies)
+    useEffect(()=>{
+        PageTitle('Vakansiyalarım');
+    },[])
     return ( 
         <div className="company_profile_my_vacancies_container">
             {/* vakancy search form and new vacancy create button */}
