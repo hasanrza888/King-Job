@@ -9,6 +9,7 @@ import {companyAcceptUserApply,fetchFiltersValueForJobsFilter} from '../../../..
 import {toast} from 'react-toastify'
 import { updateUserApply } from '../../../../redux/reducers/companyProfileReducers';
 import CustomSelectOption from '../../../custom_select_option/custom_select_option';
+import PageTitle from '../../../page_title_maker/page_title';
 
 function CpTotalApplies() {
     const { user, isLoggedIn, info } = useSelector(state => state.user);
@@ -127,7 +128,9 @@ function CpTotalApplies() {
         // console.log(e.target.search_form_input.value)
         setSearchQuery(e.target.search_form_input.value);
     }
-    console.log(filter)
+    useEffect(()=>{
+        PageTitle('Ümumi Müraciətlər');
+    },[])
     return ( 
         <div className="c_p_total_applies_cont">
             {/* search applies form input */}

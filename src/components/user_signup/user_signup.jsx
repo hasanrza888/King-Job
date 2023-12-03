@@ -1,13 +1,14 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './user_signup.css';
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PasswordChecker from '../password_checker/password_checker';
 import SendOtpForm from '../sendOtpForm/sendOtpForm';
 import { Link } from 'react-router-dom';
 import { email_checker } from '../email_checker/email_checker';
 import { validateUserData } from '../../apiservices';
 import { toast } from 'react-toastify';
+import PageTitle from '../page_title_maker/page_title';
 
 
 function UserSignup() {
@@ -119,6 +120,9 @@ function UserSignup() {
             }                        
         }
     }
+    useEffect(()=>{
+        PageTitle('Namizəd Qeydiyyatı');
+    },[])
     return ( 
         <div className="user_signup_container">
             {/* otp window and user signup form */}

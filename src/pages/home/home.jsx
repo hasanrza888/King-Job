@@ -1,5 +1,5 @@
 import './home.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SliderHome from '../../components/slider/slider';
 import { Link } from 'react-router-dom';
 import OurWorksSlider from '../../components/our_works_slider/our_works_slider';
@@ -16,9 +16,12 @@ import ofline_interview from "../../images/ofline_interview.jpg";
 import OurWorksPromotions from '../../components/our_works_promotions/our_works_promotions';
 import king_job_video from '../../videos/king_job_video.mp4';
 import { useSelector } from 'react-redux';
+import PageTitle from '../../components/page_title_maker/page_title';
 function Home() {
     const {user,isLoggedIn} = useSelector(state=>state.user);
-    
+    useEffect(()=>{
+        PageTitle('Azərbaycanın ən mükəmməl vakansiya saytı');
+    },[])
     return ( 
         <div className="home_page_container">
             

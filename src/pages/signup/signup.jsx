@@ -5,6 +5,7 @@ import { faBuilding, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import PageTitle from "../../components/page_title_maker/page_title";
 function Signup() {
     const navigate= useNavigate()
     const {user,isLoggedIn} = useSelector(state=>state.user);
@@ -14,6 +15,10 @@ function Signup() {
             navigate('/')
         }
     },[user,isLoggedIn,navigate])
+    
+    // useEffect(()=>{
+    //     PageTitle('Qeydiyyat');
+    // },[])
     return ( 
         <div className="sign_up_page_container">
             {/* <PageHeadText content = "Qeydiyyatdan Keçin !"/> */}

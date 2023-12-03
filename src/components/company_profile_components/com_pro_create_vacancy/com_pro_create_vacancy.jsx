@@ -12,6 +12,7 @@ import CreatePremiumForVacany from './c_p_c_v_create_premium/c_p_c_v_create_prem
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getJobWithId } from '../../../apiservices';
+import PageTitle from '../../page_title_maker/page_title';
 function ComProCreateVacancy() {
     const today = new Date();
     const minDate = today.toISOString().split('T')[0];
@@ -579,7 +580,9 @@ function ComProCreateVacancy() {
             }
         }
     }
-    // console.log(filter)
+    useEffect(()=>{
+        PageTitle('Vakansiya Yarat');
+    },[])
     return ( 
         <>{completed ? 
             <CreatePremiumForVacany editvacancy={editableVacancyId} setCompleted = {setCompleted} filter={filter} setFilter={setFilter}/>:

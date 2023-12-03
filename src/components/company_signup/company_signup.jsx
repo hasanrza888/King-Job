@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './company_signup.css';
 import PasswordChecker from '../password_checker/password_checker';
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { email_checker } from '../email_checker/email_checker';
 import { validateUserData } from '../../apiservices';
 import {toast} from 'react-toastify';
+import PageTitle from '../page_title_maker/page_title';
 function CompanySignup() {
     const [showPassword, setShowPassword] = useState(false);
     // password checker object for update password form
@@ -126,7 +127,9 @@ function CompanySignup() {
     const show_condition_func = ()=>{
         setShowCondition(!showCondition);
     }
-    
+    useEffect(()=>{
+        PageTitle('Şirkət Qeydiyyatı');
+    },[])
     return ( 
         <div className="company_signup_container">                        
             {/* otp code form when submitting */}

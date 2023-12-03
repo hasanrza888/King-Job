@@ -22,6 +22,7 @@ import { getJobWithId } from "../../apiservices";
 import { useSelector,useDispatch } from "react-redux";
 import { updateJobs,updateCurrentJob } from "../../redux/reducers/jobReducers";
 import LoadingSpinner from "../../components/spinnerForPageLoading/LoadingSpinner";
+import PageTitle from "../../components/page_title_maker/page_title";
 function PostDetail() {
     const dispatch = useDispatch();
     const [rltd,setrltd] = useState([]);
@@ -140,6 +141,12 @@ function PostDetail() {
             });
         }
     }
+    useEffect(()=>{
+        if(!loading && data){
+            PageTitle(data['name']);
+        }  
+    },[loading, data])
+    
     return ( 
         <div className="detail_page">
             {
