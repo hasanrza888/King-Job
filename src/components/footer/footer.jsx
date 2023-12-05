@@ -87,7 +87,7 @@ function Footer() {
                     Saytın rəhbərliyi yerləşdirilmiş elanların məzmununa görə məsuliyyət daşımır.
                     </div>
                     <div className="desktop_footer_copyright">
-                        <Link to="https://kigjob.com" target="_blank">kigjob.com</Link> @2023 King Job MMC
+                        <Link to="https://www.kingjob.pro" target="_blank">kingjob.pro</Link> @2023 King Job MMC
                     </div>
                 </div>
             </div>
