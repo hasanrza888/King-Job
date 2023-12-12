@@ -133,6 +133,7 @@ function ComProCreateVacancy() {
             { optionName: 'Public Relations Manager', selected: false, id: 3.8 },
             { optionName: 'Publisher', selected: false, id: 3.9 },
             { optionName: 'Production Manager', selected: false, id: 3.10 },
+            { optionName: 'Translator', selected: false, id: 3.11 },
           ],
         },
         {
