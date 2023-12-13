@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import {NavLink, Link, useLocation,useNavigate} from "react-router-dom";
-import svg from '../../images/island_logo.svg';
+import svg from '../../images/king_job_logo.svg';
 import defaultProfilePic from "../../images/defaultUser.png"
 import './header.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

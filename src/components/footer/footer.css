@@ -28,8 +28,8 @@
     flex-direction: column;
 }
 .footer_logo{
-    width: 8%;
-    min-width: 100px;
+    width: 10%;
+    min-width: 120px;
     user-select: none;
     /* margin: 20px 0px 0px 20px; */
 }

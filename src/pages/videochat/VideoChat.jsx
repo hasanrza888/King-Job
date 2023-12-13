@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { ZegoUIKitPrebuilt } from '@zegocloud/zego-uikit-prebuilt';
 import { useSelector } from 'react-redux';
-import svg from '../../images/island_logo.svg';
+import svg from '../../images/king_job_logo.svg';
 import { useNavigate,useParams } from 'react-router-dom';
 import { checkMeetingBetweenUserAndCompany } from '../../apiservices';
 import MessageComponent from './messageComponent';
