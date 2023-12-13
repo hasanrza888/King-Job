@@ -30,8 +30,8 @@
 }
 /* logo */
 .header_logo{
-    width: 8%;
-    min-width: 100px;
+    width: 10%;
+    min-width: 120px;
     user-select: none;
 }
 .header_logo img{
@@ -205,7 +205,7 @@
     /* mobile header logo */
     .mobile_header_logo{
         width: 10%;
-        min-width: 70px;
+        min-width: 110px;
         margin: 0px auto;
         user-select: none;
     }
@@ -219,6 +219,9 @@
     }
     .account_link_btn, .header_login_btn{
         padding: 5px 10px;
+    }
+    .header_login_btn{
+        margin-right: 0px;
     }
     .mobile_menu_close{
         font-size: 30px;

@@ -1,6 +1,6 @@
 import React from 'react';
 import './LoadingSpinner.css'; // You can define styles for this component in LoadingSpinner.css
-import svg from '../../images/island_logo.svg';
+import svg from '../../images/king_job_logo.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRotate, faSpinner } from '@fortawesome/free-solid-svg-icons';
 function LoadingSpinner() {

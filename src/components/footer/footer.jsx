@@ -1,5 +1,5 @@
 import "./footer.css";
-import svg from '../../images/island_logo.svg';
+import svg from '../../images/king_job_logo.svg';
 import {Link, NavLink, useLocation} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faFacebookSquare, faInstagram, faLinkedin, faTwitterSquare} from '@fortawesome/free-brands-svg-icons';
