@@ -5,7 +5,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { apllyNewJob } from '../../apiservices';
 import { useSelector,useDispatch } from 'react-redux';
 import { updateCurrentJob,updateJobs } from '../../redux/reducers/jobReducers';
-function ApplyFormDetailP({openApplyWindowF, setSuccessMsg, successMsg, sendNotificationSuccess,job}) {
+function ApplyFormDetailP({openApplyWindowF, setSuccessMsg, successMsg, sendNotificationSuccess, job, setOpenTg}) {
     const dispatch = useDispatch();
     const [error,setErrorMessage]  = useState({errorCheck:false,errorContent:''});
     const {user,isLoggedIn} = useSelector(state=>state.user);
@@ -23,6 +23,13 @@ function ApplyFormDetailP({openApplyWindowF, setSuccessMsg, successMsg, sendNoti
     const closeWindowWhenOtherClick = (e)=>{
         if(e.target.className === "apply_form_detail_page"){
             openApplyWindowF();
+            openTgWindow();
+        }
+    }
+    const openTgWindow = ()=>{
+        if(!JSON.parse(localStorage.getItem('t_s_i'))){
+            setOpenTg(true);
+            console.log('ttgtgtgt');
         }
     }
     const agreeCurrentCVHandle = ()=>{
@@ -61,6 +68,7 @@ function ApplyFormDetailP({openApplyWindowF, setSuccessMsg, successMsg, sendNoti
                     })
                     dispatch(updateJobs(newData))
                     // console.log(data.message)
+                    openTgWindow()
                   }
                   else{
                     console.log(data.message)
@@ -83,7 +91,7 @@ function ApplyFormDetailP({openApplyWindowF, setSuccessMsg, successMsg, sendNoti
                 {/* apply window heading */}
                 <div className="apply_form_detail_page_heading">
                     {/* window close button */}
-                    <span className="apply_form_detail_page_close_btn" onClick={openApplyWindowF}>
+                    <span className="apply_form_detail_page_close_btn" onClick={()=>{openApplyWindowF(); openTgWindow()}}>
                         <FontAwesomeIcon icon={faXmark}/>
                     </span>
                     <p className="apply_form_detail_page_head_text">Müraciət üçün CV seçin !</p>

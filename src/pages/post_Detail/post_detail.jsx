@@ -23,11 +23,13 @@ import { useSelector,useDispatch } from "react-redux";
 import { updateJobs,updateCurrentJob } from "../../redux/reducers/jobReducers";
 import LoadingSpinner from "../../components/spinnerForPageLoading/LoadingSpinner";
 import PageTitle from "../../components/page_title_maker/page_title";
+import TgSubscribeModal from "../../components/tg_subscribe_modal/tg_subscribe_modal";
 function PostDetail() {
     const dispatch = useDispatch();
     const [rltd,setrltd] = useState([]);
     const [loading,setLoading]  = useState(false);
     const [checkCv, setCheckCv] = useState(false);
+    const [openTg, setOpenTg] = useState(false);
     const {id} = useParams();
     const {jobs:Jobs,loading:Loading,currentJobInDetail:data} = useSelector(state=>state.job);
     const {user,isLoggedIn} = useSelector(state=>state.user);
@@ -146,7 +148,12 @@ function PostDetail() {
             PageTitle(data['name']);
         }  
     },[loading, data])
-    
+    useEffect(()=>{
+        if(localStorage.getItem('t_s_i') === null){
+            localStorage.setItem('t_s_i', false); 
+        }
+    },[])
+    console.log(localStorage.getItem('t_s_i'))
     return ( 
         <div className="detail_page">
             {
@@ -408,7 +415,8 @@ function PostDetail() {
                 </div>
             }
             {checkCv ? <CVCheckerModal job_id={id} open_cv_checker={open_cv_checker} /> : ''}
-            {applyWindow ? <ApplyFormDetailP job={id} openApplyWindowF={openApplyWindowF} sendNotificationSuccess = {sendNotificationSuccess}/> : null}            
+            {applyWindow ? <ApplyFormDetailP job={id} openApplyWindowF={openApplyWindowF} sendNotificationSuccess = {sendNotificationSuccess} setOpenTg={setOpenTg}/> : null}            
+            {openTg && <TgSubscribeModal setOpenTg={setOpenTg} />}
         </div>
     );
 }
