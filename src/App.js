@@ -40,6 +40,7 @@ import ComProCreateVacancy from './components/company_profile_components/com_pro
 import ComProPremiumVacancies from './components/company_profile_components/com_pro_premium_vacancies/com_pro_premium_vacancies';
 import CpAppliesMainWindow from './components/company_profile_components/c_p_applies/c_p_applies_main_w/c_p_applies_main_w';
 import CpTotalApplies from './components/company_profile_components/c_p_applies/c_p_total_applies/c_p_total_applies';
+import TgSbBtn from './components/tg_sb_btn/tg_sb_btn';
 
 // Use these components in your code as needed
 
@@ -223,6 +224,7 @@ function App() {
         </div>
         {!location.pathname.includes('/videochat') && <Footer />}
         <PageTopBtn />
+        <TgSbBtn />
       {/* </React.Suspense> */}
     </div>
   );

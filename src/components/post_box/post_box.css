@@ -88,7 +88,7 @@
     background-color: var(--list-active-bg-color);
 }
 .post_box_company_logo img{
-    width: 95%;
+    width: 100%;
 }
 /* company name */
 .post_box_company_name{

@@ -15,9 +15,48 @@
 /* contact boxes container */
 .contact_page_boxes_container{
     width: 100%;
-    margin: 0px auto;
+    margin: 0px auto 100px; 
     display: flex;
     flex-direction: row;
+}
+.tg_subscribe_modal_center{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.tg_subscribe_modal_center h2{
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 30px;
+    font-size: 30px;
+}
+.tg_subscribe_modal_center h3{
+    text-align: center;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+.tg_subscribe_modal_center h4{
+    text-align: center;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+.tg_subscribe_modal_icon_link{
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tg_subscribe_modal_icon_link svg{
+    font-size: 25px;
+    margin-right: 10px;
+    color: #0088CC;
+}
+.tg_subscribe_modal_icon_link a{
+    color: var(--accent-color);
+    text-decoration: underline;
+    font-size: 20px;
 }
 .contact_page_box{
     width: 33.3%;
@@ -260,9 +299,17 @@ input[type=number] {
         font-size: 16px;
     }
 }
+@media (width <= 750px){
+    .tg_subscribe_modal_center h2{
+        font-size: 25px;
+    }
+}
 @media (width <= 500px){
     .contact_page_slogan{
         font-size: 18px;
+    }
+    .tg_subscribe_modal_center h2{
+        font-size: 20px;
     }
     .contact_page_box{
         width: 100%;
