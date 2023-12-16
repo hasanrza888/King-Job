@@ -10,7 +10,6 @@ import { useSelector,useDispatch } from "react-redux";
 import { updateCurrentJob } from "../../redux/reducers/jobReducers";
 import { useEffect,useState } from "react";
 function PostBox({setSavedJob, setSuccessMsg, job_id, premium, image_url, salary,agreedSalary, job_title, company_name, post_views, post_applies, post_start_date, post_end_date, location, job_time_type, flexType}){
-    console.log(formatTimeDifference(post_start_date))
     function formatTimeDifference(timestamp) {
         const now = new Date().getTime();
         let tim = new Date(timestamp)
