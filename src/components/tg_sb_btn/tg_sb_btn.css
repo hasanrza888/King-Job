@@ -1,0 +1,83 @@
+@keyframes from_small_to_big{
+    0%{
+        transform: scale(1) rotate(0deg);
+    }
+    100%{
+        transform: scale(1.5) rotate(15deg);
+    }
+}
+.tg_sb_btn_container{
+    position: fixed;
+    bottom: 50px;
+    left: 50px;
+    z-index: 1000;
+}
+.tg_sb_btn_container a{
+    display: inline-block;
+}
+.tg_sb_btn_container svg{
+    font-size: 40px;
+    color: #0088CC;
+    animation: 1.5s from_small_to_big linear infinite;
+}
+/* telegram hover box */
+.tg_sb_box_container{
+    min-width: 260px;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    border: 1px solid var(--main-border-color);
+    padding: 10px;
+    position: absolute;
+    bottom: 20px;
+    left: 30px;
+    display: none;
+    /* height: 0px; */
+    overflow: hidden;
+    /* transition: 0.5s ease all; */
+    animation: 0.5s tb_box_top;
+}
+@keyframes tb_box_top {
+    from{
+        height: 0px;
+    }
+    to{
+        height: 250px;
+    }
+}
+.tg_sb_box_container h2{
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+.tg_sb_box_container h3{
+    font-weight: 400;
+    margin-bottom: 10px;
+    font-size: 17px;
+}
+.tg_sb_box_container h4{
+    font-weight: 400;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+.tg_sb_box_container a{
+    display: block;
+    text-align: center;
+    text-decoration: underline;
+    color: var(--accent-color);
+}
+.tg_sb_btn_container:hover .tg_sb_box_container{
+    display: block;
+}
+@media (width <= 500px){
+    .tg_sb_btn_container{
+        bottom: 20px;
+        left: 20px;
+    }
+    .tg_sb_box_container{
+        left: -10px;
+        bottom: 30px;
+        min-width: 280px;
+    }
+    .tg_sb_box_container h2{
+        font-size: 18px;
+    }
+}

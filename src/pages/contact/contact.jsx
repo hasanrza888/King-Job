@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PageHeadText from '../../components/page_head_text/page_head_text';
 import './contact.css'
 import { faEnvelope, faLocationDot, faPhone } from '@fortawesome/free-solid-svg-icons';
-import { faFacebookSquare, faInstagram, faLinkedin, faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
+import { faFacebookSquare, faInstagram, faLinkedin, faTelegram, faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
 import SubscribeForm from '../../components/subscribe_form/subscribe_form';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -80,6 +80,22 @@ function Contact() {
                     </div>
                 </Link>
             </div>
+            {/* tg channel  */}
+            <div className="tg_subscribe_modal_center">
+                {/* <div className="tg_subscribe_modal"> */}
+                    <h2>Vakansiyaları axtarma, vakansiyalar sənə gəlsin !</h2>
+                    <h3>Sadəcə telegram kanalımıza abunə ol.</h3>
+                    <h4>Telegram kanalımızda vakansiyalar avtomatik paylaşılır</h4>
+                    {/* tg channel link */}
+                    <div className="tg_subscribe_modal_icon_link">
+                        <FontAwesomeIcon icon={faTelegram} />
+                        <Link to='https://t.me/the_kingjob' target="_blank">Kanala abunə ol</Link>
+                    </div>
+                    {/* modal close */}
+                    {/* <button className="tg_subscribe_modal_close" onClick={close_tg_modal}>Bağla</button> */}
+                {/* </div> */}
+            </div>
+            {/* location map */}
             <div className="contact_page_map">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d512.6125278886502!2d50.08737083718522!3d40.38494957811747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x403066630c235b35%3A0xb86f0de275ed2af!2sSurakhani%2C%20Hovsan!5e1!3m2!1sen!2saz!4v1692276461516!5m2!1sen!2saz" width="600" height="450" style={{border:0}} loading="lazy"></iframe>
             </div>

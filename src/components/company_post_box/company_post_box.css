@@ -34,7 +34,7 @@
     border-radius: 10px;
 }
 .company_post_logo img{
-    width: 40px;
+    width: 100%;
 }
 /* company name and rating  */
 .company_post_name_and_rating{
@@ -130,7 +130,7 @@
         height: 40px;
     }
     .company_post_logo img{
-        width: 25px;
+        width: 100%;
     }
     .company_post_name{
         font-size: 16px;
